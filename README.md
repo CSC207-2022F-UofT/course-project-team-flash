@@ -1,4 +1,4 @@
-# Project Template.
+# Project Template
 
 This is a template repository for CSC 207 projects. 
 This repository contains starter code for a gradle project.
