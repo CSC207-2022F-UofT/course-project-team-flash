@@ -1,10 +1,10 @@
-/*
+package entities;/*
  * Author: Andrew Nguyen
  * Date: October 31/22
  * This abstract class contains the blueprint for a flashcard entity
  */
 
-public abstract class flashcard {
+public abstract class Flashcard {
 
     private String question;
     private String answer;
@@ -14,7 +14,7 @@ public abstract class flashcard {
      * @param question a String representing the question
      * @param answer a String representing the correct answer
      */
-    public flashcard(String question, String answer) {
+    public Flashcard(String question, String answer) {
         this.question = question;
         this.answer = answer;
     }
