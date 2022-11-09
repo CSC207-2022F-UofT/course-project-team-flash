@@ -1,7 +1,7 @@
 package editCard;/*
  * Author: Albert Yan
  * Date: October 31/22
- * This class is a container for the input data related to edit card systems
+ * This class is a container for the input data related to edit card systems a
  */
 
 import entities.Flashcard;

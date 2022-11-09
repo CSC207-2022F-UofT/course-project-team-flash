@@ -1,7 +1,7 @@
 package editCard;/*
  * Author: Albert Yan
  * Date: October 31/22
- * The presenter class for edit card systems
+ * The presenter class for edit card systems a
  */
 
 public class EditCardPresenter {

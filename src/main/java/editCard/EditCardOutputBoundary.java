@@ -1,7 +1,7 @@
 package editCard;/*
  * Author: Albert Yan
  * Date: October 31/22
- * The output boundary for edit card systems
+ * The output boundary for edit card systems a
  */
 
 public class EditCardOutputBoundary {
