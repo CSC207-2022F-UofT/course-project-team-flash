@@ -7,4 +7,20 @@
 package importDeck;
 
 public class ImportDeckController {
+    /**
+     * The input boundary for the deck import use case.
+     */
+    private final ImportDeckInputBoundary importDeckInputBoundary;
+
+    /**
+     * A new ImportDeckController for the use case defined by ImportDeckInputBoundary
+     * @param importDeckInputBoundary The input boundary for the deck import use case.
+     */
+    public ImportDeckController(ImportDeckInputBoundary importDeckInputBoundary){
+        this.importDeckInputBoundary = importDeckInputBoundary;
+    }
+
+    public void runImport(){
+
+    }
 }

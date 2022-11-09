@@ -6,5 +6,6 @@
 
 package importDeck;
 
-public class ImportDeckInteractor {
+public class ImportDeckInteractor implements ImportDeckInputBoundary{
+
 }
