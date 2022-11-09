@@ -1,7 +1,7 @@
 /*
 * Author: Aldo Bani
 * Date: November 9/22
-* This is the data needed for the deck import system
+* This is the input data needed for the deck import system
 */
 
 package importDeck;
