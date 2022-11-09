@@ -4,6 +4,8 @@ package editCard;/*
  * The output data class for edit card systems, packages data related to output together
  */
 
+import entities.Flashcard;
+
 public class EditCardOutputData {
 
     private Flashcard card;
@@ -14,7 +16,7 @@ public class EditCardOutputData {
         this.message = message;
     }
 
-    public Card getCard() {
+    public Flashcard getCard() {
         return card;
     }
 

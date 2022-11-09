@@ -4,6 +4,8 @@ package editCard;/*
  * This class is a container for the input data related to edit card systems
  */
 
+import entities.Flashcard;
+
 public class EditCardInputData {
 
     private Flashcard card;
