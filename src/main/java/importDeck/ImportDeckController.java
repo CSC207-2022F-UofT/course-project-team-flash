@@ -7,9 +7,6 @@
 package importDeck;
 
 public class ImportDeckController {
-    /**
-     * The input boundary for the deck import use case.
-     */
     private final ImportDeckInputBoundary importDeckInputBoundary;
 
     /**

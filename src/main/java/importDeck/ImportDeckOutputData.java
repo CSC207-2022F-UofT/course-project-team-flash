@@ -5,6 +5,14 @@
  */
 
 package importDeck;
-
+import entities.Deck;
 public class ImportDeckOutputData {
+    private Deck importedDeck;
+
+    public ImportDeckOutputData(Deck importedDeck){
+        this.importedDeck = importedDeck;
+    }
+    public Deck getDeck(){
+        return importedDeck;
+    }
 }
