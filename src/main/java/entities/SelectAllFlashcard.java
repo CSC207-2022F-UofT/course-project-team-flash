@@ -9,8 +9,6 @@ import java.util.List;
 
 public class SelectAllFlashcard extends Flashcard {
 
-    private String question;
-    private String answer;
     private List<String> options;
 
     /**
