@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Quiz {
 
-    private String quizName;
-    private List<Deck> decks;
+    private final String quizName;
+    private final List<Deck> decks;
 
     /**
      * Constructor for the Quiz object
@@ -15,5 +15,8 @@ public class Quiz {
     public Quiz(String quizName, List<Deck> decks) {
         this.quizName = quizName;
         this.decks = decks;
+    }
+
+    public void storeQuiz() {
     }
 }
