@@ -7,8 +7,8 @@
 package exportDeck;
 
 public class ExportDeckInteractor implements ExportDeckInputBoundary{
-    final ExportDeckController exportDeckController;
-    final ExportDeckPresenter exportDeckPresenter;
+    private final ExportDeckController exportDeckController;
+    private final ExportDeckPresenter exportDeckPresenter;
 
     public ExportDeckInteractor(ExportDeckController exportDeckController, ExportDeckPresenter exportDeckPresenter) {
         this.exportDeckController = exportDeckController;
@@ -23,6 +23,7 @@ public class ExportDeckInteractor implements ExportDeckInputBoundary{
     @Override
     public ExportDeckOutputData exportDeck(ExportDeckInputData inputData) {
         //creates a file and puts into user's filesystem
-        return new ExportDeckOutputData("the message");
+        ExportDeckOutputData outputData = new ExportDeckOutputData("Deck exported!");
+        return outputData;
     }
 }

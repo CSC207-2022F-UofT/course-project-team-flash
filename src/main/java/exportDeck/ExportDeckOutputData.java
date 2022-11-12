@@ -7,7 +7,7 @@
 package exportDeck;
 
 public class ExportDeckOutputData {
-    private String message;
+    private final String message;
 
     /**
      * Creates a data object for the deck export output.
