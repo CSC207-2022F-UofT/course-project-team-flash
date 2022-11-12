@@ -7,9 +7,11 @@
 package importDeck;
 import entities.Deck;
 public class ImportDeckOutputData {
+    private String message;
     private Deck importedDeck;
 
-    public ImportDeckOutputData(Deck importedDeck){
+    public ImportDeckOutputData(String message, Deck importedDeck){
+        this.message = message;
         this.importedDeck = importedDeck;
     }
     public Deck getDeck(){

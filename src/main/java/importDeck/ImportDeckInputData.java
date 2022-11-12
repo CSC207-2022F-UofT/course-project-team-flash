@@ -7,8 +7,8 @@
 package importDeck;
 
 public class ImportDeckInputData {
-    private String fileName;
-    private String fileContents;
+    private final String fileName;
+    private final String fileContents;
 
     /**
      * Creates a data object for deck import input.
@@ -23,9 +23,7 @@ public class ImportDeckInputData {
     /**
      * @return name of the file
      */
-    String getFileName(){
-        return fileName;
-    }
+    String getFileName(){ return fileName; }
 
     /**
      * @return contents of the file

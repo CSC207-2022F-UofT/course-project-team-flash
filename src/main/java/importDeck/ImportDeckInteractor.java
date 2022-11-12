@@ -5,11 +5,19 @@
  */
 
 package importDeck;
+
 import entities.Deck;
+import entities.Flashcard;
 
 public class ImportDeckInteractor implements ImportDeckInputBoundary{
-    public ImportDeckInteractor(){
+    final ImportDeckController importDeckController;
+    final ImportDeckPresenter importDeckPresenter;
 
+    //deck and card factory needed maybe??
+
+    public ImportDeckInteractor(ImportDeckController importDeckController, ImportDeckPresenter importDeckPresenter){
+        this.importDeckController = importDeckController;
+        this.importDeckPresenter = importDeckPresenter;
     }
     @Override
     public ImportDeckOutputData importDeck(ImportDeckInputData inputData){
