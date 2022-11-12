@@ -7,5 +7,5 @@
 package importDeck;
 
 public interface ImportDeckInputBoundary {
-    ImportDeckOutputData importDeck(ImportDeckInputData inputData);
+    void importDeck(ImportDeckInputData inputData);
 }

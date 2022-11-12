@@ -8,8 +8,8 @@ package importDeck;
 import entities.Deck;
 
 public class ImportDeckOutputData {
-    private String message;
-    private Deck importedDeck;
+    private final String message;
+    private final Deck importedDeck;
 
     /**
      * Creates a data object for the deck import output.

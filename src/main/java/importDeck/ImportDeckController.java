@@ -10,14 +10,15 @@ public class ImportDeckController {
     private final ImportDeckInputBoundary importDeckInputBoundary;
 
     /**
-     * A new ImportDeckController for the use case defined by ImportDeckInputBoundary
-     * @param importDeckInputBoundary The input boundary for the deck import use case.
+     * The controller for the deck import use case
+     * @param importDeckInputBoundary The input boundary for the deck import use case
      */
     public ImportDeckController(ImportDeckInputBoundary importDeckInputBoundary){
         this.importDeckInputBoundary = importDeckInputBoundary;
     }
 
-    public void runImport(){
-
+    public void runImport(String fileName){
+        ImportDeckInputData inputData = new ImportDeckInputData(fileName);
+        importDeckInputBoundary.importDeck(inputData);
     }
 }
