@@ -17,14 +17,12 @@ class ShowProblemControllerTest {
 
         String[] cardIdList = {"1", "2", "3", "4", "5"};
         int currIndex = 1;
-        String userProblem = "spaghetti";
 
         ShowProblemOutputData actual = controller.show(cardIdList, currIndex);
 
         //Set up expected output
         String[] expCardIdList = {"1", "2", "3", "4", "5"};
-        int expCurrIndex = 2;
-        String expUserProblem = "spaghetti";
+        int expCurrIndex = 1;
 
         //compare
         Assertions.assertArrayEquals(actual.getFlashcardIdList(), expCardIdList);

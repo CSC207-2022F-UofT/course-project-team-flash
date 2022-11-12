@@ -14,11 +14,12 @@ class ShowProblemPresenterTest {
         int currIndex = 1;
 
         ShowProblemOutputData outputData = new ShowProblemOutputData(cardIdList, currIndex);
+        ShowProblemPresenter presenter = new ShowProblemPresenter();
 
         String[] expCardIdList = {"1", "2", "3", "4"};
         int expCurrIndex = 1;
 
-        Assertions.assertArrayEquals(expCardIdList, outputData.getFlashcardIdList());
-        Assertions.assertEquals(expCurrIndex, outputData.getCurrCardIndex());
+        Assertions.assertArrayEquals(expCardIdList, presenter.prepareSuccessView(outputData).getFlashcardIdList());
+        Assertions.assertEquals(expCurrIndex, presenter.prepareSuccessView(outputData).getCurrCardIndex());
     }
 }
