@@ -2,9 +2,7 @@ package startQuiz;
 
 public interface StartQuizOutputBoundary {
 
-    private void prepareSuccessView(StartQuizOutputData outputData){
-    }
+    StartQuizOutputData prepareSuccessView(StartQuizOutputData outputData);
 
-    private void prepareFailView(StartQuizOutputData outputData){
-    }
+    StartQuizOutputData prepareFailView(String error);
 }

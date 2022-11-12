@@ -9,7 +9,7 @@ public class ShowProblemController {
         this.showProblemInput = input;
     }
 
-    ShowProblemOutputData show(ArrayList<String> flashcardIdList, int currCardIndex){
+    ShowProblemOutputData show(String[] flashcardIdList, int currCardIndex){
         ShowProblemInputData requestModel = new ShowProblemInputData(flashcardIdList, currCardIndex);
 
         return showProblemInput.show(requestModel);

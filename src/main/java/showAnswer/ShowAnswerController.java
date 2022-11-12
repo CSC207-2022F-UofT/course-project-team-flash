@@ -2,15 +2,17 @@ package showAnswer;
 
 public class ShowAnswerController {
 
-    final ShowAnswerInputBoundary showAnswerInput;
+    final ShowAnswerInputBoundary showAnswerInputBound;
 
     ShowAnswerController(ShowAnswerInputBoundary showAnswerInput){
-        this.showAnswerInput = showAnswerInput;
+        this.showAnswerInputBound = showAnswerInput;
     }
+
 
     ShowAnswerOutputData show(String[] flashcardIdList, int currCardIndex, String userAnswer){
         ShowAnswerInputData requestModel = new ShowAnswerInputData(flashcardIdList, currCardIndex, userAnswer);
 
-        return showAnswerInput.show(requestModel);
+        return showAnswerInputBound.show(requestModel);
     }
+
 }

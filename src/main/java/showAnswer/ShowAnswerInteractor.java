@@ -10,6 +10,11 @@ public class ShowAnswerInteractor implements ShowAnswerInputBoundary{
 
     @Override
     public ShowAnswerOutputData show(ShowAnswerInputData userInputData) {
-        return null;
+
+        ShowAnswerOutputData outputData = new ShowAnswerOutputData(userInputData.getFlashcardIdList(),
+                userInputData.getCurrCardIndex(),
+                userInputData.getUserAnswer());
+
+        return outputBoundary.prepareSuccessView(outputData);
     }
 }

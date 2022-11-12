@@ -2,11 +2,11 @@ package showAnswer;
 
 public class ShowAnswerOutputData {
 
-    final String[] flashcardIdList;
+    private final String[] flashcardIdList;
 
-    final int currCardIndex;
+    private int currCardIndex;
 
-    final String userAnswer;
+    private final String userAnswer;
 
     ShowAnswerOutputData(String[] flashcardIdList, int currCardIndex, String userAnswer){
         this.flashcardIdList = flashcardIdList;
@@ -24,5 +24,9 @@ public class ShowAnswerOutputData {
 
     public String getUserAnswer(){
         return this.userAnswer;
+    }
+
+    public void incCurrCardIndex(int increment){
+        this.currCardIndex += increment;
     }
 }

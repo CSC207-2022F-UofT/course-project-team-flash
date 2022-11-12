@@ -2,9 +2,7 @@ package showProblem;
 
 public interface ShowProblemOutputBoundary {
 
-    private void prepareSuccessView(ShowProblemOutputData outputData){
-    }
+    ShowProblemOutputData prepareSuccessView(ShowProblemOutputData outputData);
 
-    private void prepareFailView(ShowProblemOutputData outputData){
-    }
+    ShowProblemOutputData prepareFailView(String error);
 }

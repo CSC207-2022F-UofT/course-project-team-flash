@@ -13,7 +13,7 @@ public class ShowProblemOutputData {
         return this.flashcardIdList;
     }
     
-    int getcurrCardIndex(){
+    int getCurrCardIndex(){
         return this.currCardIndex;
     }
 }

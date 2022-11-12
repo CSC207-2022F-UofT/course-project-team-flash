@@ -2,11 +2,11 @@ package showAnswer;
 
 public class ShowAnswerInputData {
 
-    final String[] flashcardIdList;
+    private final String[] flashcardIdList;
 
-    final int currCardIndex;
+    private int currCardIndex;
 
-    final String userAnswer;
+    private final String userAnswer;
 
     ShowAnswerInputData(String[] flashcardIdList, int currCardIndex, String userAnswer){
         this.flashcardIdList = flashcardIdList;
