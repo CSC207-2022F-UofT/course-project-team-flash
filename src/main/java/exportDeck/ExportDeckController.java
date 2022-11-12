@@ -6,6 +6,9 @@
 
 package exportDeck;
 
+import entities.Deck;
+import entities.Flashcard;
+
 public class ExportDeckController {
     private final ExportDeckInputBoundary exportDeckInputBoundary;
 
@@ -17,7 +20,8 @@ public class ExportDeckController {
         this.exportDeckInputBoundary = exportDeckInputBoundary;
     }
 
-    public void runExport(){
-
+    public void runExport(Deck deckToExport){
+        ExportDeckInputData inputData = new ExportDeckInputData(deckToExport);
+        exportDeckInputBoundary.exportDeck(inputData);
     }
 }
