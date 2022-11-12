@@ -29,4 +29,5 @@ public class SelectAllFlashcard extends Flashcard {
     public List<String> getOptions() {
         return options;
     }
+
 }

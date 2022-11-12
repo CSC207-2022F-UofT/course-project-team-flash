@@ -1,4 +1,8 @@
 package createCard;
 
-public class CreateCardPresenter {
+public class CreateCardPresenter implements CreateCardOutputBoundary{
+    @Override
+    public void prepareSuccessView(CreateCardOutputData outputData) {
+
+    }
 }

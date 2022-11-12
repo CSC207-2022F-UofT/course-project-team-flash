@@ -10,4 +10,5 @@ public class QandAFlashcard extends Flashcard {
     public QandAFlashcard(String question, String answer) {
         super(question, answer);
     }
+
 }
