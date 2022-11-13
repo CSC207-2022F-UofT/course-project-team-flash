@@ -29,7 +29,6 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
     /**
      * Takes in data input containing the file and creates a data output with a deck containing its cards
      * @param inputData data retrieved from the input
-     * @return an OutputData object (for ImportDeck) containing a message and the deck
      */
     @Override
     public void importDeck(ImportDeckInputData inputData){
