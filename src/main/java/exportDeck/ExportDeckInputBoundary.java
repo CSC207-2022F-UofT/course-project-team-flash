@@ -7,5 +7,5 @@
 package exportDeck;
 
 public interface ExportDeckInputBoundary {
-    ExportDeckOutputData exportDeck(ExportDeckInputData inputData);
+    void exportDeck(ExportDeckInputData inputData);
 }
