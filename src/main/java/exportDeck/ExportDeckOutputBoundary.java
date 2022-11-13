@@ -7,6 +7,6 @@
 package exportDeck;
 
 public interface ExportDeckOutputBoundary {
-    ExportDeckOutputData prepareSuccessView(ExportDeckOutputData outputData);
-    ExportDeckOutputData prepareFailView(String error);
+    void prepareSuccessView(ExportDeckOutputData outputData);
+    void prepareFailView(String error);
 }
