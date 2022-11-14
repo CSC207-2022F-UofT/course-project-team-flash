@@ -1,11 +1,14 @@
 package entities;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Deck {
 
     private String name;
     private List<Flashcard> cards;
+
+    private final String uniqueID;
 
     /**
      * Constructor for the Deck object
@@ -14,6 +17,7 @@ public class Deck {
     public Deck(String name) {
         this.name = name;
         this.cards = new ArrayList<>();
+        this.uniqueID = UUID.randomUUID().toString();
     }
     public String getName() {
         return name;
@@ -26,5 +30,8 @@ public class Deck {
     }
     public void addCard(Flashcard card) {
         this.cards.add(card);
+    }
+    public String getUniqueID() {
+        return uniqueID;
     }
 }

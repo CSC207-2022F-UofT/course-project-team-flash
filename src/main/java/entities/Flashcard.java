@@ -4,10 +4,16 @@ package entities;/*
  * This abstract class contains the blueprint for a flashcard entity
  */
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 public abstract class Flashcard {
 
     private String question;
     private String answer;
+    private String uniqueID;
+    private static final Map<String, Flashcard> flashcardTracker = new HashMap<>();
 
     /**
      * Constructor for the flashcard object
@@ -17,6 +23,7 @@ public abstract class Flashcard {
     public Flashcard(String question, String answer) {
         this.question = question;
         this.answer = answer;
+        this.uniqueID = UUID.randomUUID().toString();
     }
 
     public void setQuestion(String newQuestion) {
@@ -34,4 +41,15 @@ public abstract class Flashcard {
     public String getAnswer() {
         return answer;
     }
+
+    public String getUniqueID() {
+        return uniqueID;
+    }
+    public static void addTracker(String uniqueID, Flashcard card) {
+        flashcardTracker.put(uniqueID, card);
+    }
+    public static void removeTracker(String uniqueID) {
+        flashcardTracker.remove(uniqueID);
+    }
+
 }
