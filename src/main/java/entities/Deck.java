@@ -1,11 +1,15 @@
+/*
+ * Author: Andrew Nguyen
+ */
+
 package entities;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Deck {
 
     private String name;
-    private List<Flashcard> cards;
+    private final List<Flashcard> cards;
+    private static final Map<String, Deck> deckTracker = new HashMap<>();
 
     /**
      * Constructor for the Deck object
@@ -26,5 +30,14 @@ public class Deck {
     }
     public void addCard(Flashcard card) {
         this.cards.add(card);
+    }
+    public static Map<String, Deck> getTracker() {
+        return deckTracker;
+    }
+    public static void addTracker(String deckName, Deck deck) {
+        deckTracker.put(deckName, deck);
+    }
+    public static void removeTracker(String deckName) {
+        deckTracker.remove(deckName);
     }
 }
