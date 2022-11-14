@@ -17,8 +17,8 @@ public class MoveCardController {
         this.moveCardInputBoundary = moveCardInputBoundary;
     }
 
-    public void move(Deck deck, Flashcard card) {
-        MoveCardInputData moveCardInputData = new MoveCardInputData(card, deck);
+    public void move(String oldDeck, String newDeck, String card) {
+        MoveCardInputData moveCardInputData = new MoveCardInputData(card, oldDeck, newDeck);
 
         moveCardInputBoundary.move(moveCardInputData);
     }

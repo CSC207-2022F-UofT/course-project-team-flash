@@ -31,6 +31,9 @@ public class Deck {
     public void addCard(Flashcard card) {
         this.cards.add(card);
     }
+    public void removeCard(Flashcard card) {
+        this.cards.remove(card);
+    }
     public static Map<String, Deck> getTracker() {
         return deckTracker;
     }

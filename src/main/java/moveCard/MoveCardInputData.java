@@ -5,19 +5,24 @@ import entities.Flashcard;
 
 public class MoveCardInputData {
 
-    private Deck deck;
-    private Flashcard card;
+    private String oldDeckID;
 
-    public MoveCardInputData(Flashcard card, Deck deck) {
-        this.card = card;
-        this.deck = deck;
+    private String newDeckID;
+    private String cardID;
+
+    public MoveCardInputData(String card, String oldDeck, String newDeck) {
+        this.cardID = card;
+        this.oldDeckID = oldDeck;
+        this.newDeckID = newDeck;
     }
 
-    public Deck getDeck() {
-        return this.deck;
+    public String getOldDeckID() {
+        return this.oldDeckID;
     }
 
-    public Flashcard getCard() {
-        return this.card;
+    public String getNewDeckID() { return this.newDeckID; };
+
+    public String getCardID() {
+        return this.cardID;
     }
 }
