@@ -1,5 +1,8 @@
-// a
 package createDeck;
 
-public class CreateDeckPresenter {
+public class CreateDeckPresenter implements CreateDeckOutputBoundary{
+    @Override
+    public void prepareSuccessView(CreateDeckOutputData outputData){
+
+    }
 }
