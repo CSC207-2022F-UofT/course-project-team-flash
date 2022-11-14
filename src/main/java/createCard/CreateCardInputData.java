@@ -35,11 +35,9 @@ public class CreateCardInputData {
     public String getAnswer() {
         return answer;
     }
-
     public String getQuestion() {
         return question;
     }
-
     public List<String> getOptions() {
         return options;
     }
