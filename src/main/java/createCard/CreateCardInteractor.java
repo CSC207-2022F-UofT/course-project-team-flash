@@ -21,6 +21,8 @@ public class CreateCardInteractor implements CreateCardInputBoundary {
                 inputData.getAnswer(),
                 inputData.getOptions());
 
+        Flashcard.addTracker(newCard.getUniqueID(), newCard);
+
         inputData.getDeck().addCard(newCard);
 
         CreateCardOutputData outputData = new CreateCardOutputData("Flashcard created.");
