@@ -5,7 +5,6 @@ public class Deck {
 
     private String name;
     private final List<Flashcard> cards;
-    private final String uniqueID;
     private static final Map<String, Deck> deckTracker = new HashMap<>();
 
     /**
@@ -15,7 +14,6 @@ public class Deck {
     public Deck(String name) {
         this.name = name;
         this.cards = new ArrayList<>();
-        this.uniqueID = UUID.randomUUID().toString();
     }
     public String getName() {
         return name;
@@ -29,16 +27,13 @@ public class Deck {
     public void addCard(Flashcard card) {
         this.cards.add(card);
     }
-    public String getUniqueID() {
-        return uniqueID;
-    }
     public static Map<String, Deck> getTracker() {
         return deckTracker;
     }
-    public static void addTracker(String uniqueID, Deck deck) {
-        deckTracker.put(uniqueID, deck);
+    public static void addTracker(String deckName, Deck deck) {
+        deckTracker.put(deckName, deck);
     }
-    public static void removeTracker(String uniqueID) {
-        deckTracker.remove(uniqueID);
+    public static void removeTracker(String deckName) {
+        deckTracker.remove(deckName);
     }
 }
