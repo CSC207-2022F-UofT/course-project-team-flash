@@ -1,3 +1,7 @@
+/*
+ * Author: Andrew Nguyen
+ */
+
 package entities;
 import java.util.*;
 
