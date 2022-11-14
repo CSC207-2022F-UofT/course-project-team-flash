@@ -5,4 +5,9 @@ public class CreateDeckPresenter implements CreateDeckOutputBoundary{
     public void prepareSuccessView(CreateDeckOutputData outputData){
 
     }
+
+    @Override
+    public void prepareFailView(CreateDeckOutputData outputData) {
+
+    }
 }
