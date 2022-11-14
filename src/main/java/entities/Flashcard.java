@@ -12,7 +12,7 @@ public abstract class Flashcard {
 
     private String question;
     private String answer;
-    private String uniqueID;
+    private final String uniqueID;
     private static final Map<String, Flashcard> flashcardTracker = new HashMap<>();
 
     /**
@@ -44,6 +44,9 @@ public abstract class Flashcard {
 
     public String getUniqueID() {
         return uniqueID;
+    }
+    public static Map<String, Flashcard> getTracker() {
+        return flashcardTracker;
     }
     public static void addTracker(String uniqueID, Flashcard card) {
         flashcardTracker.put(uniqueID, card);

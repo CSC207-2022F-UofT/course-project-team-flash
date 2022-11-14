@@ -1,5 +1,6 @@
 package entities;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Objects;
@@ -45,4 +46,28 @@ class QandAFlashcardTest {
 
         assert card.getAnswer().equals("19");
     }
+
+    @Test
+    void getUniqueID() {
+        String question = "What is 9 + 10?";
+        String answer = "19";
+        Flashcard card = new QandAFlashcard(question, answer);
+        Flashcard.addTracker(card.getUniqueID(), card);
+
+        assert card.getUniqueID() != null;
+    }
+
+    @Test
+    void addTracker() {
+        String question = "What is 9 + 10?";
+        String answer = "19";
+
+        Flashcard card1 = new QandAFlashcard(question, answer);
+        Flashcard.addTracker(card1.getUniqueID(), card1);
+        Flashcard card2 = new QandAFlashcard(question, answer);
+        Flashcard.addTracker(card2.getUniqueID(), card2);
+
+        assert Flashcard.getTracker().size() == 2;
+    }
+
 }
