@@ -34,7 +34,7 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
     public void importDeck(ImportDeckInputData inputData){
         try {
             File deckFile = new File(inputData.getFileName());
-            Deck importedDeck = new Deck(deckFile.getName(), /*temporary*/null);
+            Deck importedDeck = new Deck(deckFile.getName());
             Scanner reader = new Scanner(deckFile);
             while (reader.hasNextLine()){
                 String cardInfo = reader.nextLine();
