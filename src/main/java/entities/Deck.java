@@ -1,14 +1,12 @@
 package entities;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class Deck {
 
     private String name;
-    private List<Flashcard> cards;
-
+    private final List<Flashcard> cards;
     private final String uniqueID;
+    private static final Map<String, Deck> deckTracker = new HashMap<>();
 
     /**
      * Constructor for the Deck object
@@ -33,5 +31,14 @@ public class Deck {
     }
     public String getUniqueID() {
         return uniqueID;
+    }
+    public static Map<String, Deck> getTracker() {
+        return deckTracker;
+    }
+    public static void addTracker(String uniqueID, Deck deck) {
+        deckTracker.put(uniqueID, deck);
+    }
+    public static void removeTracker(String uniqueID) {
+        deckTracker.remove(uniqueID);
     }
 }
