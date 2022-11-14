@@ -1,8 +1,12 @@
 package moveCard;
 
-public class MoveCardPresenter {
+public class MoveCardPresenter implements MoveCardOutputBoundary{
 
-    public MoveCardPresenter() {
+    @Override
+    public void prepareSuccessView(MoveCardOutputData moveCardOutputData) {
+
+    }
+    public void prepareFailView(MoveCardOutputData moveCardOutputData) {
 
     }
 }

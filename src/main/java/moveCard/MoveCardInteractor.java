@@ -1,6 +1,7 @@
 package moveCard;
 
-public class MoveCardInteractor {
+
+public class MoveCardInteractor implements MoveCardInputBoundary{
 
     private MoveCardOutputBoundary moveCardOutputBoundary;
 
@@ -8,7 +9,11 @@ public class MoveCardInteractor {
         this.moveCardOutputBoundary = moveCardOutputBoundary;
     }
 
-    public void move() {
+    @Override
+    public void move(MoveCardInputData moveCardInputData) {
+        moveCardInputData.getDeck().addCard(moveCardInputData.getCard());
 
+        MoveCardOutputData moveCardOutputData = new MoveCardOutputData("Flashcard moved.");
+        moveCardOutputBoundary.prepareSuccessView(moveCardOutputData);
     }
 }
