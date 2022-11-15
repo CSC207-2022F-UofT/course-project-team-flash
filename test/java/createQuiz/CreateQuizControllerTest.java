@@ -5,4 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class createQuizControllerTest {
 
+    @Test
+    void testCreateQUiz() {
+
+    }
+
 }
