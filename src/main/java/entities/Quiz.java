@@ -1,11 +1,16 @@
 package entities;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Quiz {
 
     private String quizName;
     private List<Deck> decks;
+
+    private static final Map<String, Quiz> quizTracker = new HashMap<>();
 
     /**
      * Constructor for the Quiz object
@@ -16,4 +21,15 @@ public class Quiz {
         this.quizName = quizName;
         this.decks = decks;
     }
+
+    public List<Deck> getDecks(){
+        return this.decks;
+    }
+
+    public static Quiz getQuiz(String quizId){
+        return quizTracker.get(quizId);
+
+    }
+
+
 }

@@ -1,13 +1,15 @@
 package startQuiz;
 
-public class StartQuizOutputData {
-    private final String[] flashcardIdList;
+import java.util.List;
 
-    StartQuizOutputData(String[] flashcardIds){
+public class StartQuizOutputData {
+    private final List<String> flashcardIdList;
+
+    StartQuizOutputData(List<String> flashcardIds){
         this.flashcardIdList = flashcardIds;
     }
 
-    private String[] getFlashcardIdList(){
+    private List<String> getFlashcardIdList(){
         return this.flashcardIdList;
     }
 }

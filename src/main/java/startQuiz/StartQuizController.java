@@ -2,16 +2,16 @@ package startQuiz;
 
 public class StartQuizController {
 
-    final StartQuizInputBoundary quizStartInput;
+    final StartQuizInputBoundary quizStartInputBound;
 
     public StartQuizController(StartQuizInputBoundary quizStartInput) {
-        this.quizStartInput = quizStartInput;
+        this.quizStartInputBound = quizStartInput;
     }
 
     StartQuizOutputData start(String quizId, Boolean isRandomized) {
         StartQuizInputData requestModel = new StartQuizInputData(quizId, isRandomized);
 
-        return quizStartInput.start(requestModel);
+        return quizStartInputBound.start(requestModel);
     }
 
 }
