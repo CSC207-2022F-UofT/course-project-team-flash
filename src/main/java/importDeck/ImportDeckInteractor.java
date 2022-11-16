@@ -11,6 +11,7 @@ import entities.Flashcard;
 import entities.CardFactory;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ImportDeckInteractor implements ImportDeckInputBoundary{
@@ -39,15 +40,19 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
             while (reader.hasNextLine()){
                 String cardInfo = reader.nextLine();
                 String[] cardInfoArray = cardInfo.split(";");
-                /* waiting for card factory fix
-                if (cardInfoArray[0].equals("1")){
-                    Flashcard QAcard = CardFactory.getCard(1, cardInfoArray[1], cardInfoArray[2], null);
+                String[] options = cardInfoArray[3].split(",");
+                Flashcard card = cardFactory.createCard(
+                        Integer.parseInt(cardInfoArray[0]),
+                        cardInfoArray[1],
+                        cardInfoArray[2], Arrays.asList(options)
+                );
+                if (card != null){
+                    importedDeck.addCard(card);
                 }
-                */
             }
             reader.close();
             Deck.addTracker(importedDeck.getName(), importedDeck);
-            ImportDeckOutputData outputData = new ImportDeckOutputData("Imported the deck!", importedDeck);
+            ImportDeckOutputData outputData = new ImportDeckOutputData("Imported the deck!");
             importDeckOutputBoundary.prepareSuccessView(outputData);
         }
         catch (FileNotFoundException e){

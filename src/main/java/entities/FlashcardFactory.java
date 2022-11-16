@@ -2,8 +2,8 @@ package entities;
 
 import java.util.List;
 
-public class FlashcardFactory {
-    public Flashcard getCard(int type, String question, String answer, List<String> options) {
+public class FlashcardFactory implements CardFactory {
+    public Flashcard createCard(int type, String question, String answer, List<String> options) {
         if (type == 1) {
             return new QandAFlashcard(question, answer);
         } else if (type == 2) {
