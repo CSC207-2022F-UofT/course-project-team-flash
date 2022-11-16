@@ -25,14 +25,18 @@ public class ExportDeckInteractor implements ExportDeckInputBoundary{
     @Override
     public void exportDeck(ExportDeckInputData inputData) {
         try {
+            String filePath = inputData.getFilePath();
             Deck deckToExport = inputData.getDeckToExport();
-            String deckFileName = "temp"; //SHOULD ACTUALLY BE deckToExport.getName() + ".txt"
+            String deckFileName = filePath + deckToExport.getName() + ".deck";
             File deckFile = new File(deckFileName);
-            deckFile.createNewFile();
-            FileWriter writer = new FileWriter(deckFileName);
+            FileWriter writer = new FileWriter(deckFileName, false);
             //writer writes card information to the file...
             writer.close();
-            ExportDeckOutputData outputData = new ExportDeckOutputData("Deck exported!");
+            boolean result = deckFile.createNewFile();
+            String message;
+            if (result) message = "File at " + deckFileName + " was created." ;
+            else { message = "File at " + deckFileName + " was overwritten."; }
+            ExportDeckOutputData outputData = new ExportDeckOutputData(message);
             exportDeckOutputBoundary.prepareSuccessView(outputData);
         }
         catch (IOException e){

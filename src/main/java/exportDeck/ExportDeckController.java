@@ -20,8 +20,8 @@ public class ExportDeckController {
         this.exportDeckInputBoundary = exportDeckInputBoundary;
     }
 
-    public void runExport(Deck deckToExport){
-        ExportDeckInputData inputData = new ExportDeckInputData(deckToExport);
+    public void runExport(String filePath, Deck deckToExport){
+        ExportDeckInputData inputData = new ExportDeckInputData(filePath, deckToExport);
         exportDeckInputBoundary.exportDeck(inputData);
     }
 }
