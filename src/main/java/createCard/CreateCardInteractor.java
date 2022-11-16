@@ -15,7 +15,7 @@ public class CreateCardInteractor implements CreateCardInputBoundary {
 
     @Override
     public void create(CreateCardInputData inputData) {
-        Flashcard newCard = cardFactory.getCard(
+        Flashcard newCard = cardFactory.createCard(
                 inputData.getType(),
                 inputData.getQuestion(),
                 inputData.getAnswer(),

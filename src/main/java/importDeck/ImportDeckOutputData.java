@@ -9,22 +9,12 @@ import entities.Deck;
 
 public class ImportDeckOutputData {
     private final String message;
-    private final Deck importedDeck;
 
     /**
      * Creates a data object for the deck import output.
      * @param message output message
-     * @param importedDeck the deck created from the input
      */
-    public ImportDeckOutputData(String message, Deck importedDeck){
+    public ImportDeckOutputData(String message){
         this.message = message;
-        this.importedDeck = importedDeck;
-    }
-
-    /**
-     * @return the deck object
-     */
-    public Deck getDeck(){
-        return importedDeck;
     }
 }
