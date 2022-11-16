@@ -12,8 +12,9 @@ public class ImportDeckPresenter implements ImportDeckOutputBoundary {
      * @param outputData the data created from the input
      */
     @Override
-    public void prepareSuccessView(ImportDeckOutputData outputData) {
+    public ImportDeckOutputData prepareSuccessView(ImportDeckOutputData outputData) {
         //do stuff to the UI showing the deck was imported
+        return outputData;
     }
 
     /**
@@ -21,7 +22,8 @@ public class ImportDeckPresenter implements ImportDeckOutputBoundary {
      * @param error the error message
      */
     @Override
-    public void prepareFailView(String error) {
+    public ImportDeckOutputData prepareFailView(String error) {
         //throw an error, maybe something like "Failed to import deck"
+        return null;
     }
 }
