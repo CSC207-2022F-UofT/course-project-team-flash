@@ -6,12 +6,14 @@
 
 package importDeck;
 
+import entities.CardFactory;
 import entities.Deck;
 import entities.Flashcard;
-import entities.CardFactory;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class ImportDeckInteractor implements ImportDeckInputBoundary{
@@ -34,17 +36,25 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
     @Override
     public ImportDeckOutputData importDeck(ImportDeckInputData inputData){
         try {
-            File deckFile = new File(inputData.getFileName());
-            Deck importedDeck = new Deck(deckFile.getName());
+            String deckName = inputData.getFileName();
+            File deckFile = new File(deckName);
+            Deck importedDeck = new Deck(deckName.substring(0, deckName.lastIndexOf('.')));
             Scanner reader = new Scanner(deckFile);
             while (reader.hasNextLine()){
                 String cardInfo = reader.nextLine();
                 String[] cardInfoArray = cardInfo.split(";");
-                String[] options = cardInfoArray[3].split(",");
+                List<String> options;
+                try {
+                    options = Arrays.asList(cardInfoArray[3].split(","));
+                }
+                catch (ArrayIndexOutOfBoundsException e){
+                    options = null;
+                }
                 Flashcard card = cardFactory.createCard(
                         Integer.parseInt(cardInfoArray[0]),
                         cardInfoArray[1],
-                        cardInfoArray[2], Arrays.asList(options)
+                        cardInfoArray[2],
+                        options
                 );
                 if (card != null){
                     importedDeck.addCard(card);
@@ -52,7 +62,7 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
             }
             reader.close();
             Deck.addTracker(importedDeck.getName(), importedDeck);
-            ImportDeckOutputData outputData = new ImportDeckOutputData("Imported the deck!");
+            ImportDeckOutputData outputData = new ImportDeckOutputData("Imported the deck!", importedDeck);
             return importDeckOutputBoundary.prepareSuccessView(outputData);
         }
         catch (FileNotFoundException e){
