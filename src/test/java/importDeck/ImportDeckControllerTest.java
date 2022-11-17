@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ImportDeckControllerTest {
     @Test
-    public void BasicImportTest(){
+    public void basicImportTest(){
         ImportDeckPresenter presenter = new ImportDeckPresenter();
         CardFactory factory = new FlashcardFactory();
         ImportDeckInteractor interactor = new ImportDeckInteractor(presenter, factory);
