@@ -3,16 +3,33 @@ package importDeck;
 import java.io.IOException;
 import java.io.FileWriter;
 import entities.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ImportDeckControllerTest {
-    @Test
-    public void basicImportTest(){
+    private void createFile(String fileName, String fileContent){
+        try {
+            FileWriter writer = new FileWriter(fileName);
+            writer.write(fileContent);
+            writer.close();
+        }
+        catch (IOException e) {
+            fail(e.toString());
+        }
+    }
+
+    private ImportDeckController controllerSetUp(){
         ImportDeckPresenter presenter = new ImportDeckPresenter();
         CardFactory factory = new FlashcardFactory();
         ImportDeckInteractor interactor = new ImportDeckInteractor(presenter, factory);
         ImportDeckController controller = new ImportDeckController(interactor);
+        return controller;
+    }
+
+    @Test
+    public void basicImportTest(){
+        ImportDeckController controller = controllerSetUp();
         String fileLocation = "Test.deck";
 
         String testName = "Test";
@@ -20,14 +37,7 @@ public class ImportDeckControllerTest {
         String testQ = "Did this pass?";
         String testA = "No";
 
-        try {
-            FileWriter writer = new FileWriter(fileLocation);
-            writer.write(testType+";"+testQ+";"+testA);
-            writer.close();
-        }
-        catch (IOException e) {
-            fail(e.toString());
-        }
+        createFile(fileLocation,testType+";"+testQ+";"+testA);
 
         Deck actualDeck = controller.runImport(fileLocation).getImportedDeck();
 
