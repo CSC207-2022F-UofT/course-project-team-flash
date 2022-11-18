@@ -18,18 +18,19 @@ public class CreateQuizInteracter implements CreateQuizInputBoundary{
         String quizName = inputData.getQuizName();
         List<Deck> quizDecks = inputData.getQuizDecks();
 
-        Quiz quiz = new Quiz(quizName, quizDecks);
-
         String message;
+        CreateQuizOutputData outputData;
+
         if (Quiz.getTracker().containsKey(quizName)) {
-            message = "Successfully replaced original quiz";
+            message = "This quiz name exists already. Failed to create new quiz";
+            outputData = new CreateQuizOutputData(null, message);
         } else {
+            Quiz quiz = new Quiz(quizName, quizDecks);
             message = "Successfully created new quiz";
+            Quiz.addTracker(quizName, quiz);
+            outputData = new CreateQuizOutputData(quiz, message);
         }
 
-        Quiz.addTracker(quizName, quiz);
-
-        CreateQuizOutputData outputData = new CreateQuizOutputData(quiz, message);
         return outputData;
     }
 }
