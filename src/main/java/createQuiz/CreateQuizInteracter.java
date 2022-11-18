@@ -19,8 +19,15 @@ public class CreateQuizInteracter implements CreateQuizInputBoundary{
         List<Deck> quizDecks = inputData.getQuizDecks();
 
         Quiz quiz = new Quiz(quizName, quizDecks);
-        quiz.storeQuiz();
-        String message = "Successful";
+
+        String message;
+        if (Quiz.getTracker().containsKey(quizName)) {
+            message = "Successfully replaced original quiz";
+        } else {
+            message = "Successfully created new quiz";
+        }
+
+        Quiz.addTracker(quizName, quiz);
 
         CreateQuizOutputData outputData = new CreateQuizOutputData(quiz, message);
         return outputData;
