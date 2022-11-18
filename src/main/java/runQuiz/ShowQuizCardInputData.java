@@ -1,6 +1,6 @@
-package showAnswer;
+package runQuiz;
 
-public class ShowAnswerOutputData {
+public class ShowQuizCardInputData {
 
     private final String[] flashcardIdList;
 
@@ -8,11 +8,20 @@ public class ShowAnswerOutputData {
 
     private final String userAnswer;
 
-    ShowAnswerOutputData(String[] flashcardIdList, int currCardIndex, String userAnswer){
+    public ShowQuizCardInputData(String[] flashcardIdList, int currCardIndex, String userAnswer){
         this.flashcardIdList = flashcardIdList;
         this.currCardIndex = currCardIndex;
         this.userAnswer = userAnswer;
     }
+
+    public ShowQuizCardInputData(String[] flashcardIdList, int currCardIndex){
+        this.flashcardIdList = flashcardIdList;
+        this.currCardIndex = currCardIndex;
+        this.userAnswer = null;
+    }
+
+
+
 
     public String[] getFlashcardIdList(){
         return this.flashcardIdList;
@@ -26,7 +35,5 @@ public class ShowAnswerOutputData {
         return this.userAnswer;
     }
 
-    public void incCurrCardIndex(int increment){
-        this.currCardIndex += increment;
-    }
+
 }

@@ -1,4 +1,4 @@
-package startQuiz;
+package runQuiz;
 
 public class StartQuizInputData {
     private final String quizId;

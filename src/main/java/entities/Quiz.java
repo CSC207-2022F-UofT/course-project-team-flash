@@ -26,9 +26,19 @@ public class Quiz {
         return this.decks;
     }
 
+    public String getQuizName(){
+        return this.quizName;
+    }
+
     public static Quiz getQuiz(String quizId){
         return quizTracker.get(quizId);
 
+    }
+    public static void addTracker(String quizName, Quiz quiz) {
+        quizTracker.put(quizName, quiz);
+    }
+    public static void removeTracker(String uniqueID) {
+        quizTracker.remove(uniqueID);
     }
 
 
