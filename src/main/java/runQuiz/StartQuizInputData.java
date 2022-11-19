@@ -1,4 +1,4 @@
-package startQuiz;
+package runQuiz;
 
 public class StartQuizInputData {
     private final String quizId;
@@ -9,11 +9,11 @@ public class StartQuizInputData {
         this.isRandomized = isRandomized;
     }
 
-    private String getQuizId(){
+    public String getQuizId(){
         return this.quizId;
     }
 
-    private boolean getIsRandomized(){
+    public boolean getIsRandomized(){
         return this.isRandomized;
     }
 }
