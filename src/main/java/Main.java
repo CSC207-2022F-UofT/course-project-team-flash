@@ -15,6 +15,7 @@ public class Main {
         cardLayout.show(screens, "e");
         application.pack();
         application.setVisible(true);
+        application.setSize(400, 300);
         // Call what needs to be called
 
         // IDK what else needs to be done
