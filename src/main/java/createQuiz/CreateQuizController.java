@@ -14,8 +14,8 @@ public class CreateQuizController {
         this.inputBoundary = inputBoundary;
     }
 
-    public CreateQuizOutputData createQuiz(String quizName, List<Deck> quizDecks) {
-        CreateQuizInputData requestModel = new CreateQuizInputData(quizName, quizDecks);
+    public CreateQuizOutputData createQuiz(String quizName, List<String> quizDecksNames) {
+        CreateQuizInputData requestModel = new CreateQuizInputData(quizName, quizDecksNames);
         return inputBoundary.createQuiz(requestModel);
     }
 }
