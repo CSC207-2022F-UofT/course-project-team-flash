@@ -8,23 +8,24 @@ import java.util.Map;
 public class Quiz {
 
     private String quizName;
-    private List<String> decksNames;
+//    private List<String> decksNames;
     private List<Deck> decks;
     private static final Map<String, Quiz> quizTracker = new HashMap<>();
 
-    public Quiz(String quizName, List<String> decksNames) {
+    public Quiz(String quizName, List<Deck> decks) {
         this.quizName = quizName;
-        this.decksNames = decksNames;
-        this.decks = deckNamesToDecks(decksNames);
+        this.decks = decks;
+//        this.decksNames = decksNames;
+//        this.decks = deckNamesToDecks(decksNames);
     }
 
     public String getQuizName() {
         return this.quizName;
     }
 
-    public List<String> getDecksNames() {
-        return this.decksNames;
-    }
+//    public List<String> getDecksNames() {
+//        return this.decksNames;
+//    }
 
     public List<Deck> getDecks() {
         return this.decks;
@@ -44,17 +45,17 @@ public class Quiz {
         quizTracker.remove(quizName);
     }
 
-    private List<Deck> deckNamesToDecks(List<String> quizDecksNames) {
-
-        List<Deck> quizDecks = new ArrayList<>();
-        Map<String, Deck> deckTracker = Deck.getTracker();
-
-        for (String deckName: quizDecksNames) {
-            quizDecks.add(deckTracker.get(deckName));
-        }
-
-        return quizDecks;
-    }
+//    private List<Deck> deckNamesToDecks(List<String> quizDecksNames) {
+//
+//        List<Deck> quizDecks = new ArrayList<>();
+//        Map<String, Deck> deckTracker = Deck.getTracker();
+//
+//        for (String deckName: quizDecksNames) {
+//            quizDecks.add(deckTracker.get(deckName));
+//        }
+//
+//        return quizDecks;
+//    }
 }
 
 

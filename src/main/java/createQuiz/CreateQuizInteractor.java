@@ -16,7 +16,7 @@ public class CreateQuizInteractor implements CreateQuizInputBoundary{
     @Override
     public CreateQuizOutputData createQuiz(CreateQuizInputData inputData) {
         String quizName = inputData.getQuizName();
-        List<String> quizDecks = inputData.getQuizDecksNames();
+        List<Deck> quizDecks = inputData.getQuizDecks();
 
         if (Quiz.getTracker().containsKey(quizName)) {
             String message = "This quiz name exists already. Failed to create new quiz";
