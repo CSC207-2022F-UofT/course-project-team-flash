@@ -5,6 +5,7 @@ package editCard;/*
  */
 
 import createCard.CreateCardInputBoundary;
+import createCard.CreateCardOutputData;
 import entities.Flashcard;
 import entities.MCFlashcard;
 
@@ -24,5 +25,7 @@ public class EditCardInteractor implements EditCardInputBoundary {
         if (inputData.getOptions() != null) {
             ((MCFlashcard) card).setOptions(inputData.getOptions());
         }
+        EditCardOutputData outputData = new EditCardOutputData(card, "Changes Made.");
+        editCardOutputBoundary.prepareSuccessView(outputData);
     }
 }
