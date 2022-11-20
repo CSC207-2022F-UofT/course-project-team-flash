@@ -1,10 +1,10 @@
 package screens;
 
-public enum viewStates {
+public enum ViewState {
     QUIZ_MENU,
     START_QUIZ,
     SHOW_PROBLEM,
     SHOW_ANSWER,
-
-    DECK_DELETED
+    DECK_DELETED,
+    MAIN_MENU
 }

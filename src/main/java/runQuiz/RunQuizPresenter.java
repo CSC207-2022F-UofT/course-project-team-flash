@@ -1,13 +1,13 @@
 package runQuiz;
 
-import screens.viewStates;
+import screens.ViewState;
 import screens.QuizNotFound;
 
 public class RunQuizPresenter implements RunQuizOutputBoundary {
 
     @Override
     public ShowAnswerOutputData prepareSuccessView(ShowAnswerOutputData outputData) {
-        outputData.setViewState(viewStates.SHOW_PROBLEM);
+        outputData.setViewState(ViewState.SHOW_PROBLEM);
 
         return outputData;
     }
@@ -16,10 +16,10 @@ public class RunQuizPresenter implements RunQuizOutputBoundary {
     public ShowProblemOutputData prepareSuccessView(ShowProblemOutputData outputData) {
 
         if(outputData.noMoreProblems()){
-            outputData.setViewState(viewStates.QUIZ_MENU);
+            outputData.setViewState(ViewState.QUIZ_MENU);
         }
         else {
-            outputData.setViewState(viewStates.SHOW_ANSWER);
+            outputData.setViewState(ViewState.SHOW_ANSWER);
         }
 
         return outputData;
@@ -28,7 +28,7 @@ public class RunQuizPresenter implements RunQuizOutputBoundary {
 
     @Override
     public StartQuizOutputData prepareSuccessView(StartQuizOutputData outputData) {
-        outputData.setViewState(viewStates.SHOW_PROBLEM);
+        outputData.setViewState(ViewState.SHOW_PROBLEM);
 
         return outputData;
     }

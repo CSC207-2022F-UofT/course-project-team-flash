@@ -1,14 +1,13 @@
 package runQuiz;
 
-import screens.viewStates;
-import static screens.viewStates.SHOW_PROBLEM;
+import screens.ViewState;
 
 public class ShowProblemOutputData {
     private final String[] flashcardIdList;
     private final int currCardIndex;
 
     private final String currCardQuestion;
-    private viewStates viewState;
+    private ViewState viewState;
 
 
     public ShowProblemOutputData(String[] flashcardIdList, int currCardIndex, String currCardQuestion){
@@ -30,11 +29,11 @@ public class ShowProblemOutputData {
         return this.currCardQuestion;
     }
 
-    public viewStates getViewState(){
+    public ViewState getViewState(){
         return this.viewState;
     }
 
-    public void setViewState(viewStates state){
+    public void setViewState(ViewState state){
         this.viewState = state;
     }
 

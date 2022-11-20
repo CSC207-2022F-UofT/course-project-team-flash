@@ -2,7 +2,8 @@ package deleteDeck;
 
 import screens.DeckNotFound;
 import screens.ViewBoundary;
-import screens.viewStates;
+import screens.ViewModel;
+import screens.ViewState;
 
 public class DeleteDeckPresenter implements DeleteDeckOutputBoundary{
 
@@ -14,9 +15,14 @@ public class DeleteDeckPresenter implements DeleteDeckOutputBoundary{
 
     @Override
     public void prepareSuccessView(DeleteDeckOutputData outputData) {
-        viewBound.setViewState(viewStates.DECK_DELETED);
 
-        viewBound.storeDeckName(outputData.deckName);
+        ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.DECK_DELETED)
+                .setDeckName(outputData.deckName)
+                .build();
+
+        viewBound.updateView(viewModel);
+
+
     }
 
     @Override
