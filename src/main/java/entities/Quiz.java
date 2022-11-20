@@ -30,7 +30,7 @@ public class Quiz {
         return this.decks;
     }
 
-    public Quiz getQuiz(String quizName) {
+    public static Quiz getQuiz(String quizName) {
         return quizTracker.get(quizName);
     }
 
