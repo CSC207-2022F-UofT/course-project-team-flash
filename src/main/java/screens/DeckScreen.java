@@ -34,6 +34,7 @@ public class DeckScreen extends JPanel{
 
         newDeckDialog.add(optionTabs);
 
+        newDeckDialog.pack();
         newDeckDialog.setModal(true);
         newDeckDialog.setVisible(true);
     }
