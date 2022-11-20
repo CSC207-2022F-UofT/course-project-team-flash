@@ -5,4 +5,9 @@ public class CreateCardPresenter implements CreateCardOutputBoundary{
     public void prepareSuccessView(CreateCardOutputData outputData) {
 
     }
+
+    @Override
+    public void prepareFailView(CreateCardOutputData outputData) {
+
+    }
 }
