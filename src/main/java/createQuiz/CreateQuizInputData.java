@@ -22,8 +22,8 @@ public class CreateQuizInputData {
         return this.quizName;
     }
 
-    public List<Deck> getQuizDecks() {
-        return this.quizDecks;
+    public List<String> getQuizDecksNames() {
+        return this.quizDecksNames;
     }
 
     private List<Deck> deckNamesToDecks(List<String> quizDecksNames) {
