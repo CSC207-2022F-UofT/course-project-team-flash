@@ -34,13 +34,14 @@ public class Quiz {
     public static Quiz getQuiz(String quizName){
         return quizTracker.get(quizName);
 
+
     }
     public static void addTracker(String quizName, Quiz quiz) {
         quizTracker.put(quizName, quiz);
     }
+    
     public static void removeTracker(String quizName) {
         quizTracker.remove(quizName);
     }
-
 
 }

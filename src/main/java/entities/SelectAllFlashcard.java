@@ -5,12 +5,11 @@ package entities;/*
  */
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SelectAllFlashcard extends Flashcard {
 
-    private String question;
-    private String answer;
-    private ArrayList<String> options;
+    private List<String> options;
 
     /**
      *
@@ -18,7 +17,7 @@ public class SelectAllFlashcard extends Flashcard {
      * @param answer a String representing the correct answer
      * @param options a String representing the first incorrect option
      */
-    public SelectAllFlashcard(String question, String answer, ArrayList<String> options) {
+    public SelectAllFlashcard(String question, String answer, List<String> options) {
         super(question, answer);
         this.options = options;
     }
@@ -27,7 +26,8 @@ public class SelectAllFlashcard extends Flashcard {
         options.set(index, newQuestion);
     }
 
-    public ArrayList<String> getOptions() {
+    public List<String> getOptions() {
         return options;
     }
+
 }
