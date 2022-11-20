@@ -28,6 +28,17 @@ public class Deck {
     public List<Flashcard> getCards() {
         return cards;
     }
+
+    public List<String> getCardIds(){
+
+        List<String> cardIds = new ArrayList<String>();
+
+        for(Flashcard card : this.cards){
+            cardIds.add(card.getUniqueID());
+        }
+
+        return cardIds;
+    }
     public void addCard(Flashcard card) {
         this.cards.add(card);
     }
@@ -39,5 +50,9 @@ public class Deck {
     }
     public static void removeTracker(String deckName) {
         deckTracker.remove(deckName);
+    }
+
+    public static boolean containsDeckName(String deckName){
+        return deckTracker.containsKey(deckName);
     }
 }

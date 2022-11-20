@@ -4,5 +4,7 @@ public enum viewStates {
     QUIZ_MENU,
     START_QUIZ,
     SHOW_PROBLEM,
-    SHOW_ANSWER
+    SHOW_ANSWER,
+
+    DECK_DELETED
 }
