@@ -8,6 +8,9 @@ import java.awt.event.ActionListener;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 public class DeckScreen extends JPanel{
+
+    private String textInput;
+    private static final int TEXT_FIELD_LENGTH = 10;
     public DeckScreen(){
         JButton deckCreationButton = new JButton("New Deck");
         this.add(deckCreationButton);
@@ -20,7 +23,7 @@ public class DeckScreen extends JPanel{
         });
     }
 
-    public void chooseDeckCreation(){
+    private void chooseDeckCreation(){
         JFrame newDeckFrame = new JFrame();
         JDialog newDeckDialog = new JDialog(newDeckFrame);
 
@@ -33,6 +36,13 @@ public class DeckScreen extends JPanel{
         optionTabs.add("Import Deck", importNewDeck);
 
         newDeckDialog.add(optionTabs);
+
+        JLabel prompt = new JLabel("Enter a name for the new deck:");
+        JTextField createDeckTextField = new JTextField("", TEXT_FIELD_LENGTH);
+        JButton createDeckButton = new JButton("Create Deck");
+        createNewDeck.add(prompt);
+        createNewDeck.add(createDeckTextField);
+        createNewDeck.add(createDeckButton);
 
         newDeckDialog.pack();
         newDeckDialog.setModal(true);
