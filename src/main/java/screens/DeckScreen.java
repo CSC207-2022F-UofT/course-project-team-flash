@@ -7,23 +7,34 @@ import java.awt.event.ActionListener;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
-public class DeckScreen extends JPanel implements ActionListener {
+public class DeckScreen extends JPanel{
     public DeckScreen(){
-        JPopupMenu deckCreationMenu = new JPopupMenu("Deck Creation");
-        JMenuItem createNewDeck = new JMenuItem("Create New");
-        JMenuItem importDeck = new JMenuItem("Import");
-
-        deckCreationMenu.add(createNewDeck);
-        deckCreationMenu.add(importDeck);
-
         JButton deckCreationButton = new JButton("New Deck");
         this.add(deckCreationButton);
-        deckCreationButton.setComponentPopupMenu(deckCreationMenu);
 
-
+        deckCreationButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                chooseDeckCreation();
+            }
+        });
     }
 
-    public void actionPerformed(ActionEvent evt){
-        System.out.println("x");
+    public void chooseDeckCreation(){
+        JFrame newDeckFrame = new JFrame();
+        JDialog newDeckDialog = new JDialog(newDeckFrame);
+
+        JTabbedPane optionTabs = new JTabbedPane();
+
+        JPanel createNewDeck = new JPanel();
+        JPanel importNewDeck = new JPanel();
+
+        optionTabs.add("Create New Deck", createNewDeck);
+        optionTabs.add("Import Deck", importNewDeck);
+
+        newDeckDialog.add(optionTabs);
+
+        newDeckDialog.setModal(true);
+        newDeckDialog.setVisible(true);
     }
 }
