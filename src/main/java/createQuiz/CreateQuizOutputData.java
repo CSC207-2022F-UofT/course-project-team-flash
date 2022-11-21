@@ -27,7 +27,7 @@ public class CreateQuizOutputData {
     /**
      * Returns the quiz object of this CreateQuizOutputData.
      *
-     * @return
+     * @return the quiz object of this CreateQuizOutputData
      */
     public Quiz getQuiz() {
         return this.quiz;
@@ -36,7 +36,7 @@ public class CreateQuizOutputData {
     /**
      * Returns the message of this CreateQuizOutputData.
      *
-     * @return
+     * @return the message of this CreateQuizOutputData
      */
     public String getMessage() {
         return this.message;

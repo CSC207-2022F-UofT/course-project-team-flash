@@ -33,7 +33,7 @@ public class CreateQuizInputData {
     /**
      * Returns the quiz name of this CreateQuizInputData.
      *
-     * @return
+     * @return the quiz name of this CreateQuizInputData
      */
     public String getQuizName() {
         return this.quizName;
@@ -42,7 +42,7 @@ public class CreateQuizInputData {
     /**
      * Returns the decks' names of this CreateQuizInputData.
      *
-     * @return
+     * @return the decks' names of this CreateQuizInputData
      */
     public List<String> getQuizDecksNames() {
         return this.quizDecksNames;
@@ -51,7 +51,7 @@ public class CreateQuizInputData {
     /**
      * Returns the quiz decks of this CreateQuizInputData.
      *
-     * @return
+     * @return the quiz decks of this CreateQuizInputData
      */
     public List<Deck> getQuizDecks() {
         return this.quizDecks;

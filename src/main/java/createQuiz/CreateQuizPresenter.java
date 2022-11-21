@@ -9,6 +9,7 @@ public class CreateQuizPresenter implements CreateQuizOutputBoundary{
 
     /**
      * Prepare the success view given outputData, if the quiz is created and stored successfully.
+     *
      * @param outputData the CreateQuizOutputData associated with this created quiz
      */
     private void prepareSuccessView(CreateQuizOutputData outputData){
@@ -17,6 +18,7 @@ public class CreateQuizPresenter implements CreateQuizOutputBoundary{
 
     /**
      * Prepare the fail view given outputData, if the quiz cannot be created or stored successfully.
+     *
      * @param outputData the CreateQuizOutputData associated with this created quiz
      */
     private void prepareFailView(CreateQuizOutputData outputData){
