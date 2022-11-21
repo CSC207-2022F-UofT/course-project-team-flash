@@ -1,7 +1,5 @@
 package screens;
 
-import com.sun.tools.javac.Main;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,22 +7,23 @@ import java.awt.event.ActionListener;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
-public class DeckScreen extends JPanel {
+public class MainMenuScreen extends JPanel {
     private String textInput;
     private static final int TEXT_FIELD_LENGTH = 10;
 
-    public DeckScreen() {
-        JButton backButton = new JButton("Back");
-        JButton deckCreationButton = new JButton("New Deck");
-        this.add(backButton);
-        this.add(deckCreationButton);
+    public MainMenuScreen() {
 
-        backButton.addActionListener(new ActionListener() {
+        JButton decksButton = new JButton("Decks");
+        JButton quizButton = new JButton("Quizzes");
+        this.add(decksButton);
+        this.add(quizButton);
+
+        decksButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
                 for (Component c : getParent().getComponents()) {
-                    if (c instanceof MainMenuScreen) {
+                    if (c instanceof DeckScreen) {
                         c.setVisible(true);
                         return;
                     }
@@ -32,15 +31,17 @@ public class DeckScreen extends JPanel {
             }
         });
 
-        deckCreationButton.addActionListener(new ActionListener() {
+        quizButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                chooseDeckCreation();
+                setVisible(false);
+                for (Component c : getParent().getComponents()) {
+                    if (c instanceof QuizScreen) {
+                        c.setVisible(true);
+                        return;
+                    }
+                }
             }
         });
-    }
-
-    private void chooseDeckCreation() {
-
     }
 }
