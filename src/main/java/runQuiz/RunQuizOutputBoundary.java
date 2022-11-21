@@ -2,11 +2,11 @@ package runQuiz;
 
 public interface RunQuizOutputBoundary {
 
-    ShowAnswerOutputData prepareSuccessView(ShowAnswerOutputData outputData);
+    void prepareSuccessView(ShowAnswerOutputData outputData);
 
-    ShowProblemOutputData prepareSuccessView(ShowProblemOutputData outputData);
+    void prepareSuccessView(ShowProblemOutputData outputData);
 
-    StartQuizOutputData prepareSuccessView(StartQuizOutputData outputData);
+    void prepareSuccessView(StartQuizOutputData outputData);
 
-    StartQuizOutputData quizFailView(String error);
+    void quizFailView(String error);
 }

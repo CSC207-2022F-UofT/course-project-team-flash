@@ -8,4 +8,6 @@ public enum ViewState {
     SHOW_PROBLEM,
     SHOW_ANSWER,
     DECK_DELETED,
+
+    DECK_IMPORTED
 }

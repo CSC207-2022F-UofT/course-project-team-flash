@@ -25,6 +25,9 @@ public class View implements ViewBoundary {
     //Optional parameter(s):
     private String returnString;
 
+    private String userAnswer;
+
+    private String cardAnswer;
     private String quizName;
 
     private String deckName;
@@ -32,6 +35,8 @@ public class View implements ViewBoundary {
     private String cardId;
 
     private List<String> cardIdList;
+
+    private String[] cardIdArray;
 
     private int currCardIndex;
 
@@ -65,10 +70,13 @@ public class View implements ViewBoundary {
     public void updateView(ViewModel viewModel) {
 
         this.returnString = viewModel.getReturnString();
+        this.userAnswer = viewModel.getUserAnswer();
+        this.cardAnswer = viewModel.getCardAnswer();
         this.quizName = viewModel.getQuizName();
         this.deckName = viewModel.getDeckName();
         this.cardId = viewModel.getCardId();
         this.cardIdList = viewModel.getCardIdList();
+        this.cardIdArray = viewModel.getCardIdArray();
         this.currCardIndex = viewModel.getCurrCardIndex();
 
         //If the viewState changes, update it and call the menuSwitch method to update the view.
@@ -119,6 +127,11 @@ public class View implements ViewBoundary {
             case DECK_DELETED:
                 //Menu that pops up when you delete a deck (says something like "deck deleted") and has an
                 //"OK" button or smth.
+
+
+                break;
+
+            case DECK_IMPORTED:
 
 
                 break;
