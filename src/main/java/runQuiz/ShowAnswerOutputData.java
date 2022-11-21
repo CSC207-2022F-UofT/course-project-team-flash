@@ -1,8 +1,6 @@
 package runQuiz;
 
-import screens.viewStates;
-
-import java.util.List;
+import screens.ViewState;
 
 public class ShowAnswerOutputData {
 
@@ -13,7 +11,7 @@ public class ShowAnswerOutputData {
     private final String userAnswer;
     private final String currCardAnswer;
 
-    private viewStates viewState;
+    private ViewState viewState;
 
     ShowAnswerOutputData(String[] flashcardIdList, int currCardIndex, String userAnswer, String currCardAnswer){
         this.flashcardIdList = flashcardIdList;
@@ -39,11 +37,11 @@ public class ShowAnswerOutputData {
         return this.currCardAnswer;
     }
 
-    public viewStates getViewState(){
+    public ViewState getViewState(){
         return this.viewState;
     }
 
-    public void setViewState(viewStates state){
+    public void setViewState(ViewState state){
         this.viewState = state;
     }
 

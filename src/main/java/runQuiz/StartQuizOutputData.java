@@ -1,14 +1,12 @@
 package runQuiz;
 
-import screens.viewStates;
-
-import java.util.List;
+import screens.ViewState;
 
 public class StartQuizOutputData {
     private final String[] flashcardIds;
 
     private int currCardIndex;
-    private viewStates viewState;
+    private ViewState viewState;
 
 
 
@@ -22,11 +20,11 @@ public class StartQuizOutputData {
         return this.flashcardIds;
     }
 
-    public viewStates getViewState(){
+    public ViewState getViewState(){
         return this.viewState;
     }
 
-    public void setViewState(viewStates state){
+    public void setViewState(ViewState state){
         this.viewState = state;
     }
 }
