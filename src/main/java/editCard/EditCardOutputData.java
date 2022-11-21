@@ -1,7 +1,7 @@
 package editCard;/*
  * Author: Albert Yan
  * Date: October 31/22
- * The output data class for edit card systems, packages data related to output together a
+ * The output data class for edit card systems, packages data related to output together to be sent to viewmodel
  */
 
 import entities.Flashcard;
