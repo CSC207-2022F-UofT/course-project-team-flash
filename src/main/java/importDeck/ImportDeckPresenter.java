@@ -6,17 +6,20 @@
 
 package importDeck;
 
+/*
 import screens.ImportFailScreen;
 import screens.ViewBoundary;
 import screens.ViewModel;
 import screens.ViewState;
-
+*/
 public class ImportDeckPresenter implements ImportDeckOutputBoundary {
+    /*
     private ViewModel viewModel;
 
     public ImportDeckPresenter(ViewModel viewModel){
         this.viewModel = viewModel;
     }
+    */
 
     /**
      * Should update UI informing the user the import was a success
@@ -24,7 +27,13 @@ public class ImportDeckPresenter implements ImportDeckOutputBoundary {
      */
     @Override
     public void prepareSuccessView(ImportDeckOutputData outputData) {
+        /*
+        ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.DECK_IMPORTED)
+                .setDeckName(outputData.deckName)
+                .build();
 
+        viewBound.updateView(viewModel);
+        */
     }
 
     /**
