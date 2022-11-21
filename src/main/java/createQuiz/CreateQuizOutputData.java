@@ -1,12 +1,16 @@
-package createQuiz;
-
-import entities.Quiz;
-
 /**
+ * Author: Jasmine Tsoi
+ * Documentation Author: Jasmine Tsoi
+ * Date: 2022-11-21
+ *
  * This file contains the implementation of the CreateQuizOutputData class.
  * It includes the instance attributes of the CreateQuizOutputData class and
  * their getter methods.
  */
+
+package createQuiz;
+
+import entities.Quiz;
 
 public class CreateQuizOutputData {
 

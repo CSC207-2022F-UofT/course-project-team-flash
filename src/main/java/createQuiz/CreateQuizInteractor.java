@@ -1,13 +1,18 @@
+/**
+ * Author: Jasmine Tsoi
+ * Documentation Author: Jasmine Tsoi
+ * Date: 2022-11-21
+ *
+ * This file contains the implementation of the CreateQuizInteractor class,
+ * which implements CreateQuizInputBoundary.
+ */
+
 package createQuiz;
 
 import entities.Deck;
 import entities.Quiz;
 
 import java.util.List;
-/**
- * This file contains the implementation of the CreateQuizInteractor class,
- * which implements CreateQuizInputBoundary.
- */
 
 public class CreateQuizInteractor implements CreateQuizInputBoundary{
 

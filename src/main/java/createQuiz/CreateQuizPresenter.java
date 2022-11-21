@@ -1,9 +1,13 @@
-package createQuiz;
-
 /**
+ * Author: Jasmine Tsoi
+ * Documentation Author: Jasmine Tsoi
+ * Date: 2022-11-21
+ *
  * This file contains the implementation of the CreateQuizPresenter,
  * which implements CreateQuizOutputBoundary.
  */
+
+package createQuiz;
 
 public class CreateQuizPresenter implements CreateQuizOutputBoundary{
 
