@@ -12,15 +12,14 @@
 
 package runQuiz;
 
-import screens.viewStates;
-import static screens.viewStates.SHOW_PROBLEM;
+import screens.ViewState;
 
 public class ShowProblemOutputData {
     private final String[] flashcardIdList;
     private final int currCardIndex;
 
     private final String currCardQuestion;
-    private viewStates viewState;
+    private ViewState viewState;
 
     /**
      * Creates a new ShowProblemOutputData given a list of flashcard IDs, the index of the

@@ -12,9 +12,7 @@
 
 package runQuiz;
 
-import screens.viewStates;
-
-import java.util.List;
+import screens.ViewState;
 
 public class ShowAnswerOutputData {
 
@@ -25,7 +23,7 @@ public class ShowAnswerOutputData {
     private final String userAnswer;
     private final String currCardAnswer;
 
-    private viewStates viewState;
+    private ViewState viewState;
 
     /**
      * Creates a new ShowAnswerOutputData given a list of flashcard IDs, the index of the

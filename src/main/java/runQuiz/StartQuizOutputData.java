@@ -10,15 +10,13 @@
 
 package runQuiz;
 
-import screens.viewStates;
-
-import java.util.List;
+import screens.ViewState;
 
 public class StartQuizOutputData {
     private final String[] flashcardIds;
 
     private int currCardIndex;
-    private viewStates viewState;
+    private ViewState viewState;
 
     /**
      * Creates a new StartQuizOutputData given a list of flashcard IDs.
