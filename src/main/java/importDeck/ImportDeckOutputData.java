@@ -5,23 +5,22 @@
  */
 
 package importDeck;
-import entities.Deck;
 
 public class ImportDeckOutputData {
     private final String message;
-    private final Deck importedDeck;
+    private final String importedDeckName;
 
     /**
      * Creates a data object for the deck import output.
      * @param message output message
-     * @param importedDeck deck created from file read
+     * @param importedDeckName name of deck created from file read
      */
-    public ImportDeckOutputData(String message, Deck importedDeck){
+    public ImportDeckOutputData(String message, String importedDeckName){
         this.message = message;
-        this.importedDeck = importedDeck;
+        this.importedDeckName = importedDeckName;
     }
 
-    public Deck getImportedDeck(){
-        return importedDeck;
+    public String getImportedDeck(){
+        return importedDeckName;
     }
 }

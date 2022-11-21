@@ -31,7 +31,6 @@ public class ImportDeckControllerTest {
     public void basicImportTest(){
         ImportDeckController controller = controllerSetUp();
         String fileLocation = "Test.deck";
-
         String testName = "Test";
         String testType = "1";
         String testQ = "Did this pass?";
@@ -39,7 +38,9 @@ public class ImportDeckControllerTest {
 
         createFile(fileLocation,testType+";"+testQ+";"+testA);
 
-        Deck actualDeck = controller.runImport(fileLocation).getImportedDeck();
+        controller.runImport(fileLocation);
+
+        Deck actualDeck = Deck.getTracker().get(testName);
 
         Flashcard firstCard = actualDeck.getCards().get(0);
 
