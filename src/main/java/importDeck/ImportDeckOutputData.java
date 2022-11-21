@@ -20,7 +20,7 @@ public class ImportDeckOutputData {
         this.importedDeckName = importedDeckName;
     }
 
-    public String getImportedDeck(){
+    public String getImportedDeckName(){
         return importedDeckName;
     }
 }

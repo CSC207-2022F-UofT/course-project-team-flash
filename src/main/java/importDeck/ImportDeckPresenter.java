@@ -29,7 +29,7 @@ public class ImportDeckPresenter implements ImportDeckOutputBoundary {
     public void prepareSuccessView(ImportDeckOutputData outputData) {
         /*
         ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.DECK_IMPORTED)
-                .setDeckName(outputData.deckName)
+                .setDeckName(outputData.getImportedDeckName())
                 .build();
 
         viewBound.updateView(viewModel);
