@@ -1,7 +1,5 @@
 package runQuiz;
 
-import screens.viewStates;
-
 import entities.Deck;
 import entities.Flashcard;
 import entities.QandAFlashcard;
