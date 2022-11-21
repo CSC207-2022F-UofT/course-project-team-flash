@@ -1,7 +1,7 @@
 /**
  * Author: Jasmine Tsoi
  * Documentation Author: Jasmine Tsoi
- * Date: 2022-11-21
+ * Date: November 21/22
  *
  * This file contains implementation of the CreateQuizController class.
  * The task of it is to create a new quiz.
