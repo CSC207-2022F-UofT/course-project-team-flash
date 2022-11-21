@@ -83,7 +83,7 @@ public class ShowAnswerOutputData {
      *
      * @return the viewState of this ShowAnswerOutputData
      */
-    public viewStates getViewState(){
+    public ViewState getViewState(){
         return this.viewState;
     }
 
@@ -92,7 +92,7 @@ public class ShowAnswerOutputData {
      *
      * @param state the viewStates object to be set as viewState of this ShowAnswerOutputData
      */
-    public void setViewState(viewStates state){
+    public void setViewState(ViewState state){
         this.viewState = state;
     }
 

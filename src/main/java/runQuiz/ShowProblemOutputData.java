@@ -68,7 +68,7 @@ public class ShowProblemOutputData {
      *
      * @return the viewState of this ShowProblemOutputData
      */
-    public viewStates getViewState(){
+    public ViewState getViewState(){
         return this.viewState;
     }
 
@@ -77,7 +77,7 @@ public class ShowProblemOutputData {
      *
      * @param state the viewStates object to be set as viewState of this ShowProblemOutputData
      */
-    public void setViewState(viewStates state){
+    public void setViewState(ViewState state){
         this.viewState = state;
     }
 

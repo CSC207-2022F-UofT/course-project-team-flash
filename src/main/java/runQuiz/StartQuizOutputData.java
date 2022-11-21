@@ -43,7 +43,7 @@ public class StartQuizOutputData {
      *
      * @return the viewState of this StartQuizOutputData
      */
-    public viewStates getViewState(){
+    public ViewState getViewState(){
         return this.viewState;
     }
 
@@ -52,7 +52,7 @@ public class StartQuizOutputData {
      *
      * @param state the viewStates object to be set as viewState of this StartQuizOutputData
      */
-    public void setViewState(viewStates state){
+    public void setViewState(ViewState state){
         this.viewState = state;
     }
 }
