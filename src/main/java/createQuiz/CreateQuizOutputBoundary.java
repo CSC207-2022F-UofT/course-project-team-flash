@@ -4,7 +4,7 @@
  * Date: November 21/22
  *
  * This file contains an interface named CreateQuizOutputBoundary.
- * It has two abstract methods named prepareSuccessView and prepareFailView.
+ * It has two interface methods named prepareSuccessView and prepareFailView.
  */
 
 package createQuiz;

@@ -3,7 +3,7 @@
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
  *
- * This file contains an interface named CreateQuizInputBoundary with an abstract method createQuiz.
+ * This file contains an interface named CreateQuizInputBoundary with an interface method createQuiz.
  */
 
 package createQuiz;
