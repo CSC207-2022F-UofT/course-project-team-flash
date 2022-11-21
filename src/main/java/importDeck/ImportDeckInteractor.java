@@ -34,7 +34,7 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
      * @param inputData data retrieved from the input
      */
     @Override
-    public ImportDeckOutputData importDeck(ImportDeckInputData inputData){
+    public void importDeck(ImportDeckInputData inputData){
         try {
             String deckName = inputData.getFileName();
             File deckFile = new File(deckName);
@@ -63,10 +63,10 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
             reader.close();
             Deck.addTracker(importedDeck.getName(), importedDeck);
             ImportDeckOutputData outputData = new ImportDeckOutputData("Imported the deck!", importedDeck.getName());
-            return importDeckOutputBoundary.prepareSuccessView(outputData);
+            importDeckOutputBoundary.prepareSuccessView(outputData);
         }
         catch (FileNotFoundException e){
-            return importDeckOutputBoundary.prepareFailView(e.toString());
+            importDeckOutputBoundary.prepareFailView(e.toString());
         }
     }
 }
