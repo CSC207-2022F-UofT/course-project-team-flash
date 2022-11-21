@@ -7,6 +7,6 @@
 package importDeck;
 
 public interface ImportDeckOutputBoundary {
-    ImportDeckOutputData prepareSuccessView(ImportDeckOutputData outputData);
-    ImportDeckOutputData prepareFailView(String error);
+    void prepareSuccessView(ImportDeckOutputData outputData);
+    void prepareFailView(String error);
 }
