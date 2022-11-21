@@ -63,6 +63,7 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
             reader.close();
             Deck.addTracker(importedDeck.getName(), importedDeck);
             ImportDeckOutputData outputData = new ImportDeckOutputData("Imported the deck!", importedDeck.getName());
+            System.out.println(Deck.getTracker());
             importDeckOutputBoundary.prepareSuccessView(outputData);
         }
         catch (FileNotFoundException e){

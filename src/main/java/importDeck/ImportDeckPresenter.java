@@ -6,20 +6,18 @@
 
 package importDeck;
 
-/*
-import screens.ImportFailScreen;
+
+import screens.ImportDeckFail;
 import screens.ViewBoundary;
 import screens.ViewModel;
 import screens.ViewState;
-*/
-public class ImportDeckPresenter implements ImportDeckOutputBoundary {
-    /*
-    private ViewModel viewModel;
 
-    public ImportDeckPresenter(ViewModel viewModel){
-        this.viewModel = viewModel;
+public class ImportDeckPresenter implements ImportDeckOutputBoundary {
+    private final ViewBoundary viewBoundary;
+
+    public ImportDeckPresenter(ViewBoundary viewBoundary){
+        this.viewBoundary = viewBoundary;
     }
-    */
 
     /**
      * Should update UI informing the user the import was a success
@@ -27,21 +25,18 @@ public class ImportDeckPresenter implements ImportDeckOutputBoundary {
      */
     @Override
     public void prepareSuccessView(ImportDeckOutputData outputData) {
-        /*
         ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.DECK_IMPORTED)
                 .setDeckName(outputData.getImportedDeckName())
                 .build();
-
-        viewBound.updateView(viewModel);
-        */
+        viewBoundary.updateView(viewModel);
     }
 
     /**
      * Throws an exception stating the import failed
-     * @param error the error message
+     * @param exception the exception message
      */
     @Override
-    public void prepareFailView(String error) {
-
+    public void prepareFailView(String exception) {
+        throw new ImportDeckFail(exception);
     }
 }
