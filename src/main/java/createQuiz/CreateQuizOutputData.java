@@ -1,12 +1,16 @@
-package createQuiz;
-
-import entities.Quiz;
-
 /**
+ * Author: Jasmine Tsoi
+ * Documentation Author: Jasmine Tsoi
+ * Date: November 21/22
+ *
  * This file contains the implementation of the CreateQuizOutputData class.
  * It includes the instance attributes of the CreateQuizOutputData class and
  * their getter methods.
  */
+
+package createQuiz;
+
+import entities.Quiz;
 
 public class CreateQuizOutputData {
 
@@ -27,7 +31,7 @@ public class CreateQuizOutputData {
     /**
      * Returns the quiz object of this CreateQuizOutputData.
      *
-     * @return
+     * @return the quiz object of this CreateQuizOutputData
      */
     public Quiz getQuiz() {
         return this.quiz;
@@ -36,7 +40,7 @@ public class CreateQuizOutputData {
     /**
      * Returns the message of this CreateQuizOutputData.
      *
-     * @return
+     * @return the message of this CreateQuizOutputData
      */
     public String getMessage() {
         return this.message;
