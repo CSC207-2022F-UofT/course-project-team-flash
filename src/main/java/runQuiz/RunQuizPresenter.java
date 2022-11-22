@@ -1,68 +1,67 @@
-/**
- * Author: Jamie Chew
- * Documentation Author: Jasmine Tsoi
- * Date: November 21/22
- *
- * This file contains the implementation of the RunQuizPresenter,
- * which implements RunQuizOutputBoundary.
- */
-
 package runQuiz;
 
-import screens.ViewState;
-import screens.QuizNotFound;
+import screens.*;
+
+import java.util.Arrays;
 
 public class RunQuizPresenter implements RunQuizOutputBoundary {
 
-    /**
-     * Prepares the success view given a ShowAnswerOutputData, if the quiz exists.
-     *
-     * @param outputData the ShowAnswerOutputData associated with this problem
-     */
-    @Override
-    public ShowAnswerOutputData prepareSuccessView(ShowAnswerOutputData outputData) {
-        outputData.setViewState(ViewState.SHOW_PROBLEM);
+    private ViewBoundary viewBound;
 
-        return outputData;
+    RunQuizPresenter(ViewBoundary viewBound){
+        this.viewBound = viewBound;
     }
 
-    /**
-     * Prepares the success view given a ShowProblemOutputData, if the quiz exists.
-     *
-     * @param outputData the ShowProblemOutputData associated with this problem
-     */
     @Override
-    public ShowProblemOutputData prepareSuccessView(ShowProblemOutputData outputData) {
+    public void prepareSuccessView(ShowAnswerOutputData outputData) {
+
+        ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.SHOW_PROBLEM)
+                .setCardIdArray(outputData.getFlashcardIdList())
+                .setCurrCardIndex(outputData.getCurrCardIndex())
+                .setUserAnswer(outputData.getUserAnswer())
+                .setCardAnswer(outputData.getCurrCardAnswer())
+                .build();
+
+        viewBound.updateView(viewModel);
+    }
+
+    @Override
+    public void prepareSuccessView(ShowProblemOutputData outputData) {
 
         if(outputData.noMoreProblems()){
-            outputData.setViewState(ViewState.QUIZ_MENU);
+            ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.QUIZ_MENU)
+                    .setReturnString("End of quiz!")
+                    .build();
+
+            viewBound.updateView(viewModel);
         }
+
         else {
-            outputData.setViewState(ViewState.SHOW_ANSWER);
+            ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.SHOW_ANSWER)
+                    .setCardIdArray(outputData.getFlashcardIdList())
+                    .setCurrCardIndex(outputData.getCurrCardIndex())
+                    .setReturnString(outputData.getCurrCardQuestion())
+                    .build();
+
+            viewBound.updateView(viewModel);
         }
 
-        return outputData;
+        System.out.println("Not sure how we got here");
+
+
 
     }
 
-    /**
-     * Prepares the success view given a StartQuizOutputData, if the quiz exists.
-     *
-     * @param outputData the StartQuizOutputData associated with this quiz
-     */
     @Override
-    public StartQuizOutputData prepareSuccessView(StartQuizOutputData outputData) {
-        outputData.setViewState(ViewState.SHOW_PROBLEM);
+    public void prepareSuccessView(StartQuizOutputData outputData) {
 
-        return outputData;
+        ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.SHOW_PROBLEM)
+                .setCardIdArray(outputData.getFlashcardIdList())
+                .setCurrCardIndex(outputData.getCurrCardIndex())
+                .build();
     }
 
-    /**
-     * Prepare the fail view given outputData, if the quiz does not exist.
-     *
-     * @param error the description of this error
-     */
-    public StartQuizOutputData quizFailView(String error){
+    public void quizFailView(String error){
         throw new QuizNotFound(error);
     }
 }

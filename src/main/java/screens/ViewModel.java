@@ -13,6 +13,10 @@ public class ViewModel {
     //Optional parameter(s):
     private String returnString;
 
+    private String userAnswer;
+
+    private String cardAnswer;
+
     private String quizName;
 
     private String deckName;
@@ -21,7 +25,10 @@ public class ViewModel {
 
     private List<String> cardIdList;
 
+    private String[] cardIdArray;
+
     private int currCardIndex;
+
 
 
     private ViewModel(ViewModelBuilder builder){
@@ -29,6 +36,8 @@ public class ViewModel {
         this.viewState = builder.ViewState;
 
         this.returnString = builder.returnString;
+        this.userAnswer = builder.userAnswer;
+        this.cardAnswer = builder.cardAnswer;
         this.quizName = builder.quizName;
         this.deckName = builder.deckName;
         this.cardId = builder.cardId;
@@ -47,6 +56,14 @@ public class ViewModel {
         return returnString;
     }
 
+    public String getUserAnswer(){
+        return this.userAnswer;
+    }
+
+    public String getCardAnswer(){
+        return this.cardAnswer;
+    }
+
     public String getQuizName() {
         return quizName;
     }
@@ -63,6 +80,10 @@ public class ViewModel {
         return cardIdList;
     }
 
+    public String[] getCardIdArray(){
+        return this.cardIdArray;
+    }
+
     public int getCurrCardIndex() {
         return currCardIndex;
     }
@@ -76,10 +97,16 @@ public class ViewModel {
 
         //Optional parameter(s):
         private String returnString;
+
+        private String userAnswer;
+
+        private String cardAnswer;
         private String quizName;
         private String deckName;
         private String cardId;
         private List<String> cardIdList;
+
+        private String[] cardIdArray;
         private int currCardIndex;
 
 
@@ -92,6 +119,16 @@ public class ViewModel {
         //Setters (optional parameter(s)):
         public ViewModelBuilder setReturnString(String returnString) {
             this.returnString = returnString;
+            return this;
+        }
+
+        public ViewModelBuilder setUserAnswer(String userAnswer) {
+            this.userAnswer = userAnswer;
+            return this;
+        }
+
+        public ViewModelBuilder setCardAnswer(String cardAnswer){
+            this.cardAnswer = userAnswer;
             return this;
         }
 
@@ -112,6 +149,11 @@ public class ViewModel {
 
         public ViewModelBuilder setCardIdList(List<String> cardIdList) {
             this.cardIdList = cardIdList;
+            return this;
+        }
+
+        public ViewModelBuilder setCardIdArray(String[] cardIdArray) {
+            this.cardIdArray = cardIdArray;
             return this;
         }
 
