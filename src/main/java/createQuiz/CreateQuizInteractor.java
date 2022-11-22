@@ -4,15 +4,30 @@ import entities.Deck;
 import entities.Quiz;
 
 import java.util.List;
+/**
+ * This file contains the implementation of the CreateQuizInteractor class,
+ * which implements CreateQuizInputBoundary.
+ */
 
 public class CreateQuizInteractor implements CreateQuizInputBoundary{
 
     private final CreateQuizOutputBoundary outputBoundary;
 
+    /**
+     * Creates a new CreateQuizInteractor with the given output boundary.
+     *
+     * @param outputBoundary the CreateQuizOutputBoundary associated with the created quiz
+     */
     public CreateQuizInteractor(CreateQuizOutputBoundary outputBoundary) {
         this.outputBoundary = outputBoundary;
     }
 
+    /**
+     * Return a CreateQuizOutputData given the input data.
+     *
+     * @param inputData the CreateQuizInputData associated with the created quiz
+     * @return a CreateQuizOutputData associated with this created quiz
+     */
     @Override
     public CreateQuizOutputData createQuiz(CreateQuizInputData inputData) {
         String quizName = inputData.getQuizName();
