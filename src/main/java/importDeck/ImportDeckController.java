@@ -19,5 +19,6 @@ public class ImportDeckController {
 
     public void runImport(String fileName){
         ImportDeckInputData inputData = new ImportDeckInputData(fileName);
+        importDeckInputBoundary.importDeck(inputData);
     }
 }
