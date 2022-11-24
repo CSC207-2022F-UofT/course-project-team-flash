@@ -17,14 +17,14 @@ public class CreateDeckInteractor implements CreateDeckInputBoundary {
     public void create(CreateDeckInputData inputData) {
         if (Deck.getTracker().containsKey(inputData.getName())){
 
-            CreateDeckOutputData outputData = new CreateDeckOutputData("Deck name already exists!");
+            CreateDeckOutputData outputData = new CreateDeckOutputData("Deck name already exists!", inputData.getName());
             outputBoundary.prepareFailView(outputData);
         }
 
         Deck newDeck = new Deck(inputData.getName());
         Deck.addTracker(inputData.getName(), newDeck);
 
-        CreateDeckOutputData outputData = new CreateDeckOutputData("Deck created.");
+        CreateDeckOutputData outputData = new CreateDeckOutputData("Deck created.", inputData.getName());
         outputBoundary.prepareSuccessView(outputData);
     }
 }

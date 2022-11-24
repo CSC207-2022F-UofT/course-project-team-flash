@@ -1,5 +1,7 @@
 package screens;
 
+import createDeck.CreateDeckController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -8,6 +10,9 @@ public class View implements ViewBoundary {
     // Elements of the screen
     public static final int WIDTH = 400;
     public static final int HEIGHT = 500;
+
+    // Storing the controllers required by all use cases
+    private CreateDeckController createDeckController;
 
     // Storing the JFrame and Jpanels in the view
     private JFrame application;
@@ -43,14 +48,16 @@ public class View implements ViewBoundary {
 
     public View() {
 
-        // Build the Jframes
+        // Build the Jframe
         application = new JFrame("Flashcard");
         application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Build a blank screen
         CardLayout cardLayout = new CardLayout();
         JPanel screens = new JPanel(cardLayout);
         application.add(screens);
 
-        deckScreen = new DeckScreen();
+        deckScreen = new DeckScreen(createDeckController);
         mainMenuScreen = new MainMenuScreen();
         quizScreen = new QuizScreen();
 
@@ -66,6 +73,12 @@ public class View implements ViewBoundary {
         application.setVisible(true);
     }
 
+    // General method for setting the controllers of the view
+    public void setController(CreateDeckController createDeckController) {
+        this.createDeckController = createDeckController;
+        deckScreen.setController(createDeckController);
+    }
+
     @Override
     public void updateView(ViewModel viewModel) {
 
@@ -78,12 +91,12 @@ public class View implements ViewBoundary {
         this.cardIdList = viewModel.getCardIdList();
         this.cardIdArray = viewModel.getCardIdArray();
         this.currCardIndex = viewModel.getCurrCardIndex();
-
-        //If the viewState changes, update it and call the menuSwitch method to update the view.
-        if (this.viewState != viewModel.getViewState()) {
-            this.viewState = viewModel.getViewState();
-            this.menuSwitch();
-        }
+        // Conditional removed, we need to update if the same action is made
+        // ---If the viewState changes, update it and call the menuSwitch method to update the view.---
+        //if (this.viewState != viewModel.getViewState()) {
+        this.viewState = viewModel.getViewState();
+        this.menuSwitch();
+        //}
 
     }
 
@@ -124,9 +137,17 @@ public class View implements ViewBoundary {
 
                 break;
 
+            case DECK_CREATED:
+                //Changes to the view when a deck is created
+                deckScreen.reconstruct(false, deckName);
+
+
+                break;
+
             case DECK_DELETED:
                 //Menu that pops up when you delete a deck (says something like "deck deleted") and has an
                 //"OK" button or smth.
+                deckScreen.reconstruct(true, deckName);
 
 
                 break;
