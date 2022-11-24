@@ -1,10 +1,12 @@
 package editCard;/*
  * Author: Albert Yan
  * Date: October 31/22
- * This interface allows cards to be edited by higher level classes a
+ * This interface allows cards to be edited by higher level classes
  */
+
+import createCard.CreateCardInputData;
 
 public interface EditCardInputBoundary {
 
-    public void edit();
+    void edit(EditCardInputData inputData);
 }
