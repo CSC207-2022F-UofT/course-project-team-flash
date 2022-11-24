@@ -1,25 +1,37 @@
 package editCard;/*
  * Author: Albert Yan
  * Date: October 31/22
- * This class is a container for the input data related to edit card systems a
+ * This class is a container for the input data related to edit card systems,
+ * it is created by the controller and sent to the interactor
  */
 
 import entities.Flashcard;
 
+import java.util.List;
+
 public class EditCardInputData {
 
-    private Flashcard card;
-    private String question;
-    private String answer;
+    private final String cardID;
+    private final String question;
+    private final String answer;
+    private final List<String> options;
 
-    public EditCardInputData(Flashcard card, String question, String answer) {
-        this.card = card;
+    public EditCardInputData(String cardID, String question, String answer) {
+        this.cardID = cardID;
         this.question = question;
         this.answer = answer;
+        this.options = null;
     }
 
-    public Flashcard getCard() {
-        return card;
+    public EditCardInputData(String cardID, String question, String answer, List<String> options) {
+        this.cardID = cardID;
+        this.question = question;
+        this.answer = answer;
+        this.options = options;
+    }
+
+    public String getCardID() {
+        return cardID;
     }
 
     public String getQuestion() {
@@ -29,4 +41,6 @@ public class EditCardInputData {
     public String getAnswer() {
         return answer;
     }
+
+    public List<String> getOptions() { return options; }
 }
