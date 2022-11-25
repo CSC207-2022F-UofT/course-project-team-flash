@@ -2,7 +2,7 @@ package deleteDeck;
 
 public class DeleteDeckOutputData {
 
-    String deckName;
+    private String deckName;
 
     DeleteDeckOutputData(String deckName){
         this.deckName = deckName;

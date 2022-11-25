@@ -4,7 +4,6 @@ import screens.ViewState;
 
 public class StartQuizOutputData {
     private final String[] flashcardIds;
-
     private int currCardIndex;
     private ViewState viewState;
 
@@ -20,11 +19,8 @@ public class StartQuizOutputData {
         return this.flashcardIds;
     }
 
-    public ViewState getViewState(){
-        return this.viewState;
+    public int getCurrCardIndex(){
+        return this.currCardIndex;
     }
 
-    public void setViewState(ViewState state){
-        this.viewState = state;
-    }
 }
