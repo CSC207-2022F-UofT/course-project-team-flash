@@ -7,6 +7,7 @@ public enum ViewState {
     START_QUIZ,
     SHOW_PROBLEM,
     SHOW_ANSWER,
+    DECK_CREATED,
     DECK_DELETED,
     DECK_IMPORTED,
     DECK_EXPORTED,
