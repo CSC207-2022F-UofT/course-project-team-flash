@@ -23,6 +23,7 @@ public class CreateDeckInteractor implements CreateDeckInputBoundary {
     }
 
     /**
+     * Assigns a success or fail value to an instance of CreateDeckOutputData.
      *
      * @param inputData
      */
