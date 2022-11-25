@@ -40,12 +40,12 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
      * @return a StartQuizOutputData associated with the quiz to be run
      */
     @Override
-    public StartQuizOutputData startQuiz(StartQuizInputData inputData) {
+    public void startQuiz(StartQuizInputData inputData) {
 
         Quiz currQuiz = entities.Quiz.getQuiz(inputData.getQuizId());
 
         if(currQuiz == null){
-            return outputBoundary.quizFailView("Quiz of name \"" + inputData.getQuizId() + "\" does not exist.");
+            outputBoundary.quizFailView("Quiz of name \"" + inputData.getQuizId() + "\" does not exist.");
         }
 
         List<String> flashcardIdList = fetchQuizCardIds(currQuiz);
@@ -58,7 +58,7 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
 
         StartQuizOutputData outputData = new StartQuizOutputData(flashcardIds);
 
-        return outputBoundary.prepareSuccessView(outputData);
+        outputBoundary.prepareSuccessView(outputData);
     }
 
     /**
@@ -68,7 +68,7 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
      * @return a ShowProblemOutputData associated with the problem to be shown
      */
     @Override
-    public ShowProblemOutputData showProblem(ShowQuizCardInputData inputData) {
+    public void showProblem(ShowQuizCardInputData inputData) {
 
         Flashcard currCard = fetchCard(inputData);
 
@@ -77,7 +77,7 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
                 currCard.getQuestion()
                 );
 
-        return outputBoundary.prepareSuccessView(outputData);
+        outputBoundary.prepareSuccessView(outputData);
     }
 
     /**
@@ -87,7 +87,7 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
      * @return a ShowAnswerOutputData associated with the answer for this problem
      */
     @Override
-    public ShowAnswerOutputData showAnswer(ShowQuizCardInputData inputData) {
+    public void showAnswer(ShowQuizCardInputData inputData) {
 
         Flashcard currCard = fetchCard(inputData);
 
@@ -98,7 +98,7 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
 
         outputData.incCurrCardIndex(1);
 
-        return outputBoundary.prepareSuccessView(outputData);
+        outputBoundary.prepareSuccessView(outputData);
     }
 
     /**
