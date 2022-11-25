@@ -1,9 +1,12 @@
 package screens;
 
 import createDeck.CreateDeckController;
+import deleteDeck.DeleteDeckController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 public class View implements ViewBoundary {
@@ -13,6 +16,7 @@ public class View implements ViewBoundary {
 
     // Storing the controllers required by all use cases
     private CreateDeckController createDeckController;
+    private DeleteDeckController deleteDeckController;
 
     // Storing the JFrame and Jpanels in the view
     private JFrame application;
@@ -57,7 +61,7 @@ public class View implements ViewBoundary {
         JPanel screens = new JPanel(cardLayout);
         application.add(screens);
 
-        deckScreen = new DeckScreen(createDeckController);
+        deckScreen = new DeckScreen(createDeckController, deleteDeckController);
         mainMenuScreen = new MainMenuScreen();
         quizScreen = new QuizScreen();
 
@@ -74,9 +78,10 @@ public class View implements ViewBoundary {
     }
 
     // General method for setting the controllers of the view
-    public void setController(CreateDeckController createDeckController) {
+    public void setController(CreateDeckController createDeckController, DeleteDeckController deleteDeckController) {
         this.createDeckController = createDeckController;
-        deckScreen.setController(createDeckController);
+        this.deleteDeckController = deleteDeckController;
+        deckScreen.setController(createDeckController, deleteDeckController);
     }
 
     @Override
@@ -103,6 +108,9 @@ public class View implements ViewBoundary {
     private void menuSwitch() {
 
         switch (this.viewState) {
+            case ERROR:
+                createErrorMessage(returnString);
+                break;
 
             //ADD WHATEVER VIEWSTATES YOUR USECASE NEEDS HERE, I HAVE ADDED SOME ALREADY HERE AS AN EXAMPLE:
 
@@ -162,5 +170,25 @@ public class View implements ViewBoundary {
         //BELOW HERE:
         //Implement all the callback methods that will be triggered by button click events. These methods
         //will be the ones that'll call the methods in the controllers, so they should be specific to each useCase.
+    }
+
+    private void createErrorMessage(String message) {
+        JFrame errorFrame = new JFrame();
+        JDialog errorDialog = new JDialog(errorFrame);
+
+        JLabel prompt = new JLabel(message);
+        JButton createButton = new JButton("Ok");
+        errorDialog.add(prompt);
+        errorDialog.add(createButton);
+
+        createButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                errorFrame.dispose();
+            }
+        });
+
+        errorFrame.pack();
+        errorFrame.setVisible(true);
     }
 }

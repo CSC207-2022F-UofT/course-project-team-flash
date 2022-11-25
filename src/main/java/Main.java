@@ -1,6 +1,7 @@
 import createCard.*;
 import createDeck.*;
 import createQuiz.*;
+import deleteDeck.*;
 import entities.CardFactory;
 import entities.FlashcardFactory;
 
@@ -27,9 +28,10 @@ public class Main {
         CreateCardController createCardController = createCardConstructor();
         CreateDeckController createDeckController = createDeckConstructor(view);
         CreateQuizController createQuizController = createQuizConstructor();
+        DeleteDeckController deleteDeckController = deleteDeckConstructor(view);
 
         // Setting controllers of the view
-        view.setController(createDeckController);
+        view.setController(createDeckController, deleteDeckController);
 
         // IDK what else needs to be done
     }
@@ -51,5 +53,11 @@ public class Main {
         CreateQuizOutputBoundary presenter = new CreateQuizPresenter();
         CreateQuizInputBoundary interactor = new CreateQuizInteractor(presenter);
         return new CreateQuizController(interactor);
+    }
+
+    private static DeleteDeckController deleteDeckConstructor(View view) {
+        DeleteDeckOutputBoundary presenter = new DeleteDeckPresenter(view);
+        DeleteDeckInputBoundary interactor = new DeleteDeckInteractor(presenter);
+        return new DeleteDeckController(interactor);
     }
 }
