@@ -9,4 +9,5 @@ public enum ViewState {
     SHOW_ANSWER,
     DECK_DELETED,
     DECK_IMPORTED,
+    DECK_EXPORTED,
 }
