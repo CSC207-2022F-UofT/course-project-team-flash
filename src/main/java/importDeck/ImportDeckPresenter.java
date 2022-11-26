@@ -6,8 +6,6 @@
 
 package importDeck;
 
-
-import screens.ImportDeckFail;
 import screens.ViewBoundary;
 import screens.ViewModel;
 import screens.ViewState;
@@ -41,6 +39,9 @@ public class ImportDeckPresenter implements ImportDeckOutputBoundary {
      */
     @Override
     public void prepareFailView(String exception) {
-        throw new ImportDeckFail(exception);
+        ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.ERROR)
+                .setReturnString(exception)
+                .build();
+        viewBoundary.updateView(viewModel);
     }
 }

@@ -35,26 +35,11 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
         ImportDeckDsInputData dsInputData = new ImportDeckDsInputData(inputData.getFileName());
         try {
             ImportDeckDsOutputData dsOutputData = dsGateway.importFromFile(dsInputData);
+            ImportDeckOutputData outputData = new ImportDeckOutputData(dsOutputData.getImportedDeckName());
+            outputBoundary.prepareSuccessView(outputData);
         }
         catch (ImportDeckFail e) {
             outputBoundary.prepareFailView(e.toString());
         }
-        /*
-            try {
-                    options = Arrays.asList(cardInfoArray[3].split(","));
-                }
-                catch (ArrayIndexOutOfBoundsException e){
-                    options = null;
-                }
-                Flashcard card = cardFactory.createCard(
-                        Integer.parseInt(cardInfoArray[0]),
-                        cardInfoArray[1],
-                        cardInfoArray[2],
-                        options
-                );
-                if (card != null){
-                    importedDeck.addCard(card);
-                }
-         */
     }
 }

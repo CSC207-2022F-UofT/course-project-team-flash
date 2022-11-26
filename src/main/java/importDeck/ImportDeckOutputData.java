@@ -7,19 +7,19 @@
 package importDeck;
 
 public class ImportDeckOutputData {
-    private final String message;
     private final String importedDeckName;
 
     /**
      * Creates a data object for the deck import output.
-     * @param message output message
      * @param importedDeckName name of deck created from file read
      */
-    public ImportDeckOutputData(String message, String importedDeckName){
-        this.message = message;
+    public ImportDeckOutputData(String importedDeckName){
         this.importedDeckName = importedDeckName;
     }
 
+    /**
+     * @return the name of the imported deck
+     */
     public String getImportedDeckName(){
         return importedDeckName;
     }

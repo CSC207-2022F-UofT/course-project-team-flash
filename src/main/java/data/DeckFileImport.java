@@ -1,3 +1,10 @@
+/*
+ * Author: Aldo Bani
+ * Date: November 26/22
+ * This reads a file and packages its information
+ * for use by the interactor
+ */
+
 package data;
 
 import importDeck.ImportDeckDsGateway;
@@ -13,6 +20,10 @@ import java.util.Scanner;
 
 
 public class DeckFileImport implements ImportDeckDsGateway{
+    /**
+     * Reads from a file containing information about a deck and returns an output data object
+     * @param dsInputData the input data required
+     */
     @Override
     public ImportDeckDsOutputData importFromFile(ImportDeckDsInputData dsInputData){
         try {
