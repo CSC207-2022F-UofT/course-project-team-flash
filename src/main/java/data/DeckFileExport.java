@@ -1,4 +1,4 @@
-package screens;
+package data;
 
 import exportDeck.ExportDeckDsGateway;
 import exportDeck.ExportDeckDsInputData;
