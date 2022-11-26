@@ -3,11 +3,16 @@ package data;
 import exportDeck.ExportDeckDsGateway;
 import exportDeck.ExportDeckDsInputData;
 import screens.ExportDeckFail;
-
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class DeckFileExport implements ExportDeckDsGateway{
+
+    /**
+     * Creates/overwrites a file in the given filepath with the name of the deck,
+     * then writes card information to that file.
+     * @param dsInputData the input data for the gateway
+     */
     @Override
     public void export(ExportDeckDsInputData dsInputData){
         try {

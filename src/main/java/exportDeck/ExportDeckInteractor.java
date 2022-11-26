@@ -17,7 +17,7 @@ public class ExportDeckInteractor implements ExportDeckInputBoundary{
     private final ExportDeckDsGateway exportDeckDsGateway;
 
     /**
-     * The interactor for the deck export use case
+     * The interactor for the deck export use case.
      * @param exportDeckOutputBoundary output boundary
      */
     public ExportDeckInteractor(ExportDeckDsGateway exportDeckDsGateway, ExportDeckOutputBoundary exportDeckOutputBoundary) {
@@ -26,9 +26,9 @@ public class ExportDeckInteractor implements ExportDeckInputBoundary{
     }
 
     /**
-     * Gets the type of flashcard, returns -1 if invalid
+     * Gets the type of flashcard, returns -1 if invalid.
      * @param card the card to be checked
-     * @return numeric identifier for the card
+     * @return identifier for the card
      */
     private String getCardType(Flashcard card){
         if (card instanceof QandAFlashcard){
@@ -44,7 +44,7 @@ public class ExportDeckInteractor implements ExportDeckInputBoundary{
     }
 
     /**
-     * Takes a deck and creates a file containing information about the deck and saves to user's filesystem
+     * Creates deck information needed for the file and sends it to the gateway.
      * @param inputData data retrieved from the input
      */
     @Override

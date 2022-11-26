@@ -17,6 +17,9 @@ public class ExportDeckOutputData {
         this.message = message;
     }
 
+    /**
+     * @return the output message
+     */
     public String getMessage() {
         return message;
     }

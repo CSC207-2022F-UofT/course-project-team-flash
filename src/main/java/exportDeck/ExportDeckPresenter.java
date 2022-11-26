@@ -22,7 +22,7 @@ public class ExportDeckPresenter implements ExportDeckOutputBoundary{
     }
 
     /**
-     * Should update UI informing the user the export was a success
+     * Should update UI informing the user the export was a success.
      * @param outputData the data created from the input
      */
     @Override
@@ -34,8 +34,8 @@ public class ExportDeckPresenter implements ExportDeckOutputBoundary{
     }
 
     /**
-     * Throws an exception stating the export failed
-     * @param exception the error message
+     * Should update the UI informing the export failed.
+     * @param exception the exception message
      */
     @Override
     public void prepareFailView(String exception) {
