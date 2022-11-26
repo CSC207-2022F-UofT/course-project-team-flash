@@ -1,3 +1,13 @@
+/*
+ * Author: Jasmine Tsoi
+ * Documentation Author: Jasmine Tsoi
+ * Date: November 21/22
+ *
+ * This file contains implementation of the CreateQuizInputData class.
+ * It includes the instance attributes of CreateQuizInputData,
+ * the getter methods for them, and a private method deckNamesToDecks.
+ */
+
 package createQuiz;
 
 import entities.Deck;
@@ -5,12 +15,6 @@ import entities.Deck;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-/**
- * This file contains implementation of the CreateQuizInputData class.
- * It includes the instance attributes of CreateQuizInputData,
- * the getter methods for them, and a private method deckNamesToDecks.
- */
 
 public class CreateQuizInputData {
 
@@ -33,7 +37,7 @@ public class CreateQuizInputData {
     /**
      * Returns the quiz name of this CreateQuizInputData.
      *
-     * @return
+     * @return the quiz name of this CreateQuizInputData
      */
     public String getQuizName() {
         return this.quizName;
@@ -42,7 +46,7 @@ public class CreateQuizInputData {
     /**
      * Returns the decks' names of this CreateQuizInputData.
      *
-     * @return
+     * @return the decks' names of this CreateQuizInputData
      */
     public List<String> getQuizDecksNames() {
         return this.quizDecksNames;
@@ -51,7 +55,7 @@ public class CreateQuizInputData {
     /**
      * Returns the quiz decks of this CreateQuizInputData.
      *
-     * @return
+     * @return the quiz decks of this CreateQuizInputData
      */
     public List<Deck> getQuizDecks() {
         return this.quizDecks;
