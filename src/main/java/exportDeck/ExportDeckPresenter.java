@@ -6,7 +6,6 @@
 
 package exportDeck;
 
-import screens.ExportDeckFail;
 import screens.ViewBoundary;
 import screens.ViewModel;
 import screens.ViewState;
@@ -29,7 +28,7 @@ public class ExportDeckPresenter implements ExportDeckOutputBoundary{
     @Override
     public void prepareSuccessView(ExportDeckOutputData outputData) {
         ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.DECK_EXPORTED)
-                //not sure what to put here
+                .setReturnString(outputData.getMessage())
                 .build();
         viewBoundary.updateView(viewModel);
     }
@@ -40,6 +39,9 @@ public class ExportDeckPresenter implements ExportDeckOutputBoundary{
      */
     @Override
     public void prepareFailView(String exception) {
-        throw new ExportDeckFail(exception);
+        ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.ERROR)
+                .setReturnString(exception)
+                .build();
+        viewBoundary.updateView(viewModel);
     }
 }

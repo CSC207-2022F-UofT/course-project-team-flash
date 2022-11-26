@@ -2,6 +2,8 @@ package data;
 
 import exportDeck.ExportDeckDsGateway;
 import exportDeck.ExportDeckDsInputData;
+import screens.ExportDeckFail;
+
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -17,7 +19,7 @@ public class DeckFileExport implements ExportDeckDsGateway{
             writer.close();
         }
         catch (IOException e){
-            throw new RuntimeException(e);
+            throw new ExportDeckFail(e.toString());
         }
     }
 }

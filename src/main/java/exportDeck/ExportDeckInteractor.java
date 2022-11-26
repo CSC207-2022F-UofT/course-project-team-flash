@@ -7,6 +7,7 @@
 package exportDeck;
 
 import entities.*;
+import screens.ExportDeckFail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +67,12 @@ public class ExportDeckInteractor implements ExportDeckInputBoundary{
             deckCards.add(cardInfo);
         }
         ExportDeckDsInputData exportDeckDsInputData = new ExportDeckDsInputData(filePath, deckToExportName, deckCards);
-        exportDeckDsGateway.export(exportDeckDsInputData);
+        try{
+            exportDeckDsGateway.export(exportDeckDsInputData);
+        }
+        catch (ExportDeckFail e){
+            exportDeckOutputBoundary.prepareFailView(e.toString());
+        }
         ExportDeckOutputData outputData = new ExportDeckOutputData("Deck was exported.");
         exportDeckOutputBoundary.prepareSuccessView(outputData);
     }
