@@ -31,6 +31,11 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
         this.cardFactory = cardFactory;
     }
 
+    /**
+     * Creates a card object from a string containing information about the card
+     * @param cardInfo information about the card
+     * @return a card object
+     */
     private Flashcard cardFormatter(String cardInfo){
         String[] cardInfoArray = cardInfo.split(";");
         List<String> options;
