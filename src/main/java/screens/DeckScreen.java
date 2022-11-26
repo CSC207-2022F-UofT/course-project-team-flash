@@ -4,6 +4,7 @@ import createDeck.CreateDeckController;
 import deleteDeck.DeleteDeckController;
 
 import javax.swing.*;
+import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -61,10 +62,11 @@ public class DeckScreen extends JPanel {
         deckSettingsButtons.clear();
         JButton backButton = new JButton("Back");
         JButton deckCreationButton = new JButton("New Deck");
+        gridBagConstraints.fill = gridBagConstraints.NONE;
         gridBagConstraints.gridwidth = 1;
         gridBagConstraints.gridheight = 1;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.weightx = 0;
+        gridBagConstraints.weighty = 0;
         gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -72,13 +74,23 @@ public class DeckScreen extends JPanel {
         gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
         gridBagConstraints.gridx = 1;
         this.add(deckCreationButton, gridBagConstraints);
+
+        // The "squashPanel" for squashing components flush to the top
+        JPanel squashPanel = new JPanel(new GridBagLayout());
+        gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.anchor = GridBagConstraints.LINE_START;
+        gridBagConstraints.gridy = deckNames.size() + 2;
+        gridBagConstraints.weightx = 1;
+        gridBagConstraints.weighty = 1;
+        gridBagConstraints.fill = gridBagConstraints.BOTH;
+        gridBagConstraints.gridwidth = 2;
+        this.add(squashPanel, gridBagConstraints);
 
         // Pre for loop setup (for listing decks)
-        gridBagConstraints.weightx = 0;
         gridBagConstraints.weighty = 0;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
         for (String name : deckNames) {
             JButton deckButton = new JButton(name);
             JButton deckSettingsButton = new JButton("...");
