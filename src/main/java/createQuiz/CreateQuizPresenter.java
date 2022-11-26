@@ -16,7 +16,7 @@ public class CreateQuizPresenter implements CreateQuizOutputBoundary{
      *
      * @param outputData the CreateQuizOutputData associated with this created quiz
      */
-    private void prepareSuccessView(CreateQuizOutputData outputData){
+    public void prepareSuccessView(CreateQuizOutputData outputData){
 
     }
 
@@ -25,7 +25,7 @@ public class CreateQuizPresenter implements CreateQuizOutputBoundary{
      *
      * @param outputData the CreateQuizOutputData associated with this created quiz
      */
-    private void prepareFailView(CreateQuizOutputData outputData){
+    public void prepareFailView(CreateQuizOutputData outputData){
     }
 
 }
