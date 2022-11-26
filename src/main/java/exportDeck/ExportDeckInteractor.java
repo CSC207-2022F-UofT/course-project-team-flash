@@ -8,9 +8,7 @@ package exportDeck;
 
 import entities.*;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ExportDeckInteractor implements ExportDeckInputBoundary{
@@ -50,41 +48,26 @@ public class ExportDeckInteractor implements ExportDeckInputBoundary{
      */
     @Override
     public void exportDeck(ExportDeckInputData inputData) {
-        String deckToExportName = inputData.getDeckToExportName();
         String filePath = inputData.getFilePath();
+        String deckToExportName = inputData.getDeckToExportName();
         Deck deckToExport = Deck.getTracker().get(deckToExportName);
-        /*
-        try {
-
-            Deck deckToExport = inputData.getDeckToExport();
-            List<Flashcard> deckCards = deckToExport.getCards();
-            String deckFileName = filePath + deckToExport.getName() + ".deck";
-            File deckFile = new File(deckFileName);
-            FileWriter writer = new FileWriter(deckFileName, false);
-            for (Flashcard card : deckCards){
-                String cardType = getCardType(card);
-                if (cardType.equals("-1")){continue;}
-                String cardInfo = cardType + ";" + card.getQuestion() + ";" + card.getAnswer();
-                if (cardType.equals("2")){
-                    String optionInfo = ";";
-                    for (String option : ((MCFlashcard)card).getOptions()){
-                        optionInfo = optionInfo.concat(option+",");
-                    }
-                    cardInfo = cardInfo.concat(optionInfo);
+        List<String> deckCards = new ArrayList<>();
+        for (Flashcard card : deckToExport.getCards()){
+            String cardType = getCardType(card);
+            if (cardType.equals("-1")){continue;}
+            String cardInfo = cardType + ";" + card.getQuestion() + ";" + card.getAnswer();
+            if (cardType.equals("2")){
+                String optionInfo = ";";
+                for (String option : ((MCFlashcard)card).getOptions()){
+                    optionInfo = optionInfo.concat(option+",");
                 }
-                writer.write(cardInfo + System.getProperty("line.separator"));
+                cardInfo = cardInfo.concat(optionInfo);
             }
-            writer.close();
-            boolean result = deckFile.createNewFile();
-            String message;
-            if (result) message = "File at " + deckFileName + " was created." ;
-            else { message = "File at " + deckFileName + " was overwritten."; }
-            ExportDeckOutputData outputData = new ExportDeckOutputData(message);
-            exportDeckOutputBoundary.prepareSuccessView(outputData);
+            deckCards.add(cardInfo);
         }
-        catch (IOException e){
-            exportDeckOutputBoundary.prepareFailView(e.toString());
-        }
-         */
+        ExportDeckDsInputData exportDeckDsInputData = new ExportDeckDsInputData(filePath, deckToExportName, deckCards);
+        exportDeckDsGateway.export(exportDeckDsInputData);
+        ExportDeckOutputData outputData = new ExportDeckOutputData("Deck was exported.");
+        exportDeckOutputBoundary.prepareSuccessView(outputData);
     }
 }
