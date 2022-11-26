@@ -11,10 +11,10 @@ package runQuiz;
 
 public interface RunQuizInputBoundary {
 
-    StartQuizOutputData startQuiz(StartQuizInputData inputData);
+    void startQuiz(StartQuizInputData inputData);
 
-    ShowProblemOutputData showProblem(ShowQuizCardInputData inputData);
+    void showProblem(ShowQuizCardInputData inputData);
 
-    ShowAnswerOutputData showAnswer(ShowQuizCardInputData inputData);
+    void showAnswer(ShowQuizCardInputData inputData);
 
 }
