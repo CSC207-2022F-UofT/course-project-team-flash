@@ -4,8 +4,6 @@ import data.DeckInMemoryExport;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import screens.View;
-import screens.ViewBoundary;
 import entities.Deck;
 
 public class ExportDeckInteractorTest {
@@ -17,8 +15,7 @@ public class ExportDeckInteractorTest {
     @Test
     void exportDeck(){
         ExportDeckDsGateway deckRepository = new DeckInMemoryExport();
-        ViewBoundary viewBoundary = new View();
-        ExportDeckOutputBoundary presenter = new ExportDeckPresenter(viewBoundary) {
+        ExportDeckOutputBoundary presenter = new ExportDeckPresenter(null) {
             @Override
             public void prepareSuccessView(ExportDeckOutputData outputData){
                 Assertions.assertEquals("Test was exported to: home/decks/Test.deck", outputData.getMessage());
