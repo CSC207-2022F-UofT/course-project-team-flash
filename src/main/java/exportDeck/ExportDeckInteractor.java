@@ -13,16 +13,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ExportDeckInteractor implements ExportDeckInputBoundary{
-    private final ExportDeckOutputBoundary exportDeckOutputBoundary;
-    private final ExportDeckDsGateway exportDeckDsGateway;
-
+    private final ExportDeckDsGateway dsGateway;
+    private final ExportDeckOutputBoundary outputBoundary;
     /**
      * The interactor for the deck export use case.
-     * @param exportDeckOutputBoundary output boundary
+     * @param dsGateway the gateway
+     * @param outputBoundary output boundary
      */
-    public ExportDeckInteractor(ExportDeckDsGateway exportDeckDsGateway, ExportDeckOutputBoundary exportDeckOutputBoundary) {
-        this.exportDeckOutputBoundary = exportDeckOutputBoundary;
-        this.exportDeckDsGateway = exportDeckDsGateway;
+    public ExportDeckInteractor(ExportDeckDsGateway dsGateway, ExportDeckOutputBoundary outputBoundary) {
+        this.outputBoundary = outputBoundary;
+        this.dsGateway = dsGateway;
     }
 
     /**
@@ -68,12 +68,13 @@ public class ExportDeckInteractor implements ExportDeckInputBoundary{
         }
         ExportDeckDsInputData exportDeckDsInputData = new ExportDeckDsInputData(filePath, deckToExportName, deckCards);
         try{
-            exportDeckDsGateway.exportToFile(exportDeckDsInputData);
+            dsGateway.exportToFile(exportDeckDsInputData);
         }
         catch (ExportDeckFail e){
-            exportDeckOutputBoundary.prepareFailView(e.toString());
+            outputBoundary.prepareFailView(e.toString());
         }
-        ExportDeckOutputData outputData = new ExportDeckOutputData("Deck was exported.");
-        exportDeckOutputBoundary.prepareSuccessView(outputData);
+        ExportDeckOutputData outputData = new ExportDeckOutputData(deckToExportName + " was exported to: "
+                                                                    + filePath + deckToExportName+".deck");
+        outputBoundary.prepareSuccessView(outputData);
     }
 }
