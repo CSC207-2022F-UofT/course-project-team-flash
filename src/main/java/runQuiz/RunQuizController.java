@@ -9,24 +9,24 @@ public class RunQuizController {
     }
 
 
-    ShowAnswerOutputData showAnswer(String[] flashcardIdList, int currCardIndex, String userAnswer){
+    void showAnswer(String[] flashcardIdList, int currCardIndex, String userAnswer){
         ShowQuizCardInputData inputData = new ShowQuizCardInputData(flashcardIdList, currCardIndex, userAnswer);
 
-        return runQuizInputBound.showAnswer(inputData);
+        runQuizInputBound.showAnswer(inputData);
     }
 
 
-    ShowProblemOutputData showProblem(String[] flashcardIdList, int currCardIndex){
+    void showProblem(String[] flashcardIdList, int currCardIndex){
         ShowQuizCardInputData inputData = new ShowQuizCardInputData(flashcardIdList, currCardIndex);
 
-        return runQuizInputBound.showProblem(inputData);
+        runQuizInputBound.showProblem(inputData);
     }
 
 
-    StartQuizOutputData startQuiz(String quizId, boolean isRandomized){
+    void startQuiz(String quizId, boolean isRandomized){
         StartQuizInputData inputData = new StartQuizInputData(quizId, isRandomized);
 
-        return runQuizInputBound.startQuiz(inputData);
+        runQuizInputBound.startQuiz(inputData);
     }
 
 }

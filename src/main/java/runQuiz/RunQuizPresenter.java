@@ -1,39 +1,67 @@
 package runQuiz;
 
-import screens.viewStates;
-import screens.QuizNotFound;
+import screens.*;
+
+import java.util.Arrays;
 
 public class RunQuizPresenter implements RunQuizOutputBoundary {
 
-    @Override
-    public ShowAnswerOutputData prepareSuccessView(ShowAnswerOutputData outputData) {
-        outputData.setViewState(viewStates.SHOW_PROBLEM);
+    private ViewBoundary viewBound;
 
-        return outputData;
+    RunQuizPresenter(ViewBoundary viewBound){
+        this.viewBound = viewBound;
     }
 
     @Override
-    public ShowProblemOutputData prepareSuccessView(ShowProblemOutputData outputData) {
+    public void prepareSuccessView(ShowAnswerOutputData outputData) {
+
+        ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.SHOW_PROBLEM)
+                .setCardIdArray(outputData.getFlashcardIdList())
+                .setCurrCardIndex(outputData.getCurrCardIndex())
+                .setUserAnswer(outputData.getUserAnswer())
+                .setCardAnswer(outputData.getCurrCardAnswer())
+                .build();
+
+        viewBound.updateView(viewModel);
+    }
+
+    @Override
+    public void prepareSuccessView(ShowProblemOutputData outputData) {
 
         if(outputData.noMoreProblems()){
-            outputData.setViewState(viewStates.QUIZ_MENU);
-        }
-        else {
-            outputData.setViewState(viewStates.SHOW_ANSWER);
+            ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.QUIZ_MENU)
+                    .setReturnString("End of quiz!")
+                    .build();
+
+            viewBound.updateView(viewModel);
         }
 
-        return outputData;
+        else {
+            ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.SHOW_ANSWER)
+                    .setCardIdArray(outputData.getFlashcardIdList())
+                    .setCurrCardIndex(outputData.getCurrCardIndex())
+                    .setReturnString(outputData.getCurrCardQuestion())
+                    .build();
+
+            viewBound.updateView(viewModel);
+        }
+
+        System.out.println("Not sure how we got here");
+
+
 
     }
 
     @Override
-    public StartQuizOutputData prepareSuccessView(StartQuizOutputData outputData) {
-        outputData.setViewState(viewStates.SHOW_PROBLEM);
+    public void prepareSuccessView(StartQuizOutputData outputData) {
 
-        return outputData;
+        ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.SHOW_PROBLEM)
+                .setCardIdArray(outputData.getFlashcardIdList())
+                .setCurrCardIndex(outputData.getCurrCardIndex())
+                .build();
     }
 
-    public StartQuizOutputData quizFailView(String error){
+    public void quizFailView(String error){
         throw new QuizNotFound(error);
     }
 }

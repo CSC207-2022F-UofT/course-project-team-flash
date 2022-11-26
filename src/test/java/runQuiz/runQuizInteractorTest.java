@@ -1,7 +1,5 @@
 package runQuiz;
 
-import screens.viewStates;
-
 import entities.Deck;
 import entities.Flashcard;
 import entities.QandAFlashcard;
@@ -70,7 +68,7 @@ class RunQuizInteractorTest {
         RunQuizOutputBoundary outputBound = new RunQuizOutputBoundary() {
 
             @Override
-            public ShowAnswerOutputData prepareSuccessView(ShowAnswerOutputData outputData) {
+            public void prepareSuccessView(ShowAnswerOutputData outputData) {
                 Assertions.assertArrayEquals(new String[]{f1.getUniqueID(), f2.getUniqueID(), f3.getUniqueID()},
                         outputData.getFlashcardIdList());
 
@@ -80,11 +78,10 @@ class RunQuizInteractorTest {
 
                 Assertions.assertEquals("boop boot", outputData.getUserAnswer());
 
-                return null;
             }
 
             @Override
-            public ShowProblemOutputData prepareSuccessView(ShowProblemOutputData outputData) {
+            public void prepareSuccessView(ShowProblemOutputData outputData) {
                 Assertions.assertArrayEquals(new String[]{f1.getUniqueID(), f2.getUniqueID(), f3.getUniqueID()},
                         outputData.getFlashcardIdList());
 
@@ -92,22 +89,20 @@ class RunQuizInteractorTest {
 
                 Assertions.assertEquals("Who is music", outputData.getCurrCardQuestion());
 
-                return null;
 
             }
 
 
             @Override
-            public StartQuizOutputData prepareSuccessView(StartQuizOutputData outputData) {
+            public void prepareSuccessView(StartQuizOutputData outputData) {
                 Assertions.assertArrayEquals(new String[]{f1.getUniqueID(), f2.getUniqueID(), f3.getUniqueID()},
                         outputData.getFlashcardIdList());
 
-                return null;
             }
 
             @Override
-            public StartQuizOutputData quizFailView(String error) {
-                return null;
+            public void quizFailView(String error) {
+
             }
 
         };
