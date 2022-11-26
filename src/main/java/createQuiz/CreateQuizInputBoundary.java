@@ -1,4 +1,4 @@
-/**
+/*
  * Author: Jasmine Tsoi
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
@@ -10,6 +10,6 @@ package createQuiz;
 
 public interface CreateQuizInputBoundary {
 
-    CreateQuizOutputData createQuiz(CreateQuizInputData inputData);
+    void createQuiz(CreateQuizInputData inputData);
 
 }
