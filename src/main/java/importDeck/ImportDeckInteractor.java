@@ -7,25 +7,22 @@
 package importDeck;
 
 import entities.CardFactory;
-import entities.Deck;
-import entities.Flashcard;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import screens.ImportDeckFail;
 
 public class ImportDeckInteractor implements ImportDeckInputBoundary{
-    private final ImportDeckOutputBoundary importDeckOutputBoundary;
+    private final ImportDeckDsGateway dsGateway;
+    private final ImportDeckOutputBoundary outputBoundary;
     private final CardFactory cardFactory;
 
     /**
      * The interactor for the deck import use case
-     * @param importDeckOutputBoundary The output boundary for the deck import use case.
+     * @param dsGateway the gateway for file access
+     * @param outputBoundary The output boundary for the deck import use case.
+     * @param cardFactory The card factory for card creation
      */
-    public ImportDeckInteractor(ImportDeckOutputBoundary importDeckOutputBoundary, CardFactory cardFactory){
-        this.importDeckOutputBoundary = importDeckOutputBoundary;
+    public ImportDeckInteractor(ImportDeckDsGateway dsGateway, ImportDeckOutputBoundary outputBoundary, CardFactory cardFactory){
+        this.dsGateway = dsGateway;
+        this.outputBoundary = outputBoundary;
         this.cardFactory = cardFactory;
     }
 
@@ -35,16 +32,15 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
      */
     @Override
     public void importDeck(ImportDeckInputData inputData){
+        ImportDeckDsInputData dsInputData = new ImportDeckDsInputData(inputData.getFileName());
         try {
-            String deckName = inputData.getFileName();
-            File deckFile = new File(deckName);
-            Deck importedDeck = new Deck(deckName.substring(0, deckName.lastIndexOf('.')));
-            Scanner reader = new Scanner(deckFile);
-            while (reader.hasNextLine()){
-                String cardInfo = reader.nextLine();
-                String[] cardInfoArray = cardInfo.split(";");
-                List<String> options;
-                try {
+            ImportDeckDsOutputData dsOutputData = dsGateway.importFromFile(dsInputData);
+        }
+        catch (ImportDeckFail e) {
+            outputBoundary.prepareFailView(e.toString());
+        }
+        /*
+            try {
                     options = Arrays.asList(cardInfoArray[3].split(","));
                 }
                 catch (ArrayIndexOutOfBoundsException e){
@@ -59,15 +55,6 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
                 if (card != null){
                     importedDeck.addCard(card);
                 }
-            }
-            reader.close();
-            Deck.addTracker(importedDeck.getName(), importedDeck);
-            ImportDeckOutputData outputData = new ImportDeckOutputData("Imported the deck!", importedDeck.getName());
-            System.out.println(Deck.getTracker());
-            importDeckOutputBoundary.prepareSuccessView(outputData);
-        }
-        catch (FileNotFoundException e){
-            importDeckOutputBoundary.prepareFailView(e.toString());
-        }
+         */
     }
 }
