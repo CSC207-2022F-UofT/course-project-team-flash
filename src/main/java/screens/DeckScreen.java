@@ -23,14 +23,20 @@ public class DeckScreen extends JPanel {
     private ArrayList<JButton> deckButtons;
 
     private ArrayList<JButton> deckSettingsButtons;
+
+    // Interface Formatters
     private static final int TEXT_FIELD_LENGTH = 10;
 
-    public DeckScreen(CreateDeckController createDeckController, DeleteDeckController deleteDeckControler) {
+    GridBagConstraints gridBagConstraints;
+
+    public DeckScreen(CreateDeckController createDeckController, DeleteDeckController deleteDeckController) {
+        super(new GridBagLayout());
+        this.gridBagConstraints = new GridBagConstraints();
         this.deckNames = new ArrayList<>();
         this.deckButtons = new ArrayList<>();
         this.deckSettingsButtons = new ArrayList<>();
         this.createDeckController = createDeckController;
-        this.deleteDeckController = deleteDeckControler;
+        this.deleteDeckController = deleteDeckController;
         drawComponents();
     }
 
@@ -55,16 +61,37 @@ public class DeckScreen extends JPanel {
         deckSettingsButtons.clear();
         JButton backButton = new JButton("Back");
         JButton deckCreationButton = new JButton("New Deck");
-        this.add(backButton);
-        this.add(deckCreationButton);
+        gridBagConstraints.gridwidth = 1;
+        gridBagConstraints.gridheight = 1;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        this.add(backButton, gridBagConstraints);
+        gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
+        gridBagConstraints.gridx = 1;
+        this.add(deckCreationButton, gridBagConstraints);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.anchor = GridBagConstraints.LINE_START;
+
+        // Pre for loop setup (for listing decks)
+        gridBagConstraints.weightx = 0;
+        gridBagConstraints.weighty = 0;
+        gridBagConstraints.gridwidth = 2;
         for (String name : deckNames) {
             JButton deckButton = new JButton(name);
             JButton deckSettingsButton = new JButton("...");
             deckSettingsButton.setName(name);
             deckButtons.add(deckButton);
             deckSettingsButtons.add(deckSettingsButton);
-            this.add(deckButton);
-            this.add(deckSettingsButton);
+
+            gridBagConstraints.gridy += 1;
+            deckButton.setLayout(new BorderLayout());
+            gridBagConstraints.fill = gridBagConstraints.HORIZONTAL;
+            this.add(deckButton, gridBagConstraints);
+            gridBagConstraints.fill = gridBagConstraints.NONE;
+            deckButton.add(deckSettingsButton, BorderLayout.EAST);
         }
         // re-renders the screen with new components
         this.revalidate();

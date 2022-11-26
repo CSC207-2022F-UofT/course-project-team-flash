@@ -11,8 +11,8 @@ import java.util.List;
 
 public class View implements ViewBoundary {
     // Elements of the screen
-    public static final int WIDTH = 400;
-    public static final int HEIGHT = 500;
+    public static final int WIDTH = 1200;
+    public static final int HEIGHT = 600;
 
     // Storing the controllers required by all use cases
     private CreateDeckController createDeckController;
@@ -57,8 +57,8 @@ public class View implements ViewBoundary {
         application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Build a blank screen
-        CardLayout cardLayout = new CardLayout();
-        JPanel screens = new JPanel(cardLayout);
+        CardLayout interfaceLayout = new CardLayout();
+        JPanel screens = new JPanel(interfaceLayout);
         application.add(screens);
 
         deckScreen = new DeckScreen(createDeckController, deleteDeckController);
@@ -74,6 +74,7 @@ public class View implements ViewBoundary {
         quizScreen.setVisible(false);
 
         application.setSize(WIDTH, HEIGHT);
+        application.setResizable(true);
         application.setVisible(true);
     }
 
