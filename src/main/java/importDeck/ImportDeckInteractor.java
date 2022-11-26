@@ -45,12 +45,7 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
         catch (ArrayIndexOutOfBoundsException e){
             options = null;
         }
-        Flashcard card = cardFactory.createCard(
-                Integer.parseInt(cardInfoArray[0]),
-                cardInfoArray[1],
-                cardInfoArray[2],
-                options);
-        return card;
+        return cardFactory.createCard(Integer.parseInt(cardInfoArray[0]), cardInfoArray[1], cardInfoArray[2], options);
     }
 
     /**
