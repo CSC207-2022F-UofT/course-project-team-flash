@@ -14,7 +14,7 @@ public class ImportDeckPresenter implements ImportDeckOutputBoundary {
     private final ViewBoundary viewBoundary;
 
     /**
-     * Contructor for the presenter
+     * Constructor for the presenter
      * @param viewBoundary the view boundary
      */
     public ImportDeckPresenter(ViewBoundary viewBoundary){
