@@ -7,7 +7,12 @@
 package importDeck;
 
 import entities.CardFactory;
+import entities.Deck;
+import entities.Flashcard;
 import screens.ImportDeckFail;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class ImportDeckInteractor implements ImportDeckInputBoundary{
     private final ImportDeckDsGateway dsGateway;
@@ -26,6 +31,23 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
         this.cardFactory = cardFactory;
     }
 
+    private Flashcard cardFormatter(String cardInfo){
+        String[] cardInfoArray = cardInfo.split(";");
+        List<String> options;
+        try {
+            options = Arrays.asList(cardInfoArray[3].split(","));
+        }
+        catch (ArrayIndexOutOfBoundsException e){
+            options = null;
+        }
+        Flashcard card = cardFactory.createCard(
+                Integer.parseInt(cardInfoArray[0]),
+                cardInfoArray[1],
+                cardInfoArray[2],
+                options);
+        return card;
+    }
+
     /**
      * Takes in data input containing the file and creates a data output with a deck containing its cards
      * @param inputData data retrieved from the input
@@ -35,7 +57,14 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
         ImportDeckDsInputData dsInputData = new ImportDeckDsInputData(inputData.getFileName());
         try {
             ImportDeckDsOutputData dsOutputData = dsGateway.importFromFile(dsInputData);
-            ImportDeckOutputData outputData = new ImportDeckOutputData(dsOutputData.getImportedDeckName());
+            String deckName = dsOutputData.getImportedDeckName();
+            Deck importedDeck = new Deck(deckName);
+            Deck.addTracker(deckName, importedDeck);
+            for (String cardInfo : dsOutputData.getImportedCards()){
+                Flashcard newCard = cardFormatter(cardInfo);
+                if (newCard != null) importedDeck.addCard(newCard);
+            }
+            ImportDeckOutputData outputData = new ImportDeckOutputData(deckName);
             outputBoundary.prepareSuccessView(outputData);
         }
         catch (ImportDeckFail e) {
