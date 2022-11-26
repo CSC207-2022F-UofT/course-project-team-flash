@@ -15,13 +15,15 @@ import java.util.List;
 
 public class ExportDeckInteractor implements ExportDeckInputBoundary{
     private final ExportDeckOutputBoundary exportDeckOutputBoundary;
+    private final ExportDeckDsGateway exportDeckDsGateway;
 
     /**
      * The interactor for the deck export use case
      * @param exportDeckOutputBoundary output boundary
      */
-    public ExportDeckInteractor(ExportDeckOutputBoundary exportDeckOutputBoundary) {
+    public ExportDeckInteractor(ExportDeckDsGateway exportDeckDsGateway, ExportDeckOutputBoundary exportDeckOutputBoundary) {
         this.exportDeckOutputBoundary = exportDeckOutputBoundary;
+        this.exportDeckDsGateway = exportDeckDsGateway;
     }
 
     /**
@@ -48,8 +50,12 @@ public class ExportDeckInteractor implements ExportDeckInputBoundary{
      */
     @Override
     public void exportDeck(ExportDeckInputData inputData) {
+        String deckToExportName = inputData.getDeckToExportName();
+        String filePath = inputData.getFilePath();
+        Deck deckToExport = Deck.getTracker().get(deckToExportName);
+        /*
         try {
-            String filePath = inputData.getFilePath();
+
             Deck deckToExport = inputData.getDeckToExport();
             List<Flashcard> deckCards = deckToExport.getCards();
             String deckFileName = filePath + deckToExport.getName() + ".deck";
@@ -79,5 +85,6 @@ public class ExportDeckInteractor implements ExportDeckInputBoundary{
         catch (IOException e){
             exportDeckOutputBoundary.prepareFailView(e.toString());
         }
+         */
     }
 }
