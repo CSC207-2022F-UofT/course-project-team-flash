@@ -1,4 +1,4 @@
-/**
+/*
  * Author: Jasmine Tsoi
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
@@ -24,15 +24,14 @@ public class CreateQuizController {
     }
 
     /**
-     * Return a CreateQuizOutputData given a quiz name and a list of deck names that will be
+     * Calls inputBoundary.createQuizOutputData given a quiz name and a list of deck names that will be
      * in the created quiz object.
      *
      * @param quizName the name of the quiz
      * @param quizDecksNames the list of deck names that will be included in the quiz
-     * @return a CreateQuizOutputData associated with this created quiz
      */
-    public CreateQuizOutputData createQuiz(String quizName, List<String> quizDecksNames) {
-        CreateQuizInputData requestModel = new CreateQuizInputData(quizName, quizDecksNames);
-        return inputBoundary.createQuiz(requestModel);
+    public void createQuiz(String quizName, List<String> quizDecksNames) {
+        CreateQuizInputData inputData = new CreateQuizInputData(quizName, quizDecksNames);
+        inputBoundary.createQuiz(inputData);
     }
 }

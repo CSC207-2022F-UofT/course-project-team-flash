@@ -1,4 +1,4 @@
-/**
+/*
  * Author: Jasmine Tsoi
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
@@ -10,31 +10,29 @@
 
 package createQuiz;
 
-import entities.Quiz;
-
 public class CreateQuizOutputData {
 
-    private final Quiz quiz;
+    private final String quizName;
     private final String message;
 
     /**
      * Creates a new CreateQuizOutputData given the quiz object and a message.
      *
-     * @param quiz the quiz object that is created
+     * @param quizName the name of the quiz that is created
      * @param message a message indicating whether this quiz is created and stored successfully.
      */
-    public CreateQuizOutputData(Quiz quiz, String message) {
-        this.quiz = quiz;
+    public CreateQuizOutputData(String quizName, String message) {
+        this.quizName = quizName;
         this.message = message;
     }
 
     /**
-     * Returns the quiz object of this CreateQuizOutputData.
+     * Returns the quizName of this CreateQuizOutputData.
      *
-     * @return the quiz object of this CreateQuizOutputData
+     * @return the quizName of this CreateQuizOutputData
      */
-    public Quiz getQuiz() {
-        return this.quiz;
+    public String getQuizName() {
+        return this.quizName;
     }
 
     /**
