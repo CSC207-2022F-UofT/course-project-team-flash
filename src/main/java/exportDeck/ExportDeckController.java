@@ -22,7 +22,7 @@ public class ExportDeckController {
      * @param filePath where the user wants to save on their computer
      * @param deckToExportName name of the deck they want to export
      */
-    public void runExport(String filePath, String deckToExportName){
+    public void exportDeck(String filePath, String deckToExportName){
         ExportDeckInputData inputData = new ExportDeckInputData(filePath, deckToExportName);
         exportDeckInputBoundary.exportDeck(inputData);
     }

@@ -20,7 +20,7 @@ public class DeckFileExport implements ExportDeckDsGateway{
      * @param dsInputData the input data for the gateway
      */
     @Override
-    public void export(ExportDeckDsInputData dsInputData){
+    public void exportToFile(ExportDeckDsInputData dsInputData){
         try {
             String deckFileName = dsInputData.getFileLocation() + dsInputData.getDeckExportName() + ".deck";
             FileWriter writer = new FileWriter(deckFileName, false);

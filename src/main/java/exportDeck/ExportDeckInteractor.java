@@ -68,7 +68,7 @@ public class ExportDeckInteractor implements ExportDeckInputBoundary{
         }
         ExportDeckDsInputData exportDeckDsInputData = new ExportDeckDsInputData(filePath, deckToExportName, deckCards);
         try{
-            exportDeckDsGateway.export(exportDeckDsInputData);
+            exportDeckDsGateway.exportToFile(exportDeckDsInputData);
         }
         catch (ExportDeckFail e){
             exportDeckOutputBoundary.prepareFailView(e.toString());

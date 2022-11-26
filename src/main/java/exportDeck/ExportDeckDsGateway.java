@@ -11,5 +11,5 @@ public interface ExportDeckDsGateway {
      * Writes information in the input data to a file
      * @param dsInputData the input data for the gateway
      */
-    void export(ExportDeckDsInputData dsInputData);
+    void exportToFile(ExportDeckDsInputData dsInputData);
 }
