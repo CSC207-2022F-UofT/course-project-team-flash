@@ -1,3 +1,9 @@
+/*
+ * Author: Aldo Bani
+ * Date: November 25/22
+ * This creates a file containing deck information to the filesystem
+ */
+
 package data;
 
 import exportDeck.ExportDeckDsGateway;
