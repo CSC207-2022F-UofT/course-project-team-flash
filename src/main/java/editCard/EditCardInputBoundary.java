@@ -6,6 +6,9 @@ package editCard;/*
 
 import createCard.CreateCardInputData;
 
+/**
+ * This file contains an interface named EditCardInputBoundary with a abstract method edit
+ */
 public interface EditCardInputBoundary {
 
     void edit(EditCardInputData inputData);
