@@ -1,3 +1,9 @@
+/*
+ * Author: Aldo Bani
+ * Date November 26/22
+ * This is the interactor test for the export deck use case
+ */
+
 package exportDeck;
 
 import data.DeckInMemoryExport;
