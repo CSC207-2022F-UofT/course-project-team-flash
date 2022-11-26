@@ -9,7 +9,7 @@ public class DeleteDeckPresenter implements DeleteDeckOutputBoundary{
 
     ViewBoundary viewBound;
 
-    DeleteDeckPresenter(ViewBoundary viewBound){
+    public DeleteDeckPresenter(ViewBoundary viewBound){
         this.viewBound = viewBound;
     }
 
@@ -17,11 +17,10 @@ public class DeleteDeckPresenter implements DeleteDeckOutputBoundary{
     public void prepareSuccessView(DeleteDeckOutputData outputData) {
 
         ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.DECK_DELETED)
-                .setDeckName(outputData.deckName)
+                .setDeckName(outputData.getDeckName())
                 .build();
 
         viewBound.updateView(viewModel);
-
 
     }
 

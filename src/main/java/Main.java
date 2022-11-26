@@ -4,6 +4,11 @@ import createQuiz.*;
 import entities.CardFactory;
 import entities.FlashcardFactory;
 
+import createCard.CreateCardController;
+import createCard.CreateCardInteractor;
+import createCard.CreateCardOutputData;
+import createCard.CreateCardPresenter;
+import createDeck.CreateDeckController;
 import screens.*;
 
 import javax.swing.*;
@@ -14,15 +19,17 @@ public class Main {
     public static final int WIDTH = 400;
     public static final int HEIGHT = 500;
     public static void main(String[] args) {
+
         // Instantiate the view
         View view = new View();
 
-        // Build the Jframes
-
         // Call what needs to be called
         CreateCardController createCardController = createCardConstructor();
-        CreateDeckController createDeckController = createDeckConstructor();
+        CreateDeckController createDeckController = createDeckConstructor(view);
         CreateQuizController createQuizController = createQuizConstructor();
+
+        // Setting controllers of the view
+        view.setController(createDeckController);
 
         // IDK what else needs to be done
     }
@@ -34,8 +41,8 @@ public class Main {
         return new CreateCardController(interactor);
     }
 
-    private static CreateDeckController createDeckConstructor() {
-        CreateDeckOutputBoundary presenter = new CreateDeckPresenter();
+    private static CreateDeckController createDeckConstructor(View view) {
+        CreateDeckOutputBoundary presenter = new CreateDeckPresenter(view);
         CreateDeckInputBoundary interactor = new CreateDeckInteractor(presenter);
         return new CreateDeckController(interactor);
     }
