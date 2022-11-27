@@ -20,7 +20,16 @@ public class EditQuizPresenter implements EditQuizOutputBoundary {
     @Override
     public void prepareSuccessView(EditQuizOutputData outputData) {
         ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.QUIZ_EDITED)
-                .setQuizName(outputData.getQuizName())
+                .setQuizName(outputData.getMessage())
+                .build();
+
+        viewBound.updateView(viewModel);
+    }
+
+    @Override
+    public void prepareFailView(EditQuizOutputData outputData) {
+        ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.ERROR)
+                .setReturnString(outputData.getMessage())
                 .build();
 
         viewBound.updateView(viewModel);
