@@ -4,7 +4,6 @@ import createDeck.CreateDeckController;
 import deleteDeck.DeleteDeckController;
 
 import javax.swing.*;
-import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -55,6 +54,18 @@ public class DeckScreen extends JPanel {
         drawComponents();
     }
 
+    // helper method for setting constraints on layout components
+    private void setConstraints(int anchor, int fill, int gridWidth, int gridHeight, int gridX, int gridY, double weightX, double weightY) {
+        this.gridBagConstraints.anchor = anchor;
+        this.gridBagConstraints.fill = fill;
+        this.gridBagConstraints.gridwidth = gridWidth;
+        this.gridBagConstraints.gridheight = gridHeight;
+        this.gridBagConstraints.gridx = gridX;
+        this.gridBagConstraints.gridy = gridY;
+        this.gridBagConstraints.weightx = weightX;
+        this.gridBagConstraints.weighty = weightY;
+    }
+
     private void drawComponents() {
         // creates/recreates the components of the Jpanel
         this.removeAll();
@@ -62,14 +73,7 @@ public class DeckScreen extends JPanel {
         deckSettingsButtons.clear();
         JButton backButton = new JButton("Back");
         JButton deckCreationButton = new JButton("New Deck");
-        gridBagConstraints.fill = gridBagConstraints.NONE;
-        gridBagConstraints.gridwidth = 1;
-        gridBagConstraints.gridheight = 1;
-        gridBagConstraints.weightx = 0;
-        gridBagConstraints.weighty = 0;
-        gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        setConstraints(GridBagConstraints.FIRST_LINE_START, GridBagConstraints.NONE, 1, 1, 0, 0, 0, 0);
         this.add(backButton, gridBagConstraints);
         gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
         gridBagConstraints.gridx = 1;
@@ -77,18 +81,11 @@ public class DeckScreen extends JPanel {
 
         // The "squashPanel" for squashing components flush to the top
         JPanel squashPanel = new JPanel(new GridBagLayout());
-        gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = deckNames.size() + 2;
-        gridBagConstraints.weightx = 1;
-        gridBagConstraints.weighty = 1;
-        gridBagConstraints.fill = gridBagConstraints.BOTH;
-        gridBagConstraints.gridwidth = 2;
+        setConstraints(GridBagConstraints.FIRST_LINE_START, GridBagConstraints.BOTH, 2, 1, 0, deckNames.size() + 2, 1, 1);
         this.add(squashPanel, gridBagConstraints);
 
         // Pre for loop setup (for listing decks)
         gridBagConstraints.weighty = 0;
-        gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         for (String name : deckNames) {
@@ -102,7 +99,6 @@ public class DeckScreen extends JPanel {
             deckButton.setLayout(new BorderLayout());
             gridBagConstraints.fill = gridBagConstraints.HORIZONTAL;
             this.add(deckButton, gridBagConstraints);
-            gridBagConstraints.fill = gridBagConstraints.NONE;
             deckButton.add(deckSettingsButton, BorderLayout.EAST);
         }
         // re-renders the screen with new components

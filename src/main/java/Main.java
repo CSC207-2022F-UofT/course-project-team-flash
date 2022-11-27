@@ -27,7 +27,7 @@ public class Main {
         // Call what needs to be called
         CreateCardController createCardController = createCardConstructor();
         CreateDeckController createDeckController = createDeckConstructor(view);
-        CreateQuizController createQuizController = createQuizConstructor();
+        CreateQuizController createQuizController = createQuizConstructor(view);
         DeleteDeckController deleteDeckController = deleteDeckConstructor(view);
 
         // Setting controllers of the view
@@ -49,8 +49,8 @@ public class Main {
         return new CreateDeckController(interactor);
     }
 
-    private static CreateQuizController createQuizConstructor() {
-        CreateQuizOutputBoundary presenter = new CreateQuizPresenter();
+    private static CreateQuizController createQuizConstructor(View view) {
+        CreateQuizOutputBoundary presenter = new CreateQuizPresenter(view);
         CreateQuizInputBoundary interactor = new CreateQuizInteractor(presenter);
         return new CreateQuizController(interactor);
     }
