@@ -38,9 +38,6 @@ public class ExportDeckInteractor implements ExportDeckInputBoundary{
         if (card instanceof MCFlashcard){
             return "2";
         }
-        if (card instanceof SelectAllFlashcard){
-            return "3";
-        }
         return "-1";
     }
 
