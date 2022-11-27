@@ -1,8 +1,10 @@
 /*
  * Author: Aldo Bani
+ * Documentation Author: Aldo Bani
  * Date: Novembet 26/22
  * This is an exception incase the import fails.
  */
+
 package screens;
 
 public class ImportDeckFail extends RuntimeException{

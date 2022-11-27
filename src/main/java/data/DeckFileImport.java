@@ -1,8 +1,8 @@
 /*
  * Author: Aldo Bani
+ * Documentation Author: Aldo Bani
  * Date: November 26/22
- * This reads a file and packages its information
- * for use by the interactor
+ * This reads a file and packages its information for use by the interactor
  */
 
 package data;
