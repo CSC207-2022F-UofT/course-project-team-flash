@@ -10,7 +10,7 @@ public class DeleteDeckInteractor implements DeleteDeckInputBoundary{
 
     private final DeleteDeckOutputBoundary outputBound;
 
-    DeleteDeckInteractor(DeleteDeckOutputBoundary outputBound){
+    public DeleteDeckInteractor(DeleteDeckOutputBoundary outputBound){
         this.outputBound = outputBound;
     }
 
