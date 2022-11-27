@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class ImportDeckInteractorTest {
     @Test
-    void exportDeck(){
+    void importDeck(){
         Map<String, List<String>> files = new HashMap<>();
         List<String> fileContents = new ArrayList<>();
         fileContents.add("1;Did you pass?;No");
