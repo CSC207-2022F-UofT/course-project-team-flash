@@ -2,6 +2,8 @@ package screens;
 
 import createDeck.CreateDeckController;
 import deleteDeck.DeleteDeckController;
+import createQuiz.CreateQuizController;
+import deleteQuiz.DeleteQuizController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +18,11 @@ public class View implements ViewBoundary {
 
     // Storing the controllers required by all use cases
     private CreateDeckController createDeckController;
+
+    private CreateQuizController createQuizController;
     private DeleteDeckController deleteDeckController;
+
+    private DeleteQuizController deleteQuizController;
 
     // Storing the JFrame and Jpanels in the view
     private JFrame application;
@@ -63,7 +69,7 @@ public class View implements ViewBoundary {
 
         deckScreen = new DeckScreen(createDeckController, deleteDeckController);
         mainMenuScreen = new MainMenuScreen();
-        quizScreen = new QuizScreen();
+        quizScreen = new QuizScreen(createQuizController, deleteQuizController);
 
         screens.add(deckScreen);
         screens.add(mainMenuScreen);
@@ -79,10 +85,13 @@ public class View implements ViewBoundary {
     }
 
     // General method for setting the controllers of the view
-    public void setController(CreateDeckController createDeckController, DeleteDeckController deleteDeckController) {
+    public void setController(CreateDeckController createDeckController, CreateQuizController createQuizController, DeleteDeckController deleteDeckController, DeleteQuizController deleteQuizController) {
         this.createDeckController = createDeckController;
+        this.createQuizController = createQuizController;
         this.deleteDeckController = deleteDeckController;
+        this.deleteQuizController = deleteQuizController;
         deckScreen.setController(createDeckController, deleteDeckController);
+        quizScreen.setController(createQuizController, deleteQuizController);
     }
 
     @Override
@@ -148,21 +157,29 @@ public class View implements ViewBoundary {
 
             case DECK_CREATED:
                 //Changes to the view when a deck is created
-                deckScreen.reconstruct(false, deckName);
-
+                deckScreen.reconstructDecks(false, deckName);
+                quizScreen.reconstructDecks(false, deckName);
 
                 break;
 
             case DECK_DELETED:
-                //Menu that pops up when you delete a deck (says something like "deck deleted") and has an
-                //"OK" button or smth.
-                deckScreen.reconstruct(true, deckName);
-
+                deckScreen.reconstructDecks(true, deckName);
+                quizScreen.reconstructDecks(true, deckName);
 
                 break;
 
             case DECK_IMPORTED:
 
+
+                break;
+
+            case QUIZ_CREATED:
+                quizScreen.reconstructQuizzes(false, quizName);
+
+                break;
+
+            case QUIZ_DELETED:
+                quizScreen.reconstructQuizzes(true, quizName);
 
                 break;
         }

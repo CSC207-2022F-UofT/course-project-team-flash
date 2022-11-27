@@ -20,8 +20,8 @@ public class DeckScreen extends JPanel {
     // Decks
     private ArrayList<String> deckNames;
 
+    // Deck buttons
     private ArrayList<JButton> deckButtons;
-
     private ArrayList<JButton> deckSettingsButtons;
 
     // Interface Formatters
@@ -45,7 +45,7 @@ public class DeckScreen extends JPanel {
         this.deleteDeckController = deleteDeckController;
     }
 
-    public void reconstruct(boolean delete, String deckName) {
+    public void reconstructDecks(boolean delete, String deckName) {
         if (delete) {
             deckNames.remove(deckName);
         } else {
@@ -126,7 +126,7 @@ public class DeckScreen extends JPanel {
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    setVisible(false);
+                    //setVisible(false);
                     for (Component c : getParent().getComponents()) {
                         //if (c instanceof CardScreen) {
                         //    c.setVisible(true);
