@@ -2,7 +2,7 @@
  * Author: Aldo Bani
  * Date: November 26/22
  * This reads something pretending to be a file and creates a deck
- * Should be used for testing only
+ * Should be used in testing only
  */
 
 package data;
@@ -36,7 +36,7 @@ public class DeckInMemoryImport implements ImportDeckDsGateway {
         String deckName = dsInputData.getFilePath();
         List<String> importedCards = file.get(deckName);
         if (importedCards == null){
-            throw new ImportDeckFail("File doesn't exist");
+            throw new ImportDeckFail(deckName + " doesn't exist");
         }
         return new ImportDeckDsOutputData(deckName, importedCards);
     }

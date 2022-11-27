@@ -7,6 +7,15 @@
 package importDeck;
 
 public interface ImportDeckOutputBoundary {
+    /**
+     * Prepares the view if import succeeds.
+     * @param outputData the output data created from the interactor
+     */
     void prepareSuccessView(ImportDeckOutputData outputData);
+
+    /**
+     * Prepares the view if import fails.
+     * @param error the error message
+     */
     void prepareFailView(String error);
 }

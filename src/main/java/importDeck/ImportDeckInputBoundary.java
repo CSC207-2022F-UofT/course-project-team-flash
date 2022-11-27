@@ -7,5 +7,9 @@
 package importDeck;
 
 public interface ImportDeckInputBoundary {
+    /**
+     * Reads a file and creates deck and its cards
+     * @param inputData the input data from the controller
+     */
     void importDeck(ImportDeckInputData inputData);
 }

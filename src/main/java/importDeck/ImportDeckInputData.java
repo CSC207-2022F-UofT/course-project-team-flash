@@ -20,5 +20,7 @@ public class ImportDeckInputData {
     /**
      * @return name of the file
      */
-    String getFileName(){ return fileName; }
+    String getFileName(){
+        return fileName;
+    }
 }

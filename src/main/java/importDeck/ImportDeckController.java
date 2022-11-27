@@ -17,6 +17,10 @@ public class ImportDeckController {
         this.importDeckInputBoundary = importDeckInputBoundary;
     }
 
+    /**
+     * Imports a deck from the filesystem.
+     * @param fileName the name of the file that contains the deck information.
+     */
     public void importDeck(String fileName){
         ImportDeckInputData inputData = new ImportDeckInputData(fileName);
         importDeckInputBoundary.importDeck(inputData);
