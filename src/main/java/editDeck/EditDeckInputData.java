@@ -2,18 +2,18 @@ package editDeck;
 
 public class EditDeckInputData {
 
-    private final String name;
-    private final String deckTracker;
-    public EditDeckInputData(String name, String deckTracker) {
-        this.name = name;
-        this.deckTracker = deckTracker;
+    private final String oldName;
+    private final String newName;
+    public EditDeckInputData(String oldName, String newName) {
+        this.oldName = oldName;
+        this.newName = newName;
     }
 
-    public String getName() {
-        return name;
+    public String getoldName() {
+        return oldName;
     }
 
-    public String getDeckTracker() {
-        return deckTracker;
+    public String getnewName() {
+        return newName;
     }
 }
