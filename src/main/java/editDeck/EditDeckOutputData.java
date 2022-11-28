@@ -6,16 +6,9 @@ package editDeck;
  */
 
 public class EditDeckOutputData {
-
-    private String deckName;
     private String message;
-    public EditDeckOutputData(String deckName, String message) {
-        this.deckName = deckName;
+    public EditDeckOutputData(String message) {
         this.message = message;
-    }
-
-    public String getDeckName() {
-        return deckName;
     }
 
     public String getMessage() {
