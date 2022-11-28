@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 class CreateDeckInteractorTest {
     @Test
-    public void createDeck(){
+    public void createSingleDeck(){
         CreateDeckOutputBoundary presenter = new CreateDeckPresenter(null) {
             @Override
             public void prepareSuccessView(CreateDeckOutputData outputData) {
@@ -27,7 +27,7 @@ class CreateDeckInteractorTest {
         CreateDeckInputData inputData = new CreateDeckInputData("Test");
         interactor.create(inputData);
     }
-    /*
+
     @Test
     public void createDupeDeck(){
         Deck deckToDelete = new Deck("Test");
@@ -35,15 +35,15 @@ class CreateDeckInteractorTest {
         CreateDeckOutputBoundary presenter = new CreateDeckPresenter(null){
             @Override
             public void prepareSuccessView(CreateDeckOutputData outputData) {
-
+                Assertions.fail("Unexpected pass.");
             }
             @Override
             public void prepareFailView(CreateDeckOutputData outputData) {
-
+                Assertions.assertEquals("Deck name already exists!", outputData.getText());
             }
         };
         CreateDeckInputBoundary interactor = new CreateDeckInteractor(presenter);
         CreateDeckInputData inputData = new CreateDeckInputData("Test");
         interactor.create(inputData);
-    }*/
+    }
 }
