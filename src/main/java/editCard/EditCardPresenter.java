@@ -4,6 +4,11 @@ package editCard;/*
  * The presenter class for edit card systems
  */
 
+import createDeck.CreateDeckOutputData;
+import screens.ViewBoundary;
+import screens.ViewModel;
+import screens.ViewState;
+
 /**
  * This file contains the implementation of the EditCardPresenter,
  * which implements EditCardOutputBoundary.
@@ -13,8 +18,10 @@ public class EditCardPresenter implements EditCardOutputBoundary {
     /**
      * Creates a new EditCardPresenter
      */
-    public EditCardPresenter() {
+    ViewBoundary viewBound;
 
+    public EditCardPresenter(ViewBoundary viewBound){
+        this.viewBound = viewBound;
     }
 
     /**
@@ -23,15 +30,10 @@ public class EditCardPresenter implements EditCardOutputBoundary {
      */
     @Override
     public void prepareSuccessView(EditCardOutputData editCardOutputData) {
+        ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.CARD_EDITED)
+                .build();
 
+        viewBound.updateView(viewModel);
     }
 
-    /**
-     * Prepare the fail view of the given EditCardOutputData
-     * @param editCardOutputData an EditCardOutputData
-     */
-    @Override
-    public void prepareFailView(EditCardOutputData editCardOutputData) {
-
-    }
 }

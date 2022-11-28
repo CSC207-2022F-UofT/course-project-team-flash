@@ -1,4 +1,4 @@
-/**
+/*
  * Author: Andrew Nguyen
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
@@ -42,23 +42,23 @@ public class CreateCardInteractor implements CreateCardInputBoundary {
         } else if (inputData.getAnswer().isEmpty()) {
             CreateCardOutputData outputData = new CreateCardOutputData("Flashcard Creation Failed. No Answer Stated.");
             outputBoundary.prepareFailView(outputData);
+        } else {
+            Flashcard newCard = cardFactory.createCard(
+                    inputData.getType(),
+                    inputData.getQuestion(),
+                    inputData.getAnswer(),
+                    inputData.getOptions());
+
+            Flashcard.addTracker(newCard.getUniqueID(), newCard);
+
+            inputData.getDeck().addCard(newCard);
+
+            CreateCardOutputData outputData = new CreateCardOutputData(
+                    "Flashcard created.",
+                    inputData.getType(),
+                    inputData.getQuestion(),
+                    inputData.getAnswer());
+            outputBoundary.prepareSuccessView(outputData);
         }
-
-        Flashcard newCard = cardFactory.createCard(
-                inputData.getType(),
-                inputData.getQuestion(),
-                inputData.getAnswer(),
-                inputData.getOptions());
-
-        Flashcard.addTracker(newCard.getUniqueID(), newCard);
-
-        inputData.getDeck().addCard(newCard);
-
-        CreateCardOutputData outputData = new CreateCardOutputData(
-                "Flashcard created.",
-                inputData.getType(),
-                inputData.getQuestion(),
-                inputData.getAnswer());
-        outputBoundary.prepareSuccessView(outputData);
     }
 }

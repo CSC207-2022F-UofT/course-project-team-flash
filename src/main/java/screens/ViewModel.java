@@ -17,6 +17,9 @@ public class ViewModel {
 
     private String cardAnswer;
 
+    private String cardQuestion;
+
+    private String cardType;
     private String quizName;
 
     private String deckName;
@@ -38,6 +41,8 @@ public class ViewModel {
         this.returnString = builder.returnString;
         this.userAnswer = builder.userAnswer;
         this.cardAnswer = builder.cardAnswer;
+        this.cardQuestion = builder.cardQuestion;
+        this.cardType = builder.cardType;
         this.quizName = builder.quizName;
         this.deckName = builder.deckName;
         this.cardId = builder.cardId;
@@ -88,6 +93,14 @@ public class ViewModel {
         return currCardIndex;
     }
 
+    public String getCardQuestion() {
+        return cardQuestion;
+    }
+
+    public String getCardType() {
+        return cardType;
+    }
+
 
     //Builder:
     public static class ViewModelBuilder{
@@ -101,6 +114,8 @@ public class ViewModel {
         private String userAnswer;
 
         private String cardAnswer;
+        private String cardQuestion;
+        private String cardType;
         private String quizName;
         private String deckName;
         private String cardId;
@@ -128,7 +143,17 @@ public class ViewModel {
         }
 
         public ViewModelBuilder setCardAnswer(String cardAnswer){
-            this.cardAnswer = userAnswer;
+            this.cardAnswer = cardAnswer;
+            return this;
+        }
+
+        public ViewModelBuilder setCardQuestion(String cardQuestion) {
+            this.cardQuestion = cardQuestion;
+            return this;
+        }
+
+        public ViewModelBuilder setCardType(String cardType) {
+            this.cardType = cardType;
             return this;
         }
 
