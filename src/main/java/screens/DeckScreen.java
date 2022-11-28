@@ -141,7 +141,6 @@ public class DeckScreen extends JPanel {
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    setVisible(false);
                     JFrame deckSettingsFrame = new JFrame();
                     JDialog newDeckDialog = new JDialog(deckSettingsFrame);
 
@@ -162,7 +161,7 @@ public class DeckScreen extends JPanel {
                     renameDeck.add(createDeckTextField);
                     renameDeck.add(renameButton);
 
-                    JButton deleteButton = new JButton("Delete Deck" + button.getName());
+                    JButton deleteButton = new JButton("Delete Deck " + button.getName());
                     deleteDeck.add(deleteButton);
 
                     renameButton.addActionListener(new ActionListener() {
