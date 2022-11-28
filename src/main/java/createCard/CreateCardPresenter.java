@@ -12,9 +12,18 @@ import screens.ViewBoundary;
 import screens.ViewModel;
 import screens.ViewState;
 
-public class CreateCardPresenter implements CreateCardOutputBoundary{
+public class CreateCardPresenter implements CreateCardOutputBoundary {
 
     ViewBoundary viewBound;
+
+    /**
+     * Constructor function
+     *
+     * @param viewBound An instance of the view object's interface
+     */
+    public CreateCardPresenter(ViewBoundary viewBound) {
+        this.viewBound = viewBound;
+    }
 
     /**
      * Prepare the success view given outputData, if the card is created and stored successfully.
