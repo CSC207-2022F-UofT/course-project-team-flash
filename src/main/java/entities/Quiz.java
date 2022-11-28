@@ -24,6 +24,9 @@ public class Quiz {
         return this.decks;
     }
 
+    public void setQuizName(String quizName) {
+        this.quizName = quizName;
+    }
     public static Quiz getQuiz(String quizName) {
         return quizTracker.get(quizName);
     }

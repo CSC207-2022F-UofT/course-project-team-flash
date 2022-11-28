@@ -1,4 +1,4 @@
-/**
+/*
  * Author: Jasmine Tsoi
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
@@ -28,24 +28,28 @@ public class CreateQuizInteractor implements CreateQuizInputBoundary{
     }
 
     /**
-     * Return a CreateQuizOutputData given the input data.
+     * If the quiz name does not exist already, creates the quiz and stores it to the quiz tracker.
+     * Then, prepares a success view through outputBoundary.
+     *
+     * If the quiz name already exists, prepares a fail view through outputBoundary.
      *
      * @param inputData the CreateQuizInputData associated with the created quiz
-     * @return a CreateQuizOutputData associated with this created quiz
      */
     @Override
-    public CreateQuizOutputData createQuiz(CreateQuizInputData inputData) {
+    public void createQuiz(CreateQuizInputData inputData) {
         String quizName = inputData.getQuizName();
         List<Deck> quizDecks = inputData.getQuizDecks();
 
         if (Quiz.getTracker().containsKey(quizName)) {
-            String message = "This quiz name exists already. Failed to create new quiz";
-            return new CreateQuizOutputData(null, message);
-        } else {
-            Quiz quiz = new Quiz(quizName, quizDecks);
-            String message = "Successfully created new quiz";
-            Quiz.addTracker(quizName, quiz);
-            return new CreateQuizOutputData(quiz, message);
+            CreateQuizOutputData outputData = new CreateQuizOutputData(null,
+                    "This quiz name exists already. Failed to create new quiz.");
+            outputBoundary.prepareFailView(outputData);
         }
+
+        Quiz quiz = new Quiz(quizName, quizDecks);
+        Quiz.addTracker(quizName, quiz);
+
+        CreateQuizOutputData outputData = new CreateQuizOutputData(quizName, "Successfully created new quiz");
+        outputBoundary.prepareSuccessView(outputData);
     }
 }

@@ -5,36 +5,28 @@ import screens.ViewState;
 public class StartQuizOutputData {
     private final String[] flashcardIds;
     private int currCardIndex;
-    private ViewState viewState;
+
+    private String firstCardProblem;
 
 
-    /**
-     * Creates a new StartQuizOutputData object given a list of flashcard IDs.
-     *
-     * @param flashcardIds
-     */
-    StartQuizOutputData(String[] flashcardIds){
+
+
+    StartQuizOutputData(String[] flashcardIds, String firstCardProblem){
         this.flashcardIds = flashcardIds;
         this.currCardIndex = 0;
-        this.viewState = null;
+        this.firstCardProblem = firstCardProblem;
     }
 
-    /**
-     * Returns the flashcard IDs as a String array.
-     *
-     * @return the flashcard IDs.
-     */
     public String[] getFlashcardIdList(){
         return this.flashcardIds;
     }
 
-    /**
-     * Returns the current flashcard list index.
-     *
-     * @return the current flascard index.
-     */
     public int getCurrCardIndex(){
         return this.currCardIndex;
+    }
+
+    public String getFirstCardProblem(){
+        return this.firstCardProblem;
     }
 
 }

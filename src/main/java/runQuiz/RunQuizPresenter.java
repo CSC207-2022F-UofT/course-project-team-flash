@@ -76,7 +76,10 @@ public class RunQuizPresenter implements RunQuizOutputBoundary {
         ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.SHOW_PROBLEM)
                 .setCardIdArray(outputData.getFlashcardIdList())
                 .setCurrCardIndex(outputData.getCurrCardIndex())
+                .setReturnString(outputData.getFirstCardProblem())
                 .build();
+
+        viewBound.updateView(viewModel);
     }
 
     /**
