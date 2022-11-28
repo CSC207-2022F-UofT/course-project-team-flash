@@ -1,3 +1,8 @@
+/*
+ * Author: Andrew Nguyen
+ * Documentation Author: Andrew Nguyen
+ * Date: November 27/22
+ */
 package editQuiz;
 
 import screens.ViewBoundary;
@@ -8,6 +13,11 @@ public class EditQuizPresenter implements EditQuizOutputBoundary {
 
     ViewBoundary viewBound;
 
+    /**
+     * Construct EditQuizPresenter with its corresponding view interface
+     *
+     * @param viewBound an interface of the view
+     */
     public EditQuizPresenter(ViewBoundary viewBound) {
         this.viewBound = viewBound;
     }
