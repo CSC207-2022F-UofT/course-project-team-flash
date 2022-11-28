@@ -8,16 +8,16 @@ import java.awt.event.ActionListener;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 public class MainMenuScreen extends JPanel {
-    private String textInput;
-    private static final int TEXT_FIELD_LENGTH = 10;
+    private static final int BUTTON_WIDTH = 350;
+    private static final int BUTTON_HEIGHT = 500;
+    private static final int BORDER_THICKNESS = 7;
 
     public MainMenuScreen() {
-
         JButton decksButton = new JButton("Decks");
         JButton quizButton = new JButton("Quizzes");
-        this.add(decksButton, BorderLayout.CENTER);
-        this.add(quizButton, BorderLayout.CENTER);
 
+        customize(decksButton, quizButton);
+        addButtons(decksButton, quizButton);
         decksButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -43,5 +43,25 @@ public class MainMenuScreen extends JPanel {
                 }
             }
         });
+    }
+
+    private void customize(JButton decksButton, JButton quizButton) {
+        this.setBackground(new Color(32, 32, 32));
+        Color colour = this.getBackground();
+
+        decksButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
+        decksButton.setBorder(BorderFactory.createLineBorder(colour, BORDER_THICKNESS));
+        decksButton.setForeground(Color.white);
+        decksButton.setBackground(new Color(88, 88, 88));
+
+        quizButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
+        quizButton.setBorder(BorderFactory.createLineBorder(colour, BORDER_THICKNESS));
+        quizButton.setForeground(Color.white);
+        quizButton.setBackground(new Color(88, 88, 88));
+    }
+
+    private void addButtons(JButton decksButton, JButton quizButton) {
+        this.add(decksButton);
+        this.add(quizButton);
     }
 }

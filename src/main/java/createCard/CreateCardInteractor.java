@@ -9,6 +9,7 @@
 package createCard;
 
 import entities.CardFactory;
+import entities.Deck;
 import entities.Flashcard;
 
 public class CreateCardInteractor implements CreateCardInputBoundary {
@@ -51,7 +52,7 @@ public class CreateCardInteractor implements CreateCardInputBoundary {
 
             Flashcard.addTracker(newCard.getUniqueID(), newCard);
 
-            inputData.getDeck().addCard(newCard);
+            Deck.getTracker().get(inputData.getDeckName()).addCard(newCard);
 
             CreateCardOutputData outputData = new CreateCardOutputData(
                     "Flashcard created.",
