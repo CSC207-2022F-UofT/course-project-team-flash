@@ -8,8 +8,6 @@ public class FlashcardFactory implements CardFactory {
             return new QandAFlashcard(question, answer);
         } else if (type == 2) {
             return new MCFlashcard(question, answer, options);
-        } else if (type == 3) {
-            return new SelectAllFlashcard(question, answer, options);
         }
         return null;
     }
