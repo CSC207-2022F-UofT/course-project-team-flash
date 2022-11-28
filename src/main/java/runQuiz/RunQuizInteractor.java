@@ -55,7 +55,9 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
 
         String[] flashcardIds = flashcardIdList.toArray(new String[0]);
 
-        StartQuizOutputData outputData = new StartQuizOutputData(flashcardIds);
+        String firstCardProblem = Flashcard.getTracker().get(flashcardIds[0]).getQuestion();
+
+        StartQuizOutputData outputData = new StartQuizOutputData(flashcardIds, firstCardProblem);
 
         outputBoundary.prepareSuccessView(outputData);
     }

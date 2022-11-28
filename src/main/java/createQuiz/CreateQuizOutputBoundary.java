@@ -1,4 +1,4 @@
-/**
+/*
  * Author: Jasmine Tsoi
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
@@ -11,10 +11,7 @@ package createQuiz;
 
 public interface CreateQuizOutputBoundary {
 
-    private void prepareSuccessView(CreateQuizOutputData outputData){
-    }
+    void prepareSuccessView(CreateQuizOutputData outputData);
 
-    private void prepareFailView(CreateQuizOutputData outputData){
-    }
-
+    void prepareFailView(CreateQuizOutputData outputData);
 }

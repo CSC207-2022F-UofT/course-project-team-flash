@@ -1,6 +1,8 @@
 import createCard.*;
 import createDeck.*;
 import createQuiz.*;
+import deleteDeck.*;
+import deleteQuiz.*;
 import entities.CardFactory;
 import entities.FlashcardFactory;
 
@@ -26,10 +28,12 @@ public class Main {
         // Call what needs to be called
         CreateCardController createCardController = createCardConstructor();
         CreateDeckController createDeckController = createDeckConstructor(view);
-        CreateQuizController createQuizController = createQuizConstructor();
+        CreateQuizController createQuizController = createQuizConstructor(view);
+        DeleteDeckController deleteDeckController = deleteDeckConstructor(view);
+        DeleteQuizController deleteQuizController = deleteQuizConstructor(view);
 
         // Setting controllers of the view
-        view.setController(createDeckController);
+        view.setController(createCardController, createDeckController, createQuizController, deleteDeckController, deleteQuizController);
 
         // IDK what else needs to be done
     }
@@ -47,9 +51,21 @@ public class Main {
         return new CreateDeckController(interactor);
     }
 
-    private static CreateQuizController createQuizConstructor() {
-        CreateQuizOutputBoundary presenter = new CreateQuizPresenter();
+    private static CreateQuizController createQuizConstructor(View view) {
+        CreateQuizOutputBoundary presenter = new CreateQuizPresenter(view);
         CreateQuizInputBoundary interactor = new CreateQuizInteractor(presenter);
         return new CreateQuizController(interactor);
+    }
+
+    private static DeleteDeckController deleteDeckConstructor(View view) {
+        DeleteDeckOutputBoundary presenter = new DeleteDeckPresenter(view);
+        DeleteDeckInputBoundary interactor = new DeleteDeckInteractor(presenter);
+        return new DeleteDeckController(interactor);
+    }
+
+    private static DeleteQuizController deleteQuizConstructor(View view) {
+        DeleteQuizOutputBoundary presenter = new DeleteQuizPresenter(view);
+        DeleteQuizInputBoundary interactor = new DeleteQuizInteractor(presenter);
+        return new DeleteQuizController(interactor);
     }
 }

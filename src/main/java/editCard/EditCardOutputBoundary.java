@@ -4,9 +4,11 @@ package editCard;/*
  * The output boundary for edit card systems
  */
 
+/**
+ * This file contains an interface named EditCardOutputBoundary.
+ * It has two abstract methods named prepareSuccessView and prepareFailView.
+ */
 public interface EditCardOutputBoundary {
 
     void prepareSuccessView(EditCardOutputData editCardOutputData);
-
-    void prepareFailView(EditCardOutputData editCardOutputData);
 }
