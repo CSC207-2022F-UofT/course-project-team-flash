@@ -1,12 +1,12 @@
 package editDeck;
 
 import entities.Deck;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
 public class EditDeckInteractorTest {
     @Test
-    public void editDeck(){
+    public void editSingleDeck(){
         Deck deckToEdit = new Deck("Test");
         Deck.addTracker(deckToEdit.getName(), deckToEdit);
         EditDeckOutputBoundary presenter = new EditDeckPresenter(null){
