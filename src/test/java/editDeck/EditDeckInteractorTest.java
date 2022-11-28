@@ -8,11 +8,24 @@ import org.junit.jupiter.api.Assertions;
 public class EditDeckInteractorTest {
     @BeforeEach
     void createDeck(){
-        Deck deckToDelete = new Deck("Test");
-        Deck.addTracker(deckToDelete.getName(), deckToDelete);
+        Deck deckToEdit = new Deck("Test");
+        Deck.addTracker(deckToEdit.getName(), deckToEdit);
     }
     @Test
-    void editDeck(){
-
+    public void editDeck(){
+        EditDeckOutputBoundary presenter = new EditDeckPresenter(null){
+            @Override
+            public void prepareSuccessView(EditDeckOutputData outputData) {
+                Assertions.assertNull(Deck.getTracker().get("Test"));
+                Assertions.assertEquals("Examination", Deck.getTracker().get("Examination").getName());
+            }
+            @Override
+            public void prepareFailView(EditDeckOutputData outputData) {
+                Assertions.fail(outputData.getText());
+            }
+        };
+        EditDeckInputBoundary interactor = new EditDeckInteractor(presenter);
+        EditDeckInputData inputData = new EditDeckInputData("Test", "Examination");
+        interactor.edit(inputData);
     }
 }

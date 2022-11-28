@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 class CreateDeckInteractorTest {
     @Test
-    void createDeck(){
+    public void createDeck(){
         CreateDeckOutputBoundary presenter = new CreateDeckPresenter(null) {
             @Override
             public void prepareSuccessView(CreateDeckOutputData outputData) {

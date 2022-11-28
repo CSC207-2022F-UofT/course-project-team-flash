@@ -17,7 +17,7 @@ public class DeleteDeckInteractorTest {
         Deck.addTracker(deckToDelete.getName(), deckToDelete);
     }
     @Test
-    void deleteDeck(){
+    public void deleteDeck(){
         DeleteDeckOutputBoundary presenter = new DeleteDeckPresenter(null){
             @Override
             public void prepareSuccessView(DeleteDeckOutputData outputData) {
