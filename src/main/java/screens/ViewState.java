@@ -18,5 +18,6 @@ public enum ViewState {
     CARD_EDITED,
     DECK_EDITED,
     QUIZ_EDITED,
+    ENTER_DECK,
     ERROR
 }
