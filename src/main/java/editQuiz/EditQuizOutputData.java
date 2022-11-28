@@ -8,23 +8,23 @@
 package editQuiz;
 
 public class EditQuizOutputData {
-    private final String quizName;
+    private final String message;
 
     /**
      * A data object constructor for the interactor to use
      *
-     * @param quizName the new name of the quiz
+     * @param message the new name of the quiz
      */
-    public EditQuizOutputData(String quizName) {
-        this.quizName = quizName;
+    public EditQuizOutputData(String message) {
+        this.message = message;
     }
 
     /**
      * A getter method
      *
-     * @return a string representing the new name of the quiz
+     * @return a string with the message
      */
-    public String getQuizName() {
-        return quizName;
+    public String getMessage() {
+        return message;
     }
 }

@@ -9,4 +9,6 @@ package editQuiz;
 
 public interface EditQuizOutputBoundary {
     void prepareSuccessView(EditQuizOutputData outputData);
+
+    void prepareFailView(EditQuizOutputData outputData);
 }

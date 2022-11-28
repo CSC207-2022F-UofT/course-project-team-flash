@@ -29,13 +29,19 @@ public class EditQuizInteractor implements EditQuizInputBoundary{
      */
     @Override
     public void edit(EditQuizInputData inputData) {
-        Quiz quiz = Quiz.getQuiz(inputData.getOldName());
-        quiz.setQuizName(inputData.getNewName());
+        if (Quiz.getTracker().containsKey(inputData.getNewName())) {
+            EditQuizOutputData outputData = new EditQuizOutputData("Quiz Name already exists. Please try a different name.");
+            outputBoundary.prepareFailView(outputData);
+        } else {
+            Quiz quiz = Quiz.getQuiz(inputData.getOldName());
+            quiz.setQuizName(inputData.getNewName());
 
-        Quiz.removeTracker(inputData.getOldName());
-        Quiz.addTracker(inputData.getNewName(), quiz);
+            Quiz.removeTracker(inputData.getOldName());
+            Quiz.addTracker(inputData.getNewName(), quiz);
 
-        EditQuizOutputData outputData = new EditQuizOutputData(inputData.getNewName());
-        outputBoundary.prepareSuccessView(outputData);
+            EditQuizOutputData outputData = new EditQuizOutputData(inputData.getNewName());
+            outputBoundary.prepareSuccessView(outputData);
+        }
+
     }
 }
