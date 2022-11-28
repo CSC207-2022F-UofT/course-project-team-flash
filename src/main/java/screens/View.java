@@ -1,9 +1,19 @@
 package screens;
 
+import createCard.CreateCardController;
 import createDeck.CreateDeckController;
-import deleteDeck.DeleteDeckController;
 import createQuiz.CreateQuizController;
+import deleteCard.DeleteCardController;
+import deleteDeck.DeleteDeckController;
 import deleteQuiz.DeleteQuizController;
+import editCard.EditCardController;
+import editDeck.EditDeckController;
+import editQuiz.EditQuizController;
+import moveCard.MoveCardController;
+import enterDeck.EnterDeckController;
+import exportDeck.ExportDeckController;
+import importDeck.ImportDeckController;
+import runQuiz.RunQuizController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,19 +23,29 @@ import java.util.List;
 
 public class View implements ViewBoundary {
     // Elements of the screen
-    public static final int WIDTH = 1200;
+    public static final int WIDTH = 1024;
     public static final int HEIGHT = 600;
 
     // Storing the controllers required by all use cases
+    private CreateCardController createCardController;
     private CreateDeckController createDeckController;
-
     private CreateQuizController createQuizController;
+    private DeleteCardController deleteCardController;
     private DeleteDeckController deleteDeckController;
-
     private DeleteQuizController deleteQuizController;
+    private EditCardController editCardController;
+    private EditDeckController editDeckController;
+    private EditQuizController editQuizController;
+    private MoveCardController moveCardController;
+    private EnterDeckController enterDeckController;
+    private ExportDeckController exportDeckController;
+    private ImportDeckController importDeckController;
+    private RunQuizController runQuizController;
+
 
     // Storing the JFrame and Jpanels in the view
     private JFrame application;
+    private CardScreen cardScreen;
     private DeckScreen deckScreen;
     private QuizScreen quizScreen;
     private MainMenuScreen mainMenuScreen;
@@ -67,14 +87,17 @@ public class View implements ViewBoundary {
         JPanel screens = new JPanel(interfaceLayout);
         application.add(screens);
 
-        deckScreen = new DeckScreen(createDeckController, deleteDeckController);
+        cardScreen = new CardScreen(createCardController);
+        deckScreen = new DeckScreen(createDeckController, deleteDeckController, editDeckController);
         mainMenuScreen = new MainMenuScreen();
         quizScreen = new QuizScreen(createQuizController, deleteQuizController);
 
+        screens.add(cardScreen);
         screens.add(deckScreen);
         screens.add(mainMenuScreen);
         screens.add(quizScreen);
 
+        cardScreen.setVisible(false);
         deckScreen.setVisible(false);
         mainMenuScreen.setVisible(true);
         quizScreen.setVisible(false);
@@ -85,12 +108,31 @@ public class View implements ViewBoundary {
     }
 
     // General method for setting the controllers of the view
-    public void setController(CreateDeckController createDeckController, CreateQuizController createQuizController, DeleteDeckController deleteDeckController, DeleteQuizController deleteQuizController) {
+    public void setController(CreateCardController createCardController,
+                              CreateDeckController createDeckController,
+                              CreateQuizController createQuizController,
+                              DeleteCardController deleteCardController,
+                              DeleteDeckController deleteDeckController,
+                              DeleteQuizController deleteQuizController,
+                              EditCardController editCardController,
+                              EditDeckController editDeckController,
+                              EditQuizController editQuizController,
+                              MoveCardController moveCardController,
+                              EnterDeckController enterDeckController) {
+
+        this.createCardController = createCardController;
         this.createDeckController = createDeckController;
         this.createQuizController = createQuizController;
+        this.deleteCardController = deleteCardController;
         this.deleteDeckController = deleteDeckController;
         this.deleteQuizController = deleteQuizController;
-        deckScreen.setController(createDeckController, deleteDeckController);
+        this.editCardController = editCardController;
+        this.editDeckController = editDeckController;
+        this.editQuizController = editQuizController;
+        this.moveCardController = moveCardController;
+        this.enterDeckController = enterDeckController;
+
+        deckScreen.setController(createDeckController, deleteDeckController, editDeckController);
         quizScreen.setController(createQuizController, deleteQuizController);
     }
 

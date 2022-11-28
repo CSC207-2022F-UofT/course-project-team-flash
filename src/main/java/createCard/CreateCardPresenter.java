@@ -1,4 +1,4 @@
-/**
+/*
  * Author: Andrew Nguyen
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
@@ -8,7 +8,22 @@
 
 package createCard;
 
-public class CreateCardPresenter implements CreateCardOutputBoundary{
+import screens.ViewBoundary;
+import screens.ViewModel;
+import screens.ViewState;
+
+public class CreateCardPresenter implements CreateCardOutputBoundary {
+
+    ViewBoundary viewBound;
+
+    /**
+     * Constructor function
+     *
+     * @param viewBound An instance of the view object's interface
+     */
+    public CreateCardPresenter(ViewBoundary viewBound) {
+        this.viewBound = viewBound;
+    }
 
     /**
      * Prepare the success view given outputData, if the card is created and stored successfully.
@@ -17,7 +32,13 @@ public class CreateCardPresenter implements CreateCardOutputBoundary{
      */
     @Override
     public void prepareSuccessView(CreateCardOutputData outputData) {
+        ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.CARD_CREATED)
+                .setCardType(outputData.getType())
+                .setCardQuestion(outputData.getQuestion())
+                .setCardAnswer(outputData.getAnswer())
+                .build();
 
+        viewBound.updateView(viewModel);
     }
 
     /**
@@ -27,6 +48,10 @@ public class CreateCardPresenter implements CreateCardOutputBoundary{
      */
     @Override
     public void prepareFailView(CreateCardOutputData outputData) {
+        ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.ERROR)
+                .setReturnString(outputData.getMessage())
+                .build();
 
+        viewBound.updateView(viewModel);
     }
 }

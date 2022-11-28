@@ -7,37 +7,44 @@ import java.util.List;
 public class ViewModel {
 
     //Required Parameter(s):
-    private ViewState viewState;
+    private final ViewState viewState;
 
 
     //Optional parameter(s):
-    private String returnString;
+    private final String returnString;
 
-    private String userAnswer;
+    private final String userAnswer;
 
-    private String cardAnswer;
+    private final String cardAnswer;
+    private final List<String> multipleCardAnswers;
 
-    private String quizName;
+    private final String cardQuestion;
+    private final List<String> multipleCardQuestions;
+    private final String cardType;
+    private final String quizName;
 
-    private String deckName;
+    private final String deckName;
 
-    private String cardId;
+    private final String cardId;
 
-    private List<String> cardIdList;
+    private final List<String> cardIdList;
 
     private String[] cardIdArray;
 
-    private int currCardIndex;
+    private final int currCardIndex;
 
 
 
     private ViewModel(ViewModelBuilder builder){
 
         this.viewState = builder.ViewState;
-
         this.returnString = builder.returnString;
         this.userAnswer = builder.userAnswer;
         this.cardAnswer = builder.cardAnswer;
+        this.multipleCardAnswers = builder.multipleCardAnswers;
+        this.cardQuestion = builder.cardQuestion;
+        this.multipleCardQuestions = builder.multipleCardQuestions;
+        this.cardType = builder.cardType;
         this.quizName = builder.quizName;
         this.deckName = builder.deckName;
         this.cardId = builder.cardId;
@@ -88,24 +95,41 @@ public class ViewModel {
         return currCardIndex;
     }
 
+    public String getCardQuestion() {
+        return cardQuestion;
+    }
+
+    public String getCardType() {
+        return cardType;
+    }
+
+    public List<String> getMultipleCardQuestions() {
+        return multipleCardQuestions;
+    }
+
+    public List<String> getMultipleCardAnswers() {
+        return multipleCardAnswers;
+    }
 
     //Builder:
     public static class ViewModelBuilder{
 
         //Required parameter(s):
-        private ViewState ViewState;
+        private final ViewState ViewState;
 
         //Optional parameter(s):
         private String returnString;
 
         private String userAnswer;
-
         private String cardAnswer;
+        private List<String> multipleCardAnswers;
+        private String cardQuestion;
+        private List<String> multipleCardQuestions;
+        private String cardType;
         private String quizName;
         private String deckName;
         private String cardId;
         private List<String> cardIdList;
-
         private String[] cardIdArray;
         private int currCardIndex;
 
@@ -128,7 +152,23 @@ public class ViewModel {
         }
 
         public ViewModelBuilder setCardAnswer(String cardAnswer){
-            this.cardAnswer = userAnswer;
+            this.cardAnswer = cardAnswer;
+            return this;
+        }
+        public ViewModelBuilder setMultipleCardQuestions(List<String> questions) {
+            this.multipleCardQuestions = questions;
+            return this;
+        }
+        public ViewModelBuilder setCardQuestion(String cardQuestion) {
+            this.cardQuestion = cardQuestion;
+            return this;
+        }
+        public ViewModelBuilder setMultipleCardAnswers(List<String> answers) {
+            this.multipleCardAnswers = answers;
+            return this;
+        }
+        public ViewModelBuilder setCardType(String cardType) {
+            this.cardType = cardType;
             return this;
         }
 

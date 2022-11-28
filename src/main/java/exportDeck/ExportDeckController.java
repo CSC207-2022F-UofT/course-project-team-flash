@@ -1,27 +1,30 @@
 /*
  * Author: Aldo Bani
+ * Documentation Author: Aldo Bani
  * Date: November 12/22
  * This is the controller for the deck export system
  */
 
 package exportDeck;
 
-import entities.Deck;
-import entities.Flashcard;
-
 public class ExportDeckController {
     private final ExportDeckInputBoundary exportDeckInputBoundary;
 
     /**
-     * A new ExportDeckController for the use case defined by ExportDeckInputBoundary
-     * @param exportDeckInputBoundary The input boundary for the deck export use case.
+     * A new ExportDeckController for the use case defined by ExportDeckInputBoundary.
+     * @param exportDeckInputBoundary The input boundary for the deck export use case
      */
     public ExportDeckController(ExportDeckInputBoundary exportDeckInputBoundary) {
         this.exportDeckInputBoundary = exportDeckInputBoundary;
     }
 
-    public void runExport(String filePath, Deck deckToExport){
-        ExportDeckInputData inputData = new ExportDeckInputData(filePath, deckToExport);
+    /**
+     * Exports a given deck to the filesystem.
+     * @param filePath where the user wants to save on their computer
+     * @param deckToExportName name of the deck they want to export
+     */
+    public void exportDeck(String filePath, String deckToExportName){
+        ExportDeckInputData inputData = new ExportDeckInputData(filePath, deckToExportName);
         exportDeckInputBoundary.exportDeck(inputData);
     }
 }

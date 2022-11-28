@@ -1,5 +1,6 @@
 /*
  * Author: Aldo Bani
+ * Documentation Author: Aldo Bani
  * Date: November 12/22
  * This is the output data needed for the deck export system
  */
@@ -15,5 +16,12 @@ public class ExportDeckOutputData {
      */
     public ExportDeckOutputData(String message){
         this.message = message;
+    }
+
+    /**
+     * @return the output message
+     */
+    public String getMessage() {
+        return message;
     }
 }
