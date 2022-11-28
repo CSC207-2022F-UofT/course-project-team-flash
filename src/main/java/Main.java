@@ -33,7 +33,7 @@ public class Main {
         DeleteQuizController deleteQuizController = deleteQuizConstructor(view);
 
         // Setting controllers of the view
-        view.setController(createDeckController, createQuizController, deleteDeckController, deleteQuizController);
+        view.setController(createCardController, createDeckController, createQuizController, deleteDeckController, deleteQuizController);
 
         // IDK what else needs to be done
     }

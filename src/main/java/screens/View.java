@@ -1,5 +1,6 @@
 package screens;
 
+import createCard.CreateCardController;
 import createDeck.CreateDeckController;
 import deleteDeck.DeleteDeckController;
 import createQuiz.CreateQuizController;
@@ -17,15 +18,16 @@ public class View implements ViewBoundary {
     public static final int HEIGHT = 600;
 
     // Storing the controllers required by all use cases
+    private CreateCardController createCardController;
     private CreateDeckController createDeckController;
-
     private CreateQuizController createQuizController;
     private DeleteDeckController deleteDeckController;
-
     private DeleteQuizController deleteQuizController;
 
     // Storing the JFrame and Jpanels in the view
     private JFrame application;
+
+    private CardScreen cardScreen;
     private DeckScreen deckScreen;
     private QuizScreen quizScreen;
     private MainMenuScreen mainMenuScreen;
@@ -67,14 +69,17 @@ public class View implements ViewBoundary {
         JPanel screens = new JPanel(interfaceLayout);
         application.add(screens);
 
+        cardScreen = new CardScreen(createCardController);
         deckScreen = new DeckScreen(createDeckController, deleteDeckController);
         mainMenuScreen = new MainMenuScreen();
         quizScreen = new QuizScreen(createQuizController, deleteQuizController);
 
+        screens.add(cardScreen);
         screens.add(deckScreen);
         screens.add(mainMenuScreen);
         screens.add(quizScreen);
 
+        cardScreen.setVisible(false);
         deckScreen.setVisible(false);
         mainMenuScreen.setVisible(true);
         quizScreen.setVisible(false);
@@ -85,7 +90,8 @@ public class View implements ViewBoundary {
     }
 
     // General method for setting the controllers of the view
-    public void setController(CreateDeckController createDeckController, CreateQuizController createQuizController, DeleteDeckController deleteDeckController, DeleteQuizController deleteQuizController) {
+    public void setController(CreateCardController createCardController, CreateDeckController createDeckController, CreateQuizController createQuizController, DeleteDeckController deleteDeckController, DeleteQuizController deleteQuizController) {
+        this.createCardController = createCardController;
         this.createDeckController = createDeckController;
         this.createQuizController = createQuizController;
         this.deleteDeckController = deleteDeckController;
