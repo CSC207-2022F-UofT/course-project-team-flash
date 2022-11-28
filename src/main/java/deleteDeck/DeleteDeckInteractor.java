@@ -3,9 +3,6 @@ package deleteDeck;
 import entities.Deck;
 import entities.Flashcard;
 
-import java.util.List;
-import java.util.Map;
-
 public class DeleteDeckInteractor implements DeleteDeckInputBoundary{
 
     private final DeleteDeckOutputBoundary outputBound;
@@ -21,10 +18,10 @@ public class DeleteDeckInteractor implements DeleteDeckInputBoundary{
 
         if(!Deck.containsDeckName(deckName)){
             outputBound.prepareFailView("Deck not found");
+            return;
         }
 
         Deck currDeck = Deck.getTracker().get(deckName);
-
 
         //Remove all cards within the deck from the static flashcard hashmap
         for(String cardId : currDeck.getCardIds()){
@@ -34,10 +31,8 @@ public class DeleteDeckInteractor implements DeleteDeckInputBoundary{
         //Remove the deck from the static flashcard hashmap
         Deck.removeTracker(deckName);
 
-
         DeleteDeckOutputData outputData = new DeleteDeckOutputData(deckName);
 
         outputBound.prepareSuccessView(outputData);
-
     }
 }

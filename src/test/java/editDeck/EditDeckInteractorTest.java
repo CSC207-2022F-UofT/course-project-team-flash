@@ -1,18 +1,14 @@
 package editDeck;
 
 import entities.Deck;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
 public class EditDeckInteractorTest {
-    @BeforeEach
-    void createDeck(){
-        Deck deckToEdit = new Deck("Test");
-        Deck.addTracker(deckToEdit.getName(), deckToEdit);
-    }
     @Test
     public void editDeck(){
+        Deck deckToEdit = new Deck("Test");
+        Deck.addTracker(deckToEdit.getName(), deckToEdit);
         EditDeckOutputBoundary presenter = new EditDeckPresenter(null){
             @Override
             public void prepareSuccessView(EditDeckOutputData outputData) {

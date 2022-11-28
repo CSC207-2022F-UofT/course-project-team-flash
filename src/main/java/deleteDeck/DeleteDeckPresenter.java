@@ -1,6 +1,5 @@
 package deleteDeck;
 
-import screens.DeckNotFound;
 import screens.ViewBoundary;
 import screens.ViewModel;
 import screens.ViewState;
@@ -28,7 +27,7 @@ public class DeleteDeckPresenter implements DeleteDeckOutputBoundary{
     public void prepareFailView(String error) {
 
         ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.ERROR)
-                .setReturnString("Deck not found")
+                .setReturnString(error)
                 .build();
 
         viewBound.updateView(viewModel);

@@ -7,17 +7,13 @@ package deleteDeck;
 
 import entities.Deck;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class DeleteDeckInteractorTest {
-    @BeforeEach
-    void createDeck(){
-        Deck deckToDelete = new Deck("Test");
-        Deck.addTracker(deckToDelete.getName(), deckToDelete);
-    }
     @Test
     public void deleteDeck(){
+        Deck deckToDelete = new Deck("Test");
+        Deck.addTracker(deckToDelete.getName(), deckToDelete);
         DeleteDeckOutputBoundary presenter = new DeleteDeckPresenter(null){
             @Override
             public void prepareSuccessView(DeleteDeckOutputData outputData) {
@@ -26,6 +22,23 @@ public class DeleteDeckInteractorTest {
             @Override
             public void prepareFailView(String exception) {
                 Assertions.fail(exception);
+            }
+        };
+        DeleteDeckInputBoundary interactor = new DeleteDeckInteractor(presenter);
+        DeleteDeckInputData inputData = new DeleteDeckInputData("Test");
+        interactor.delete(inputData);
+    }
+
+    @Test
+    public void deleteNonExistingDeck(){
+        DeleteDeckOutputBoundary presenter = new DeleteDeckPresenter(null){
+            @Override
+            public void prepareSuccessView(DeleteDeckOutputData outputData) {
+                Assertions.fail("Should not be able to delete anything.");
+            }
+            @Override
+            public void prepareFailView(String exception) {
+                Assertions.assertEquals("Deck not found", exception);
             }
         };
         DeleteDeckInputBoundary interactor = new DeleteDeckInteractor(presenter);
