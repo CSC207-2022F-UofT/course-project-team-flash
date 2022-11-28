@@ -27,7 +27,6 @@ public class EditCardController {
     }
 
     // Edit QnA card
-
     /**
      * Takes in a String Flashcard ID along with the String question and answer that will be
      * used in EditCardInteractor.
