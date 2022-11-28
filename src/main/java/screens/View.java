@@ -1,18 +1,28 @@
 package screens;
 
 import createDeck.CreateDeckController;
+import deleteDeck.DeleteDeckController;
+import createQuiz.CreateQuizController;
+import deleteQuiz.DeleteQuizController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 public class View implements ViewBoundary {
     // Elements of the screen
-    public static final int WIDTH = 400;
-    public static final int HEIGHT = 500;
+    public static final int WIDTH = 1200;
+    public static final int HEIGHT = 600;
 
     // Storing the controllers required by all use cases
     private CreateDeckController createDeckController;
+
+    private CreateQuizController createQuizController;
+    private DeleteDeckController deleteDeckController;
+
+    private DeleteQuizController deleteQuizController;
 
     // Storing the JFrame and Jpanels in the view
     private JFrame application;
@@ -53,13 +63,13 @@ public class View implements ViewBoundary {
         application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Build a blank screen
-        CardLayout cardLayout = new CardLayout();
-        JPanel screens = new JPanel(cardLayout);
+        CardLayout interfaceLayout = new CardLayout();
+        JPanel screens = new JPanel(interfaceLayout);
         application.add(screens);
 
-        deckScreen = new DeckScreen(createDeckController);
+        deckScreen = new DeckScreen(createDeckController, deleteDeckController);
         mainMenuScreen = new MainMenuScreen();
-        quizScreen = new QuizScreen();
+        quizScreen = new QuizScreen(createQuizController, deleteQuizController);
 
         screens.add(deckScreen);
         screens.add(mainMenuScreen);
@@ -70,13 +80,18 @@ public class View implements ViewBoundary {
         quizScreen.setVisible(false);
 
         application.setSize(WIDTH, HEIGHT);
+        application.setResizable(true);
         application.setVisible(true);
     }
 
     // General method for setting the controllers of the view
-    public void setController(CreateDeckController createDeckController) {
+    public void setController(CreateDeckController createDeckController, CreateQuizController createQuizController, DeleteDeckController deleteDeckController, DeleteQuizController deleteQuizController) {
         this.createDeckController = createDeckController;
-        deckScreen.setController(createDeckController);
+        this.createQuizController = createQuizController;
+        this.deleteDeckController = deleteDeckController;
+        this.deleteQuizController = deleteQuizController;
+        deckScreen.setController(createDeckController, deleteDeckController);
+        quizScreen.setController(createQuizController, deleteQuizController);
     }
 
     @Override
@@ -103,6 +118,9 @@ public class View implements ViewBoundary {
     private void menuSwitch() {
 
         switch (this.viewState) {
+            case ERROR:
+                createErrorMessage(returnString);
+                break;
 
             //ADD WHATEVER VIEWSTATES YOUR USECASE NEEDS HERE, I HAVE ADDED SOME ALREADY HERE AS AN EXAMPLE:
 
@@ -139,21 +157,29 @@ public class View implements ViewBoundary {
 
             case DECK_CREATED:
                 //Changes to the view when a deck is created
-                deckScreen.reconstruct(false, deckName);
-
+                deckScreen.reconstructDecks(false, deckName);
+                quizScreen.reconstructDecks(false, deckName);
 
                 break;
 
             case DECK_DELETED:
-                //Menu that pops up when you delete a deck (says something like "deck deleted") and has an
-                //"OK" button or smth.
-                deckScreen.reconstruct(true, deckName);
-
+                deckScreen.reconstructDecks(true, deckName);
+                quizScreen.reconstructDecks(true, deckName);
 
                 break;
 
             case DECK_IMPORTED:
 
+
+                break;
+
+            case QUIZ_CREATED:
+                quizScreen.reconstructQuizzes(false, quizName);
+
+                break;
+
+            case QUIZ_DELETED:
+                quizScreen.reconstructQuizzes(true, quizName);
 
                 break;
         }
@@ -162,5 +188,25 @@ public class View implements ViewBoundary {
         //BELOW HERE:
         //Implement all the callback methods that will be triggered by button click events. These methods
         //will be the ones that'll call the methods in the controllers, so they should be specific to each useCase.
+    }
+
+    private void createErrorMessage(String message) {
+        JFrame errorFrame = new JFrame();
+        JDialog errorDialog = new JDialog(errorFrame);
+
+        JLabel prompt = new JLabel(message);
+        JButton createButton = new JButton("Ok");
+        errorDialog.add(prompt);
+        errorDialog.add(createButton);
+
+        createButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                errorFrame.dispose();
+            }
+        });
+
+        errorFrame.pack();
+        errorFrame.setVisible(true);
     }
 }
