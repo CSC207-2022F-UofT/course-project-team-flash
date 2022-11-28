@@ -26,6 +26,11 @@ public class EditQuizPresenter implements EditQuizOutputBoundary {
         viewBound.updateView(viewModel);
     }
 
+    /**
+     * Prepare the fail view given outputData, when the quiz has been edited
+     *
+     * @param outputData the EditQuizOutputData associated with this edited quiz
+     */
     @Override
     public void prepareFailView(EditQuizOutputData outputData) {
         ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.ERROR)
