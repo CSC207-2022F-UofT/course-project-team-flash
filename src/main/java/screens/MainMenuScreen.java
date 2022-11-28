@@ -15,8 +15,8 @@ public class MainMenuScreen extends JPanel {
 
         JButton decksButton = new JButton("Decks");
         JButton quizButton = new JButton("Quizzes");
-        this.add(decksButton);
-        this.add(quizButton);
+        this.add(decksButton, BorderLayout.CENTER);
+        this.add(quizButton, BorderLayout.CENTER);
 
         decksButton.addActionListener(new ActionListener() {
             @Override

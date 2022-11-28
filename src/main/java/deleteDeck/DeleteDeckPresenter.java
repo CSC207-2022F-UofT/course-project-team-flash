@@ -26,6 +26,12 @@ public class DeleteDeckPresenter implements DeleteDeckOutputBoundary{
 
     @Override
     public void prepareFailView(String error) {
-        throw new DeckNotFound(error);
+
+        ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.ERROR)
+                .setReturnString("Deck not found")
+                .build();
+
+        viewBound.updateView(viewModel);
+
     }
 }

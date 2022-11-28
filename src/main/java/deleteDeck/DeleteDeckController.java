@@ -4,11 +4,11 @@ public class DeleteDeckController {
 
     final private DeleteDeckInputBoundary inputBound;
 
-    DeleteDeckController(DeleteDeckInputBoundary inputBound){
+    public DeleteDeckController(DeleteDeckInputBoundary inputBound){
         this.inputBound = inputBound;
     }
 
-    void delete(String deckName){
+    public void delete(String deckName){
 
         DeleteDeckInputData inputData = new DeleteDeckInputData(deckName);
 
