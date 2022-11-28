@@ -1,18 +1,21 @@
 package editDeck;
-
-import entities.Deck;
+/*
+ * Author: Jay Kanchankoti
+ * Date: November 27/22
+ *
+ */
 
 public class EditDeckOutputData {
 
-    private Deck deck;
+    private String deckName;
     private String message;
-    public EditDeckOutputData(Deck deck, String message) {
-        this.deck = deck;
+    public EditDeckOutputData(String deckName, String message) {
+        this.deckName = deckName;
         this.message = message;
     }
 
-    public Deck getDeck() {
-        return deck;
+    public String getDeckName() {
+        return deckName;
     }
 
     public String getMessage() {

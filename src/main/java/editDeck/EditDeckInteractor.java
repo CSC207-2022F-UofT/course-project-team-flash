@@ -1,4 +1,9 @@
 package editDeck;
+/*
+ * Author: Jay Kanchankoti
+ * Date: November 27/22
+ *
+ */
 
 import editCard.EditCardOutputBoundary;
 import entities.Deck;
@@ -18,7 +23,7 @@ public class EditDeckInteractor  implements EditDeckInputBoundary {
         Map<String, Deck> tracker = Deck.getTracker();
         Deck deck = tracker.get(inputData.getoldName());
         if (Deck.getTracker().containsKey(inputData.getnewName())) {
-            EditDeckOutputData outputData = new EditDeckOutputData(deck, "Deck name already exists. Please choose a different name.");
+            EditDeckOutputData outputData = new EditDeckOutputData(deck.getName(), "Deck name already exists. Please choose a different name.");
             editDeckOutputBoundary.prepareFailView(outputData);
         } else {
             deck.setName(inputData.getnewName());
@@ -26,7 +31,7 @@ public class EditDeckInteractor  implements EditDeckInputBoundary {
             Deck.removeTracker(inputData.getoldName());
             Deck.addTracker(inputData.getnewName(), deck);
 
-            EditDeckOutputData outputData = new EditDeckOutputData(deck, "Changes made succesfully!");
+            EditDeckOutputData outputData = new EditDeckOutputData(deck.getName(), "Changes made succesfully!");
             editDeckOutputBoundary.prepareSuccessView(outputData);
         }
 
