@@ -32,7 +32,7 @@ public class QuizScreen extends JPanel {
     // Interface Formatters
     private static final int TEXT_FIELD_LENGTH = 10;
 
-    GridBagConstraints gridBagConstraints;
+    private GridBagConstraints gridBagConstraints;
 
     public QuizScreen(CreateQuizController createQuizController, DeleteQuizController deleteQuizController) {
         super(new GridBagLayout());
@@ -156,7 +156,6 @@ public class QuizScreen extends JPanel {
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    setVisible(false);
                     JFrame deckSettingsFrame = new JFrame();
                     JDialog newDeckDialog = new JDialog(deckSettingsFrame);
 
@@ -177,7 +176,7 @@ public class QuizScreen extends JPanel {
                     renameQuiz.add(createDeckTextField);
                     renameQuiz.add(renameButton);
 
-                    JButton deleteButton = new JButton("Delete Deck" + button.getName());
+                    JButton deleteButton = new JButton("Delete Quiz " + button.getName());
                     deleteQuiz.add(deleteButton);
 
                     renameButton.addActionListener(new ActionListener() {

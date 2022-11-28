@@ -7,41 +7,43 @@ import java.util.List;
 public class ViewModel {
 
     //Required Parameter(s):
-    private ViewState viewState;
+    private final ViewState viewState;
 
 
     //Optional parameter(s):
-    private String returnString;
+    private final String returnString;
 
-    private String userAnswer;
+    private final String userAnswer;
 
-    private String cardAnswer;
+    private final String cardAnswer;
+    private final List<String> multipleCardAnswers;
 
-    private String cardQuestion;
+    private final String cardQuestion;
+    private final List<String> multipleCardQuestions;
+    private final String cardType;
+    private final String quizName;
 
-    private String cardType;
-    private String quizName;
+    private final String deckName;
 
-    private String deckName;
+    private final String cardId;
 
-    private String cardId;
-
-    private List<String> cardIdList;
+    private final List<String> cardIdList;
 
     private String[] cardIdArray;
 
-    private int currCardIndex;
+    private final int currCardIndex;
 
 
 
     private ViewModel(ViewModelBuilder builder){
 
         this.viewState = builder.ViewState;
-
         this.returnString = builder.returnString;
         this.userAnswer = builder.userAnswer;
         this.cardAnswer = builder.cardAnswer;
+        this.multipleCardAnswers = builder.multipleCardAnswers;
         this.cardQuestion = builder.cardQuestion;
+        this.multipleCardQuestions = builder.multipleCardQuestions;
         this.cardType = builder.cardType;
         this.quizName = builder.quizName;
         this.deckName = builder.deckName;
@@ -101,12 +103,19 @@ public class ViewModel {
         return cardType;
     }
 
+    public List<String> getMultipleCardQuestions() {
+        return multipleCardQuestions;
+    }
+
+    public List<String> getMultipleCardAnswers() {
+        return multipleCardAnswers;
+    }
 
     //Builder:
     public static class ViewModelBuilder{
 
         //Required parameter(s):
-        private ViewState ViewState;
+        private final ViewState ViewState;
 
         //Optional parameter(s):
         private String returnString;
