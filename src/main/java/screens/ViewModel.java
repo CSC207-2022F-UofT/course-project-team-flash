@@ -112,15 +112,15 @@ public class ViewModel {
         private String returnString;
 
         private String userAnswer;
-
         private String cardAnswer;
+        private List<String> multipleCardAnswers;
         private String cardQuestion;
+        private List<String> multipleCardQuestions;
         private String cardType;
         private String quizName;
         private String deckName;
         private String cardId;
         private List<String> cardIdList;
-
         private String[] cardIdArray;
         private int currCardIndex;
 
@@ -146,12 +146,18 @@ public class ViewModel {
             this.cardAnswer = cardAnswer;
             return this;
         }
-
+        public ViewModelBuilder setMultipleCardQuestions(List<String> questions) {
+            this.multipleCardQuestions = questions;
+            return this;
+        }
         public ViewModelBuilder setCardQuestion(String cardQuestion) {
             this.cardQuestion = cardQuestion;
             return this;
         }
-
+        public ViewModelBuilder setMultipleCardAnswers(List<String> answers) {
+            this.multipleCardAnswers = answers;
+            return this;
+        }
         public ViewModelBuilder setCardType(String cardType) {
             this.cardType = cardType;
             return this;
