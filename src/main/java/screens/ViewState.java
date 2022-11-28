@@ -1,7 +1,6 @@
 package screens;
 
 public enum ViewState {
-
     DECK_SCREEN,
     QUIZ_MENU,
     START_QUIZ,
@@ -10,6 +9,7 @@ public enum ViewState {
     DECK_CREATED,
     DECK_DELETED,
     DECK_IMPORTED,
+    DECK_EXPORTED,
     CARD_CREATED,
     CARD_DELETED,
     CARD_MOVED,
