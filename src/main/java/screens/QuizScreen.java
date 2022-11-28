@@ -32,7 +32,7 @@ public class QuizScreen extends JPanel {
     // Interface Formatters
     private static final int TEXT_FIELD_LENGTH = 10;
 
-    GridBagConstraints gridBagConstraints;
+    private GridBagConstraints gridBagConstraints;
 
     public QuizScreen(CreateQuizController createQuizController, DeleteQuizController deleteQuizController) {
         super(new GridBagLayout());
