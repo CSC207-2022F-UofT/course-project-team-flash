@@ -59,10 +59,9 @@ class RunQuizInteractorTest {
         q1 = new Quiz("music", quizDecks);
         Quiz.addTracker(q1.getQuizName(), q1);
     }
-    
+
     @Test
     void showAnswer() {
-
 
         //Anonymous implementing class
         RunQuizOutputBoundary outputBound = new RunQuizOutputBoundary() {
@@ -87,8 +86,7 @@ class RunQuizInteractorTest {
 
                 Assertions.assertEquals(1, outputData.getCurrCardIndex());
 
-                Assertions.assertEquals("Who is music", outputData.getCurrCardQuestion());
-
+                Assertions.assertEquals("Who is music?", outputData.getCurrCardQuestion());
 
             }
 
@@ -115,9 +113,41 @@ class RunQuizInteractorTest {
         ShowQuizCardInputData inputData = new ShowQuizCardInputData(cardIds, currCardIndex, userAnswer);
 
 
-        //Create the interactor and run the use case:
         RunQuizInputBoundary interactor = new RunQuizInteractor(outputBound);
-        interactor.showAnswer(inputData);
+
+        testShowAnswer(interactor);
+        testShowProblem(interactor);
+        testStartQuiz(interactor);
     }
+
+
+    private void testShowAnswer(RunQuizInputBoundary inputBound){
+        String[] cardIds = {f1.getUniqueID(), f2.getUniqueID(), f3.getUniqueID()};
+        int currCardIndex = 1;
+        String userAnswer = "boop boot";
+
+        ShowQuizCardInputData inputData = new ShowQuizCardInputData(cardIds, currCardIndex, userAnswer);
+
+        inputBound.showAnswer(inputData);
+    }
+
+    private void testShowProblem(RunQuizInputBoundary inputBound){
+        String[] cardIds = {f1.getUniqueID(), f2.getUniqueID(), f3.getUniqueID()};
+        int currCardIndex = 1;
+
+        ShowQuizCardInputData inputData = new ShowQuizCardInputData(cardIds, currCardIndex);
+
+        inputBound.showProblem(inputData);
+    }
+
+    private void testStartQuiz(RunQuizInputBoundary inputBound){
+        String quizName = "music";
+        boolean isRandomized = false;
+
+        StartQuizInputData inputData = new StartQuizInputData(quizName, isRandomized);
+
+        inputBound.startQuiz(inputData);
+    }
+
 }
 

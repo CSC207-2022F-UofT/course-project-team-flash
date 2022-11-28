@@ -26,7 +26,6 @@ public class View implements ViewBoundary {
 
     // Storing the JFrame and Jpanels in the view
     private JFrame application;
-
     private CardScreen cardScreen;
     private DeckScreen deckScreen;
     private QuizScreen quizScreen;
