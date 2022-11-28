@@ -18,21 +18,21 @@ public class DeleteDeckInteractor implements DeleteDeckInputBoundary{
 
         if(!Deck.containsDeckName(deckName)){
             outputBound.prepareFailView("Deck not found");
-            return;
         }
+        else {
+            Deck currDeck = Deck.getTracker().get(deckName);
 
-        Deck currDeck = Deck.getTracker().get(deckName);
+            //Remove all cards within the deck from the static flashcard hashmap
+            for (String cardId : currDeck.getCardIds()) {
+                Flashcard.removeTracker(cardId);
+            }
 
-        //Remove all cards within the deck from the static flashcard hashmap
-        for(String cardId : currDeck.getCardIds()){
-            Flashcard.removeTracker(cardId);
+            //Remove the deck from the static flashcard hashmap
+            Deck.removeTracker(deckName);
+
+            DeleteDeckOutputData outputData = new DeleteDeckOutputData(deckName);
+
+            outputBound.prepareSuccessView(outputData);
         }
-
-        //Remove the deck from the static flashcard hashmap
-        Deck.removeTracker(deckName);
-
-        DeleteDeckOutputData outputData = new DeleteDeckOutputData(deckName);
-
-        outputBound.prepareSuccessView(outputData);
     }
 }
