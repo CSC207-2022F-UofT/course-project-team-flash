@@ -11,7 +11,7 @@ public class EditDeckOutputData {
         this.text = text;
     }
 
-    public String gettext() {
+    public String getText() {
         return text;
     }
 }

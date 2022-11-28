@@ -20,7 +20,7 @@ public class EditDeckPresenter implements EditDeckOutputBoundary{
     @Override
     public void prepareSuccessView(EditDeckOutputData editDeckOutputData){
         ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.DECK_EDITED)
-                .setDeckName(editDeckOutputData.getMessage())
+                .setDeckName(editDeckOutputData.getText())
                 .build();
 
         viewBound.updateView(viewModel);
@@ -29,7 +29,7 @@ public class EditDeckPresenter implements EditDeckOutputBoundary{
     @Override
     public void prepareFailView(EditDeckOutputData editDeckOutputData) {
         ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.ERROR)
-                .setReturnString(editDeckOutputData.getMessage())
+                .setReturnString(editDeckOutputData.getText())
                 .build();
 
         viewBound.updateView(viewModel);
