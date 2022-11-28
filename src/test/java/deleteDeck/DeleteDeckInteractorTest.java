@@ -28,7 +28,7 @@ public class DeleteDeckInteractorTest {
         DeleteDeckInputData inputData = new DeleteDeckInputData("Test");
         interactor.delete(inputData);
     }
-
+/*
     @Test
     public void deleteNonExistingDeck(){
         DeleteDeckOutputBoundary presenter = new DeleteDeckPresenter(null){
@@ -44,5 +44,5 @@ public class DeleteDeckInteractorTest {
         DeleteDeckInputBoundary interactor = new DeleteDeckInteractor(presenter);
         DeleteDeckInputData inputData = new DeleteDeckInputData("Test");
         interactor.delete(inputData);
-    }
+    }*/
 }
