@@ -5,7 +5,6 @@ package editDeck;
  *
  */
 
-import editCard.EditCardOutputBoundary;
 import entities.Deck;
 
 import java.util.Map;
@@ -22,10 +21,15 @@ public class EditDeckInteractor  implements EditDeckInputBoundary {
     public void edit(EditDeckInputData inputData) {
         Map<String, Deck> tracker = Deck.getTracker();
         Deck deck = tracker.get(inputData.getoldName());
+        if (!Deck.getTracker().containsKey(inputData.getoldName())) {
+            EditDeckOutputData outputData = new EditDeckOutputData("Deck does not exist!");
+            editDeckOutputBoundary.prepareFailView(outputData);
+        }
         if (Deck.getTracker().containsKey(inputData.getnewName())) {
             EditDeckOutputData outputData = new EditDeckOutputData("Deck name already exists. Please choose a different name.");
             editDeckOutputBoundary.prepareFailView(outputData);
-        } else {
+        }
+        else {
             deck.setName(inputData.getnewName());
 
             Deck.removeTracker(inputData.getoldName());

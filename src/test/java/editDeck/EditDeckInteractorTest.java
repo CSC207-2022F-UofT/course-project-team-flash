@@ -24,4 +24,21 @@ public class EditDeckInteractorTest {
         EditDeckInputData inputData = new EditDeckInputData("Test", "Examination");
         interactor.edit(inputData);
     }
+
+    @Test
+    public void editNonExistingDeck(){
+        EditDeckOutputBoundary presenter = new EditDeckPresenter(null){
+            @Override
+            public void prepareSuccessView(EditDeckOutputData outputData) {
+                Assertions.fail("Should not be able to edit nothing!");
+            }
+            @Override
+            public void prepareFailView(EditDeckOutputData outputData) {
+                Assertions.assertEquals("Deck does not exist!", outputData.getText());
+            }
+        };
+        EditDeckInputBoundary interactor = new EditDeckInteractor(presenter);
+        EditDeckInputData inputData = new EditDeckInputData("Test", "Examination");
+        interactor.edit(inputData);
+    }
 }
