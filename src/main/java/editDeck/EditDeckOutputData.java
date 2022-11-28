@@ -6,12 +6,12 @@ package editDeck;
  */
 
 public class EditDeckOutputData {
-    private String message;
-    public EditDeckOutputData(String message) {
-        this.message = message;
+    private String text;
+    public EditDeckOutputData(String text) {
+        this.text = text;
     }
 
-    public String getMessage() {
-        return message;
+    public String gettext() {
+        return text;
     }
 }
