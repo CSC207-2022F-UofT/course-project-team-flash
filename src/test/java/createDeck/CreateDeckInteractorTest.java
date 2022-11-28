@@ -35,7 +35,7 @@ public class CreateDeckInteractorTest {
         CreateDeckOutputBoundary presenter = new CreateDeckPresenter(null){
             @Override
             public void prepareSuccessView(CreateDeckOutputData outputData) {
-                Assertions.fail("Unexpected pass.");
+                Assertions.fail("Should not be able to create two decks with same name.");
             }
             @Override
             public void prepareFailView(CreateDeckOutputData outputData) {
