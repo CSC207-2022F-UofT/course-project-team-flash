@@ -9,7 +9,7 @@ import entities.Deck;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class CreateDeckInteractorTest {
+public class CreateDeckInteractorTest {
     @Test
     public void createSingleDeck(){
         CreateDeckOutputBoundary presenter = new CreateDeckPresenter(null) {
