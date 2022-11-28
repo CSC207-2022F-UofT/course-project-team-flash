@@ -1,0 +1,5 @@
+package createDeck;
+
+class CreateDeckInteractorTest {
+
+}
