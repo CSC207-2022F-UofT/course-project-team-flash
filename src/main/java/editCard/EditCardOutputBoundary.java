@@ -11,6 +11,4 @@ package editCard;/*
 public interface EditCardOutputBoundary {
 
     void prepareSuccessView(EditCardOutputData editCardOutputData);
-
-    void prepareFailView(EditCardOutputData editCardOutputData);
 }
