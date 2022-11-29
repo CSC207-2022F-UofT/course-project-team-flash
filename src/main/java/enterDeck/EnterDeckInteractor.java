@@ -2,6 +2,7 @@ package enterDeck;
 
 import entities.Deck;
 import entities.Flashcard;
+import entities.MCFlashcard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ public class EnterDeckInteractor implements EnterDeckInputBoundary {
         this.outputBoundary = outputBoundary;
     }
 
+
     @Override
     public void enter(EnterDeckInputData inputData) {
         Deck deck = Deck.getTracker().get(inputData.getDeckName());
@@ -24,10 +26,19 @@ public class EnterDeckInteractor implements EnterDeckInputBoundary {
 
         for (String id : cardIDs) {
             Flashcard card = tracker.get(id);
+
+            String type;
+            if (card instanceof MCFlashcard) {
+                type = "Multiple Choice";
+            } else {
+                type = "Question and Answer";
+            }
+
             String question = card.getQuestion();
             String answer = card.getAnswer();
 
             List<String> tempList = new ArrayList<>();
+            tempList.add(type);
             tempList.add(question);
             tempList.add(answer);
 

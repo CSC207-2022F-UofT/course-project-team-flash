@@ -60,14 +60,21 @@ public class View implements ViewBoundary {
     //Optional parameter(s):
     private String returnString;
 
+    private String cardType;
+    private String cardQuestion;
     private String userAnswer;
-
     private String cardAnswer;
     private String quizName;
 
     private String deckName;
 
     private String cardId;
+
+    private List<String> cardTypes;
+
+    private List<String> cardQuestions;
+
+    private List<String> cardAnswers;
 
     private List<String> cardIdList;
 
@@ -88,7 +95,7 @@ public class View implements ViewBoundary {
         application.add(screens);
 
         cardScreen = new CardScreen(createCardController);
-        deckScreen = new DeckScreen(createDeckController, deleteDeckController, editDeckController);
+        deckScreen = new DeckScreen(createDeckController, deleteDeckController, editDeckController, enterDeckController);
         mainMenuScreen = new MainMenuScreen();
         quizScreen = new QuizScreen(createQuizController, deleteQuizController);
 
@@ -132,7 +139,8 @@ public class View implements ViewBoundary {
         this.moveCardController = moveCardController;
         this.enterDeckController = enterDeckController;
 
-        deckScreen.setController(createDeckController, deleteDeckController, editDeckController);
+        cardScreen.setController(createCardController);
+        deckScreen.setController(createDeckController, deleteDeckController, editDeckController, enterDeckController);
         quizScreen.setController(createQuizController, deleteQuizController);
     }
 
@@ -148,6 +156,12 @@ public class View implements ViewBoundary {
         this.cardIdList = viewModel.getCardIdList();
         this.cardIdArray = viewModel.getCardIdArray();
         this.currCardIndex = viewModel.getCurrCardIndex();
+        this.cardType = viewModel.getCardType();
+        this.cardQuestion = viewModel.getCardQuestion();
+        this.cardAnswer = viewModel.getCardAnswer();
+        this.cardTypes = viewModel.getMultipleCardTypes();
+        this.cardQuestions = viewModel.getMultipleCardQuestions();
+        this.cardAnswers = viewModel.getMultipleCardAnswers();
         // Conditional removed, we need to update if the same action is made
         // ---If the viewState changes, update it and call the menuSwitch method to update the view.---
         //if (this.viewState != viewModel.getViewState()) {
@@ -197,6 +211,16 @@ public class View implements ViewBoundary {
 
                 break;
 
+            case CARD_CREATED:
+                cardScreen.reconstructCards(false, new String[]{cardType, cardQuestion, cardAnswer});
+                System.out.println("Constructed");
+                break;
+
+            case CARD_DELETED:
+                cardScreen.reconstructCards(true, new String[]{cardType, cardQuestion, cardAnswer});
+
+                break;
+
             case DECK_CREATED:
                 //Changes to the view when a deck is created
                 deckScreen.reconstructDecks(false, deckName);
@@ -223,6 +247,13 @@ public class View implements ViewBoundary {
             case QUIZ_DELETED:
                 quizScreen.reconstructQuizzes(true, quizName);
 
+                break;
+            case ENTER_DECK:
+                cardScreen.reconstructCards();
+                cardScreen.swapScreen();
+                for (int i = 0; i < cardQuestions.size(); i++) {
+                    cardScreen.reconstructCards(false, new String[]{cardTypes.get(i), cardQuestions.get(i), cardAnswers.get(i)});
+                }
                 break;
         }
 

@@ -15,6 +15,9 @@ public class CardScreen extends JPanel {
     // Controllers
     private CreateCardController createCardController;
 
+    // Deck Info
+    private String deckName;
+
     // Card Info
     private ArrayList<String[]> allCardsInfo;
 
@@ -37,7 +40,7 @@ public class CardScreen extends JPanel {
         drawComponents();
     }
 
-    public void setCreateCardController(CreateCardController createCardController) {
+    public void setController(CreateCardController createCardController) {
         this.createCardController = createCardController;
     }
     public void reconstructCards(boolean delete, String[] cardInfo) {
@@ -48,6 +51,15 @@ public class CardScreen extends JPanel {
         }
         drawComponents();
     }
+
+    public void reconstructCards() {
+        drawComponents();
+    }
+
+    public void swapScreen() {
+        allCardsInfo.clear();}
+
+    public void setDeck(String deckName) {this.deckName = deckName;}
 
     private void drawComponents() {
         clear();
@@ -123,19 +135,57 @@ public class CardScreen extends JPanel {
         String question = info[1];
         String answer = info[2];
 
-        // TODO: IDK HOW TO DO THIS
+        JButton cardButton = new JButton(answer);
+        JLabel questionLabel = new JLabel(question);
+        JLabel typeLabel = new JLabel(type);
+        cardButtons.add(cardButton);
+
+        gridBagConstraints.gridy += 1;
+        cardButton.setLayout(new BorderLayout());
+        gridBagConstraints.fill = gridBagConstraints.HORIZONTAL;
+        this.add(cardButton, gridBagConstraints);
+        cardButton.add(questionLabel, BorderLayout.WEST);
+        cardButton.add(typeLabel, BorderLayout.EAST);
+        gridBagConstraints.gridy += 1;
     }
 
     private void chooseCardCreation() {
-        JFrame newDeckFrame = new JFrame();
-        JDialog newDeckDialog = new JDialog(newDeckFrame);
+        JFrame newCardFrame = new JFrame();
+        JDialog newCardDialog = new JDialog(newCardFrame);
 
         JTabbedPane optionTabs = new JTabbedPane();
 
-        JPanel createNewDeck = new JPanel();
-        JPanel importNewDeck = new JPanel();
+        JPanel createQnACard = new JPanel();
+        JPanel createMCCard = new JPanel();
 
-        optionTabs.add("Create New Deck", createNewDeck);
-        optionTabs.add("Import Deck", importNewDeck);
+        optionTabs.add("Create QnA Card", createQnACard);
+        optionTabs.add("Create Multiple Choice Card", createMCCard);
+
+        newCardDialog.add(optionTabs);
+
+        JLabel questionPrompt = new JLabel("Enter a question:");
+        JLabel answerPrompt = new JLabel("Enter the answer:");
+        JTextField questionTextField = new JTextField("", TEXT_FIELD_LENGTH);
+        JTextField answerTextField = new JTextField("", TEXT_FIELD_LENGTH);
+        JButton createButton = new JButton("Create Card");
+        createQnACard.add(questionPrompt);
+        createQnACard.add(questionTextField);
+        createQnACard.add(answerPrompt);
+        createQnACard.add(answerTextField);
+        createQnACard.add(createButton);
+
+        createButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                createCardController.create(deckName, 1, questionTextField.getText(), answerTextField.getText());
+                newCardFrame.dispose();
+            }
+        });
+
+        newCardDialog.pack();
+        newCardDialog.setModal(true);
+        newCardDialog.setVisible(true);
+
+
     }
 }
