@@ -2,6 +2,7 @@ package screens;
 
 import createDeck.CreateDeckController;
 import deleteDeck.DeleteDeckController;
+import editDeck.EditDeckController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,33 +17,40 @@ public class DeckScreen extends JPanel {
     // Controllers required by this Jpanel
     private CreateDeckController createDeckController;
     private DeleteDeckController deleteDeckController;
+    private EditDeckController editDeckController;
 
     // Decks
-    private ArrayList<String> deckNames;
+    private final ArrayList<String> deckNames;
 
     // Deck buttons
-    private ArrayList<JButton> deckButtons;
-    private ArrayList<JButton> deckSettingsButtons;
+    private final ArrayList<JButton> deckButtons;
+    private final ArrayList<JButton> deckSettingsButtons;
 
     // Interface Formatters
     private static final int TEXT_FIELD_LENGTH = 10;
+    private final GridBagConstraints gridBagConstraints;
 
-    private GridBagConstraints gridBagConstraints;
-
-    public DeckScreen(CreateDeckController createDeckController, DeleteDeckController deleteDeckController) {
+    public DeckScreen(CreateDeckController createDeckController,
+                      DeleteDeckController deleteDeckController,
+                      EditDeckController editDeckController) {
         super(new GridBagLayout());
         this.gridBagConstraints = new GridBagConstraints();
         this.deckNames = new ArrayList<>();
         this.deckButtons = new ArrayList<>();
         this.deckSettingsButtons = new ArrayList<>();
+
         this.createDeckController = createDeckController;
         this.deleteDeckController = deleteDeckController;
+        this.editDeckController = editDeckController;
         drawComponents();
     }
 
-    public void setController(CreateDeckController createDeckController, DeleteDeckController deleteDeckController) {
+    public void setController(CreateDeckController createDeckController,
+                              DeleteDeckController deleteDeckController,
+                              EditDeckController editDeckController) {
         this.createDeckController = createDeckController;
         this.deleteDeckController = deleteDeckController;
+        this.editDeckController = editDeckController;
     }
 
     public void reconstructDecks(boolean delete, String deckName) {
@@ -55,7 +63,9 @@ public class DeckScreen extends JPanel {
     }
 
     // helper method for setting constraints on layout components
-    private void setConstraints(int anchor, int fill, int gridWidth, int gridHeight, int gridX, int gridY, double weightX, double weightY) {
+    private void setConstraints(int anchor, int fill, int gridWidth,
+                                int gridHeight, int gridX, int gridY,
+                                double weightX, double weightY) {
         this.gridBagConstraints.anchor = anchor;
         this.gridBagConstraints.fill = fill;
         this.gridBagConstraints.gridwidth = gridWidth;
