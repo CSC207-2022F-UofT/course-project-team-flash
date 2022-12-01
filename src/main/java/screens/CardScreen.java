@@ -59,6 +59,7 @@ public class CardScreen extends JPanel {
             for (String[] oldInfo : allCardsInfo) {
                 if (Objects.equals(oldInfo[3], cardInfo[3])) {
                     allCardsInfo.remove(oldInfo);
+                    break;
                 }
             }
         } else {

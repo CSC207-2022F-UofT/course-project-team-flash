@@ -222,6 +222,11 @@ public class View implements ViewBoundary {
 
                 break;
 
+            case CARD_EDITED:
+                cardScreen.reconstructCards(true, new String[]{cardType, cardQuestion, cardAnswer, cardID});
+                cardScreen.reconstructCards(false, new String[]{returnString, cardQuestion, cardAnswer, cardID});
+                break;
+
             case DECK_CREATED:
                 //Changes to the view when a deck is created
                 deckScreen.reconstructDecks(false, deckName);
