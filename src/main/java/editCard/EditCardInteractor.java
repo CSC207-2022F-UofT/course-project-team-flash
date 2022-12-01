@@ -34,7 +34,7 @@ public class EditCardInteractor implements EditCardInputBoundary {
     public void edit(EditCardInputData inputData) {
         Flashcard card = Flashcard.getTracker().get(inputData.getCardID());
         card.setQuestion(inputData.getQuestion());
-        card.setAnswer(inputData.getQuestion());
+        card.setAnswer(inputData.getAnswer());
         if (inputData.getOptions() != null) {
             ((MCFlashcard) card).setOptions(inputData.getOptions());
         }
