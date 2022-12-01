@@ -180,6 +180,16 @@ public class View implements ViewBoundary {
 
             //ADD WHATEVER VIEWSTATES YOUR USECASE NEEDS HERE, I HAVE ADDED SOME ALREADY HERE AS AN EXAMPLE:
 
+            case MAIN_MENU:
+                application.setVisible(false);
+                for (Component c : application.getParent().getComponents()) {
+                    if (c instanceof MainMenuScreen) {
+                        c.setVisible(true);
+                        return;
+                    }
+                }
+                break;
+
             case DECK_SCREEN:
                 //Creates and updates the Deck screen when a change is made to the deck screen
 
@@ -194,16 +204,25 @@ public class View implements ViewBoundary {
 
             case SHOW_ANSWER:
                 //Menu that shows the answer to a flashcard along with a show next problem button.
-
+                for (Component c : application.getComponents()) {
+                    if (c instanceof ShowAnswerScreen) {
+                        c.setVisible(true);
+                        return;
+                    }
+                }
 
                 break;
 
             case SHOW_PROBLEM:
                 //Menu that shows the question of a flashcard along with a show answer button.
-
+                for (Component c : application.getComponents()) {
+                    if (c instanceof ShowProblemScreen) {
+                        c.setVisible(true);
+                        return;
+                    }
+                }
 
                 break;
-
 
             case START_QUIZ:
                 //Menu that shows the view before a quiz starts with a button like "begin quiz".
@@ -282,4 +301,29 @@ public class View implements ViewBoundary {
         errorFrame.pack();
         errorFrame.setVisible(true);
     }
+
+    public String getUserAnswer() {
+        return userAnswer;
+    }
+
+    public String getCardAnswer(){
+        return cardAnswer;
+    }
+
+    public String[] getCardIdArray(){
+        return this.cardIdArray;
+    }
+
+    public int getCurrCardIndex(){
+        return this.currCardIndex;
+    }
+
+    public void setUserAnswer(String userAnswer){
+        this.userAnswer = userAnswer;
+    }
+
+    public void setCardAnswer(){
+        this.cardAnswer = cardAnswer;
+    }
+
 }

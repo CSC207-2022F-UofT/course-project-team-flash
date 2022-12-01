@@ -9,14 +9,14 @@ public class RunQuizController {
     }
 
 
-    void showAnswer(String[] flashcardIdList, int currCardIndex, String userAnswer){
+    public void showAnswer(String[] flashcardIdList, int currCardIndex, String userAnswer){
         ShowQuizCardInputData inputData = new ShowQuizCardInputData(flashcardIdList, currCardIndex, userAnswer);
 
         runQuizInputBound.showAnswer(inputData);
     }
 
 
-    void showProblem(String[] flashcardIdList, int currCardIndex){
+    public void showProblem(String[] flashcardIdList, int currCardIndex){
         ShowQuizCardInputData inputData = new ShowQuizCardInputData(flashcardIdList, currCardIndex);
 
         runQuizInputBound.showProblem(inputData);
