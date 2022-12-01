@@ -36,6 +36,7 @@ public class CreateCardPresenter implements CreateCardOutputBoundary {
                 .setCardType(outputData.getType())
                 .setCardQuestion(outputData.getQuestion())
                 .setCardAnswer(outputData.getAnswer())
+                .setCardId(outputData.getUniqueID())
                 .build();
 
         viewBound.updateView(viewModel);
