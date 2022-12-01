@@ -13,25 +13,49 @@ import entities.Flashcard;
  */
 public class EditCardOutputData {
 
-    private Flashcard card;
+    private String id;
+
+    private String question;
+
+    private String answer;
     private String message;
 
     /**
      * Creates a new EditCardOutputData with a given Flashcard and String message
-     * @param card Flashcard object
+     * @param id String id of the edited flashcard
+     * @param question String new question of the edited flashcard
+     * @param answer String new answer the edited flashcard
      * @param message String indicating whether this flashcard was edited successfully
      */
-    public EditCardOutputData(Flashcard card, String message) {
-        this.card = card;
+    public EditCardOutputData(String id, String question, String answer, String message) {
+        this.id = id;
+        this.question = question;
+        this.answer = answer;
         this.message = message;
     }
 
     /**
-     * Return the card of the given EditCardOutputBoundary
-     * @return the card of the given EditCardOutputBoundary
+     * Return the id of card the given EditCardOutputBoundary
+     * @return the id of the card of the given EditCardOutputBoundary
      */
-    public Flashcard getCard() {
-        return card;
+    public String getID() {
+        return id;
+    }
+
+    /**
+     * Return the id of card the given EditCardOutputBoundary
+     * @return the id of the card of the given EditCardOutputBoundary
+     */
+    public String getQuestion() {
+        return question;
+    }
+
+    /**
+     * Return the id of card the given EditCardOutputBoundary
+     * @return the id of the card of the given EditCardOutputBoundary
+     */
+    public String getAnswer() {
+        return answer;
     }
 
     /**
