@@ -2,6 +2,7 @@ package screens;
 
 import createCard.CreateCardController;
 import deleteCard.DeleteCardController;
+import editCard.EditCardController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,6 +22,8 @@ public class CardScreen extends JPanel {
 
     private DeleteCardController deleteCardController;
 
+    private EditCardController editCardController;
+
     // Deck Info
     private String deckName;
 
@@ -35,19 +38,21 @@ public class CardScreen extends JPanel {
 
     private GridBagConstraints gridBagConstraints;
 
-    public CardScreen(CreateCardController createCardController, DeleteCardController deleteCardController) {
+    public CardScreen(CreateCardController createCardController, DeleteCardController deleteCardController, EditCardController editCardController) {
         super(new GridBagLayout());
         this.gridBagConstraints = new GridBagConstraints();
         this.createCardController = createCardController;
         this.deleteCardController = deleteCardController;
+        this.editCardController = editCardController;
         this.allCardsInfo = new ArrayList<>();
         this.cardButtons = new ArrayList<>();
         drawComponents();
     }
 
-    public void setController(CreateCardController createCardController, DeleteCardController deleteCardController) {
+    public void setController(CreateCardController createCardController, DeleteCardController deleteCardController, EditCardController editCardController) {
         this.createCardController = createCardController;
         this.deleteCardController = deleteCardController;
+        this.editCardController = editCardController;
     }
     public void reconstructCards(boolean delete, String[] cardInfo) {
         if (delete) {
@@ -135,11 +140,15 @@ public class CardScreen extends JPanel {
 
                     newCardDialog.add(optionTabs);
 
-                    JLabel prompt = new JLabel("Enter a new name for the deck:");
-                    JTextField createDeckTextField = new JTextField("", TEXT_FIELD_LENGTH);
+                    JLabel questionPrompt = new JLabel("Enter a new question for the card:");
+                    JTextField cardQuestionTextField = new JTextField("", TEXT_FIELD_LENGTH);
+                    JLabel answerPrompt = new JLabel("Enter a new answer for the card:");
+                    JTextField cardAnswerTextField = new JTextField("", TEXT_FIELD_LENGTH);
                     JButton editButton = new JButton("Edit Card");
-                    editCard.add(prompt);
-                    editCard.add(createDeckTextField);
+                    editCard.add(questionPrompt);
+                    editCard.add(cardQuestionTextField);
+                    editCard.add(answerPrompt);
+                    editCard.add(cardAnswerTextField);
                     editCard.add(editButton);
 
                     JButton deleteButton = new JButton("Delete Card");
@@ -148,7 +157,7 @@ public class CardScreen extends JPanel {
                     editButton.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            //createDeckController.create(createDeckTextField.getText());
+                            editCardController.edit(button.getName(), cardQuestionTextField.getText(), cardAnswerTextField.getText());
                             cardSettingsFrame.dispose();
                         }
                     });
@@ -247,11 +256,11 @@ public class CardScreen extends JPanel {
         createMCCard.add(questionMCTextField);
         createMCCard.add(answerMCPrompt);
         createMCCard.add(answerMCTextField);
-        createMCCard.add(createMCButton);
         createMCCard.add(dummyPrompt);
         createMCCard.add(dummy1TextField);
         createMCCard.add(dummy2TextField);
         createMCCard.add(dummy3TextField);
+        createMCCard.add(createMCButton);
 
         createQnAButton.addActionListener(new ActionListener() {
             @Override

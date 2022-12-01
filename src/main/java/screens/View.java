@@ -95,7 +95,7 @@ public class View implements ViewBoundary {
         JPanel screens = new JPanel(interfaceLayout);
         application.add(screens);
 
-        cardScreen = new CardScreen(createCardController, deleteCardController);
+        cardScreen = new CardScreen(createCardController, deleteCardController, editCardController);
         deckScreen = new DeckScreen(createDeckController, deleteDeckController, editDeckController, enterDeckController);
         mainMenuScreen = new MainMenuScreen();
         quizScreen = new QuizScreen(createQuizController, deleteQuizController);
@@ -140,7 +140,7 @@ public class View implements ViewBoundary {
         this.moveCardController = moveCardController;
         this.enterDeckController = enterDeckController;
 
-        cardScreen.setController(createCardController, deleteCardController);
+        cardScreen.setController(createCardController, deleteCardController, editCardController);
         deckScreen.setController(createDeckController, deleteDeckController, editDeckController, enterDeckController);
         quizScreen.setController(createQuizController, deleteQuizController);
     }
