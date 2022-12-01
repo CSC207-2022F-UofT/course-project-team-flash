@@ -14,11 +14,10 @@ public class ViewModel {
     private final String returnString;
 
     private final String userAnswer;
-
-    private final String cardAnswer;
-    private final List<String> multipleCardAnswers;
-
     private final String cardQuestion;
+    private final String cardAnswer;
+    private final List<String> multipleCardTypes;
+    private final List<String> multipleCardAnswers;
     private final List<String> multipleCardQuestions;
     private final String cardType;
     private final String quizName;
@@ -40,9 +39,10 @@ public class ViewModel {
         this.viewState = builder.ViewState;
         this.returnString = builder.returnString;
         this.userAnswer = builder.userAnswer;
-        this.cardAnswer = builder.cardAnswer;
-        this.multipleCardAnswers = builder.multipleCardAnswers;
         this.cardQuestion = builder.cardQuestion;
+        this.cardAnswer = builder.cardAnswer;
+        this.multipleCardTypes = builder.multipleCardTypes;
+        this.multipleCardAnswers = builder.multipleCardAnswers;
         this.multipleCardQuestions = builder.multipleCardQuestions;
         this.cardType = builder.cardType;
         this.quizName = builder.quizName;
@@ -103,6 +103,8 @@ public class ViewModel {
         return cardType;
     }
 
+    public List<String> getMultipleCardTypes() {return multipleCardTypes;}
+
     public List<String> getMultipleCardQuestions() {
         return multipleCardQuestions;
     }
@@ -119,11 +121,11 @@ public class ViewModel {
 
         //Optional parameter(s):
         private String returnString;
-
         private String userAnswer;
-        private String cardAnswer;
-        private List<String> multipleCardAnswers;
         private String cardQuestion;
+        private String cardAnswer;
+        private List<String> multipleCardTypes;
+        private List<String> multipleCardAnswers;
         private List<String> multipleCardQuestions;
         private String cardType;
         private String quizName;
@@ -150,17 +152,21 @@ public class ViewModel {
             this.userAnswer = userAnswer;
             return this;
         }
-
+        public ViewModelBuilder setCardQuestion(String cardQuestion) {
+            this.cardQuestion = cardQuestion;
+            return this;
+        }
         public ViewModelBuilder setCardAnswer(String cardAnswer){
             this.cardAnswer = cardAnswer;
+            return this;
+
+        }
+        public ViewModelBuilder setMultipleCardTypes(List<String> types) {
+            this.multipleCardTypes = types;
             return this;
         }
         public ViewModelBuilder setMultipleCardQuestions(List<String> questions) {
             this.multipleCardQuestions = questions;
-            return this;
-        }
-        public ViewModelBuilder setCardQuestion(String cardQuestion) {
-            this.cardQuestion = cardQuestion;
             return this;
         }
         public ViewModelBuilder setMultipleCardAnswers(List<String> answers) {

@@ -3,6 +3,7 @@ package screens;
 import createDeck.CreateDeckController;
 import deleteDeck.DeleteDeckController;
 import editDeck.EditDeckController;
+import enterDeck.EnterDeckController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +19,7 @@ public class DeckScreen extends JPanel {
     private CreateDeckController createDeckController;
     private DeleteDeckController deleteDeckController;
     private EditDeckController editDeckController;
+    private EnterDeckController enterDeckController;
 
     // Decks
     private final ArrayList<String> deckNames;
@@ -32,7 +34,8 @@ public class DeckScreen extends JPanel {
 
     public DeckScreen(CreateDeckController createDeckController,
                       DeleteDeckController deleteDeckController,
-                      EditDeckController editDeckController) {
+                      EditDeckController editDeckController,
+                      EnterDeckController enterDeckController) {
         super(new GridBagLayout());
         this.gridBagConstraints = new GridBagConstraints();
         this.deckNames = new ArrayList<>();
@@ -42,15 +45,18 @@ public class DeckScreen extends JPanel {
         this.createDeckController = createDeckController;
         this.deleteDeckController = deleteDeckController;
         this.editDeckController = editDeckController;
+        this.enterDeckController = enterDeckController;
         drawComponents();
     }
 
     public void setController(CreateDeckController createDeckController,
                               DeleteDeckController deleteDeckController,
-                              EditDeckController editDeckController) {
+                              EditDeckController editDeckController,
+                              EnterDeckController enterDeckController) {
         this.createDeckController = createDeckController;
         this.deleteDeckController = deleteDeckController;
         this.editDeckController = editDeckController;
+        this.enterDeckController = enterDeckController;
     }
 
     public void reconstructDecks(boolean delete, String deckName) {
@@ -139,6 +145,8 @@ public class DeckScreen extends JPanel {
                     setVisible(false);
                     for (Component c : getParent().getComponents()) {
                         if (c instanceof CardScreen) {
+                            enterDeckController.enter(button.getText());
+                            ((CardScreen) c).setDeck(button.getText());
                             c.setVisible(true);
                             return;
                         }
