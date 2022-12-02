@@ -35,30 +35,23 @@ public class MoveCardInteractor implements MoveCardInputBoundary{
         if (!(Deck.getTracker().containsKey(newDeckName) && Deck.getTracker().containsKey(oldDeckName))) {
             MoveCardOutputData moveCardOutputData = new MoveCardOutputData("Deck not found");
             moveCardOutputBoundary.prepareFailView(moveCardOutputData);
-        }
+        } else {
 
-        Deck oldDeck = Deck.getTracker().get(oldDeckName);
-        Deck newDeck = Deck.getTracker().get(newDeckName);
+            Deck oldDeck = Deck.getTracker().get(oldDeckName);
+            Deck newDeck = Deck.getTracker().get(newDeckName);
+            Flashcard card = Flashcard.getTracker().get(cardID);
 
-        if (!(Flashcard.getTracker().containsKey(cardID))){
-            MoveCardOutputData moveCardOutputData = new MoveCardOutputData("Card not found");
-            moveCardOutputBoundary.prepareFailView(moveCardOutputData);
-        }
+            if (!(oldDeck.getCards().contains(card))) {
+                MoveCardOutputData moveCardOutputData = new MoveCardOutputData("Card not found");
+                moveCardOutputBoundary.prepareFailView(moveCardOutputData);
+            } else {
 
-        Flashcard card = Flashcard.getTracker().get(moveCardInputData.getCardID());
+                oldDeck.removeCard(card);
+                newDeck.addCard(card);
 
-        if (!(oldDeck.getCards().contains(card))) {
-            MoveCardOutputData moveCardOutputData = new MoveCardOutputData("Card not found");
-            moveCardOutputBoundary.prepareFailView(moveCardOutputData);
-        }
-
-        else {
-
-            oldDeck.removeCard(card);
-            newDeck.addCard(card);
-
-            MoveCardOutputData moveCardOutputData = new MoveCardOutputData("Flashcard moved.");
-            moveCardOutputBoundary.prepareSuccessView(moveCardOutputData);
+                MoveCardOutputData moveCardOutputData = new MoveCardOutputData("Flashcard moved.");
+                moveCardOutputBoundary.prepareSuccessView(moveCardOutputData);
+            }
         }
     }
 }
