@@ -39,6 +39,31 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
      */
     private Flashcard cardFormatter(String cardInfo){
         String[] cardInfoArray = cardInfo.split(";");
+
+        int type;
+        try {
+            type = Integer.parseInt(cardInfoArray[0]);
+        }
+        catch (NumberFormatException e){
+            type = -1;
+        }
+
+        String question;
+        try {
+            question = cardInfoArray[1];
+        }
+        catch (ArrayIndexOutOfBoundsException e){
+            question = null;
+        }
+
+        String answer;
+        try {
+            answer = cardInfoArray[2];
+        }
+        catch (ArrayIndexOutOfBoundsException e){
+            answer = null;
+        }
+
         List<String> options;
         try {
             options = Arrays.asList(cardInfoArray[3].split(","));
@@ -46,7 +71,8 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
         catch (ArrayIndexOutOfBoundsException e){
             options = null;
         }
-        return cardFactory.createCard(Integer.parseInt(cardInfoArray[0]), cardInfoArray[1], cardInfoArray[2], options);
+
+        return cardFactory.createCard(type, question, answer, options);
     }
 
     /**

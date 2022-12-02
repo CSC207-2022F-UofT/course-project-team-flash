@@ -46,4 +46,31 @@ public class ImportDeckInteractorTest {
         ImportDeckInputData inputData = new ImportDeckInputData("Test");
         interactor.importDeck(inputData);
     }
+
+    @Test
+    void importInvalidFile(){
+        Map<String, List<String>> files = new HashMap<>();
+        List<String> fileContents = new ArrayList<>();
+        fileContents.add("QANDA-Will this pass?-No");
+        files.put("BadTest", fileContents);
+        ImportDeckDsGateway deckRepository = new DeckInMemoryImport(files);
+        ImportDeckOutputBoundary presenter = new ImportDeckPresenter(null) {
+            @Override
+            public void prepareSuccessView(ImportDeckOutputData outputData){
+                Deck actual = Deck.getTracker().get(outputData.getImportedDeckName());
+                Assertions.assertEquals("BadTest", actual.getName());
+                List<Flashcard> actualCards = actual.getCards();
+                Assertions.assertTrue(actualCards.isEmpty());
+            }
+
+            @Override
+            public void prepareFailView(String exception){
+                Assertions.fail(exception);
+            }
+        };
+        CardFactory cardFactory = new FlashcardFactory();
+        ImportDeckInputBoundary interactor = new ImportDeckInteractor(deckRepository, presenter, cardFactory);
+        ImportDeckInputData inputData = new ImportDeckInputData("BadTest");
+        interactor.importDeck(inputData);
+    }
 }
