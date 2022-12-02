@@ -1,11 +1,9 @@
 package entities;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.After;
 import org.junit.jupiter.api.Test;
 
-import java.util.Objects;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Map;
 
 class QandAFlashcardTest {
 
@@ -70,4 +68,11 @@ class QandAFlashcardTest {
         assert Flashcard.getTracker().size() == 2;
     }
 
+    @After
+    public void after() {
+        Map<String, Flashcard> tracker = Flashcard.getTracker();
+        for (String key: tracker.keySet()) {
+            tracker.remove(key);
+        }
+    }
 }
