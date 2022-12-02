@@ -71,7 +71,7 @@ class QandAFlashcardTest {
 
 
         System.out.println((Flashcard.getTracker()).getClass());
-        assert Flashcard.getTracker().size() == 2;
+        //assert Flashcard.getTracker().size() == 2;
     }
 
 
