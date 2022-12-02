@@ -67,7 +67,7 @@ class QandAFlashcardTest {
         Flashcard card2 = new QandAFlashcard(question, answer);
         Flashcard.addTracker(card2.getUniqueID(), card2);
 
-        assert Flashcard.getTracker().size() == Flashcard.getTracker().size();
+        assert Flashcard.getTracker().size() == 2;
     }
 
 }
