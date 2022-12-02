@@ -12,6 +12,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class QandAFlashcardTest {
 
+    @BeforeEach
+    public void clearTrackers(){
+        Map<String, Flashcard> tracker = Flashcard.getTracker();
+        tracker.clear();
+    }
 
 
     @Test
@@ -72,6 +77,7 @@ class QandAFlashcardTest {
 
     @Test
     void addTracker() {
+
         String question = "What is 9 + 10?";
         String answer = "19";
 
