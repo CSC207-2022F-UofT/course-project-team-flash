@@ -19,6 +19,7 @@ public class ViewModel {
     private final List<String> multipleCardTypes;
     private final List<String> multipleCardAnswers;
     private final List<String> multipleCardQuestions;
+    private final List<String> multipleCardIDs;
     private final String cardType;
     private final String quizName;
 
@@ -44,6 +45,7 @@ public class ViewModel {
         this.multipleCardTypes = builder.multipleCardTypes;
         this.multipleCardAnswers = builder.multipleCardAnswers;
         this.multipleCardQuestions = builder.multipleCardQuestions;
+        this.multipleCardIDs = builder.multipleCardIDs;
         this.cardType = builder.cardType;
         this.quizName = builder.quizName;
         this.deckName = builder.deckName;
@@ -79,13 +81,7 @@ public class ViewModel {
         return deckName;
     }
 
-    public String getCardId() {
-        return cardId;
-    }
-
-    public List<String> getCardIdList() {
-        return cardIdList;
-    }
+    public String getCardId() { return cardId; }
 
     public String[] getCardIdArray(){
         return this.cardIdArray;
@@ -113,6 +109,10 @@ public class ViewModel {
         return multipleCardAnswers;
     }
 
+    public List<String> getMultipleCardIDs() {
+        return multipleCardIDs;
+    }
+
     //Builder:
     public static class ViewModelBuilder{
 
@@ -127,6 +127,7 @@ public class ViewModel {
         private List<String> multipleCardTypes;
         private List<String> multipleCardAnswers;
         private List<String> multipleCardQuestions;
+        private List<String> multipleCardIDs;
         private String cardType;
         private String quizName;
         private String deckName;
@@ -171,6 +172,10 @@ public class ViewModel {
         }
         public ViewModelBuilder setMultipleCardAnswers(List<String> answers) {
             this.multipleCardAnswers = answers;
+            return this;
+        }
+        public ViewModelBuilder setMultipleCardIDs(List<String> ids) {
+            this.multipleCardIDs = ids;
             return this;
         }
         public ViewModelBuilder setCardType(String cardType) {

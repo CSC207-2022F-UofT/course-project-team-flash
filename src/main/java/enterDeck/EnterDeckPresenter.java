@@ -19,17 +19,20 @@ public class EnterDeckPresenter implements EnterDeckOutputBoundary {
         List<String> types = new ArrayList<>();
         List<String> questions = new ArrayList<>();
         List<String> answers = new ArrayList<>();
+        List<String> ids = new ArrayList<>();
 
         for (List<String> info : outputData.getCardInfo()) {
             types.add(info.get(0));
             questions.add(info.get(1));
             answers.add(info.get(2));
+            ids.add(info.get(3));
         }
 
         ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.ENTER_DECK)
                 .setMultipleCardTypes(types)
                 .setMultipleCardQuestions(questions)
                 .setMultipleCardAnswers(answers)
+                .setMultipleCardIDs(ids)
                 .build();
 
         viewBound.updateView(viewModel);

@@ -58,7 +58,9 @@ public class CreateCardInteractor implements CreateCardInputBoundary {
                     "Flashcard created.",
                     inputData.getType(),
                     inputData.getQuestion(),
-                    inputData.getAnswer());
+                    inputData.getAnswer(),
+                    newCard.getUniqueID());
+
             outputBoundary.prepareSuccessView(outputData);
         }
     }

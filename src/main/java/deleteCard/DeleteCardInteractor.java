@@ -38,7 +38,7 @@ public class DeleteCardInteractor implements DeleteCardInputBoundary{
         deck.removeCard(card);
         Flashcard.removeTracker(deleteCardInputData.getCardID());
 
-        DeleteCardOutputData deleteCardOutputData = new DeleteCardOutputData("Card Deleted");
+        DeleteCardOutputData deleteCardOutputData = new DeleteCardOutputData("Card Deleted", deleteCardInputData.getCardID());
         deleteCardOutputBoundary.prepareSuccessView(deleteCardOutputData);
     }
 }
