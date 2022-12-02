@@ -73,4 +73,25 @@ public class ImportDeckInteractorTest {
         ImportDeckInputData inputData = new ImportDeckInputData("BadTest");
         interactor.importDeck(inputData);
     }
+
+    @Test
+    void importNonExistingFile(){
+        Map<String, List<String>> files = new HashMap<>();
+        ImportDeckDsGateway deckRepository = new DeckInMemoryImport(files);
+        ImportDeckOutputBoundary presenter = new ImportDeckPresenter(null) {
+            @Override
+            public void prepareSuccessView(ImportDeckOutputData outputData){
+                Assertions.fail("Should not be able to import nothing!");
+            }
+
+            @Override
+            public void prepareFailView(String exception){
+                Assertions.assertEquals("screens.ImportDeckFail: Test doesn't exist", exception);
+            }
+        };
+        CardFactory cardFactory = new FlashcardFactory();
+        ImportDeckInputBoundary interactor = new ImportDeckInteractor(deckRepository, presenter, cardFactory);
+        ImportDeckInputData inputData = new ImportDeckInputData("Test");
+        interactor.importDeck(inputData);
+    }
 }
