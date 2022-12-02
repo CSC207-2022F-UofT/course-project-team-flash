@@ -27,9 +27,23 @@ public class MoveCardInteractor implements MoveCardInputBoundary{
      */
     @Override
     public void move(MoveCardInputData moveCardInputData) {
-        Flashcard card = Flashcard.getTracker().get(moveCardInputData.getCardID());
+
+        if (!(Deck.getTracker().containsKey(moveCardInputData.getOldDeckID())) ||
+                !(Deck.getTracker().containsKey(moveCardInputData.getNewDeckID()))) {
+            MoveCardOutputData moveCardOutputData = new MoveCardOutputData("Deck not found");
+            moveCardOutputBoundary.prepareFailView(moveCardOutputData);
+        }
+
         Deck oldDeck = Deck.getTracker().get(moveCardInputData.getOldDeckID());
         Deck newDeck = Deck.getTracker().get(moveCardInputData.getNewDeckID());
+
+        if (!(Flashcard.getTracker().containsKey(moveCardInputData.getCardID())) ||
+        (!(oldDeck.getCards().contains(Flashcard.getTracker().get(moveCardInputData.getCardID()))))){
+            MoveCardOutputData moveCardOutputData = new MoveCardOutputData("Card not found");
+            moveCardOutputBoundary.prepareFailView(moveCardOutputData);
+        }
+
+        Flashcard card = Flashcard.getTracker().get(moveCardInputData.getCardID());
 
         oldDeck.removeCard(card);
         newDeck.addCard(card);
