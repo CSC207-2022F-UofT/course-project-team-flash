@@ -28,22 +28,31 @@ public class MoveCardInteractor implements MoveCardInputBoundary{
     @Override
     public void move(MoveCardInputData moveCardInputData) {
 
-        if (!(Deck.getTracker().containsKey(moveCardInputData.getOldDeckID())) ||
-                !(Deck.getTracker().containsKey(moveCardInputData.getNewDeckID()))) {
+        String newDeckName = moveCardInputData.getNewDeckID();
+        String oldDeckName = moveCardInputData.getOldDeckID();
+        String cardID = moveCardInputData.getCardID();
+
+        if (!(Deck.getTracker().containsKey(newDeckName) && Deck.getTracker().containsKey(oldDeckName))) {
             MoveCardOutputData moveCardOutputData = new MoveCardOutputData("Deck not found");
             moveCardOutputBoundary.prepareFailView(moveCardOutputData);
         }
 
-        Deck oldDeck = Deck.getTracker().get(moveCardInputData.getOldDeckID());
-        Deck newDeck = Deck.getTracker().get(moveCardInputData.getNewDeckID());
+        Deck oldDeck = Deck.getTracker().get(oldDeckName);
+        Deck newDeck = Deck.getTracker().get(newDeckName);
 
-        if (!(Flashcard.getTracker().containsKey(moveCardInputData.getCardID())) ||
-        (!(oldDeck.getCards().contains(Flashcard.getTracker().get(moveCardInputData.getCardID()))))){
+        if (!(Flashcard.getTracker().containsKey(cardID))){
             MoveCardOutputData moveCardOutputData = new MoveCardOutputData("Card not found");
             moveCardOutputBoundary.prepareFailView(moveCardOutputData);
-        } else {
+        }
 
-            Flashcard card = Flashcard.getTracker().get(moveCardInputData.getCardID());
+        Flashcard card = Flashcard.getTracker().get(moveCardInputData.getCardID());
+
+        if (!(oldDeck.getCards().contains(card))) {
+            MoveCardOutputData moveCardOutputData = new MoveCardOutputData("Card not found");
+            moveCardOutputBoundary.prepareFailView(moveCardOutputData);
+        }
+
+        else {
 
             oldDeck.removeCard(card);
             newDeck.addCard(card);
