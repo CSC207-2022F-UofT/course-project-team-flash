@@ -63,7 +63,10 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
             Deck.addTracker(deckName, importedDeck);
             for (String cardInfo : dsOutputData.getImportedCards()){
                 Flashcard newCard = cardFormatter(cardInfo);
-                if (newCard != null) importedDeck.addCard(newCard);
+                if (newCard != null){
+                    Flashcard.addTracker(newCard.getUniqueID(), newCard);
+                    importedDeck.addCard(newCard);
+                }
             }
             ImportDeckOutputData outputData = new ImportDeckOutputData(deckName);
             outputBoundary.prepareSuccessView(outputData);
