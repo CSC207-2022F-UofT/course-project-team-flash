@@ -50,29 +50,33 @@ public class ExportDeckInteractor implements ExportDeckInputBoundary{
         String filePath = inputData.getFilePath();
         String deckToExportName = inputData.getDeckToExportName();
         Deck deckToExport = Deck.getTracker().get(deckToExportName);
-        List<String> deckCards = new ArrayList<>();
-        for (Flashcard card : deckToExport.getCards()){
-            String cardType = getCardType(card);
-            if (cardType.equals("-1")){continue;}
-            String cardInfo = cardType + ";" + card.getQuestion() + ";" + card.getAnswer();
-            if (cardType.equals("2")){
-                String optionInfo = ";";
-                for (String option : ((MCFlashcard)card).getOptions()){
-                    optionInfo = optionInfo.concat(option+",");
+        if (deckToExport == null) outputBoundary.prepareFailView("Cannot export, selected deck does not exist!");
+        else {
+            List<String> deckCards = new ArrayList<>();
+            for (Flashcard card : deckToExport.getCards()) {
+                String cardType = getCardType(card);
+                if (cardType.equals("-1")) {
+                    continue;
                 }
-                cardInfo = cardInfo.concat(optionInfo);
+                String cardInfo = cardType + ";" + card.getQuestion() + ";" + card.getAnswer();
+                if (cardType.equals("2")) {
+                    String optionInfo = ";";
+                    for (String option : ((MCFlashcard) card).getOptions()) {
+                        optionInfo = optionInfo.concat(option + ",");
+                    }
+                    cardInfo = cardInfo.concat(optionInfo);
+                }
+                deckCards.add(cardInfo);
             }
-            deckCards.add(cardInfo);
+            ExportDeckDsInputData exportDeckDsInputData = new ExportDeckDsInputData(filePath, deckToExportName, deckCards);
+            try {
+                dsGateway.exportToFile(exportDeckDsInputData);
+            } catch (ExportDeckFail e) {
+                outputBoundary.prepareFailView(e.toString());
+            }
+            ExportDeckOutputData outputData = new ExportDeckOutputData(deckToExportName + " was exported to: "
+                    + filePath + deckToExportName + ".deck");
+            outputBoundary.prepareSuccessView(outputData);
         }
-        ExportDeckDsInputData exportDeckDsInputData = new ExportDeckDsInputData(filePath, deckToExportName, deckCards);
-        try{
-            dsGateway.exportToFile(exportDeckDsInputData);
-        }
-        catch (ExportDeckFail e){
-            outputBoundary.prepareFailView(e.toString());
-        }
-        ExportDeckOutputData outputData = new ExportDeckOutputData(deckToExportName + " was exported to: "
-                                                                    + filePath + deckToExportName+".deck");
-        outputBoundary.prepareSuccessView(outputData);
     }
 }
