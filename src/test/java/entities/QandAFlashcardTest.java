@@ -1,5 +1,6 @@
 package entities;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -67,7 +68,7 @@ class QandAFlashcardTest {
         Flashcard card2 = new QandAFlashcard(question, answer);
         Flashcard.addTracker(card2.getUniqueID(), card2);
 
-        assert Flashcard.getTracker().size() == 2;
+        Assertions.assertEquals(Flashcard.getTracker().size(), 2);
     }
 
 }
