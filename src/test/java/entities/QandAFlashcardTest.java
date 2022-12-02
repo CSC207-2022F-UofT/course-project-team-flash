@@ -1,11 +1,8 @@
 package entities;
 
-import org.junit.After;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -70,11 +67,7 @@ class QandAFlashcardTest {
         Flashcard card2 = new QandAFlashcard(question, answer);
         Flashcard.addTracker(card2.getUniqueID(), card2);
 
-        Map<String, Flashcard> flashcardTracker = Flashcard.getTracker();
-
-        assert flashcardTracker.size() == 2;
+        assert Flashcard.getTracker().size() == 2;
     }
-
-
 
 }
