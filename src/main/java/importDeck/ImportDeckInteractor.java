@@ -16,6 +16,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ImportDeckInteractor implements ImportDeckInputBoundary{
+    private static final int INVALID_CARD_TYPE = -1;
+    private static final int TYPE_POSITION = 0;
+    private static final int QUESTION_POSITION = 1;
+    private static final int ANSWER_POSITION = 2;
+    private static final int OPTIONS_POSITION = 3;
     private final ImportDeckDsGateway dsGateway;
     private final ImportDeckOutputBoundary outputBoundary;
     private final CardFactory cardFactory;
@@ -42,15 +47,15 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
 
         int type;
         try {
-            type = Integer.parseInt(cardInfoArray[0]);
+            type = Integer.parseInt(cardInfoArray[TYPE_POSITION]);
         }
         catch (NumberFormatException e){
-            type = -1;
+            type = INVALID_CARD_TYPE;
         }
 
         String question;
         try {
-            question = cardInfoArray[1];
+            question = cardInfoArray[QUESTION_POSITION];
         }
         catch (ArrayIndexOutOfBoundsException e){
             question = null;
@@ -58,7 +63,7 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
 
         String answer;
         try {
-            answer = cardInfoArray[2];
+            answer = cardInfoArray[ANSWER_POSITION];
         }
         catch (ArrayIndexOutOfBoundsException e){
             answer = null;
@@ -66,7 +71,7 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
 
         List<String> options;
         try {
-            options = Arrays.asList(cardInfoArray[3].split(","));
+            options = Arrays.asList(cardInfoArray[OPTIONS_POSITION].split(","));
         }
         catch (ArrayIndexOutOfBoundsException e){
             options = null;
