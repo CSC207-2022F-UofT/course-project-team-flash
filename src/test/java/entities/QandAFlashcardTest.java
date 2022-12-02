@@ -4,7 +4,7 @@ import org.junit.After;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Map;
+import java.util.HashMap;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -69,13 +69,11 @@ class QandAFlashcardTest {
         Flashcard card2 = new QandAFlashcard(question, answer);
         Flashcard.addTracker(card2.getUniqueID(), card2);
 
+
+        System.out.println((Flashcard.getTracker()).getClass());
         assert Flashcard.getTracker().size() == 2;
     }
-    @After
-    public void after() throws Exception {
-        Map<String, Flashcard> tracker = Flashcard.getTracker();
-        for (String key: tracker.keySet()) {
-            tracker.remove(key);
-        }
-    }
+
+
+
 }
