@@ -32,7 +32,7 @@ public class MoveCardInteractor implements MoveCardInputBoundary{
         String oldDeckName = moveCardInputData.getOldDeckID();
         String cardID = moveCardInputData.getCardID();
 
-        if (!(Deck.getTracker().containsKey(newDeckName) && Deck.getTracker().containsKey(oldDeckName))) {
+        if (!(Deck.getTracker().containsKey(newDeckName)) || !(Deck.getTracker().containsKey(oldDeckName))) {
             MoveCardOutputData moveCardOutputData = new MoveCardOutputData("Deck not found");
             moveCardOutputBoundary.prepareFailView(moveCardOutputData);
         } else {
@@ -41,16 +41,17 @@ public class MoveCardInteractor implements MoveCardInputBoundary{
             Deck newDeck = Deck.getTracker().get(newDeckName);
             Flashcard card = Flashcard.getTracker().get(cardID);
 
-            if (!(oldDeck.getCards().contains(card))) {
-                MoveCardOutputData moveCardOutputData = new MoveCardOutputData("Card not found");
-                moveCardOutputBoundary.prepareFailView(moveCardOutputData);
-            } else {
+            if (oldDeck.getCards().contains(card)) {
 
                 oldDeck.removeCard(card);
                 newDeck.addCard(card);
 
                 MoveCardOutputData moveCardOutputData = new MoveCardOutputData("Flashcard moved.");
                 moveCardOutputBoundary.prepareSuccessView(moveCardOutputData);
+
+            } else {
+                MoveCardOutputData moveCardOutputData = new MoveCardOutputData("Card not found");
+                moveCardOutputBoundary.prepareFailView(moveCardOutputData);
             }
         }
     }
