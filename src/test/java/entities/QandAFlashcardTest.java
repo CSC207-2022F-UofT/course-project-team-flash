@@ -80,7 +80,7 @@ class QandAFlashcardTest {
         Flashcard card2 = new QandAFlashcard(question, answer);
         Flashcard.addTracker(card2.getUniqueID(), card2);
 
-        assert Flashcard.getTracker().size() > 2;
+        assert Flashcard.getTracker().size() < 4;
     }
 
 
