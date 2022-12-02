@@ -63,7 +63,7 @@ class QandAFlashcardTest {
     }
 
     @After
-    void tearDown(){
+    public void tearDown(){
         Map<String, Flashcard> tracker = Flashcard.getTracker();
         for (String key: tracker.keySet()) {
             tracker.remove(key);
@@ -80,7 +80,7 @@ class QandAFlashcardTest {
         Flashcard card2 = new QandAFlashcard(question, answer);
         Flashcard.addTracker(card2.getUniqueID(), card2);
 
-        assert Flashcard.getTracker().size() == 2;
+        assert Flashcard.getTracker().size() > 2;
     }
 
 
