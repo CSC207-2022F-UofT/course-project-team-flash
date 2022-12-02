@@ -69,7 +69,7 @@ class QandAFlashcardTest {
 
         int flashcardTrackerSize = Flashcard.getTracker().size();
 
-        assert flashcardTrackerSize > 2;
+        assert flashcardTrackerSize < 2;
     }
 
 }
