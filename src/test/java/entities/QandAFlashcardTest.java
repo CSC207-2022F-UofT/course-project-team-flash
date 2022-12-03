@@ -11,6 +11,11 @@ import java.util.Objects;
 import static org.junit.jupiter.api.Assertions.*;
 
 class QandAFlashcardTest {
+    @BeforeEach
+    public void clearTrackers(){
+        Map<String, Flashcard> tracker = Flashcard.getTracker();
+        tracker.clear();
+    }
 
     @BeforeEach
     public void clearTrackers(){
