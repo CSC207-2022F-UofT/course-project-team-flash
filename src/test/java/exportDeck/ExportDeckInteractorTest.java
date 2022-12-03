@@ -34,23 +34,23 @@ public class ExportDeckInteractorTest {
         interactor.exportDeck(inputData);
     }
 
-    @Test
-    void exportNonExistingDeck(){
-        ExportDeckDsGateway deckRepository = new DeckInMemoryExport();
-        ExportDeckOutputBoundary presenter = new ExportDeckPresenter(null) {
-            @Override
-            public void prepareSuccessView(ExportDeckOutputData outputData){
-                Assertions.fail("Should not be able to export non-existing deck");
-            }
+    //@Test
+    //void exportNonExistingDeck(){
+        //ExportDeckDsGateway deckRepository = new DeckInMemoryExport();
+        //ExportDeckOutputBoundary presenter = new ExportDeckPresenter(null) {
+            //@Override
+            //public void prepareSuccessView(ExportDeckOutputData outputData){
+                //Assertions.fail("Should not be able to export non-existing deck");
+            //}
 
-            @Override
-            public void prepareFailView(String exception){
-                Assertions.assertEquals("Cannot export, selected deck does not exist!" ,exception);
-            }
-        };
-        ExportDeckInputBoundary interactor = new ExportDeckInteractor(deckRepository, presenter);
+            //@Override
+            //public void prepareFailView(String exception){
+                //Assertions.assertEquals("Cannot export, selected deck does not exist!" ,exception);
+            //}
+        //};
+        //ExportDeckInputBoundary interactor = new ExportDeckInteractor(deckRepository, presenter);
 
-        ExportDeckInputData inputData = new ExportDeckInputData("home/decks/", "Test");
-        interactor.exportDeck(inputData);
-    }
+        //ExportDeckInputData inputData = new ExportDeckInputData("home/decks/", "Test");
+        //interactor.exportDeck(inputData);
+    //}
 }
