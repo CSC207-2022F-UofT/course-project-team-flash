@@ -5,10 +5,6 @@
  */
 package createDeck;
 
-import createDeck.CreateDeckInputBoundary;
-import createDeck.CreateDeckInputData;
-import createDeck.CreateDeckOutputBoundary;
-import createDeck.CreateDeckOutputData;
 import entities.Deck;
 
 public class CreateDeckInteractor implements CreateDeckInputBoundary {
@@ -25,7 +21,6 @@ public class CreateDeckInteractor implements CreateDeckInputBoundary {
      */
     @Override
     public void create(CreateDeckInputData inputData) {
-        System.out.println(Deck.getTracker().containsKey(inputData.getName()));
         if (Deck.getTracker().containsKey(inputData.getName())){
             CreateDeckOutputData outputData = new CreateDeckOutputData("Deck name already exists!");
             outputBoundary.prepareFailView(outputData);
