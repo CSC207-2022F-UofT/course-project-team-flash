@@ -16,11 +16,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ImportDeckInteractor implements ImportDeckInputBoundary{
-    private static final int INVALID_CARD_TYPE = -1;
-    private static final int TYPE_POSITION = 0;
-    private static final int QUESTION_POSITION = 1;
-    private static final int ANSWER_POSITION = 2;
-    private static final int OPTIONS_POSITION = 3;
     private final ImportDeckDsGateway dsGateway;
     private final ImportDeckOutputBoundary outputBoundary;
     private final CardFactory cardFactory;
@@ -44,40 +39,14 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
      */
     private Flashcard cardFormatter(String cardInfo){
         String[] cardInfoArray = cardInfo.split(";");
-
-        int type;
-        try {
-            type = Integer.parseInt(cardInfoArray[TYPE_POSITION]);
-        }
-        catch (NumberFormatException e){
-            type = INVALID_CARD_TYPE;
-        }
-
-        String question;
-        try {
-            question = cardInfoArray[QUESTION_POSITION];
-        }
-        catch (ArrayIndexOutOfBoundsException e){
-            question = null;
-        }
-
-        String answer;
-        try {
-            answer = cardInfoArray[ANSWER_POSITION];
-        }
-        catch (ArrayIndexOutOfBoundsException e){
-            answer = null;
-        }
-
         List<String> options;
         try {
-            options = Arrays.asList(cardInfoArray[OPTIONS_POSITION].split(","));
+            options = Arrays.asList(cardInfoArray[3].split(","));
         }
         catch (ArrayIndexOutOfBoundsException e){
             options = null;
         }
-
-        return cardFactory.createCard(type, question, answer, options);
+        return cardFactory.createCard(Integer.parseInt(cardInfoArray[0]), cardInfoArray[1], cardInfoArray[2], options);
     }
 
     /**
@@ -94,10 +63,7 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
             Deck.addTracker(deckName, importedDeck);
             for (String cardInfo : dsOutputData.getImportedCards()){
                 Flashcard newCard = cardFormatter(cardInfo);
-                if (newCard != null){
-                    Flashcard.addTracker(newCard.getUniqueID(), newCard);
-                    importedDeck.addCard(newCard);
-                }
+                if (newCard != null) importedDeck.addCard(newCard);
             }
             ImportDeckOutputData outputData = new ImportDeckOutputData(deckName);
             outputBoundary.prepareSuccessView(outputData);
