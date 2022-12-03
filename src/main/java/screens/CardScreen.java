@@ -266,7 +266,7 @@ public class CardScreen extends JPanel {
         createQnAButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                createCardController.create(deckName, 1, questionQnATextField.getText(), answerQnATextField.getText());
+                createCardController.create(deckName, questionQnATextField.getText(), answerQnATextField.getText());
                 newCardFrame.dispose();
             }
         });
@@ -275,7 +275,7 @@ public class CardScreen extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 List<String> dummyAnswers = Arrays.asList(dummy1TextField.getText(), dummy2TextField.getText(), dummy3TextField.getText());;
-                createCardController.create(deckName, 1, questionMCTextField.getText(), answerMCTextField.getText(), dummyAnswers);
+                createCardController.create(deckName, questionMCTextField.getText(), answerMCTextField.getText(), dummyAnswers);
                 newCardFrame.dispose();
             }
         });

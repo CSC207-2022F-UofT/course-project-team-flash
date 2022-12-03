@@ -37,6 +37,7 @@ public class DeckScreen extends JPanel {
                       EditDeckController editDeckController,
                       EnterDeckController enterDeckController) {
         super(new GridBagLayout());
+        customize();
         this.gridBagConstraints = new GridBagConstraints();
         this.deckNames = new ArrayList<>();
         this.deckButtons = new ArrayList<>();
@@ -83,44 +84,29 @@ public class DeckScreen extends JPanel {
     }
 
     private void drawComponents() {
-        // creates/recreates the components of the Jpanel
-        this.removeAll();
-        deckButtons.clear();
-        deckSettingsButtons.clear();
+        // Resets the components of the Jpanel
+        clear();
+
+        // Initial button set up
         JButton backButton = new JButton("Back");
-        JButton deckCreationButton = new JButton("New Deck");
-        setConstraints(GridBagConstraints.FIRST_LINE_START, GridBagConstraints.NONE, 1, 1, 0, 0, 0, 0);
-        this.add(backButton, gridBagConstraints);
-        gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
-        gridBagConstraints.gridx = 1;
-        this.add(deckCreationButton, gridBagConstraints);
+        JButton deckCreationButton = new JButton("Create Deck");
+        customizeButtons(backButton, deckCreationButton);
+        addButtons(backButton, deckCreationButton);
 
         // The "squashPanel" for squashing components flush to the top
         JPanel squashPanel = new JPanel(new GridBagLayout());
-        setConstraints(GridBagConstraints.FIRST_LINE_START, GridBagConstraints.BOTH, 2, 1, 0, deckNames.size() + 2, 1, 1);
-        this.add(squashPanel, gridBagConstraints);
+        customizeSquashPanel(squashPanel);
+        addSquashPanel(squashPanel);
 
-        // Pre for loop setup (for listing decks)
-        gridBagConstraints.weighty = 0;
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        for (String name : deckNames) {
-            JButton deckButton = new JButton(name);
-            JButton deckSettingsButton = new JButton("...");
-            deckSettingsButton.setName(name);
-            deckButtons.add(deckButton);
-            deckSettingsButtons.add(deckSettingsButton);
+        // Set up for deck buttons (for listing decks)
+        loopSetUp();
 
-            gridBagConstraints.gridy += 1;
-            deckButton.setLayout(new BorderLayout());
-            gridBagConstraints.fill = gridBagConstraints.HORIZONTAL;
-            this.add(deckButton, gridBagConstraints);
-            deckButton.add(deckSettingsButton, BorderLayout.EAST);
-        }
-        // re-renders the screen with new components
-        this.revalidate();
-        this.repaint();
+        addDeckButtons();
 
+        // Re-renders the screen with new components
+        updateScreen();
+
+        // All Buttons
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -175,8 +161,10 @@ public class DeckScreen extends JPanel {
                     JLabel prompt = new JLabel("Enter a new name for the deck:");
                     JTextField createDeckTextField = new JTextField("", TEXT_FIELD_LENGTH);
                     JButton renameButton = new JButton("Rename Deck");
+                    JTextField editDeckTextField = new JTextField("", TEXT_FIELD_LENGTH);
+
                     renameDeck.add(prompt);
-                    renameDeck.add(createDeckTextField);
+                    renameDeck.add(editDeckTextField);
                     renameDeck.add(renameButton);
 
                     JButton deleteButton = new JButton("Delete Deck " + button.getName());
@@ -185,7 +173,7 @@ public class DeckScreen extends JPanel {
                     renameButton.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            //createDeckController.create(createDeckTextField.getText());
+                            editDeckController.edit(button.getName(), editDeckTextField.getText());
                             deckSettingsFrame.dispose();
                         }
                     });
@@ -213,7 +201,6 @@ public class DeckScreen extends JPanel {
     private void chooseDeckCreation() {
         JFrame newDeckFrame = new JFrame();
         JDialog newDeckDialog = new JDialog(newDeckFrame);
-
         JTabbedPane optionTabs = new JTabbedPane();
 
         JPanel createNewDeck = new JPanel();
@@ -243,6 +230,83 @@ public class DeckScreen extends JPanel {
         newDeckDialog.setModal(true);
         newDeckDialog.setVisible(true);
 
+    }
 
+    private void clear() {
+        this.removeAll();
+        deckButtons.clear();
+        deckSettingsButtons.clear();
+    }
+    private void customize() {
+        this.setBackground(new Color(32, 32, 32));
+    }
+
+    private void customizeButtons(JButton backButton, JButton createDeckButton) {
+        backButton.setForeground(Color.white);
+        backButton.setBackground(new Color(88, 88, 88));
+
+        createDeckButton.setForeground(Color.white);
+        createDeckButton.setBackground(new Color(88, 88, 88));
+    }
+    private void addButtons(JButton backButton, JButton createDeckButton) {
+        setConstraints(GridBagConstraints.FIRST_LINE_START, GridBagConstraints.NONE, 1, 1, 0, 0, 0, 0);
+        this.add(backButton, gridBagConstraints);
+
+        gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
+        gridBagConstraints.gridx = 1;
+        this.add(createDeckButton, gridBagConstraints);
+    }
+
+    private void customizeSquashPanel(JPanel squashPanel) {
+        squashPanel.setBackground(new Color(32, 32, 32));
+    }
+
+    private void addSquashPanel(JPanel squashPanel) {
+        setConstraints(GridBagConstraints.CENTER, GridBagConstraints.BOTH, 2, 1, 0, deckNames.size() + 2, 1, 1);
+        this.add(squashPanel, gridBagConstraints);
+    }
+
+    private void loopSetUp() {
+        gridBagConstraints.weighty = 0;
+        gridBagConstraints.weightx = 0;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+    }
+
+    private void addDeckButtons() {
+        for (String name : deckNames) {
+            JButton deckButton = new JButton(name);
+            JButton deckSettingsButton = new JButton("...");
+            initializeDeckButtons(name, deckButton, deckSettingsButton);
+        }
+    }
+
+    private void initializeDeckButtons(String name, JButton deckButton, JButton deckSettingsButton) {
+        // Customize Buttons
+        deckButton.setForeground(Color.white);
+        deckButton.setBackground(new Color(88, 88, 88));
+
+        deckSettingsButton.setPreferredSize(new Dimension(30, 20));
+        deckSettingsButton.setForeground(Color.white);
+        deckSettingsButton.setBackground(new Color(88, 88, 88));
+        deckSettingsButton.setBorder(BorderFactory.createLineBorder(new Color(20, 20, 20), 1));
+
+        // Store the buttons in class variable
+        deckSettingsButton.setName(name);
+        deckButtons.add(deckButton);
+        deckSettingsButtons.add(deckSettingsButton);
+
+        // Go to next line
+        gridBagConstraints.gridy += 1;
+
+        // Add the Settings button on the Deck Button
+        deckButton.setLayout(new BorderLayout());
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        this.add(deckButton, gridBagConstraints);
+        deckButton.add(deckSettingsButton, BorderLayout.EAST);
+    }
+    private void updateScreen() {
+        this.revalidate();
+        this.repaint();
     }
 }

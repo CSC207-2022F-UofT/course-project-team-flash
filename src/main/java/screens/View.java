@@ -68,7 +68,7 @@ public class View implements ViewBoundary {
     private String quizName;
 
     private String deckName;
-
+    private String deckName2;
     private String cardId;
 
     private List<String> cardTypes;
@@ -154,6 +154,7 @@ public class View implements ViewBoundary {
         this.cardID = viewModel.getCardId();
         this.quizName = viewModel.getQuizName();
         this.deckName = viewModel.getDeckName();
+        this.deckName2 = viewModel.getDeckName2();
         this.cardId = viewModel.getCardId();
         this.cardIdArray = viewModel.getCardIdArray();
         this.currCardIndex = viewModel.getCurrCardIndex();
@@ -237,6 +238,12 @@ public class View implements ViewBoundary {
             case DECK_DELETED:
                 deckScreen.reconstructDecks(true, deckName);
                 quizScreen.reconstructDecks(true, deckName);
+
+                break;
+
+            case DECK_EDITED:
+                deckScreen.reconstructDecks(true, deckName2);
+                deckScreen.reconstructDecks(false, deckName);
 
                 break;
 
