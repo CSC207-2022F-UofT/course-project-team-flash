@@ -48,7 +48,7 @@ public class CreateCardOutputData {
 
         String strType = "";
         if (type == 1) {
-            strType = "Q and A";
+            strType = "Question and Answer";
         } else if (type == 2) {
             strType = "Multiple Choice";
         } else if (type == 3) {
