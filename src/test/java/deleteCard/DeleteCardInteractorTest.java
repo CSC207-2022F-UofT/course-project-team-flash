@@ -45,7 +45,7 @@ class DeleteCardInteractorTest {
 
             @Override
             public void prepareFailView(DeleteCardOutputData deleteCardOutputData) {
-                Assertions.assertEquals("Card not found", deleteCardOutputData);
+                Assertions.assertEquals("Card not found", deleteCardOutputData.getMessage());
             }
         };
 
