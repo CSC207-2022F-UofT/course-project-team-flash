@@ -32,13 +32,20 @@ public class DeleteCardInteractor implements DeleteCardInputBoundary{
      */
     @Override
     public void delete(DeleteCardInputData deleteCardInputData){
-        Flashcard card = Flashcard.getTracker().get(deleteCardInputData.getCardID());
-        Deck deck = Deck.getTracker().get(deleteCardInputData.getDeckName());
+        if (!(Flashcard.getTracker().containsKey(deleteCardInputData.getCardID())) ||
+                !(Deck.getTracker().get(deleteCardInputData.getDeckName()).getCards()
+                        .contains(Flashcard.getTracker().get(deleteCardInputData.getCardID())))) {
+            DeleteCardOutputData deleteCardOutputData = new DeleteCardOutputData("Card not found", deleteCardInputData.getCardID());
+            deleteCardOutputBoundary.prepareFailView(deleteCardOutputData);
+        } else {
+            Flashcard card = Flashcard.getTracker().get(deleteCardInputData.getCardID());
+            Deck deck = Deck.getTracker().get(deleteCardInputData.getDeckName());
 
-        deck.removeCard(card);
-        Flashcard.removeTracker(deleteCardInputData.getCardID());
+            deck.removeCard(card);
+            Flashcard.removeTracker(deleteCardInputData.getCardID());
 
-        DeleteCardOutputData deleteCardOutputData = new DeleteCardOutputData("Card Deleted", deleteCardInputData.getCardID());
-        deleteCardOutputBoundary.prepareSuccessView(deleteCardOutputData);
+            DeleteCardOutputData deleteCardOutputData = new DeleteCardOutputData("Card Deleted", deleteCardInputData.getCardID());
+            deleteCardOutputBoundary.prepareSuccessView(deleteCardOutputData);
+        }
     }
 }
