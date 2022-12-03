@@ -8,10 +8,20 @@ public class RunQuizPresenter implements RunQuizOutputBoundary {
 
     private ViewBoundary viewBound;
 
+
+    /**
+     * Creates a RunQuizPresenter object given a ViewBoundary object.
+     * @param viewBound the interface between this presenter and the view.
+     */
     RunQuizPresenter(ViewBoundary viewBound){
         this.viewBound = viewBound;
     }
 
+    /**
+     * Prepares the success view given a ShowAnswerOutputData, if the quiz exists.
+     *
+     * @param outputData the ShowAnswerOutputData associated with this problem
+     */
     @Override
     public void prepareSuccessView(ShowAnswerOutputData outputData) {
 
@@ -25,6 +35,11 @@ public class RunQuizPresenter implements RunQuizOutputBoundary {
         viewBound.updateView(viewModel);
     }
 
+    /**
+     * Prepares the success view given a ShowProblemOutputData, if the quiz exists.
+     *
+     * @param outputData the ShowProblemOutputData associated with this problem
+     */
     @Override
     public void prepareSuccessView(ShowProblemOutputData outputData) {
 
@@ -48,10 +63,13 @@ public class RunQuizPresenter implements RunQuizOutputBoundary {
 
         System.out.println("Not sure how we got here");
 
-
-
     }
 
+    /**
+     * Prepares the success view given a StartQuizOutputData, if the quiz exists.
+     *
+     * @param outputData the StartQuizOutputData associated with this quiz
+     */
     @Override
     public void prepareSuccessView(StartQuizOutputData outputData) {
 
@@ -64,6 +82,11 @@ public class RunQuizPresenter implements RunQuizOutputBoundary {
         viewBound.updateView(viewModel);
     }
 
+    /**
+     * Prepare the fail view given outputData, if the quiz does not exist.
+     *
+     * @param error the description of this error
+     */
     public void quizFailView(String error){
         throw new QuizNotFound(error);
     }

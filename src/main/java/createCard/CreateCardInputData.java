@@ -11,8 +11,6 @@
 
 package createCard;
 
-import entities.Deck;
-
 import java.util.List;
 
 public class CreateCardInputData {
@@ -26,16 +24,13 @@ public class CreateCardInputData {
      * Creates a new CreateCardInputData for MC flashcard with the given deck, type, question, answer, and options.
      *
      * @param deckName the name deck where the flashcard is to be stored in
-     * @param type the type of the flashcard = 2
-     *             1: Q&A flashcard
-     *             2: MC flashcard
      * @param question the question part of this flashcard
      * @param answer the answer part of this flashcard
      * @param options the options for this MC flashcard
      */
-    public CreateCardInputData(String deckName, int type, String question, String answer, List<String> options) {
+    public CreateCardInputData(String deckName, String question, String answer, List<String> options) {
         this.deckName = deckName;
-        this.type = type;
+        this.type = 2;
         this.question = question;
         this.answer = answer;
         this.options = options;
@@ -46,15 +41,12 @@ public class CreateCardInputData {
      * The options of this CreateCardInputData will be set to null.
      *
      * @param deckName the name of the deck where the flashcard is to be stored in
-     * @param type the type of the flashcard = 2
-     *             1: Q&A flashcard
-     *             2: MC flashcard
      * @param question the question part of this flashcard
      * @param answer the answer part of this flashcard
      */
-    public CreateCardInputData(String deckName, int type, String question, String answer) {
+    public CreateCardInputData(String deckName, String question, String answer) {
         this.deckName = deckName;
-        this.type = type;
+        this.type = 1;
         this.question = question;
         this.answer = answer;
         this.options = null;

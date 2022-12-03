@@ -1,5 +1,6 @@
 /*
  * Author: Aldo Bani
+ * Documentation Author: Aldo Bani
  * Date: November 9/22
  * This is the controller for the deck import system
  */
@@ -18,10 +19,10 @@ public class ImportDeckController {
     }
 
     /**
-     *
-     * @param fileName
+     * Imports a deck from the filesystem.
+     * @param fileName the name of the file that contains the deck information.
      */
-    public void runImport(String fileName){
+    public void importDeck(String fileName){
         ImportDeckInputData inputData = new ImportDeckInputData(fileName);
         importDeckInputBoundary.importDeck(inputData);
     }

@@ -17,9 +17,10 @@ public class CreateCardOutputData {
     private final String type;
     private final String question;
     private final String answer;
+    private final String uniqueID;
 
     /**
-     * Creates a new CreateCardOutputData given a error message, when the flashcard cannot be successfully created.
+     * Creates a new CreateCardOutputData given an error message, when the flashcard cannot be successfully created.
      *
      * @param errorMessage the error message for this failure of creating a flashcard
      */
@@ -28,6 +29,7 @@ public class CreateCardOutputData {
         this.type = null;
         this.question = null;
         this.answer = null;
+        this.uniqueID = null;
     }
 
     /**
@@ -39,8 +41,9 @@ public class CreateCardOutputData {
      *             2: MC flashcard
      * @param question the question part of this flashcard
      * @param answer the answer part of this flashcard
+     * @param uniqueID the unique ID of the card
      */
-    public CreateCardOutputData(String message, int type, String question, String answer) {
+    public CreateCardOutputData(String message, int type, String question, String answer, String uniqueID) {
         this.message = message;
 
         String strType = "";
@@ -55,6 +58,7 @@ public class CreateCardOutputData {
         this.type = strType;
         this.question = question;
         this.answer = answer;
+        this.uniqueID = uniqueID;
     }
 
     /**
@@ -91,5 +95,14 @@ public class CreateCardOutputData {
      */
     public String getAnswer() {
         return answer;
+    }
+
+    /**
+     * Returns a string representing the card's unique ID
+     *
+     * @return the uniqueID of this createCardOutputData
+     */
+    public String getUniqueID() {
+        return uniqueID;
     }
 }

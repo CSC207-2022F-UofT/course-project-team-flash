@@ -32,12 +32,11 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
     }
 
     /**
-     * Returns a StartQuizOutputData given the input data.
+     * Creates a StartQuizOutputData and passes it to the presenter.
      * If the quiz does not exist, gives fail view output data;
      * otherwise, returns success view output data.
      *
      * @param inputData the StartQuizInputData associated with the quiz to be run
-     * @return a StartQuizOutputData associated with the quiz to be run
      */
     @Override
     public void startQuiz(StartQuizInputData inputData) {
@@ -64,10 +63,10 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
     }
 
     /**
-     * Returns a ShowProblemOutputData given the input data.
+     * Creates a ShowProblemOutputData and passes it to the presenter.
      *
      * @param inputData the ShowQuizCardInputData associated with the flashcard to be shown
-     * @return a ShowProblemOutputData associated with the problem to be shown
+     *
      */
     @Override
     public void showProblem(ShowQuizCardInputData inputData) {
@@ -83,10 +82,9 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
     }
 
     /**
-     * Returns a ShowAnswerOutputData given the input data.
+     * Creates a ShowAnswerOutputData and passes it to the presenter.
      *
      * @param inputData the ShowQuizCardInputData associated with the flashcard to be shown
-     * @return a ShowAnswerOutputData associated with the answer for this problem
      */
     @Override
     public void showAnswer(ShowQuizCardInputData inputData) {

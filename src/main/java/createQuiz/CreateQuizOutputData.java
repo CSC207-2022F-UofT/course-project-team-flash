@@ -16,7 +16,7 @@ public class CreateQuizOutputData {
     private final String message;
 
     /**
-     * Creates a new CreateQuizOutputData given the quiz object and a message.
+     * Creates a new CreateQuizOutputData given the quiz name and a message.
      *
      * @param quizName the name of the quiz that is created
      * @param message a message indicating whether this quiz is created and stored successfully.

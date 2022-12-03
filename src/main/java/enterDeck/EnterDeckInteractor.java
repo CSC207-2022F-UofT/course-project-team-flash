@@ -41,6 +41,7 @@ public class EnterDeckInteractor implements EnterDeckInputBoundary {
             tempList.add(type);
             tempList.add(question);
             tempList.add(answer);
+            tempList.add(id);
 
             cardInfo.add(tempList);
         }

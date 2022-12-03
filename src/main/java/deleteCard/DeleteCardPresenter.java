@@ -34,6 +34,7 @@ public class DeleteCardPresenter implements DeleteCardOutputBoundary{
     public void prepareSuccessView(DeleteCardOutputData deleteCardOutputData) {
         ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.CARD_DELETED)
                 .setReturnString(deleteCardOutputData.getMessage())
+                .setCardId(deleteCardOutputData.getId())
                 .build();
 
         viewBoundary.updateView(viewModel);
