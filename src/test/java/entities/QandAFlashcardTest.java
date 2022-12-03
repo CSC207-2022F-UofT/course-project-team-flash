@@ -55,8 +55,17 @@ class QandAFlashcardTest {
         assert card.getUniqueID() != null;
     }
 
+    @After
+    public void tearDown(){
+        Map<String, Flashcard> tracker = Flashcard.getTracker();
+        for (String key: tracker.keySet()) {
+            tracker.remove(key);
+        }
+    }
+
     @Test
     void addTracker() {
+
         String question = "What is 9 + 10?";
         String answer = "19";
 
