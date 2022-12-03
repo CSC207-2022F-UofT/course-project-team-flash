@@ -1,11 +1,28 @@
 package entities;
 
 import org.junit.After;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
+import java.util.Objects;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class QandAFlashcardTest {
+    @BeforeEach
+    public void clearTrackers(){
+        Map<String, Flashcard> tracker = Flashcard.getTracker();
+        tracker.clear();
+    }
+
+    @BeforeEach
+    public void clearTrackers(){
+        Map<String, Flashcard> tracker = Flashcard.getTracker();
+        tracker.clear();
+    }
+
 
     @Test
     void setQuestion() {
@@ -55,8 +72,17 @@ class QandAFlashcardTest {
         assert card.getUniqueID() != null;
     }
 
+    @After
+    public void tearDown(){
+        Map<String, Flashcard> tracker = Flashcard.getTracker();
+        for (String key: tracker.keySet()) {
+            tracker.remove(key);
+        }
+    }
+
     @Test
     void addTracker() {
+
         String question = "What is 9 + 10?";
         String answer = "19";
 
@@ -68,11 +94,5 @@ class QandAFlashcardTest {
         assert Flashcard.getTracker().size() == 2;
     }
 
-    @After
-    public void after() {
-        Map<String, Flashcard> tracker = Flashcard.getTracker();
-        for (String key: tracker.keySet()) {
-            tracker.remove(key);
-        }
-    }
+
 }
