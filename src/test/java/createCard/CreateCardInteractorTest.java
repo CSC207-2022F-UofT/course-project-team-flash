@@ -38,7 +38,7 @@ class CreateCardInteractorTest {
 
         CardFactory factory = new FlashcardFactory();
         CreateCardInputBoundary interactor = new CreateCardInteractor(presenter, factory);
-        CreateCardInputData inputData = new CreateCardInputData("Testing Deck",  "question", "answer");
+        CreateCardInputData inputData = new CreateCardInputData("Testing Deck", "question", "answer");
         interactor.create(inputData);
     }
 
