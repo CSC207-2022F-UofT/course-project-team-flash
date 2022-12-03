@@ -9,12 +9,11 @@ package data;
 
 import exportDeck.ExportDeckDsGateway;
 import exportDeck.ExportDeckDsInputData;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class DeckInMemoryExport implements ExportDeckDsGateway{
-    public static Map<String, ExportDeckDsInputData> memoryDeckDirectory = new HashMap<>();
+    final private Map<String, ExportDeckDsInputData> memoryDeckDirectory = new HashMap<>();
 
     /**
      * Puts the gateway input data into a map
