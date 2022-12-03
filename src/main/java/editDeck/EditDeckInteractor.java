@@ -47,7 +47,7 @@ public class EditDeckInteractor  implements EditDeckInputBoundary {
             Deck.removeTracker(inputData.getoldName());
             Deck.addTracker(inputData.getnewName(), deck);
 
-            EditDeckOutputData outputData = new EditDeckOutputData(deck.getName());
+            EditDeckOutputData outputData = new EditDeckOutputData(deck.getName(), inputData.getoldName());
             editDeckOutputBoundary.prepareSuccessView(outputData);
         }
     }

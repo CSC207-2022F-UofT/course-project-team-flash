@@ -1,14 +1,10 @@
 package entities;
 
 import org.junit.After;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
-import java.util.Objects;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class QandAFlashcardTest {
     @BeforeEach
@@ -16,13 +12,6 @@ class QandAFlashcardTest {
         Map<String, Flashcard> tracker = Flashcard.getTracker();
         tracker.clear();
     }
-
-    @BeforeEach
-    public void clearTrackers(){
-        Map<String, Flashcard> tracker = Flashcard.getTracker();
-        tracker.clear();
-    }
-
 
     @Test
     void setQuestion() {

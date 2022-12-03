@@ -38,7 +38,7 @@ class CreateCardInteractorTest {
 
         CardFactory factory = new FlashcardFactory();
         CreateCardInputBoundary interactor = new CreateCardInteractor(presenter, factory);
-        CreateCardInputData inputData = new CreateCardInputData("Testing Deck", 1, "question", "answer");
+        CreateCardInputData inputData = new CreateCardInputData("Testing Deck",  "question", "answer");
         interactor.create(inputData);
     }
 
@@ -67,7 +67,7 @@ class CreateCardInteractorTest {
         options.add("option3");
 
         CreateCardInputData inputData = new CreateCardInputData(
-                "Testing Deck", 2, "question", "answer", options);
+                "Testing Deck", "question", "answer", options);
         interactor.create(inputData);
     }
 
@@ -87,7 +87,7 @@ class CreateCardInteractorTest {
 
         CardFactory factory = new FlashcardFactory();
         CreateCardInputBoundary interactor = new CreateCardInteractor(presenter, factory);
-        CreateCardInputData inputData = new CreateCardInputData("Testing Deck", 2, "", "answer");
+        CreateCardInputData inputData = new CreateCardInputData("Testing Deck",  "", "answer");
         interactor.create(inputData);
     }
 
