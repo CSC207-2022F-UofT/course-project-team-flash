@@ -4,8 +4,6 @@
  * This is the interactor test for the export deck use case
  */
 
-//test
-
 package exportDeck;
 
 import data.DeckInMemoryExport;
