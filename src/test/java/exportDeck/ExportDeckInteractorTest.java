@@ -40,6 +40,7 @@ public class ExportDeckInteractorTest {
         ExportDeckOutputBoundary presenter = new ExportDeckPresenter(null) {
             @Override
             public void prepareSuccessView(ExportDeckOutputData outputData){
+                // something happened here
                 Assertions.fail("Should not be able to export non-existing deck");
             }
 
