@@ -280,6 +280,7 @@ public class View implements ViewBoundary {
 
             case DECK_IMPORTED:
                 deckScreen.reconstructDecks(false, deckName);
+                quizScreen.reconstructDecks(false, deckName);
 
                 break;
 
