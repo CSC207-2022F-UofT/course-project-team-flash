@@ -1,9 +1,10 @@
+/*
+ * Author: Jay Kanchankoti
+ * Documentation Author: Jay Kanchankoti
+ * Date: November 14/22
+ */
 package createDeck;
 
-import createDeck.CreateDeckInputBoundary;
-import createDeck.CreateDeckInputData;
-import createDeck.CreateDeckOutputBoundary;
-import createDeck.CreateDeckOutputData;
 import entities.Deck;
 
 public class CreateDeckInteractor implements CreateDeckInputBoundary {
@@ -13,18 +14,23 @@ public class CreateDeckInteractor implements CreateDeckInputBoundary {
         this.outputBoundary = outputBoundary;
     }
 
+    /**
+     * Assigns a success or fail value to an instance of CreateDeckOutputData.
+     *
+     * @param inputData input data
+     */
     @Override
     public void create(CreateDeckInputData inputData) {
         if (Deck.getTracker().containsKey(inputData.getName())){
-
-            CreateDeckOutputData outputData = new CreateDeckOutputData("Deck name already exists!", inputData.getName());
+            CreateDeckOutputData outputData = new CreateDeckOutputData("Deck name already exists!");
             outputBoundary.prepareFailView(outputData);
         }
+        else {
+            Deck newDeck = new Deck(inputData.getName());
+            Deck.addTracker(inputData.getName(), newDeck);
 
-        Deck newDeck = new Deck(inputData.getName());
-        Deck.addTracker(inputData.getName(), newDeck);
-
-        CreateDeckOutputData outputData = new CreateDeckOutputData("Deck created.", inputData.getName());
-        outputBoundary.prepareSuccessView(outputData);
+            CreateDeckOutputData outputData = new CreateDeckOutputData(inputData.getName());
+            outputBoundary.prepareSuccessView(outputData);
+        }
     }
 }

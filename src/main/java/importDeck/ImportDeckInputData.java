@@ -1,5 +1,6 @@
 /*
 * Author: Aldo Bani
+* Documentation Author: Aldo Bani
 * Date: November 9/22
 * This is the input data needed for the deck import system
 */
@@ -20,5 +21,7 @@ public class ImportDeckInputData {
     /**
      * @return name of the file
      */
-    String getFileName(){ return fileName; }
+    String getFileName(){
+        return fileName;
+    }
 }

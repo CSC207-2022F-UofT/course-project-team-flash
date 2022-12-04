@@ -1,6 +1,7 @@
 package screens;
 
 public enum ViewState {
+    MAIN_MENU,
     DECK_SCREEN,
     QUIZ_MENU,
     START_QUIZ,
@@ -18,5 +19,6 @@ public enum ViewState {
     CARD_EDITED,
     DECK_EDITED,
     QUIZ_EDITED,
+    ENTER_DECK,
     ERROR
 }

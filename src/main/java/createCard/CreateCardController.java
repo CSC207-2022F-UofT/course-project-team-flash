@@ -1,4 +1,4 @@
-/**
+/*
  * Author: Andrew Nguyen
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
@@ -8,8 +8,6 @@
  * of type Q&A or MC.
  */
 package createCard;
-
-import entities.Deck;
 
 import java.util.List;
 
@@ -28,15 +26,12 @@ public class CreateCardController {
     /**
      * Creates a Q&A (Question and answer) flashcard with the given deck, type, question, and answer.
      *
-     * @param deck the deck where the flashcard is to be stored in
-     * @param type the type of the flashcard = 1
-     *             1: Q&A flashcard
-     *             2: MC flashcard
+     * @param deckName the name of the deck where the flashcard is to be stored in
      * @param question the question part of this flashcard
      * @param answer the answer part of this flashcard
      */
-    public void create(Deck deck, int type, String question, String answer) {
-        CreateCardInputData inputData = new CreateCardInputData(deck, type, question, answer);
+    public void create(String deckName, String question, String answer) {
+        CreateCardInputData inputData = new CreateCardInputData(deckName, question, answer);
 
         inputBoundary.create(inputData);
     }
@@ -44,16 +39,13 @@ public class CreateCardController {
     /**
      * Creates a MC (Multiple Choice) flashcard with the given deck, type, question, answer, and options.
      *
-     * @param deck the deck where the flashcard is to be stored in
-     * @param type the type of the flashcard = 2
-     *             1: Q&A flashcard
-     *             2: MC flashcard
+     * @param deckName the name of the deck where the flashcard is to be stored in
      * @param question the question part of this flashcard
      * @param answer the answer part of this flashcard
      * @param options the options for this MC flashcard
      */
-    public void create(Deck deck, int type, String question, String answer, List<String> options) {
-        CreateCardInputData inputData = new CreateCardInputData(deck, type, question, answer, options);
+    public void create(String deckName, String question, String answer, List<String> options) {
+        CreateCardInputData inputData = new CreateCardInputData(deckName, question, answer, options);
 
         inputBoundary.create(inputData);
     }

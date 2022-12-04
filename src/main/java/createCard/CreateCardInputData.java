@@ -1,4 +1,4 @@
-/**
+/*
  * Author: Andrew Nguyen
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
@@ -11,12 +11,10 @@
 
 package createCard;
 
-import entities.Deck;
-
 import java.util.List;
 
 public class CreateCardInputData {
-    private final Deck deck;
+    private final String deckName;
     private final String question;
     private final String answer;
     private final int type;
@@ -25,17 +23,14 @@ public class CreateCardInputData {
     /**
      * Creates a new CreateCardInputData for MC flashcard with the given deck, type, question, answer, and options.
      *
-     * @param deck the deck where the flashcard is to be stored in
-     * @param type the type of the flashcard = 2
-     *             1: Q&A flashcard
-     *             2: MC flashcard
+     * @param deckName the name deck where the flashcard is to be stored in
      * @param question the question part of this flashcard
      * @param answer the answer part of this flashcard
      * @param options the options for this MC flashcard
      */
-    public CreateCardInputData(Deck deck, int type, String question, String answer, List<String> options) {
-        this.deck = deck;
-        this.type = type;
+    public CreateCardInputData(String deckName, String question, String answer, List<String> options) {
+        this.deckName = deckName;
+        this.type = 2;
         this.question = question;
         this.answer = answer;
         this.options = options;
@@ -45,28 +40,25 @@ public class CreateCardInputData {
      * Creates a new CreateCardInputData for Q&A flashcard with the given deck, type, question, and answer.
      * The options of this CreateCardInputData will be set to null.
      *
-     * @param deck the deck where the flashcard is to be stored in
-     * @param type the type of the flashcard = 2
-     *             1: Q&A flashcard
-     *             2: MC flashcard
+     * @param deckName the name of the deck where the flashcard is to be stored in
      * @param question the question part of this flashcard
      * @param answer the answer part of this flashcard
      */
-    public CreateCardInputData(Deck deck, int type, String question, String answer) {
-        this.deck = deck;
-        this.type = type;
+    public CreateCardInputData(String deckName, String question, String answer) {
+        this.deckName = deckName;
+        this.type = 1;
         this.question = question;
         this.answer = answer;
         this.options = null;
     }
 
     /**
-     * Returns the deck of this CreateCardInputData.
+     * Returns the deckName of this CreateCardInputData.
      *
-     * @return the deck of this CreateCardInputData
+     * @return the deckName of this CreateCardInputData
      */
-    public Deck getDeck() {
-        return deck;
+    public String getDeckName() {
+        return deckName;
     }
 
     /**

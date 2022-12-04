@@ -1,4 +1,4 @@
-/**
+/*
  * Author: Andrew Nguyen
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
@@ -9,6 +9,7 @@
 package createCard;
 
 import entities.CardFactory;
+import entities.Deck;
 import entities.Flashcard;
 
 public class CreateCardInteractor implements CreateCardInputBoundary {
@@ -42,23 +43,25 @@ public class CreateCardInteractor implements CreateCardInputBoundary {
         } else if (inputData.getAnswer().isEmpty()) {
             CreateCardOutputData outputData = new CreateCardOutputData("Flashcard Creation Failed. No Answer Stated.");
             outputBoundary.prepareFailView(outputData);
+        } else {
+            Flashcard newCard = cardFactory.createCard(
+                    inputData.getType(),
+                    inputData.getQuestion(),
+                    inputData.getAnswer(),
+                    inputData.getOptions());
+
+            Flashcard.addTracker(newCard.getUniqueID(), newCard);
+
+            Deck.getTracker().get(inputData.getDeckName()).addCard(newCard);
+
+            CreateCardOutputData outputData = new CreateCardOutputData(
+                    "Flashcard created.",
+                    inputData.getType(),
+                    inputData.getQuestion(),
+                    inputData.getAnswer(),
+                    newCard.getUniqueID());
+
+            outputBoundary.prepareSuccessView(outputData);
         }
-
-        Flashcard newCard = cardFactory.createCard(
-                inputData.getType(),
-                inputData.getQuestion(),
-                inputData.getAnswer(),
-                inputData.getOptions());
-
-        Flashcard.addTracker(newCard.getUniqueID(), newCard);
-
-        inputData.getDeck().addCard(newCard);
-
-        CreateCardOutputData outputData = new CreateCardOutputData(
-                "Flashcard created.",
-                inputData.getType(),
-                inputData.getQuestion(),
-                inputData.getAnswer());
-        outputBoundary.prepareSuccessView(outputData);
     }
 }

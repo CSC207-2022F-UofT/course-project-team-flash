@@ -13,25 +13,54 @@ import entities.Flashcard;
  */
 public class EditCardOutputData {
 
-    private Flashcard card;
+    private String id;
+
+    private String question;
+
+    private String answer;
+
     private String message;
+
+    private String type;
 
     /**
      * Creates a new EditCardOutputData with a given Flashcard and String message
-     * @param card Flashcard object
+     * @param id String id of the edited flashcard
+     * @param question String new question of the edited flashcard
+     * @param answer String new answer the edited flashcard
      * @param message String indicating whether this flashcard was edited successfully
+     * @param type String indicating type of flashcard
      */
-    public EditCardOutputData(Flashcard card, String message) {
-        this.card = card;
+    public EditCardOutputData(String id, String question, String answer, String message, String type) {
+        this.id = id;
+        this.question = question;
+        this.answer = answer;
         this.message = message;
+        this.type = type;
     }
 
     /**
-     * Return the card of the given EditCardOutputBoundary
-     * @return the card of the given EditCardOutputBoundary
+     * Return the id of card the given EditCardOutputBoundary
+     * @return the id of the card of the given EditCardOutputBoundary
      */
-    public Flashcard getCard() {
-        return card;
+    public String getID() {
+        return id;
+    }
+
+    /**
+     * Return the id of card the given EditCardOutputBoundary
+     * @return the id of the card of the given EditCardOutputBoundary
+     */
+    public String getQuestion() {
+        return question;
+    }
+
+    /**
+     * Return the id of card the given EditCardOutputBoundary
+     * @return the id of the card of the given EditCardOutputBoundary
+     */
+    public String getAnswer() {
+        return answer;
     }
 
     /**
@@ -40,5 +69,13 @@ public class EditCardOutputData {
      */
     public String getMessage() {
         return message;
+    }
+
+    /**
+     * Return the type of the given EditCardInputBoundary
+     * @return the type of the given EditCardInputBoundary
+     */
+    public String getType() {
+        return type;
     }
 }

@@ -4,6 +4,7 @@ import createDeck.CreateDeckController;
 import createQuiz.CreateQuizController;
 import deleteDeck.DeleteDeckController;
 import deleteQuiz.DeleteQuizController;
+import runQuiz.RunQuizController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,6 +20,8 @@ public class QuizScreen extends JPanel {
     private CreateQuizController createQuizController;
     private DeleteQuizController deleteQuizController;
 
+    private RunQuizController runQuizController;
+
     // Decks
     private ArrayList<String> deckNames;
 
@@ -32,9 +35,9 @@ public class QuizScreen extends JPanel {
     // Interface Formatters
     private static final int TEXT_FIELD_LENGTH = 10;
 
-    GridBagConstraints gridBagConstraints;
+    private GridBagConstraints gridBagConstraints;
 
-    public QuizScreen(CreateQuizController createQuizController, DeleteQuizController deleteQuizController) {
+    public QuizScreen(CreateQuizController createQuizController, DeleteQuizController deleteQuizController, RunQuizController runQuizController) {
         super(new GridBagLayout());
         this.gridBagConstraints = new GridBagConstraints();
         this.deckNames = new ArrayList<>();
@@ -43,12 +46,14 @@ public class QuizScreen extends JPanel {
         this.quizSettingsButtons = new ArrayList<>();
         this.createQuizController = createQuizController;
         this.deleteQuizController = deleteQuizController;
+        this.runQuizController = runQuizController;
         drawComponents();
     }
 
-    public void setController(CreateQuizController createQuizController, DeleteQuizController deleteQuizController) {
+    public void setController(CreateQuizController createQuizController, DeleteQuizController deleteQuizController, RunQuizController runQuizController) {
         this.createQuizController = createQuizController;
         this.deleteQuizController = deleteQuizController;
+        this.runQuizController = runQuizController;
     }
 
     public void reconstructQuizzes(boolean delete, String quizName) {
@@ -141,13 +146,29 @@ public class QuizScreen extends JPanel {
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    //setVisible(false);
-                    for (Component c : getParent().getComponents()) {
-                        //if (c instanceof CardScreen) {
-                        //    c.setVisible(true);
-                        //    return;
-                        //}
-                    }
+                    JFrame startQuizFrame = new JFrame();
+                    JDialog startQuizDialog = new JDialog(startQuizFrame);
+                    JPanel startQuiz = new JPanel();
+                    startQuizDialog.add(startQuiz);
+
+                    JLabel startPrompt = new JLabel("Start quiz " + button.getText() + "?");
+                    JCheckBox randomCheckBox = new JCheckBox("Randomized order?", false);
+                    JButton startQuizButton = new JButton("Start");
+                    startQuiz.add(startPrompt);
+                    startQuiz.add(randomCheckBox);
+                    startQuiz.add(startQuizButton);
+
+                    startQuizButton.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            runQuizController.startQuiz(button.getText(), randomCheckBox.isSelected());
+                            startQuizFrame.dispose();
+                        }
+                    });
+
+                    startQuizDialog.pack();
+                    startQuizDialog.setModal(true);
+                    startQuizDialog.setVisible(true);
                 }
             });
         }
@@ -156,7 +177,6 @@ public class QuizScreen extends JPanel {
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    setVisible(false);
                     JFrame deckSettingsFrame = new JFrame();
                     JDialog newDeckDialog = new JDialog(deckSettingsFrame);
 
@@ -177,7 +197,7 @@ public class QuizScreen extends JPanel {
                     renameQuiz.add(createDeckTextField);
                     renameQuiz.add(renameButton);
 
-                    JButton deleteButton = new JButton("Delete Deck" + button.getName());
+                    JButton deleteButton = new JButton("Delete Quiz " + button.getName());
                     deleteQuiz.add(deleteButton);
 
                     renameButton.addActionListener(new ActionListener() {
