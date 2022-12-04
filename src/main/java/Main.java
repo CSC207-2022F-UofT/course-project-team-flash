@@ -45,6 +45,7 @@ public class Main {
         EnterDeckController enterDeckController = enterDeckConstructor(view);
         ImportDeckController importDeckController = importDeckConstructor(view);
         ExportDeckController exportDeckController = exportDeckConstructor(view);
+        RunQuizController runQuizController = runQuizConstructor(view);
 
 
         // Setting controllers of the view
@@ -53,7 +54,8 @@ public class Main {
                 deleteCardController, deleteDeckController,deleteQuizController,
                 editCardController, editDeckController, editQuizController,
                 moveCardController, enterDeckController,
-                exportDeckController, importDeckController
+                exportDeckController, importDeckController,
+                moveCardController, enterDeckController, runQuizController
         );
 
         // IDK what else needs to be done
@@ -129,5 +131,11 @@ public class Main {
         CardFactory factory = new FlashcardFactory();
         ImportDeckInteractor interactor = new ImportDeckInteractor(gateway, presenter, factory);
         return new ImportDeckController(interactor);
+    }
+
+    private static RunQuizController runQuizConstructor(View view) {
+        RunQuizOutputBoundary presenter = new RunQuizPresenter(view);
+        RunQuizInputBoundary interactor = new RunQuizInteractor(presenter);
+        return new RunQuizController(interactor);
     }
 }
