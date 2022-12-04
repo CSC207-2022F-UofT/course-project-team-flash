@@ -11,8 +11,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static javax.swing.JOptionPane.showMessageDialog;
-
 public class DeckScreen extends JPanel {
 
     // Controllers required by this Jpanel
@@ -238,6 +236,7 @@ public class DeckScreen extends JPanel {
             importDeckController.importDeck(importDeckTextField.getText());
             newDeckFrame.dispose();
         });
+
         newDeckDialog.pack();
         newDeckDialog.setModal(true);
         newDeckDialog.setVisible(true);

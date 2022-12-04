@@ -198,10 +198,8 @@ public class QuizScreen extends JPanel {
         JTabbedPane optionTabs = new JTabbedPane();
 
         JPanel createNewQuiz = new JPanel(new GridBagLayout());
-        JPanel importNewQuiz = new JPanel();
 
         optionTabs.add("Create New Quiz", createNewQuiz);
-        optionTabs.add("Import Quiz", importNewQuiz);
 
         newQuizDialog.add(optionTabs);
 

@@ -9,7 +9,7 @@ import deleteQuiz.DeleteQuizController;
 import editCard.EditCardController;
 import editDeck.EditDeckController;
 import editQuiz.EditQuizController;
-import moveCard.MoveCardController;
+// import moveCard.MoveCardController;
 import enterDeck.EnterDeckController;
 import exportDeck.ExportDeckController;
 import importDeck.ImportDeckController;
@@ -17,8 +17,6 @@ import runQuiz.RunQuizController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 
 public class View implements ViewBoundary {
@@ -36,7 +34,7 @@ public class View implements ViewBoundary {
     private EditCardController editCardController;
     private EditDeckController editDeckController;
     private EditQuizController editQuizController;
-    private MoveCardController moveCardController;
+    // private MoveCardController moveCardController;
     private EnterDeckController enterDeckController;
     private ExportDeckController exportDeckController;
     private ImportDeckController importDeckController;
@@ -69,7 +67,6 @@ public class View implements ViewBoundary {
     private String quizName2;
     private String deckName;
     private String deckName2;
-    private String cardId;
     private List<String> cardOptions;
     private List<String> cardTypes;
     private List<String> cardQuestions;
@@ -128,7 +125,7 @@ public class View implements ViewBoundary {
                               EditCardController editCardController,
                               EditDeckController editDeckController,
                               EditQuizController editQuizController,
-                              MoveCardController moveCardController,
+                              // MoveCardController moveCardController,
                               EnterDeckController enterDeckController,
                               ExportDeckController exportDeckController,
                               ImportDeckController importDeckController,
@@ -143,7 +140,7 @@ public class View implements ViewBoundary {
         this.editCardController = editCardController;
         this.editDeckController = editDeckController;
         this.editQuizController = editQuizController;
-        this.moveCardController = moveCardController;
+        // this.moveCardController = moveCardController;
         this.enterDeckController = enterDeckController;
         this.exportDeckController = exportDeckController;
         this.importDeckController = importDeckController;
@@ -171,7 +168,6 @@ public class View implements ViewBoundary {
         this.quizName2 = viewModel.getQuizName2();
         this.deckName = viewModel.getDeckName();
         this.deckName2 = viewModel.getDeckName2();
-        this.cardId = viewModel.getCardId();
         this.cardIdArray = viewModel.getCardIdArray();
         this.currCardIndex = viewModel.getCurrCardIndex();
         this.cardType = viewModel.getCardType();
@@ -290,18 +286,13 @@ public class View implements ViewBoundary {
     }
 
     private void createErrorMessage(String message) {
-        JFrame errorFrame = new JFrame();
-        JDialog errorDialog = new JDialog(errorFrame);
+        // Create The Error Message
+        JLabel errorMessage = new JLabel(message);
+        errorMessage.setHorizontalAlignment(JLabel.CENTER);
+        errorMessage.setVerticalTextPosition(JLabel.BOTTOM);
+        errorMessage.setHorizontalTextPosition(JLabel.CENTER);
 
-        JLabel prompt = new JLabel(message);
-        JButton createButton = new JButton("Ok");
-        errorDialog.add(prompt);
-        errorDialog.add(createButton);
-
-        createButton.addActionListener(e -> errorFrame.dispose());
-
-        errorFrame.pack();
-        errorFrame.setVisible(true);
+        JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.PLAIN_MESSAGE);
     }
 
 }

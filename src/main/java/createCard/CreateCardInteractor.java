@@ -38,10 +38,12 @@ public class CreateCardInteractor implements CreateCardInputBoundary {
     @Override
     public void create(CreateCardInputData inputData) {
         if (inputData.getQuestion().isEmpty()) {
-            CreateCardOutputData outputData = new CreateCardOutputData("Flashcard Creation Failed. No Question Stated.");
+            CreateCardOutputData outputData = new CreateCardOutputData(
+                    "No Question Stated. Please try again.");
             outputBoundary.prepareFailView(outputData);
         } else if (inputData.getAnswer().isEmpty()) {
-            CreateCardOutputData outputData = new CreateCardOutputData("Flashcard Creation Failed. No Answer Stated.");
+            CreateCardOutputData outputData = new CreateCardOutputData(
+                    "No Answer Stated. Please try again.");
             outputBoundary.prepareFailView(outputData);
         } else {
             Flashcard newCard = cardFactory.createCard(

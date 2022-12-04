@@ -39,7 +39,7 @@ public class CreateDeckPresenter implements CreateDeckOutputBoundary {
     @Override
     public void prepareFailView(CreateDeckOutputData outputData) {
         ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.ERROR)
-                .setDeckName(outputData.getText())
+                .setReturnString(outputData.getText())
                 .build();
 
         viewBound.updateView(viewModel);

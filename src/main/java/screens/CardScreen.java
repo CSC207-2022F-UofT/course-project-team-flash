@@ -11,8 +11,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-import static javax.swing.JOptionPane.showMessageDialog;
-
 public class CardScreen extends JPanel {
     // Controllers
     private CreateCardController createCardController;
