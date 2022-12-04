@@ -45,14 +45,17 @@ public class ShowProblemScreen extends JPanel {
         JButton showAnswerButton = new JButton("Show answer");
         JTextField userAnswerField = new JTextField(TEXT_FIELD_LENGTH);
         JLabel cardProblemDisplay = new JLabel(this.cardProblem);
-        JList cardOptionsDisplay = new JList(this.cardOptions.toArray());
 
+        if(this.cardOptions != null) {
+            JList cardOptionsDisplay = new JList(this.cardOptions.toArray());
+            this.add(cardOptionsDisplay);
+        }
         //setConstraints(
 
         this.add(cardProblemDisplay);
         this.add(userAnswerField);
         this.add(showAnswerButton);
-        this.add(cardOptionsDisplay);
+
         //other gridbag stuff:
 
         //
