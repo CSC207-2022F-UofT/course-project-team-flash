@@ -27,10 +27,11 @@ public class ShowAnswerScreen extends JPanel {
         this.runQuizController = runQuizController;
     }
 
-    public void setQuiz(String[] cardIdArray, int currCardIndex, String cardAnswer) {
+    public void setQuiz(String[] cardIdArray, int currCardIndex, String cardAnswer, String userAnswer) {
         this.cardIdArray = cardIdArray;
         this.currCardIndex = currCardIndex;
         this.cardAnswer = cardAnswer;
+        this.userAnswer = userAnswer;
         drawComponents();
     }
 
@@ -42,9 +43,11 @@ public class ShowAnswerScreen extends JPanel {
         this.removeAll();
         JButton nextProblemButton = new JButton("Next Problem");
         JLabel cardAnswerLabel = new JLabel(cardAnswer);
+        JLabel userAnswerLabel = new JLabel(userAnswer);
         //setConstraints(
 
         this.add(cardAnswerLabel);
+        this.add(userAnswerLabel);
         this.add(nextProblemButton);
         //other gridbag stuff:
 
