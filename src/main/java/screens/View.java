@@ -9,7 +9,7 @@ import deleteQuiz.DeleteQuizController;
 import editCard.EditCardController;
 import editDeck.EditDeckController;
 import editQuiz.EditQuizController;
-// import moveCard.MoveCardController;
+import moveCard.MoveCardController;
 import enterDeck.EnterDeckController;
 import exportDeck.ExportDeckController;
 import importDeck.ImportDeckController;
@@ -34,7 +34,7 @@ public class View implements ViewBoundary {
     private EditCardController editCardController;
     private EditDeckController editDeckController;
     private EditQuizController editQuizController;
-    // private MoveCardController moveCardController;
+    private MoveCardController moveCardController;
     private EnterDeckController enterDeckController;
     private ExportDeckController exportDeckController;
     private ImportDeckController importDeckController;
@@ -125,7 +125,7 @@ public class View implements ViewBoundary {
                               EditCardController editCardController,
                               EditDeckController editDeckController,
                               EditQuizController editQuizController,
-                              // MoveCardController moveCardController,
+                              MoveCardController moveCardController,
                               EnterDeckController enterDeckController,
                               ExportDeckController exportDeckController,
                               ImportDeckController importDeckController,
@@ -140,7 +140,7 @@ public class View implements ViewBoundary {
         this.editCardController = editCardController;
         this.editDeckController = editDeckController;
         this.editQuizController = editQuizController;
-        // this.moveCardController = moveCardController;
+        this.moveCardController = moveCardController;
         this.enterDeckController = enterDeckController;
         this.exportDeckController = exportDeckController;
         this.importDeckController = importDeckController;

@@ -7,7 +7,7 @@ import deleteQuiz.*;
 import editCard.*;
 import editDeck.*;
 import editQuiz.*;
-// import moveCard.*;
+import moveCard.*;
 import enterDeck.*;
 import exportDeck.*;
 import importDeck.*;
@@ -35,7 +35,7 @@ public class Main {
         EditCardController editCardController = editCardConstructor(view);
         EditDeckController editDeckController = editDeckConstructor(view);
         EditQuizController editQuizController = editQuizConstructor(view);
-        // MoveCardController moveCardController = moveCardConstructor(view);
+        MoveCardController moveCardController = moveCardConstructor(view);
         EnterDeckController enterDeckController = enterDeckConstructor(view);
         ImportDeckController importDeckController = importDeckConstructor(view);
         ExportDeckController exportDeckController = exportDeckConstructor(view);
@@ -47,7 +47,7 @@ public class Main {
                 createCardController, createDeckController, createQuizController,
                 deleteCardController, deleteDeckController,deleteQuizController,
                 editCardController, editDeckController, editQuizController,
-                // moveCardController,
+                moveCardController,
                 enterDeckController, exportDeckController, importDeckController,
                 runQuizController
         );
@@ -103,11 +103,11 @@ public class Main {
         EditQuizInputBoundary interactor = new EditQuizInteractor(presenter);
         return new EditQuizController(interactor);
     }
-//    private static MoveCardController moveCardConstructor(View view) {
-//        MoveCardOutputBoundary presenter = new MoveCardPresenter(view);
-//        MoveCardInputBoundary interactor = new MoveCardInteractor(presenter);
-//        return new MoveCardController(interactor);
-//    }
+    private static MoveCardController moveCardConstructor(View view) {
+        MoveCardOutputBoundary presenter = new MoveCardPresenter(view);
+        MoveCardInputBoundary interactor = new MoveCardInteractor(presenter);
+        return new MoveCardController(interactor);
+    }
     private static EnterDeckController enterDeckConstructor(View view) {
         EnterDeckOutputBoundary presenter = new EnterDeckPresenter(view);
         EnterDeckInputBoundary interactor = new EnterDeckInteractor(presenter);
