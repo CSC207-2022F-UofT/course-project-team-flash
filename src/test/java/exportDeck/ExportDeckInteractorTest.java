@@ -14,7 +14,7 @@ import entities.Deck;
 public class ExportDeckInteractorTest {
     @Test
     void exportDeck(){
-        Deck d1 = new Deck("Test1");
+        Deck d1 = new Deck("Test");
         Deck.addTracker(d1.getName(), d1);
         ExportDeckDsGateway deckRepository = new DeckInMemoryExport();
         ExportDeckOutputBoundary presenter = new ExportDeckPresenter(null) {
