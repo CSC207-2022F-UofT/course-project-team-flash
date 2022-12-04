@@ -16,7 +16,6 @@ public class ViewModel {
     private final String userAnswer;
     private final String cardQuestion;
     private final String cardAnswer;
-    private final List<String> cardOptions;
     private final List<String> multipleCardTypes;
     private final List<String> multipleCardAnswers;
     private final List<String> multipleCardQuestions;
@@ -55,7 +54,6 @@ public class ViewModel {
         this.cardIdList = builder.cardIdList;
         this.cardIdArray = builder.cardIdArray;
         this.currCardIndex = builder.currCardIndex;
-        this.cardOptions = builder.cardOptions;
 
     }
 
@@ -120,10 +118,6 @@ public class ViewModel {
         return multipleCardIDs;
     }
 
-    public List<String> getCardOptions() {
-        return cardOptions;
-    }
-
     //Builder:
     public static class ViewModelBuilder{
 
@@ -135,7 +129,6 @@ public class ViewModel {
         private String userAnswer;
         private String cardQuestion;
         private String cardAnswer;
-        private List<String> cardOptions;
         private List<String> multipleCardTypes;
         private List<String> multipleCardAnswers;
         private List<String> multipleCardQuestions;
@@ -174,10 +167,6 @@ public class ViewModel {
             this.cardAnswer = cardAnswer;
             return this;
 
-        }
-        public ViewModelBuilder setCardOptions(List<String> cardOptions){
-            this.cardOptions = cardOptions;
-            return this;
         }
         public ViewModelBuilder setMultipleCardTypes(List<String> types) {
             this.multipleCardTypes = types;

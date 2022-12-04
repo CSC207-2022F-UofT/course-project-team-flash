@@ -7,7 +7,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeListener;
-import java.util.List;
 
 public class ShowProblemScreen extends JPanel {
 
@@ -19,7 +18,6 @@ public class ShowProblemScreen extends JPanel {
 
     private String cardProblem;
 
-    private List<String> cardOptions;
     private static final int TEXT_FIELD_LENGTH = 10;
 
     public ShowProblemScreen(RunQuizController runQuizController) {
@@ -28,11 +26,10 @@ public class ShowProblemScreen extends JPanel {
         this.cardProblem = "";
     }
 
-    public void setQuiz(String[] cardIdArray, int currCardIndex, String question, List<String> cardOptions) {
+    public void setQuiz(String[] cardIdArray, int currCardIndex, String question) {
         this.cardIdArray = cardIdArray;
         this.currCardIndex = currCardIndex;
         this.cardProblem = question;
-        this.cardOptions = cardOptions;
         drawComponents();
     }
 
@@ -45,14 +42,12 @@ public class ShowProblemScreen extends JPanel {
         JButton showAnswerButton = new JButton("Show answer");
         JTextField userAnswerField = new JTextField(TEXT_FIELD_LENGTH);
         JLabel cardProblemDisplay = new JLabel(this.cardProblem);
-        JList cardOptionsDisplay = new JList(this.cardOptions.toArray());
 
         //setConstraints(
 
         this.add(cardProblemDisplay);
         this.add(userAnswerField);
         this.add(showAnswerButton);
-        this.add(cardOptionsDisplay);
         //other gridbag stuff:
 
         //
