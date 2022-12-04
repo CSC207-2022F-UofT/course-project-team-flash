@@ -14,6 +14,7 @@ import enterDeck.EnterDeckController;
 import exportDeck.ExportDeckController;
 import importDeck.ImportDeckController;
 import runQuiz.RunQuizController;
+import runQuiz.RunQuizInteractor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,6 +49,8 @@ public class View implements ViewBoundary {
     private CardScreen cardScreen;
     private DeckScreen deckScreen;
     private QuizScreen quizScreen;
+    private ShowProblemScreen showProblemScreen;
+    private ShowAnswerScreen showAnswerScreen;
     private MainMenuScreen mainMenuScreen;
 
     //These should probably be enough right here, but add more if you need another type of information to
@@ -98,17 +101,23 @@ public class View implements ViewBoundary {
         cardScreen = new CardScreen(createCardController, deleteCardController, editCardController);
         deckScreen = new DeckScreen(createDeckController, deleteDeckController, editDeckController, enterDeckController);
         mainMenuScreen = new MainMenuScreen();
-        quizScreen = new QuizScreen(createQuizController, deleteQuizController);
+        quizScreen = new QuizScreen(createQuizController, deleteQuizController, runQuizController);
+        showProblemScreen = new ShowProblemScreen(runQuizController);
+        showAnswerScreen = new ShowAnswerScreen(runQuizController);
 
         screens.add(cardScreen);
         screens.add(deckScreen);
         screens.add(mainMenuScreen);
         screens.add(quizScreen);
+        screens.add(showProblemScreen);
+        screens.add(showAnswerScreen);
 
         cardScreen.setVisible(false);
         deckScreen.setVisible(false);
         mainMenuScreen.setVisible(true);
         quizScreen.setVisible(false);
+        showProblemScreen.setVisible(false);
+        showAnswerScreen.setVisible(false);
 
         application.setSize(WIDTH, HEIGHT);
         application.setResizable(true);
@@ -126,7 +135,8 @@ public class View implements ViewBoundary {
                               EditDeckController editDeckController,
                               EditQuizController editQuizController,
                               MoveCardController moveCardController,
-                              EnterDeckController enterDeckController) {
+                              EnterDeckController enterDeckController,
+                              RunQuizController runQuizController) {
 
         this.createCardController = createCardController;
         this.createDeckController = createDeckController;
@@ -139,10 +149,13 @@ public class View implements ViewBoundary {
         this.editQuizController = editQuizController;
         this.moveCardController = moveCardController;
         this.enterDeckController = enterDeckController;
+        this.runQuizController = runQuizController;
 
         cardScreen.setController(createCardController, deleteCardController, editCardController);
         deckScreen.setController(createDeckController, deleteDeckController, editDeckController, enterDeckController);
-        quizScreen.setController(createQuizController, deleteQuizController);
+        quizScreen.setController(createQuizController, deleteQuizController, runQuizController);
+        showAnswerScreen.setController(runQuizController);
+        showProblemScreen.setController(runQuizController);
     }
 
     @Override
@@ -183,6 +196,16 @@ public class View implements ViewBoundary {
 
             //ADD WHATEVER VIEWSTATES YOUR USECASE NEEDS HERE, I HAVE ADDED SOME ALREADY HERE AS AN EXAMPLE:
 
+            case MAIN_MENU:
+                application.setVisible(false);
+                for (Component c : application.getParent().getComponents()) {
+                    if (c instanceof MainMenuScreen) {
+                        c.setVisible(true);
+                        return;
+                    }
+                }
+                break;
+
             case DECK_SCREEN:
                 //Creates and updates the Deck screen when a change is made to the deck screen
 
@@ -197,16 +220,16 @@ public class View implements ViewBoundary {
 
             case SHOW_ANSWER:
                 //Menu that shows the answer to a flashcard along with a show next problem button.
-
-
+                showAnswerScreen.setQuiz(cardIdArray, currCardIndex, cardAnswer);
+                showAnswerScreen.setVisible(true);
                 break;
 
             case SHOW_PROBLEM:
                 //Menu that shows the question of a flashcard along with a show answer button.
-
-
+                quizScreen.setVisible(false);
+                showProblemScreen.setQuiz(cardIdArray, currCardIndex, returnString);
+                showProblemScreen.setVisible(true);
                 break;
-
 
             case START_QUIZ:
                 //Menu that shows the view before a quiz starts with a button like "begin quiz".
@@ -295,4 +318,5 @@ public class View implements ViewBoundary {
         errorFrame.pack();
         errorFrame.setVisible(true);
     }
+
 }

@@ -190,8 +190,6 @@ public class DeckScreen extends JPanel {
                     newDeckDialog.setModal(true);
                     newDeckDialog.setVisible(true);
 
-
-
                 }
             });
         }

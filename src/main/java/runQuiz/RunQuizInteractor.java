@@ -2,7 +2,7 @@
  * Author: Jamie Chew
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
- *
+ * <p>
  * This file contains the implementation of the RunQuizInteractor class,
  * which implements RunQuizInputBoundary.
  */
@@ -43,18 +43,15 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
 
         Quiz currQuiz = entities.Quiz.getQuiz(inputData.getQuizId());
 
-        if(currQuiz == null){
+        if (currQuiz == null) {
             outputBoundary.quizFailView("Quiz of name \"" + inputData.getQuizId() + "\" does not exist.");
         }
-
         List<String> flashcardIdList = fetchQuizCardIds(currQuiz);
-
-        if (inputData.getIsRandomized()){
+        if (inputData.getIsRandomized()) {
             Collections.shuffle(flashcardIdList);
         }
 
         String[] flashcardIds = flashcardIdList.toArray(new String[0]);
-
         String firstCardProblem = Flashcard.getTracker().get(flashcardIds[0]).getQuestion();
 
         StartQuizOutputData outputData = new StartQuizOutputData(flashcardIds, firstCardProblem);
@@ -66,7 +63,6 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
      * Creates a ShowProblemOutputData and passes it to the presenter.
      *
      * @param inputData the ShowQuizCardInputData associated with the flashcard to be shown
-     *
      */
     @Override
     public void showProblem(ShowQuizCardInputData inputData) {
@@ -76,7 +72,7 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
         ShowProblemOutputData outputData = new ShowProblemOutputData(inputData.getFlashcardIdList(),
                 inputData.getCurrCardIndex(),
                 currCard.getQuestion()
-                );
+        );
 
         outputBoundary.prepareSuccessView(outputData);
     }
@@ -108,7 +104,10 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
      * @param inputData the ShowQuizCardInputData associated with the flashcard to be shown
      * @return the flashcard object
      */
-    private Flashcard fetchCard(ShowQuizCardInputData inputData){
+    private Flashcard fetchCard(ShowQuizCardInputData inputData) {
+        if(inputData.getCurrCardIndex() >= inputData.getFlashcardIdList().length){
+            return Flashcard.getTracker().get(inputData.getFlashcardIdList()[0]);
+        }
         return Flashcard.getTracker().get(inputData.getFlashcardIdList()[inputData.getCurrCardIndex()]);
     }
 
@@ -119,12 +118,12 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
      * @param quiz this quiz object
      * @return a list of flashcard IDs in this quiz
      */
-    private List<String> fetchQuizCardIds(Quiz quiz){
+    private ArrayList<String> fetchQuizCardIds(Quiz quiz) {
 
-        List<String> flashcardIdList = new ArrayList<String>();
+        ArrayList<String> flashcardIdList = new ArrayList<String>();
 
-        for(Deck deck:quiz.getDecks()){
-            for(Flashcard card:deck.getCards()){
+        for (Deck deck : quiz.getDecks()) {
+            for (Flashcard card : deck.getCards()) {
                 flashcardIdList.add(card.getUniqueID());
             }
         }
