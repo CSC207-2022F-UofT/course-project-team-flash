@@ -8,18 +8,14 @@ package exportDeck;
 
 import data.DeckInMemoryExport;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import entities.Deck;
 
 public class ExportDeckInteractorTest {
-    @BeforeEach
-    void deckSetup(){
-        Deck d1 = new Deck("Test");
-        Deck.addTracker(d1.getName(), d1);
-    }
     @Test
     void exportDeck(){
+        Deck d1 = new Deck("Test1");
+        Deck.addTracker(d1.getName(), d1);
         ExportDeckDsGateway deckRepository = new DeckInMemoryExport();
         ExportDeckOutputBoundary presenter = new ExportDeckPresenter(null) {
             @Override
@@ -35,6 +31,26 @@ public class ExportDeckInteractorTest {
         ExportDeckInputBoundary interactor = new ExportDeckInteractor(deckRepository, presenter);
 
         ExportDeckInputData inputData = new ExportDeckInputData("home/decks/", "Test");
+        interactor.exportDeck(inputData);
+    }
+
+    @Test
+    void exportNonExistingDeck(){
+        ExportDeckDsGateway deckRepository = new DeckInMemoryExport();
+        ExportDeckOutputBoundary presenter = new ExportDeckPresenter(null) {
+            @Override
+            public void prepareSuccessView(ExportDeckOutputData outputData){
+                Assertions.fail("Should not be able to export non-existing deck");
+            }
+
+            @Override
+            public void prepareFailView(String exception){
+                Assertions.assertEquals("Cannot export, selected deck does not exist!" ,exception);
+            }
+        };
+        ExportDeckInputBoundary interactor = new ExportDeckInteractor(deckRepository, presenter);
+
+        ExportDeckInputData inputData = new ExportDeckInputData("home/decks/", "Test2");
         interactor.exportDeck(inputData);
     }
 }

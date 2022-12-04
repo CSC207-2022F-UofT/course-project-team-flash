@@ -35,9 +35,17 @@ public class EditCardPresenter implements EditCardOutputBoundary {
                 .setCardQuestion(editCardOutputData.getQuestion())
                 .setCardAnswer(editCardOutputData.getAnswer())
                 .setReturnString(editCardOutputData.getMessage())
+                .setCardType(editCardOutputData.getType())
                 .build();
 
         viewBound.updateView(viewModel);
     }
 
+    public void prepareFailView(EditCardOutputData outputData) {
+        ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.ERROR)
+                .setReturnString(outputData.getMessage())
+                .build();
+
+        viewBound.updateView(viewModel);
+    };
 }

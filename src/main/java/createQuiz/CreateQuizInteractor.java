@@ -41,6 +41,7 @@ public class CreateQuizInteractor implements CreateQuizInputBoundary{
         List<String> decksName = inputData.getQuizDecksNames();
         List<Deck> quizDecks = inputData.getQuizDecks();
 
+        // Fail views
         if (Quiz.getTracker().containsKey(quizName)) {
             CreateQuizOutputData outputData = new CreateQuizOutputData(null,
                     "This quiz name exists already. Failed to create new quiz.");
@@ -49,12 +50,14 @@ public class CreateQuizInteractor implements CreateQuizInputBoundary{
             CreateQuizOutputData outputData = new CreateQuizOutputData(null,
                     "This quiz does not contain any deck. Failed to create new quiz.");
             outputBoundary.prepareFailView(outputData);
+
+        // Success view
+        } else {
+            Quiz quiz = new Quiz(quizName, quizDecks);
+            Quiz.addTracker(quizName, quiz);
+
+            CreateQuizOutputData outputData = new CreateQuizOutputData(quizName, "New quiz created.");
+            outputBoundary.prepareSuccessView(outputData);
         }
-
-        Quiz quiz = new Quiz(quizName, quizDecks);
-        Quiz.addTracker(quizName, quiz);
-
-        CreateQuizOutputData outputData = new CreateQuizOutputData(quizName, "New quiz created.");
-        outputBoundary.prepareSuccessView(outputData);
     }
 }

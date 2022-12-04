@@ -28,7 +28,6 @@ public class EditDeckInteractor  implements EditDeckInputBoundary {
     @Override
     public void edit(EditDeckInputData inputData) {
         Map<String, Deck> tracker = Deck.getTracker();
-        System.out.println(tracker.containsKey(inputData.getoldName()));
 
         if (!(tracker.containsKey(inputData.getoldName()))) {
             EditDeckOutputData outputData = new EditDeckOutputData("Deck does not exist!");
@@ -47,7 +46,7 @@ public class EditDeckInteractor  implements EditDeckInputBoundary {
             Deck.removeTracker(inputData.getoldName());
             Deck.addTracker(inputData.getnewName(), deck);
 
-            EditDeckOutputData outputData = new EditDeckOutputData(deck.getName());
+            EditDeckOutputData outputData = new EditDeckOutputData(deck.getName(), inputData.getoldName());
             editDeckOutputBoundary.prepareSuccessView(outputData);
         }
     }

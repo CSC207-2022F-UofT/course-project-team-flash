@@ -29,6 +29,7 @@ public class EditDeckPresenter implements EditDeckOutputBoundary{
     public void prepareSuccessView(EditDeckOutputData editDeckOutputData){
         ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.DECK_EDITED)
                 .setDeckName(editDeckOutputData.getText())
+                .setDeckName2(editDeckOutputData.getOldName())
                 .build();
 
         viewBound.updateView(viewModel);
