@@ -1,6 +1,6 @@
 package runQuiz;
 
-import screens.ViewState;
+import java.util.List;
 
 public class StartQuizOutputData {
     private final String[] flashcardIds;
@@ -8,13 +8,16 @@ public class StartQuizOutputData {
 
     private String firstCardProblem;
 
+    private List<String> firstCardOptions;
 
 
 
-    StartQuizOutputData(String[] flashcardIds, String firstCardProblem){
+
+    StartQuizOutputData(String[] flashcardIds, String firstCardProblem, List<String> firstCardOptions){
         this.flashcardIds = flashcardIds;
         this.currCardIndex = 0;
         this.firstCardProblem = firstCardProblem;
+        this.firstCardOptions = firstCardOptions;
     }
 
     public String[] getFlashcardIdList(){
@@ -27,6 +30,10 @@ public class StartQuizOutputData {
 
     public String getFirstCardProblem(){
         return this.firstCardProblem;
+    }
+
+    public List<String> getFirstCardOptions(){
+        return this.firstCardOptions;
     }
 
 }
