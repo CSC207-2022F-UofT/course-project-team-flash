@@ -94,4 +94,29 @@ public class ImportDeckInteractorTest {
         ImportDeckInputData inputData = new ImportDeckInputData("home\\ImportTest3.deck");
         interactor.importDeck(inputData);
     }
+
+    @Test
+    void importExistingDeck() {
+        Deck theDeck = new Deck("ImportTest4");
+        Deck.addTracker(theDeck.getName(), theDeck);
+        Map<String, List<String>> files = new HashMap<>();
+        List<String> fileContents = new ArrayList<>();
+        files.put("home/ImportTest4.deck", fileContents);
+        ImportDeckDsGateway deckRepository = new DeckInMemoryImport(files);
+        ImportDeckOutputBoundary presenter = new ImportDeckPresenter(null) {
+            @Override
+            public void prepareSuccessView(ImportDeckOutputData outputData){
+                Assertions.fail("Should not be able to import a duplicate!");
+            }
+
+            @Override
+            public void prepareFailView(String exception){
+                Assertions.assertEquals("screens.ImportDeckFail: Could not import! ImportTest4 already exists!", exception);
+            }
+        };
+        CardFactory cardFactory = new FlashcardFactory();
+        ImportDeckInputBoundary interactor = new ImportDeckInteractor(deckRepository, presenter, cardFactory);
+        ImportDeckInputData inputData = new ImportDeckInputData("home/ImportTest4.deck");
+        interactor.importDeck(inputData);
+    }
 }

@@ -6,6 +6,7 @@
 
 package data;
 
+import entities.Deck;
 import importDeck.ImportDeckDsGateway;
 import importDeck.ImportDeckDsInputData;
 import importDeck.ImportDeckDsOutputData;
@@ -37,7 +38,11 @@ public class DeckFileImport implements ImportDeckDsGateway{
             while (reader.hasNextLine()){
                 cardsRead.add(reader.nextLine());
             }
-            return new ImportDeckDsOutputData(cleanName(filePath), cardsRead);
+            String deckName = cleanName(filePath);
+            if (Deck.getTracker().get(deckName) != null){
+                throw new ImportDeckFail("Could not import! " + deckName + " already exists!");
+            }
+            return new ImportDeckDsOutputData(deckName, cardsRead);
         }
         catch(FileNotFoundException e){
             throw new ImportDeckFail(e.toString());
