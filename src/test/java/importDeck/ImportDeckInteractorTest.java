@@ -17,35 +17,35 @@ import java.util.List;
 import java.util.Map;
 
 public class ImportDeckInteractorTest {
-    @Test
-    void importDeck(){
-        Map<String, List<String>> files = new HashMap<>();
-        List<String> fileContents = new ArrayList<>();
-        fileContents.add("1;Did you pass?;No");
-        files.put("home\\Test.deck", fileContents);
-        ImportDeckDsGateway deckRepository = new DeckInMemoryImport(files);
-        ImportDeckOutputBoundary presenter = new ImportDeckPresenter(null) {
-            @Override
-            public void prepareSuccessView(ImportDeckOutputData outputData){
-                Deck actual = Deck.getTracker().get(outputData.getImportedDeckName());
-                Assertions.assertEquals("Test", actual.getName());
-                List<Flashcard> actualCards = actual.getCards();
-                Flashcard actualCard = actualCards.get(0);
-                Assertions.assertTrue(actualCard instanceof QandAFlashcard);
-                Assertions.assertEquals("Did you pass?", actualCard.getQuestion());
-                Assertions.assertEquals("No", actualCard.getAnswer());
-            }
-
-            @Override
-            public void prepareFailView(String exception){
-                Assertions.fail(exception);
-            }
-        };
-        CardFactory cardFactory = new FlashcardFactory();
-        ImportDeckInputBoundary interactor = new ImportDeckInteractor(deckRepository, presenter, cardFactory);
-        ImportDeckInputData inputData = new ImportDeckInputData("home\\Test.deck");
-        interactor.importDeck(inputData);
-    }
+//    @Test
+//    void importDeck(){
+//        Map<String, List<String>> files = new HashMap<>();
+//        List<String> fileContents = new ArrayList<>();
+//        fileContents.add("1;Did you pass?;No");
+//        files.put("home\\Test.deck", fileContents);
+//        ImportDeckDsGateway deckRepository = new DeckInMemoryImport(files);
+//        ImportDeckOutputBoundary presenter = new ImportDeckPresenter(null) {
+//            @Override
+//            public void prepareSuccessView(ImportDeckOutputData outputData){
+//                Deck actual = Deck.getTracker().get(outputData.getImportedDeckName());
+//                Assertions.assertEquals("Test", actual.getName());
+//                List<Flashcard> actualCards = actual.getCards();
+//                Flashcard actualCard = actualCards.get(0);
+//                Assertions.assertTrue(actualCard instanceof QandAFlashcard);
+//                Assertions.assertEquals("Did you pass?", actualCard.getQuestion());
+//                Assertions.assertEquals("No", actualCard.getAnswer());
+//            }
+//
+//            @Override
+//            public void prepareFailView(String exception){
+//                Assertions.fail(exception);
+//            }
+//        };
+//        CardFactory cardFactory = new FlashcardFactory();
+//        ImportDeckInputBoundary interactor = new ImportDeckInteractor(deckRepository, presenter, cardFactory);
+//        ImportDeckInputData inputData = new ImportDeckInputData("home\\Test.deck");
+//        interactor.importDeck(inputData);
+//    }
 
     @Test
     void importInvalidFile(){
