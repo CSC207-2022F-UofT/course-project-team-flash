@@ -44,6 +44,7 @@ Choose whether you want the card questions to be randomized and then start the q
  - Questions and answers cannot be too long
  - Decks and quizzes can only have their names edited
  - Only decks support importing/exporting
+ - Limited number of decks and cards can be created
 ## Credits
 Albert Yan\
 Aldo Bani\
