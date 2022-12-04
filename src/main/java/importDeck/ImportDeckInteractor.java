@@ -10,6 +10,7 @@ package importDeck;
 import entities.CardFactory;
 import entities.Deck;
 import entities.Flashcard;
+import entities.FlashcardType;
 import screens.ImportDeckFail;
 
 import java.util.Arrays;
@@ -45,12 +46,17 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
     private Flashcard cardFormatter(String cardInfo){
         String[] cardInfoArray = cardInfo.split(";");
 
-        int type;
+        FlashcardType type = null;
         try {
-            type = Integer.parseInt(cardInfoArray[TYPE_POSITION]);
+            int tempType = Integer.parseInt(cardInfoArray[TYPE_POSITION]);
+            if (tempType == 1) {
+                type = FlashcardType.QandAFlashcard;
+            } else {
+                type = FlashcardType.MCFlashcard;
+            }
         }
         catch (NumberFormatException e){
-            type = INVALID_CARD_TYPE;
+            int tempType = INVALID_CARD_TYPE;
         }
 
         String question;

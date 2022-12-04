@@ -1,7 +1,7 @@
 package deleteDeck;
 
 public class DeleteDeckInputData {
-    final String deckName;
+    private final String deckName;
 
     /**
      * Input data for the DeleteDeckInteractor

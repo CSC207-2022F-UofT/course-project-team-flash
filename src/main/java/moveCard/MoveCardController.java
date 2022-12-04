@@ -1,13 +1,8 @@
-package moveCard;
 /*
  * Author: Derrick Cho
  * Date: November 13/22
- * Description:
  */
-
-import entities.Deck;
-
-import entities.Flashcard;
+package moveCard;
 
 /**
  * This file contains the implementation of the MoveCardController class

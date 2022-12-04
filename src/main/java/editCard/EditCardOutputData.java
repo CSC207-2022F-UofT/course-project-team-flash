@@ -1,10 +1,10 @@
-package editCard;/*
+/*
  * Author: Albert Yan
  * Date: October 31/22
  * The output data class for edit card systems, packages data related to output together to be sent to viewmodel
  */
 
-import entities.Flashcard;
+package editCard;
 
 /**
  * This file contains implementation of the EditCardOutputData class.
@@ -13,15 +13,15 @@ import entities.Flashcard;
  */
 public class EditCardOutputData {
 
-    private String id;
+    private final String id;
 
-    private String question;
+    private final String question;
 
-    private String answer;
+    private final String answer;
 
-    private String message;
+    private final String message;
 
-    private String type;
+    private final String type;
 
     /**
      * Creates a new EditCardOutputData with a given Flashcard and String message

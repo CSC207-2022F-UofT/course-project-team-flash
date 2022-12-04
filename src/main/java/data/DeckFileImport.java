@@ -2,7 +2,6 @@
  * Author: Aldo Bani
  * Documentation Author: Aldo Bani
  * Date: November 26/22
- * This reads a file and packages its information for use by the interactor
  */
 
 package data;
@@ -21,7 +20,9 @@ import java.util.Scanner;
 
 import static data.DeckPathCleaner.cleanName;
 
-
+/**
+ * This reads a file and packages its information for use by the interactor
+ */
 public class DeckFileImport implements ImportDeckDsGateway{
     /**
      * Reads from a file containing information about a deck and returns an output data object

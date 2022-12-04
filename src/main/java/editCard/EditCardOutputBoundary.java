@@ -1,10 +1,9 @@
-package editCard;/*
+/*
  * Author: Albert Yan
  * Date: October 31/22
  * The output boundary for edit card systems
  */
-
-import editDeck.EditDeckOutputData;
+package editCard;
 
 /**
  * This file contains an interface named EditCardOutputBoundary.

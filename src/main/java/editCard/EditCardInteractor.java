@@ -1,11 +1,10 @@
-package editCard;/*
+/*
  * Author: Albert Yan
  * Date: October 31/22
  * The use case interactor for editing cards given an input boundary
  */
+package editCard;
 
-import createCard.CreateCardInputBoundary;
-import createCard.CreateCardOutputData;
 import entities.Flashcard;
 import entities.MCFlashcard;
 

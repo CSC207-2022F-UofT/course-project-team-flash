@@ -1,19 +1,18 @@
-package editCard;/*
+/*
  * Author: Albert Yan
  * Date: October 31/22
  * This class is a container for the input data related to edit card systems,
  * it is created by the controller and sent to the interactor
  */
-
-import entities.Flashcard;
+package editCard;
 
 import java.util.List;
+
 /**
  * This file contains implementation of the EditCardInputData class.
  * It includes the instance attributes of EditCardInputData,
  * and the getter methods for them
  */
-
 public class EditCardInputData {
 
     private final String cardID;

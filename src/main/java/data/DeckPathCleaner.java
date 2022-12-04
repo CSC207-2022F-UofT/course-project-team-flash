@@ -1,5 +1,13 @@
+/*
+ * Author: Aldo Bani
+ * Documentation Author: Aldo Bani
+ * Date: November 26/22
+ */
 package data;
 
+/**
+ * Helper Method to clean up filepath
+ */
 public class DeckPathCleaner {
     /**
      * Removes path and extension from a file

@@ -2,22 +2,25 @@
  * Author: Andrew Nguyen
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
- *
+ */
+
+package createCard;
+
+import entities.FlashcardType;
+
+import java.util.List;
+
+/**
  * This file contains implementation of the CreateCardInputData class.
  * It includes two overloaded constructor methods for CreateCardInputData, one for MC flashcards, the other for Q&A
  * flashcards.
  * It also includes the instance attributes of CreateCardInputData and the getter methods for them.
  */
-
-package createCard;
-
-import java.util.List;
-
 public class CreateCardInputData {
     private final String deckName;
     private final String question;
     private final String answer;
-    private final int type;
+    private final FlashcardType type;
     private final List<String> options;
 
     /**
@@ -30,7 +33,7 @@ public class CreateCardInputData {
      */
     public CreateCardInputData(String deckName, String question, String answer, List<String> options) {
         this.deckName = deckName;
-        this.type = 2;
+        this.type = FlashcardType.MCFlashcard;
         this.question = question;
         this.answer = answer;
         this.options = options;
@@ -46,7 +49,7 @@ public class CreateCardInputData {
      */
     public CreateCardInputData(String deckName, String question, String answer) {
         this.deckName = deckName;
-        this.type = 1;
+        this.type = FlashcardType.QandAFlashcard;
         this.question = question;
         this.answer = answer;
         this.options = null;
@@ -66,7 +69,7 @@ public class CreateCardInputData {
      *
      * @return the type of this CreateCardInputData
      */
-    public int getType() {
+    public FlashcardType getType() {
         return type;
     }
 

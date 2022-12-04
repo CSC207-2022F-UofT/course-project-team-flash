@@ -53,7 +53,7 @@ class EditQuizInteractorTest {
 
     @BeforeEach
     void quizSetup(){
-        List<Deck> quizDecks = new ArrayList<Deck>();
+        List<Deck> quizDecks = new ArrayList<>();
 
         quizDecks.add(d1);
         quizDecks.add(d2);
@@ -76,7 +76,7 @@ class EditQuizInteractorTest {
             @Override
             public void prepareFailView(EditQuizOutputData outputData) {
                 Assertions.assertEquals(
-                        "Quiz Name already exists. Please try a different name.",
+                        "Quiz name already exists. Please choose a different name.",
                         outputData.getMessage());
 
             }
@@ -98,7 +98,7 @@ class EditQuizInteractorTest {
         q2Decks.add(d1);
         q2Decks.add(d2);
 
-        Quiz q2 = new Quiz("cisum", q2Decks);
+        new Quiz("cisum", q2Decks);
 
         String oldName2 = "cisum";
         String newName2 = "moosic";

@@ -5,6 +5,9 @@
  */
 package createDeck;
 
+/**
+ * InputData object for CreateDeckInterator
+ */
 public class CreateDeckInputData {
 
     private final String name;

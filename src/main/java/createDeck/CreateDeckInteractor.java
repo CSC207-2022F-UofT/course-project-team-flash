@@ -7,6 +7,9 @@ package createDeck;
 
 import entities.Deck;
 
+/**
+ * Interactor that creates a Deck entity and stores it in memory
+ */
 public class CreateDeckInteractor implements CreateDeckInputBoundary {
     final CreateDeckOutputBoundary outputBoundary;
 
@@ -22,7 +25,8 @@ public class CreateDeckInteractor implements CreateDeckInputBoundary {
     @Override
     public void create(CreateDeckInputData inputData) {
         if (Deck.getTracker().containsKey(inputData.getName())){
-            CreateDeckOutputData outputData = new CreateDeckOutputData("Deck name already exists!");
+            CreateDeckOutputData outputData = new CreateDeckOutputData(
+                    "Deck name already exists. Please choose a different name.");
             outputBoundary.prepareFailView(outputData);
         }
         else {

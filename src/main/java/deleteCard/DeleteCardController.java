@@ -1,9 +1,9 @@
-package deleteCard;
 /*
  * Author: Derrick Cho
  * Date: November 26/22
  * Description: Implementation of DeleteCardController
  */
+package deleteCard;
 
 /**
  * This file contains the implementation of the DeleteCardController class

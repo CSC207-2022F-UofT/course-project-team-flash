@@ -30,7 +30,8 @@ public class EditQuizInteractor implements EditQuizInputBoundary{
     @Override
     public void edit(EditQuizInputData inputData) {
         if (Quiz.getTracker().containsKey(inputData.getNewName())) {
-            EditQuizOutputData outputData = new EditQuizOutputData("Quiz Name already exists. Please try a different name.");
+            EditQuizOutputData outputData = new EditQuizOutputData(
+                    "Quiz name already exists. Please choose a different name.");
             outputBoundary.prepareFailView(outputData);
         } else {
             Quiz quiz = Quiz.getQuiz(inputData.getOldName());
@@ -39,7 +40,7 @@ public class EditQuizInteractor implements EditQuizInputBoundary{
             Quiz.removeTracker(inputData.getOldName());
             Quiz.addTracker(inputData.getNewName(), quiz);
 
-            EditQuizOutputData outputData = new EditQuizOutputData(inputData.getNewName());
+            EditQuizOutputData outputData = new EditQuizOutputData(inputData.getNewName(), inputData.getOldName());
             outputBoundary.prepareSuccessView(outputData);
         }
 

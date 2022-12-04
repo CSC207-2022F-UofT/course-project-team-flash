@@ -2,7 +2,6 @@
  * Author: Aldo Bani
  * Documentation Author: Aldo Bani
  * Date: November 26/22
- * This is supposed to be used for testing file export
  */
 
 package data;
@@ -13,6 +12,9 @@ import exportDeck.ExportDeckDsInputData;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This is supposed to be used for testing file export
+ */
 public class DeckInMemoryExport implements ExportDeckDsGateway{
     public static Map<String, ExportDeckDsInputData> memoryDeckDirectory = new HashMap<>();
 

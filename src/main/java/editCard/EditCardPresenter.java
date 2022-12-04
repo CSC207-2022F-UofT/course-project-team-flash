@@ -1,10 +1,10 @@
-package editCard;/*
+/*
  * Author: Albert Yan
  * Date: October 31/22
  * The presenter class for edit card systems
  */
+package editCard;
 
-import createDeck.CreateDeckOutputData;
 import screens.ViewBoundary;
 import screens.ViewModel;
 import screens.ViewState;
@@ -47,5 +47,5 @@ public class EditCardPresenter implements EditCardOutputBoundary {
                 .build();
 
         viewBound.updateView(viewModel);
-    };
+    }
 }

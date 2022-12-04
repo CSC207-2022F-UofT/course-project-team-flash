@@ -49,7 +49,7 @@ class CreateCardInteractorTest {
             public void prepareSuccessView(CreateCardOutputData outputData) {
                 Assertions.assertEquals(outputData.getQuestion(), "question");
                 Assertions.assertEquals(outputData.getAnswer(), "answer");
-                Assertions.assertEquals(outputData.getType(), "Multiple Choice");
+                Assertions.assertEquals(outputData.getType(), "MCFlashcard");
             }
 
             @Override
@@ -81,7 +81,7 @@ class CreateCardInteractorTest {
 
             @Override
             public void prepareFailView(CreateCardOutputData outputData) {
-                Assertions.assertEquals(outputData.getMessage(), "Flashcard Creation Failed. No Question Stated.");
+                Assertions.assertEquals(outputData.getMessage(), "No Question Stated. Please try again.");
             }
         };
 

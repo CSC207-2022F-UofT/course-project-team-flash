@@ -2,8 +2,6 @@
  * Author: Aldo Bani
  * Documentation Author: Aldo Bani
  * Date: November 26/22
- * This reads something pretending to be a file and creates a deck
- * Should be used in testing only
  */
 
 package data;
@@ -19,6 +17,10 @@ import java.util.Map;
 
 import static data.DeckPathCleaner.cleanName;
 
+/**
+ * This reads something pretending to be a file and creates a deck
+ * Should be used in testing only
+ */
 public class DeckInMemoryImport implements ImportDeckDsGateway {
     private final Map<String, List<String>> file;
 
