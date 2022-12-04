@@ -4,6 +4,8 @@ import createDeck.CreateDeckController;
 import deleteDeck.DeleteDeckController;
 import editDeck.EditDeckController;
 import enterDeck.EnterDeckController;
+import exportDeck.ExportDeckController;
+import importDeck.ImportDeckController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +22,8 @@ public class DeckScreen extends JPanel {
     private DeleteDeckController deleteDeckController;
     private EditDeckController editDeckController;
     private EnterDeckController enterDeckController;
+    private ExportDeckController exportDeckController;
+    private ImportDeckController importDeckController;
 
     // Decks
     private final ArrayList<String> deckNames;
@@ -35,7 +39,9 @@ public class DeckScreen extends JPanel {
     public DeckScreen(CreateDeckController createDeckController,
                       DeleteDeckController deleteDeckController,
                       EditDeckController editDeckController,
-                      EnterDeckController enterDeckController) {
+                      EnterDeckController enterDeckController,
+                      ExportDeckController exportDeckController,
+                      ImportDeckController importDeckController) {
         super(new GridBagLayout());
         customize();
         this.gridBagConstraints = new GridBagConstraints();
@@ -47,17 +53,24 @@ public class DeckScreen extends JPanel {
         this.deleteDeckController = deleteDeckController;
         this.editDeckController = editDeckController;
         this.enterDeckController = enterDeckController;
+        this.exportDeckController = exportDeckController;
+        this.importDeckController = importDeckController;
+
         drawComponents();
     }
 
     public void setController(CreateDeckController createDeckController,
                               DeleteDeckController deleteDeckController,
                               EditDeckController editDeckController,
-                              EnterDeckController enterDeckController) {
+                              EnterDeckController enterDeckController,
+                              ExportDeckController exportDeckController,
+                              ImportDeckController importDeckController) {
         this.createDeckController = createDeckController;
         this.deleteDeckController = deleteDeckController;
         this.editDeckController = editDeckController;
         this.enterDeckController = enterDeckController;
+        this.exportDeckController = exportDeckController;
+        this.importDeckController = importDeckController;
     }
 
     public void reconstructDecks(boolean delete, String deckName) {
@@ -152,14 +165,15 @@ public class DeckScreen extends JPanel {
 
                     JPanel renameDeck = new JPanel();
                     JPanel deleteDeck = new JPanel();
+                    JPanel exportDeck = new JPanel();
 
                     optionTabs.add("Rename Deck", renameDeck);
                     optionTabs.add("Delete Deck", deleteDeck);
+                    optionTabs.add("Export Deck", exportDeck);
 
                     newDeckDialog.add(optionTabs);
 
                     JLabel prompt = new JLabel("Enter a new name for the deck:");
-                    JTextField createDeckTextField = new JTextField("", TEXT_FIELD_LENGTH);
                     JButton renameButton = new JButton("Rename Deck");
                     JTextField editDeckTextField = new JTextField("", TEXT_FIELD_LENGTH);
 
@@ -169,6 +183,13 @@ public class DeckScreen extends JPanel {
 
                     JButton deleteButton = new JButton("Delete Deck " + button.getName());
                     deleteDeck.add(deleteButton);
+
+                    JLabel exportPrompt = new JLabel("Enter the filepath:");
+                    JButton exportButton = new JButton("Export");
+                    JTextField exportDeckTextField = new JTextField("", TEXT_FIELD_LENGTH);
+                    exportDeck.add(exportPrompt);
+                    exportDeck.add(exportDeckTextField);
+                    exportDeck.add(exportButton);
 
                     renameButton.addActionListener(new ActionListener() {
                         @Override
@@ -182,6 +203,14 @@ public class DeckScreen extends JPanel {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             deleteDeckController.delete(button.getName());
+                            deckSettingsFrame.dispose();
+                        }
+                    });
+
+                    exportButton.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            exportDeckController.exportDeck(exportDeckTextField.getText(), button.getName());
                             deckSettingsFrame.dispose();
                         }
                     });
@@ -224,6 +253,20 @@ public class DeckScreen extends JPanel {
             }
         });
 
+        JLabel importPrompt = new JLabel("Enter the filepath:");
+        JTextField importDeckTextField = new JTextField("", TEXT_FIELD_LENGTH);
+        JButton importButton = new JButton("Import Deck");
+        importNewDeck.add(importPrompt);
+        importNewDeck.add(importDeckTextField);
+        importNewDeck.add(importButton);
+
+        importButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                importDeckController.importDeck(importDeckTextField.getText());
+                newDeckFrame.dispose();
+            }
+        });
         newDeckDialog.pack();
         newDeckDialog.setModal(true);
         newDeckDialog.setVisible(true);
