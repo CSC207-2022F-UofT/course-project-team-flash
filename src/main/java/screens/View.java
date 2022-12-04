@@ -96,7 +96,8 @@ public class View implements ViewBoundary {
         application.add(screens);
 
         cardScreen = new CardScreen(createCardController, deleteCardController, editCardController);
-        deckScreen = new DeckScreen(createDeckController, deleteDeckController, editDeckController, enterDeckController);
+        deckScreen = new DeckScreen(createDeckController, deleteDeckController, editDeckController,
+                                    enterDeckController, exportDeckController, importDeckController);
         mainMenuScreen = new MainMenuScreen();
         quizScreen = new QuizScreen(createQuizController, deleteQuizController);
 
@@ -126,7 +127,9 @@ public class View implements ViewBoundary {
                               EditDeckController editDeckController,
                               EditQuizController editQuizController,
                               MoveCardController moveCardController,
-                              EnterDeckController enterDeckController) {
+                              EnterDeckController enterDeckController,
+                              ExportDeckController exportDeckController,
+                              ImportDeckController importDeckController) {
 
         this.createCardController = createCardController;
         this.createDeckController = createDeckController;
@@ -139,9 +142,11 @@ public class View implements ViewBoundary {
         this.editQuizController = editQuizController;
         this.moveCardController = moveCardController;
         this.enterDeckController = enterDeckController;
+        this.exportDeckController = exportDeckController;
+        this.importDeckController = importDeckController;
 
         cardScreen.setController(createCardController, deleteCardController, editCardController);
-        deckScreen.setController(createDeckController, deleteDeckController, editDeckController, enterDeckController);
+        deckScreen.setController(createDeckController, deleteDeckController, editDeckController, enterDeckController, exportDeckController, importDeckController);
         quizScreen.setController(createQuizController, deleteQuizController);
     }
 
@@ -248,7 +253,11 @@ public class View implements ViewBoundary {
                 break;
 
             case DECK_IMPORTED:
+                deckScreen.reconstructDecks(false, deckName);
 
+                break;
+
+            case DECK_EXPORTED:
 
                 break;
 

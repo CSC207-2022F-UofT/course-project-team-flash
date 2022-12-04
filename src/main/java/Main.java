@@ -11,6 +11,7 @@ import moveCard.*;
 import enterDeck.*;
 import exportDeck.*;
 import importDeck.*;
+import data.*;
 import runQuiz.*;
 
 import entities.CardFactory;
@@ -42,6 +43,8 @@ public class Main {
         EditQuizController editQuizController = editQuizConstructor(view);
         MoveCardController moveCardController = moveCardConstructor(view);
         EnterDeckController enterDeckController = enterDeckConstructor(view);
+        ImportDeckController importDeckController = importDeckConstructor(view);
+        ExportDeckController exportDeckController = exportDeckConstructor(view);
 
 
         // Setting controllers of the view
@@ -49,7 +52,8 @@ public class Main {
                 createCardController, createDeckController, createQuizController,
                 deleteCardController, deleteDeckController,deleteQuizController,
                 editCardController, editDeckController, editQuizController,
-                moveCardController, enterDeckController
+                moveCardController, enterDeckController,
+                exportDeckController, importDeckController
         );
 
         // IDK what else needs to be done
@@ -112,5 +116,18 @@ public class Main {
         EnterDeckOutputBoundary presenter = new EnterDeckPresenter(view);
         EnterDeckInputBoundary interactor = new EnterDeckInteractor(presenter);
         return new EnterDeckController(interactor);
+    }
+    private static ExportDeckController exportDeckConstructor(View view) {
+        ExportDeckOutputBoundary presenter = new ExportDeckPresenter(view);
+        ExportDeckDsGateway gateway = new DeckFileExport();
+        ExportDeckInteractor interactor = new ExportDeckInteractor(gateway, presenter);
+        return new ExportDeckController(interactor);
+    }
+    private static ImportDeckController importDeckConstructor(View view) {
+        ImportDeckOutputBoundary presenter = new ImportDeckPresenter(view);
+        ImportDeckDsGateway gateway = new DeckFileImport();
+        CardFactory factory = new FlashcardFactory();
+        ImportDeckInteractor interactor = new ImportDeckInteractor(gateway, presenter, factory);
+        return new ImportDeckController(interactor);
     }
 }
