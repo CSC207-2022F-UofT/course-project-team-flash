@@ -2,16 +2,17 @@
  * Author: Andrew Nguyen
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
- *
+ */
+
+package createCard;
+
+/**
  * This file contains the implementation of the CreateCardOutputData class.
  * It includes the instance attributes of the CreateCardOutputData class and
  * their getter methods.
  * It also has two overloaded constructor methods, one for a failed creation of flashcard, the other for a successful
  * one.
  */
-
-package createCard;
-
 public class CreateCardOutputData {
     private final String message;
     private final String type;

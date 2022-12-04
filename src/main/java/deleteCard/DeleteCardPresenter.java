@@ -1,9 +1,9 @@
-package deleteCard;
 /*
  * Author: Derrick Cho
  * Date: November 26/22
  * Description: Implementation of DeleteCardPresenter
  */
+package deleteCard;
 
 import screens.ViewModel;
 import screens.ViewBoundary;

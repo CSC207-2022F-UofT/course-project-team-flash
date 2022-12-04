@@ -1,3 +1,8 @@
+/*
+ * Author: Derrick Cho
+ * Date: November 13/22
+ */
+
 package moveCard;
 
 import screens.ViewModel;

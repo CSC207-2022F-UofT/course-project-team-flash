@@ -1,3 +1,8 @@
+/*
+ * Author: Derrick Cho
+ * Date: November 13/22
+ */
+
 package moveCard;
 
 import entities.Flashcard;
@@ -11,7 +16,7 @@ import entities.Deck;
  */
 public class MoveCardInteractor implements MoveCardInputBoundary{
 
-    private MoveCardOutputBoundary moveCardOutputBoundary;
+    private final MoveCardOutputBoundary moveCardOutputBoundary;
 
     /**
      * Creates a new MoveCardInteractor with a given MoveCardOutputBoundary

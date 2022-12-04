@@ -1,9 +1,9 @@
-package deleteCard;
 /*
  * Author: Derrick Cho
  * Date: November 26/22
  * Description: Implementation of DeleteCardInteractor
  */
+package deleteCard;
 
 import entities.Flashcard;
 import entities.Deck;
@@ -15,7 +15,7 @@ import entities.Deck;
  */
 public class DeleteCardInteractor implements DeleteCardInputBoundary{
 
-    private DeleteCardOutputBoundary deleteCardOutputBoundary;
+    private final DeleteCardOutputBoundary deleteCardOutputBoundary;
 
     /**
      * Creates a new DeleteCardInteractor with a given DeleteCardOutputBoundary

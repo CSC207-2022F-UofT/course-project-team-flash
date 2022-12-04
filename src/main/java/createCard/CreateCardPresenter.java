@@ -2,8 +2,6 @@
  * Author: Andrew Nguyen
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
- *
- * This file contains the implementation of the CreateCardPresenter, which implements CreateCardOutputBoundary.
  */
 
 package createCard;
@@ -12,6 +10,9 @@ import screens.ViewBoundary;
 import screens.ViewModel;
 import screens.ViewState;
 
+/**
+ * This file contains the implementation of the CreateCardPresenter, which implements CreateCardOutputBoundary.
+ */
 public class CreateCardPresenter implements CreateCardOutputBoundary {
 
     ViewBoundary viewBound;

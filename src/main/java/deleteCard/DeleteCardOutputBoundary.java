@@ -1,9 +1,9 @@
-package deleteCard;
 /*
  * Author: Derrick Cho
  * Date: November 26/22
  * Description: Implementation of DeleteCardOutputBoundary
  */
+package deleteCard;
 
 /**
  * This file contains the interface named DeleteCardOutputBoundary and two abstract methods
@@ -11,7 +11,7 @@ package deleteCard;
  */
 public interface DeleteCardOutputBoundary {
 
-    public void prepareSuccessView(DeleteCardOutputData deleteCardOutputData);
+    void prepareSuccessView(DeleteCardOutputData deleteCardOutputData);
 
-    public void prepareFailView(DeleteCardOutputData deleteCardOutputData);
+    void prepareFailView(DeleteCardOutputData deleteCardOutputData);
 }

@@ -2,8 +2,6 @@
  * Author: Andrew Nguyen
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
- *
- * This file contains the implementation of the CreateCardInteractor class, which implements CreateCardInputBoundary.
  */
 
 package createCard;
@@ -12,6 +10,9 @@ import entities.CardFactory;
 import entities.Deck;
 import entities.Flashcard;
 
+/**
+ * This file contains the implementation of the CreateCardInteractor class, which implements CreateCardInputBoundary.
+ */
 public class CreateCardInteractor implements CreateCardInputBoundary {
 
     final CreateCardOutputBoundary outputBoundary;

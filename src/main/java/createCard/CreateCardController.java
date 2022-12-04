@@ -2,15 +2,16 @@
  * Author: Andrew Nguyen
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
- *
- * This file contains implementation of the CreateCardController class.
- * The task of it is to create a new flashcard. The new flashcard can be
- * of type Q&A or MC.
  */
 package createCard;
 
 import java.util.List;
 
+/**
+ * This file contains implementation of the CreateCardController class.
+ * The task of it is to create a new flashcard. The new flashcard can be
+ * of type Q&A or MC.
+ */
 public class CreateCardController {
     final CreateCardInputBoundary inputBoundary;
 

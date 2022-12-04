@@ -1,18 +1,20 @@
-package editCard;/*
+/*
  * Author: Albert Yan
  * Date: October 31/22
  * The presenter class for edit card systems
  */
 
-import createDeck.CreateDeckOutputData;
+/*
+ * This file contains the implementation of the EditCardPresenter,
+ * which implements EditCardOutputBoundary.
+ */
+
+package editCard;
+
 import screens.ViewBoundary;
 import screens.ViewModel;
 import screens.ViewState;
 
-/**
- * This file contains the implementation of the EditCardPresenter,
- * which implements EditCardOutputBoundary.
- */
 public class EditCardPresenter implements EditCardOutputBoundary {
 
     /**
@@ -47,5 +49,5 @@ public class EditCardPresenter implements EditCardOutputBoundary {
                 .build();
 
         viewBound.updateView(viewModel);
-    };
+    }
 }

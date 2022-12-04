@@ -2,17 +2,18 @@
  * Author: Andrew Nguyen
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
- *
- * This file contains implementation of the CreateCardInputData class.
- * It includes two overloaded constructor methods for CreateCardInputData, one for MC flashcards, the other for Q&A
- * flashcards.
- * It also includes the instance attributes of CreateCardInputData and the getter methods for them.
  */
 
 package createCard;
 
 import java.util.List;
 
+/**
+ * This file contains implementation of the CreateCardInputData class.
+ * It includes two overloaded constructor methods for CreateCardInputData, one for MC flashcards, the other for Q&A
+ * flashcards.
+ * It also includes the instance attributes of CreateCardInputData and the getter methods for them.
+ */
 public class CreateCardInputData {
     private final String deckName;
     private final String question;

@@ -2,7 +2,6 @@
  * Author: Aldo Bani
  * Documentation Author: Aldo Bani
  * Date: November 25/22
- * This creates a file containing deck information to the filesystem
  */
 
 package data;
@@ -13,6 +12,9 @@ import screens.ExportDeckFail;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * This creates a file containing deck information to the filesystem
+ */
 public class DeckFileExport implements ExportDeckDsGateway{
 
     /**

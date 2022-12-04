@@ -2,9 +2,6 @@
  * Author: Jasmine Tsoi
  * Documentation Author: Jasmine Tsoi
  * Date: November 25/22
- *
- * This file contains the implementation of the DeleteQuizPresenter,
- * which implements DeleteQuizOutputBoundary.
  */
 
 package deleteQuiz;
@@ -13,6 +10,10 @@ import screens.ViewBoundary;
 import screens.ViewModel;
 import screens.ViewState;
 
+/**
+ * This file contains the implementation of the DeleteQuizPresenter,
+ * which implements DeleteQuizOutputBoundary.
+ */
 public class DeleteQuizPresenter implements DeleteQuizOutputBoundary{
 
     ViewBoundary viewBound;

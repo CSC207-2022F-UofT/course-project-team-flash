@@ -1,9 +1,9 @@
-package deleteCard;
 /*
  * Author: Derrick Cho
  * Date: November 26/22
  * Description: Implementation of DeleteCardInputData
  */
+package deleteCard;
 
 /**
  * This file contains the implementation of the DeleteCardInputData class
@@ -12,8 +12,8 @@ package deleteCard;
  */
 public class DeleteCardInputData {
 
-    private String cardID;
-    private String deckName;
+    private final String cardID;
+    private final String deckName;
 
     /**
      * Creates a new DeleteCardInputData with the given String cardID and deckName

@@ -9,6 +9,9 @@ import screens.ViewBoundary;
 import screens.ViewModel;
 import screens.ViewState;
 
+/**
+ * This file contains the implementation of the presenter, which calls the view through an interface
+ */
 public class CreateDeckPresenter implements CreateDeckOutputBoundary {
 
     ViewBoundary viewBound;

@@ -1,12 +1,7 @@
-
 /*
  * Author: Jasmine Tsoi
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
- *
- * This file contains implementation of the CreateQuizInputData class.
- * It includes the instance attributes of CreateQuizInputData,
- * the getter methods for them, and a private method deckNamesToDecks.
  */
 
 package createQuiz;
@@ -17,6 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This file contains implementation of the CreateQuizInputData class.
+ * It includes the instance attributes of CreateQuizInputData,
+ * the getter methods for them, and a private method deckNamesToDecks.
+ */
 public class CreateQuizInputData {
 
     private final String quizName;

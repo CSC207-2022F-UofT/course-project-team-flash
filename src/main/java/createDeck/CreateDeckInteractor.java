@@ -7,6 +7,9 @@ package createDeck;
 
 import entities.Deck;
 
+/**
+ * Interactor that creates a Deck entity and stores it in memory
+ */
 public class CreateDeckInteractor implements CreateDeckInputBoundary {
     final CreateDeckOutputBoundary outputBoundary;
 

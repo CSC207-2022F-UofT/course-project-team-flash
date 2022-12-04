@@ -2,14 +2,15 @@
  * Author: Jasmine Tsoi
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
- *
- * This file contains implementation of the CreateQuizController class.
- * The task of it is to create a new quiz.
  */
 
 package createQuiz;
 import java.util.List;
 
+/**
+ * This file contains implementation of the CreateQuizController class.
+ * The task of it is to create a new quiz.
+ */
 public class CreateQuizController {
 
     private final CreateQuizInputBoundary inputBoundary;

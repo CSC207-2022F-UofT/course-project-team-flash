@@ -1,9 +1,9 @@
-package deleteCard;
 /*
  * Author: Derrick Cho
  * Date: November 26/22
  * Description: Implementation of DeleteCardOutputData
  */
+package deleteCard;
 
 /**
  * This file contains the implementation of the DeleteCardOutputData class
@@ -12,9 +12,9 @@ package deleteCard;
  */
 public class DeleteCardOutputData {
 
-    private String message;
+    private final String message;
 
-    private String id;
+    private final String id;
 
     /**
      * Creates a new DeleteCardOutputData with a given String message

@@ -2,9 +2,6 @@
  * Author: Jasmine Tsoi
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
- *
- * This file contains the implementation of the CreateQuizPresenter,
- * which implements CreateQuizOutputBoundary.
  */
 
 package createQuiz;
@@ -13,6 +10,10 @@ import screens.ViewBoundary;
 import screens.ViewModel;
 import screens.ViewState;
 
+/**
+ * This file contains the implementation of the CreateQuizPresenter,
+ * which implements CreateQuizOutputBoundary.
+ */
 public class CreateQuizPresenter implements CreateQuizOutputBoundary{
 
     ViewBoundary viewBound;
