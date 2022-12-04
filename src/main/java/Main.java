@@ -55,7 +55,7 @@ public class Main {
                 editCardController, editDeckController, editQuizController,
                 moveCardController, enterDeckController,
                 exportDeckController, importDeckController,
-                moveCardController, enterDeckController, runQuizController
+                runQuizController
         );
 
         // IDK what else needs to be done

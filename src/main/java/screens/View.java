@@ -139,7 +139,6 @@ public class View implements ViewBoundary {
                               EnterDeckController enterDeckController,
                               ExportDeckController exportDeckController,
                               ImportDeckController importDeckController,
-                              EnterDeckController enterDeckController,
                               RunQuizController runQuizController) {
 
         this.createCardController = createCardController;
@@ -159,8 +158,9 @@ public class View implements ViewBoundary {
 
         cardScreen.setController(createCardController, deleteCardController, editCardController);
         deckScreen.setController(createDeckController, deleteDeckController, editDeckController, enterDeckController, exportDeckController, importDeckController);
-        quizScreen.setController(createQuizController, deleteQuizController);
-        deckScreen.setController(createDeckController, deleteDeckController, editDeckController, enterDeckController);
+        quizScreen.setController(createQuizController, deleteQuizController, runQuizController);
+        deckScreen.setController(createDeckController, deleteDeckController, editDeckController, enterDeckController,
+                                exportDeckController, importDeckController);
         quizScreen.setController(createQuizController, deleteQuizController, runQuizController);
         showAnswerScreen.setController(runQuizController);
         showProblemScreen.setController(runQuizController);
