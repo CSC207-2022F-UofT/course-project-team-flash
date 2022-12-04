@@ -1,9 +1,7 @@
 /*
  * Author: Derrick Cho
  * Date: November 13/22
- * Description:
  */
-
 package moveCard;
 
 /**

@@ -6,7 +6,6 @@
 package moveCard;
 
 import entities.Flashcard;
-
 import entities.Deck;
 
 /**
