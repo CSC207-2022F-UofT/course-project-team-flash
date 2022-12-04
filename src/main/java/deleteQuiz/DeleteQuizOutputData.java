@@ -2,14 +2,15 @@
  * Author: Jasmine Tsoi
  * Documentation Author: Jasmine Tsoi
  * Date: November 25/22
- *
- * This file contains the implementation of the DeleteQuizOutputData class.
- * It includes the instance attributes of the DeleteQuizOutputData class and
- * their getter methods.
  */
 
 package deleteQuiz;
 
+/**
+ * This file contains the implementation of the DeleteQuizOutputData class.
+ * It includes the instance attributes of the DeleteQuizOutputData class and
+ * their getter methods.
+ */
 public class DeleteQuizOutputData {
 
     private final String quizName;

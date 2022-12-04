@@ -2,16 +2,19 @@
  * Author: Andrew Nguyen
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
- *
+ */
+
+package createCard;
+
+import entities.FlashcardType;
+
+/**
  * This file contains the implementation of the CreateCardOutputData class.
  * It includes the instance attributes of the CreateCardOutputData class and
  * their getter methods.
  * It also has two overloaded constructor methods, one for a failed creation of flashcard, the other for a successful
  * one.
  */
-
-package createCard;
-
 public class CreateCardOutputData {
     private final String message;
     private final String type;
@@ -43,19 +46,9 @@ public class CreateCardOutputData {
      * @param answer the answer part of this flashcard
      * @param uniqueID the unique ID of the card
      */
-    public CreateCardOutputData(String message, int type, String question, String answer, String uniqueID) {
+    public CreateCardOutputData(String message, FlashcardType type, String question, String answer, String uniqueID) {
         this.message = message;
-
-        String strType = "";
-        if (type == 1) {
-            strType = "Question and Answer";
-        } else if (type == 2) {
-            strType = "Multiple Choice";
-        } else if (type == 3) {
-            strType = "Select All";
-        }
-
-        this.type = strType;
+        this.type = type.toString();
         this.question = question;
         this.answer = answer;
         this.uniqueID = uniqueID;

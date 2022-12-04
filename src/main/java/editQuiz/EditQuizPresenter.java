@@ -31,6 +31,7 @@ public class EditQuizPresenter implements EditQuizOutputBoundary {
     public void prepareSuccessView(EditQuizOutputData outputData) {
         ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.QUIZ_EDITED)
                 .setQuizName(outputData.getMessage())
+                .setQuizName2(outputData.getOldName())
                 .build();
 
         viewBound.updateView(viewModel);

@@ -2,15 +2,16 @@
  * Author: Jasmine Tsoi
  * Documentation Author: Jasmine Tsoi
  * Date: November 25/22
- *
- * This file contains the implementation of the DeleteQuizInteractor class,
- * which implements DeleteQuizInputBoundary.
  */
 
 package deleteQuiz;
 
 import entities.Quiz;
 
+/**
+ * This file contains the implementation of the DeleteQuizInteractor class,
+ * which implements DeleteQuizInputBoundary.
+ */
 public class DeleteQuizInteractor implements DeleteQuizInputBoundary{
 
     private final DeleteQuizOutputBoundary outputBoundary;
@@ -27,7 +28,6 @@ public class DeleteQuizInteractor implements DeleteQuizInputBoundary{
     /**
      * If the quiz name exists, remove it from the quiz tracker.
      * Then, prepares a success view through outputBoundary.
-     *
      * If the quiz name does not exist, prepares a fail view through outputBoundary.
      *
      * @param inputData the CreateQuizInputData associated with the created quiz

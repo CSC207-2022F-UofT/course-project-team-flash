@@ -1,22 +1,19 @@
-package editCard;
 /*
  * Author: Albert Yan
  * Date: October 31/22
  * The edit card controller for edit card systems, receives the arguments required to perform an edit card action
  */
 
-import entities.Flashcard;
+package editCard;
 
 import java.util.List;
 
 /**
  * This file contains an implementation of the EditCardController class
- *
  */
-
 public class EditCardController {
 
-    final EditCardInputBoundary inputBoundary;
+    private final EditCardInputBoundary inputBoundary;
 
     /**
      * Creates a new EditCardController with the given input boundary

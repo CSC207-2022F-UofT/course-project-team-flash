@@ -1,17 +1,13 @@
 package screens;
 
-import createDeck.CreateDeckController;
 import createQuiz.CreateQuizController;
-import deleteDeck.DeleteDeckController;
 import deleteQuiz.DeleteQuizController;
+import editQuiz.EditQuizController;
 import runQuiz.RunQuizController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 public class QuizScreen extends JPanel {
@@ -19,40 +15,47 @@ public class QuizScreen extends JPanel {
     // Controllers required by this Jpanel
     private CreateQuizController createQuizController;
     private DeleteQuizController deleteQuizController;
+    private EditQuizController editQuizController;
 
     private RunQuizController runQuizController;
 
     // Decks
-    private ArrayList<String> deckNames;
+    private final ArrayList<String> deckNames;
 
     // Quizzes
-    private ArrayList<String> quizNames;
+    private final ArrayList<String> quizNames;
 
-    private ArrayList<JButton> quizButtons;
+    private final ArrayList<JButton> quizButtons;
 
-    private ArrayList<JButton> quizSettingsButtons;
+    private final ArrayList<JButton> quizSettingsButtons;
 
     // Interface Formatters
     private static final int TEXT_FIELD_LENGTH = 10;
 
-    private GridBagConstraints gridBagConstraints;
+    private final GridBagConstraints gridBagConstraints;
 
-    public QuizScreen(CreateQuizController createQuizController, DeleteQuizController deleteQuizController, RunQuizController runQuizController) {
+    public QuizScreen(CreateQuizController createQuizController, DeleteQuizController deleteQuizController,
+                      EditQuizController editQuizController, RunQuizController runQuizController) {
         super(new GridBagLayout());
         this.gridBagConstraints = new GridBagConstraints();
         this.deckNames = new ArrayList<>();
         this.quizNames = new ArrayList<>();
         this.quizButtons = new ArrayList<>();
         this.quizSettingsButtons = new ArrayList<>();
+
         this.createQuizController = createQuizController;
         this.deleteQuizController = deleteQuizController;
+        this.editQuizController = editQuizController;
         this.runQuizController = runQuizController;
+
         drawComponents();
     }
 
-    public void setController(CreateQuizController createQuizController, DeleteQuizController deleteQuizController, RunQuizController runQuizController) {
+    public void setController(CreateQuizController createQuizController, DeleteQuizController deleteQuizController,
+                              EditQuizController editQuizController, RunQuizController runQuizController) {
         this.createQuizController = createQuizController;
         this.deleteQuizController = deleteQuizController;
+        this.editQuizController = editQuizController;
         this.runQuizController = runQuizController;
     }
 
@@ -75,12 +78,12 @@ public class QuizScreen extends JPanel {
     }
 
     // helper method for setting constraints on layout components
-    private void setConstraints(int anchor, int fill, int gridWidth, int gridHeight, int gridX, int gridY, double weightX, double weightY) {
-        this.gridBagConstraints.anchor = anchor;
+    private void setConstraints(int fill, int gridWidth, int gridY, double weightX, double weightY) {
+        this.gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
         this.gridBagConstraints.fill = fill;
         this.gridBagConstraints.gridwidth = gridWidth;
-        this.gridBagConstraints.gridheight = gridHeight;
-        this.gridBagConstraints.gridx = gridX;
+        this.gridBagConstraints.gridheight = 1;
+        this.gridBagConstraints.gridx = 0;
         this.gridBagConstraints.gridy = gridY;
         this.gridBagConstraints.weightx = weightX;
         this.gridBagConstraints.weighty = weightY;
@@ -88,143 +91,105 @@ public class QuizScreen extends JPanel {
 
     private void drawComponents() {
         // creates/recreates the components of the Jpanel
-        this.removeAll();
-        quizButtons.clear();
-        quizSettingsButtons.clear();
+        clear();
+        customize();
+
         JButton backButton = new JButton("Back");
         JButton quizCreationButton = new JButton("New Quiz");
-        setConstraints(GridBagConstraints.FIRST_LINE_START, GridBagConstraints.NONE, 1, 1, 0, 0, 0, 0);
-        this.add(backButton, gridBagConstraints);
-        gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
-        gridBagConstraints.gridx = 1;
-        this.add(quizCreationButton, gridBagConstraints);
+        customizeButtons(backButton, quizCreationButton);
+        addButtons(backButton, quizCreationButton);
 
         // The "squashPanel" for squashing components flush to the top
         JPanel squashPanel = new JPanel(new GridBagLayout());
-        setConstraints(GridBagConstraints.FIRST_LINE_START, GridBagConstraints.BOTH, 2, 1, 0, quizNames.size() + 2, 1, 1);
-        this.add(squashPanel, gridBagConstraints);
+        customizeSquashPanel(squashPanel);
+        addSquashPanel(squashPanel);
 
         // Pre for loop setup (for listing decks)
-        gridBagConstraints.weighty = 0;
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        for (String name : quizNames) {
-            JButton deckButton = new JButton(name);
-            JButton deckSettingsButton = new JButton("...");
-            deckSettingsButton.setName(name);
-            quizButtons.add(deckButton);
-            quizSettingsButtons.add(deckSettingsButton);
+        loopSetUp();
+        addQuizButtons();
 
-            gridBagConstraints.gridy += 1;
-            deckButton.setLayout(new BorderLayout());
-            gridBagConstraints.fill = gridBagConstraints.HORIZONTAL;
-            this.add(deckButton, gridBagConstraints);
-            deckButton.add(deckSettingsButton, BorderLayout.EAST);
-        }
         // re-renders the screen with new components
-        this.revalidate();
-        this.repaint();
+        updateScreen();
 
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                for (Component c : getParent().getComponents()) {
-                    if (c instanceof MainMenuScreen) {
-                        c.setVisible(true);
-                        return;
-                    }
+        backButton.addActionListener(e -> {
+            setVisible(false);
+            for (Component c : getParent().getComponents()) {
+                if (c instanceof MainMenuScreen) {
+                    c.setVisible(true);
+                    return;
                 }
             }
         });
-        quizCreationButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { chooseQuizCreation(); }
-        });
+        quizCreationButton.addActionListener(e -> chooseQuizCreation());
 
         for (JButton button : quizButtons) {
-            button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    JFrame startQuizFrame = new JFrame();
-                    JDialog startQuizDialog = new JDialog(startQuizFrame);
-                    JPanel startQuiz = new JPanel();
-                    startQuizDialog.add(startQuiz);
+            button.addActionListener(e -> {
+                JFrame startQuizFrame = new JFrame();
+                JDialog startQuizDialog = new JDialog(startQuizFrame);
+                JPanel startQuiz = new JPanel();
+                startQuizDialog.add(startQuiz);
 
-                    JLabel startPrompt = new JLabel("Start quiz " + button.getText() + "?");
-                    JCheckBox randomCheckBox = new JCheckBox("Randomized order?", false);
-                    JButton startQuizButton = new JButton("Start");
-                    startQuiz.add(startPrompt);
-                    startQuiz.add(randomCheckBox);
-                    startQuiz.add(startQuizButton);
+                JLabel startPrompt = new JLabel("Start quiz " + button.getText() + "?");
+                JCheckBox randomCheckBox = new JCheckBox("Randomized order?", false);
+                JButton startQuizButton = new JButton("Start");
+                startQuiz.add(startPrompt);
+                startQuiz.add(randomCheckBox);
+                startQuiz.add(startQuizButton);
 
-                    startQuizButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            runQuizController.startQuiz(button.getText(), randomCheckBox.isSelected());
-                            startQuizFrame.dispose();
-                        }
-                    });
+                startQuizButton.addActionListener(e1 -> {
+                    runQuizController.startQuiz(button.getText(), randomCheckBox.isSelected());
+                    startQuizFrame.dispose();
+                });
 
-                    startQuizDialog.pack();
-                    startQuizDialog.setModal(true);
-                    startQuizDialog.setVisible(true);
-                }
+                startQuizDialog.pack();
+                startQuizDialog.setModal(true);
+                startQuizDialog.setVisible(true);
             });
         }
 
         for (JButton button : quizSettingsButtons) {
-            button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    JFrame deckSettingsFrame = new JFrame();
-                    JDialog newDeckDialog = new JDialog(deckSettingsFrame);
+            button.addActionListener(e -> {
+                JFrame quizSettingsFrame = new JFrame();
+                JDialog newQuizDialog = new JDialog(quizSettingsFrame);
 
-                    JTabbedPane optionTabs = new JTabbedPane();
+                JTabbedPane optionTabs = new JTabbedPane();
 
-                    JPanel renameQuiz = new JPanel();
-                    JPanel deleteQuiz = new JPanel();
+                JPanel renameQuiz = new JPanel();
+                JPanel deleteQuiz = new JPanel();
 
-                    optionTabs.add("Rename Quiz", renameQuiz);
-                    optionTabs.add("Delete Quiz", deleteQuiz);
+                optionTabs.add("Rename Quiz", renameQuiz);
+                optionTabs.add("Delete Quiz", deleteQuiz);
 
-                    newDeckDialog.add(optionTabs);
+                newQuizDialog.add(optionTabs);
 
-                    JLabel prompt = new JLabel("Enter a new name for the quiz:");
-                    JTextField createDeckTextField = new JTextField("", TEXT_FIELD_LENGTH);
-                    JButton renameButton = new JButton("Rename Quiz");
-                    renameQuiz.add(prompt);
-                    renameQuiz.add(createDeckTextField);
-                    renameQuiz.add(renameButton);
+                JLabel prompt = new JLabel("Enter a new name for the quiz:");
+                JTextField editQuizTextField = new JTextField("", TEXT_FIELD_LENGTH);
+                JButton renameButton = new JButton("Rename Quiz");
 
-                    JButton deleteButton = new JButton("Delete Quiz " + button.getName());
-                    deleteQuiz.add(deleteButton);
+                renameQuiz.add(prompt);
+                renameQuiz.add(editQuizTextField);
+                renameQuiz.add(renameButton);
 
-                    renameButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            //createDeckController.create(createDeckTextField.getText());
-                            deckSettingsFrame.dispose();
-                        }
-                    });
+                JButton deleteButton = new JButton("Delete Quiz " + button.getName());
+                deleteQuiz.add(deleteButton);
 
-                    deleteButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            deleteQuizController.deleteQuiz(button.getName());
-                            deckSettingsFrame.dispose();
-                        }
-                    });
+                renameButton.addActionListener(e12 -> {
+                    editQuizController.edit(button.getName(), editQuizTextField.getText());
+                    quizSettingsFrame.dispose();
+                });
 
-                    newDeckDialog.pack();
-                    newDeckDialog.setModal(true);
-                    newDeckDialog.setVisible(true);
+                deleteButton.addActionListener(e13 -> {
+                    deleteQuizController.deleteQuiz(button.getName());
+                    quizSettingsFrame.dispose();
+                });
 
-                }
+                newQuizDialog.pack();
+                newQuizDialog.setModal(true);
+                newQuizDialog.setVisible(true);
+
             });
         }
     }
-
 
     private void chooseQuizCreation() {
         JFrame newQuizFrame = new JFrame();
@@ -233,10 +198,8 @@ public class QuizScreen extends JPanel {
         JTabbedPane optionTabs = new JTabbedPane();
 
         JPanel createNewQuiz = new JPanel(new GridBagLayout());
-        JPanel importNewQuiz = new JPanel();
 
         optionTabs.add("Create New Quiz", createNewQuiz);
-        optionTabs.add("Import Quiz", importNewQuiz);
 
         newQuizDialog.add(optionTabs);
 
@@ -244,7 +207,7 @@ public class QuizScreen extends JPanel {
         JLabel decksNote = new JLabel("Using decks:");
         JTextField createQuizTextField = new JTextField("", TEXT_FIELD_LENGTH);
         JButton createButton = new JButton("Create Quiz");
-        setConstraints(GridBagConstraints.FIRST_LINE_START, GridBagConstraints.NONE, 1, 1, 0, 0, 0, 0);
+        setConstraints(GridBagConstraints.NONE, 1, 0, 0, 0);
         createNewQuiz.add(prompt, gridBagConstraints);
         gridBagConstraints.gridx = 1;
         createNewQuiz.add(createQuizTextField, gridBagConstraints);
@@ -256,38 +219,102 @@ public class QuizScreen extends JPanel {
 
         // The "squashPanel" for squashing components flush to the top
         JPanel squashPanel = new JPanel();
-        setConstraints(GridBagConstraints.FIRST_LINE_START, GridBagConstraints.BOTH, 3, 1, 0, 2, 1, 1);
+        setConstraints(GridBagConstraints.BOTH, 3, 2, 1, 1);
         createNewQuiz.add(squashPanel, gridBagConstraints);
 
-        ArrayList<String> selectedDeckNames = new ArrayList<String>();
+        ArrayList<String> selectedDeckNames = new ArrayList<>();
 
         for (String name : deckNames) {
             JCheckBox box = new JCheckBox(name);
             squashPanel.add(box);
-            box.addItemListener(new ItemListener() {
-                @Override
-                public void itemStateChanged(ItemEvent e) {
-                    if (e.getStateChange() == ItemEvent.SELECTED) {
-                        selectedDeckNames.add(box.getText());
-                    } else {
-                        selectedDeckNames.remove(box.getText());
-                    }
+            box.addItemListener(e -> {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    selectedDeckNames.add(box.getText());
+                } else {
+                    selectedDeckNames.remove(box.getText());
                 }
             });
         }
 
-        createButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                createQuizController.createQuiz(createQuizTextField.getText(), selectedDeckNames);
-                newQuizFrame.dispose();
-            }
+        createButton.addActionListener(e -> {
+            createQuizController.createQuiz(createQuizTextField.getText(), selectedDeckNames);
+            newQuizFrame.dispose();
         });
 
         newQuizDialog.pack();
         newQuizDialog.setModal(true);
         newQuizDialog.setVisible(true);
+    }
 
+    private void clear() {
+        this.removeAll();
+        quizButtons.clear();
+        quizSettingsButtons.clear();
+    }
+    private void customize() {
+        this.setBackground(new Color(32, 32, 32));
+    }
+    private void customizeButtons(JButton backButton, JButton quizCreationButton) {
+        backButton.setForeground(Color.white);
+        backButton.setBackground(new Color(88, 88, 88));
 
+        quizCreationButton.setForeground(Color.white);
+        quizCreationButton.setBackground(new Color(88, 88, 88));
+    }
+    private void addButtons(JButton backButton, JButton quizCreationButton) {
+        setConstraints(GridBagConstraints.NONE, 1, 0, 0, 0);
+        this.add(backButton, gridBagConstraints);
+
+        gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
+        gridBagConstraints.gridx = 1;
+        this.add(quizCreationButton, gridBagConstraints);
+    }
+    private void customizeSquashPanel(JPanel squashPanel) {
+        squashPanel.setBackground(new Color(32, 32, 32));
+    }
+    private void addSquashPanel(JPanel squashPanel) {
+        setConstraints(GridBagConstraints.BOTH, 2, quizNames.size() + 2, 1, 1);
+        this.add(squashPanel, gridBagConstraints);
+    }
+    private void loopSetUp() {
+        gridBagConstraints.weighty = 0;
+        gridBagConstraints.weightx = 0;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+    }
+    private void addQuizButtons() {
+        for (String name : quizNames) {
+            JButton quizButton = new JButton(name);
+            JButton quizSettingsButton = new JButton("...");
+            initializeQuizButtons(name, quizButton, quizSettingsButton);
+        }
+    }
+    private void initializeQuizButtons(String name, JButton quizButton, JButton quizSettingsButton) {
+        // Customize Buttons
+        quizButton.setForeground(Color.white);
+        quizButton.setBackground(new Color(88, 88, 88));
+
+        quizSettingsButton.setPreferredSize(new Dimension(30, 20));
+        quizSettingsButton.setForeground(Color.white);
+        quizSettingsButton.setBackground(new Color(88, 88, 88));
+        quizSettingsButton.setBorder(BorderFactory.createLineBorder(new Color(20, 20, 20), 1));
+
+        // Store the buttons in class variable
+        quizSettingsButton.setName(name);
+        quizButtons.add(quizButton);
+        quizSettingsButtons.add(quizSettingsButton);
+
+        // Go to next line
+        gridBagConstraints.gridy += 1;
+
+        // Add the Settings button on the Deck Button
+        quizButton.setLayout(new BorderLayout());
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        this.add(quizButton, gridBagConstraints);
+        quizButton.add(quizSettingsButton, BorderLayout.EAST);
+    }
+    private void updateScreen() {
+        this.revalidate();
+        this.repaint();
     }
 }

@@ -1,3 +1,7 @@
+/*
+ * Author: Derrick Cho
+ * Date: November 13/22
+ */
 package moveCard;
 
 /**
@@ -5,5 +9,5 @@ package moveCard;
  */
 public interface MoveCardInputBoundary {
 
-    public void move(MoveCardInputData moveCardInputData);
+    void move(MoveCardInputData moveCardInputData);
 }

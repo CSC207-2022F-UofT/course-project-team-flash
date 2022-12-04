@@ -2,8 +2,6 @@
  * Author: Andrew Nguyen
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
- *
- * This file contains the implementation of the CreateCardInteractor class, which implements CreateCardInputBoundary.
  */
 
 package createCard;
@@ -12,6 +10,9 @@ import entities.CardFactory;
 import entities.Deck;
 import entities.Flashcard;
 
+/**
+ * This file contains the implementation of the CreateCardInteractor class, which implements CreateCardInputBoundary.
+ */
 public class CreateCardInteractor implements CreateCardInputBoundary {
 
     final CreateCardOutputBoundary outputBoundary;
@@ -38,10 +39,12 @@ public class CreateCardInteractor implements CreateCardInputBoundary {
     @Override
     public void create(CreateCardInputData inputData) {
         if (inputData.getQuestion().isEmpty()) {
-            CreateCardOutputData outputData = new CreateCardOutputData("Flashcard Creation Failed. No Question Stated.");
+            CreateCardOutputData outputData = new CreateCardOutputData(
+                    "No Question Stated. Please try again.");
             outputBoundary.prepareFailView(outputData);
         } else if (inputData.getAnswer().isEmpty()) {
-            CreateCardOutputData outputData = new CreateCardOutputData("Flashcard Creation Failed. No Answer Stated.");
+            CreateCardOutputData outputData = new CreateCardOutputData(
+                    "No Answer Stated. Please try again.");
             outputBoundary.prepareFailView(outputData);
         } else {
             Flashcard newCard = cardFactory.createCard(

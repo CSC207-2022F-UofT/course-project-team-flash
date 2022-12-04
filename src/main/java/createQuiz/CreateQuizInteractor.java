@@ -2,9 +2,6 @@
  * Author: Jasmine Tsoi
  * Documentation Author: Jasmine Tsoi
  * Date: November 21/22
- *
- * This file contains the implementation of the CreateQuizInteractor class,
- * which implements CreateQuizInputBoundary.
  */
 
 package createQuiz;
@@ -14,6 +11,10 @@ import entities.Quiz;
 
 import java.util.List;
 
+/**
+ * This file contains the implementation of the CreateQuizInteractor class,
+ * which implements CreateQuizInputBoundary.
+ */
 public class CreateQuizInteractor implements CreateQuizInputBoundary{
 
     private final CreateQuizOutputBoundary outputBoundary;
@@ -30,7 +31,6 @@ public class CreateQuizInteractor implements CreateQuizInputBoundary{
     /**
      * If the quiz name does not exist already, creates the quiz and stores it to the quiz tracker.
      * Then, prepares a success view through outputBoundary.
-     *
      * If the quiz name already exists or the decks list is empty, prepares a fail view through outputBoundary.
      *
      * @param inputData the CreateQuizInputData associated with the created quiz
@@ -44,11 +44,11 @@ public class CreateQuizInteractor implements CreateQuizInputBoundary{
         // Fail views
         if (Quiz.getTracker().containsKey(quizName)) {
             CreateQuizOutputData outputData = new CreateQuizOutputData(null,
-                    "This quiz name exists already. Failed to create new quiz.");
+                    "Quiz name already exists. Please choose a different name.");
             outputBoundary.prepareFailView(outputData);
         } else if (decksName.isEmpty()) {
             CreateQuizOutputData outputData = new CreateQuizOutputData(null,
-                    "This quiz does not contain any deck. Failed to create new quiz.");
+                    "Quiz did not include a deck. Please select at least one deck.");
             outputBoundary.prepareFailView(outputData);
 
         // Success view

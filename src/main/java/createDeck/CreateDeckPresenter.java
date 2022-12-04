@@ -9,6 +9,9 @@ import screens.ViewBoundary;
 import screens.ViewModel;
 import screens.ViewState;
 
+/**
+ * This file contains the implementation of the presenter, which calls the view through an interface
+ */
 public class CreateDeckPresenter implements CreateDeckOutputBoundary {
 
     ViewBoundary viewBound;
@@ -39,7 +42,7 @@ public class CreateDeckPresenter implements CreateDeckOutputBoundary {
     @Override
     public void prepareFailView(CreateDeckOutputData outputData) {
         ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.ERROR)
-                .setDeckName(outputData.getText())
+                .setReturnString(outputData.getText())
                 .build();
 
         viewBound.updateView(viewModel);

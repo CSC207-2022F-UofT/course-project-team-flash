@@ -19,13 +19,7 @@ import entities.FlashcardFactory;
 
 import screens.*;
 
-import javax.swing.*;
-import java.awt.*;
-
-
 public class Main {
-    public static final int WIDTH = 400;
-    public static final int HEIGHT = 500;
     public static void main(String[] args) {
 
         // Instantiate the view
@@ -53,8 +47,8 @@ public class Main {
                 createCardController, createDeckController, createQuizController,
                 deleteCardController, deleteDeckController,deleteQuizController,
                 editCardController, editDeckController, editQuizController,
-                moveCardController, enterDeckController,
-                exportDeckController, importDeckController,
+                moveCardController,
+                enterDeckController, exportDeckController, importDeckController,
                 runQuizController
         );
 

@@ -1,3 +1,8 @@
+/*
+ * Author: Derrick Cho
+ * Date: November 13/22
+ */
+
 package moveCard;
 
 /**
@@ -6,7 +11,7 @@ package moveCard;
  */
 public class MoveCardOutputData {
 
-    private String message;
+    private final String message;
 
     /**
      * Creates a new MoveCardOutputData with a given message

@@ -1,3 +1,8 @@
+/*
+ * Author: Derrick Cho
+ * Date: November 13/22
+ */
+
 package moveCard;
 
 /**
@@ -6,7 +11,7 @@ package moveCard;
  */
 public interface MoveCardOutputBoundary {
 
-    public void prepareSuccessView(MoveCardOutputData moveCardOutputData);
+    void prepareSuccessView(MoveCardOutputData moveCardOutputData);
 
-    public void prepareFailView(MoveCardOutputData moveCardOutputData);
+    void prepareFailView(MoveCardOutputData moveCardOutputData);
 }

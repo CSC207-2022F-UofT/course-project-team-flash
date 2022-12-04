@@ -1,7 +1,8 @@
+/*
+ * Author: Derrick Cho
+ * Date: November 13/22
+ */
 package moveCard;
-
-import entities.Deck;
-import entities.Flashcard;
 
 /**
  * This file contains the implementation of the MoveCardInputData class.
@@ -10,10 +11,10 @@ import entities.Flashcard;
  */
 public class MoveCardInputData {
 
-    private String oldDeckID;
+    private final String oldDeckID;
 
-    private String newDeckID;
-    private String cardID;
+    private final String newDeckID;
+    private final String cardID;
 
     /**
      * Creates a new MoveCardInputData with a given Flashcard ID and two deck names
@@ -39,7 +40,7 @@ public class MoveCardInputData {
      * Returns the newDeckID of the given MoveCardInputData
      * @return the newDeckID of the given MoveCardInputData
      */
-    public String getNewDeckID() { return this.newDeckID; };
+    public String getNewDeckID() { return this.newDeckID; }
 
     /**
      * Returns the cardID of the given MoveCardInputData
