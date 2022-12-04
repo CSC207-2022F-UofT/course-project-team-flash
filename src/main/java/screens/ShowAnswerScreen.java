@@ -10,9 +10,11 @@ import java.beans.PropertyChangeListener;
 
 public class ShowAnswerScreen extends JPanel {
 
-    private View view;
-
     private RunQuizController runQuizController;
+
+    private String[] cardIdArray;
+
+    private int currCardIndex;
 
     private String cardAnswer;
 
@@ -20,44 +22,43 @@ public class ShowAnswerScreen extends JPanel {
 
     private static final int TEXT_FIELD_LENGTH = 10;
 
-    private GridBagConstraints gridBagConstraints;
-
-    public ShowAnswerScreen(View view, RunQuizController runQuizController){
-        this.view = view;
-        this.gridBagConstraints = new GridBagConstraints();
+    public ShowAnswerScreen(RunQuizController runQuizController) {
+        super(new FlowLayout());
         this.runQuizController = runQuizController;
-        this.cardAnswer = view.getCardAnswer();
-        this.userAnswer = view.getUserAnswer();
+    }
+
+    public void setQuiz(String[] cardIdArray, int currCardIndex, String cardAnswer) {
+        this.cardIdArray = cardIdArray;
+        this.currCardIndex = currCardIndex;
+        this.cardAnswer = cardAnswer;
+        drawComponents();
     }
 
     public void setController(RunQuizController runQuizController){
         this.runQuizController = runQuizController;
     }
 
-
-
     private void drawComponents(){
         this.removeAll();
-        JButton showAnswerButton = new JButton("Next Problem");
-        JTextField userAnswerField = new JTextField();
-
+        JButton nextProblemButton = new JButton("Next Problem");
+        JLabel cardAnswerLabel = new JLabel(cardAnswer);
         //setConstraints(
 
-        this.add(showAnswerButton, gridBagConstraints);
+        this.add(cardAnswerLabel);
+        this.add(nextProblemButton);
         //other gridbag stuff:
 
         //
-        this.add(userAnswerField, gridBagConstraints);
 
         this.revalidate();
         this.repaint();
 
-        showAnswerButton.addActionListener(new ActionListener() {
+        nextProblemButton.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                runQuizController.showProblem(view.getCardIdArray(), view.getCurrCardIndex());
+                runQuizController.showProblem(cardIdArray, currCardIndex);
 
 
             }

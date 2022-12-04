@@ -10,43 +10,48 @@ import java.beans.PropertyChangeListener;
 
 public class ShowProblemScreen extends JPanel {
 
-    private View view;
-
     private RunQuizController runQuizController;
+
+    private String[] cardIdArray;
+
+    private int currCardIndex;
 
     private String cardProblem;
 
-    private String userAnswer;
-
     private static final int TEXT_FIELD_LENGTH = 10;
 
-    private GridBagConstraints gridBagConstraints;
-
-    public ShowProblemScreen(RunQuizController runQuizController){
-        this.gridBagConstraints = new GridBagConstraints();
+    public ShowProblemScreen(RunQuizController runQuizController) {
+        super(new FlowLayout());
         this.runQuizController = runQuizController;
         this.cardProblem = "";
     }
 
-    public void setController(RunQuizController runQuizController){
+    public void setQuiz(String[] cardIdArray, int currCardIndex, String question) {
+        this.cardIdArray = cardIdArray;
+        this.currCardIndex = currCardIndex;
+        this.cardProblem = question;
+        drawComponents();
+    }
+
+    public void setController(RunQuizController runQuizController) {
         this.runQuizController = runQuizController;
     }
 
-    private void drawComponents(){
+    private void drawComponents() {
         this.removeAll();
         JButton showAnswerButton = new JButton("Show answer");
-        JTextField userAnswerField = new JTextField();
+        JTextField userAnswerField = new JTextField(TEXT_FIELD_LENGTH);
         JLabel cardProblemDisplay = new JLabel(this.cardProblem);
 
         //setConstraints(
 
-        this.add(showAnswerButton, gridBagConstraints);
+        this.add(cardProblemDisplay);
+        this.add(userAnswerField);
+        this.add(showAnswerButton);
         //other gridbag stuff:
 
         //
-        this.add(userAnswerField, gridBagConstraints);
 
-        this.add(cardProblemDisplay, gridBagConstraints);
 
         this.revalidate();
         this.repaint();
@@ -56,16 +61,12 @@ public class ShowProblemScreen extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                view.setUserAnswer(userAnswerField.getText());
-
                 setVisible(false);
 
-                runQuizController.showAnswer(view.getCardIdArray(), view.getCurrCardIndex(), view.getUserAnswer());
-
+                runQuizController.showAnswer(cardIdArray, currCardIndex, userAnswerField.getText());
 
             }
         });
-
 
 
     }

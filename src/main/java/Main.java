@@ -42,6 +42,7 @@ public class Main {
         EditQuizController editQuizController = editQuizConstructor(view);
         MoveCardController moveCardController = moveCardConstructor(view);
         EnterDeckController enterDeckController = enterDeckConstructor(view);
+        RunQuizController runQuizController = runQuizConstructor(view);
 
 
         // Setting controllers of the view
@@ -49,7 +50,7 @@ public class Main {
                 createCardController, createDeckController, createQuizController,
                 deleteCardController, deleteDeckController,deleteQuizController,
                 editCardController, editDeckController, editQuizController,
-                moveCardController, enterDeckController
+                moveCardController, enterDeckController, runQuizController
         );
 
         // IDK what else needs to be done
@@ -112,5 +113,11 @@ public class Main {
         EnterDeckOutputBoundary presenter = new EnterDeckPresenter(view);
         EnterDeckInputBoundary interactor = new EnterDeckInteractor(presenter);
         return new EnterDeckController(interactor);
+    }
+
+    private static RunQuizController runQuizConstructor(View view) {
+        RunQuizOutputBoundary presenter = new RunQuizPresenter(view);
+        RunQuizInputBoundary interactor = new RunQuizInteractor(presenter);
+        return new RunQuizController(interactor);
     }
 }

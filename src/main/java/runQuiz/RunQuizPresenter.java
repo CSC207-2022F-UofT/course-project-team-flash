@@ -13,7 +13,7 @@ public class RunQuizPresenter implements RunQuizOutputBoundary {
      * Creates a RunQuizPresenter object given a ViewBoundary object.
      * @param viewBound the interface between this presenter and the view.
      */
-    RunQuizPresenter(ViewBoundary viewBound){
+    public RunQuizPresenter(ViewBoundary viewBound){
         this.viewBound = viewBound;
     }
 
