@@ -16,6 +16,8 @@ import screens.ImportDeckFail;
 import java.util.List;
 import java.util.Map;
 
+import static data.DeckPathCleaner.cleanName;
+
 public class DeckInMemoryImport implements ImportDeckDsGateway {
     private final Map<String, List<String>> file;
 
@@ -34,8 +36,9 @@ public class DeckInMemoryImport implements ImportDeckDsGateway {
      */
     @Override
     public ImportDeckDsOutputData importFromFile(ImportDeckDsInputData dsInputData){
-        String deckName = dsInputData.getFilePath();
-        List<String> importedCards = file.get(deckName);
+        String filePath = dsInputData.getFilePath();
+        List<String> importedCards = file.get(filePath);
+        String deckName = cleanName(filePath);
         if (importedCards == null){
             throw new ImportDeckFail(deckName + " doesn't exist");
         }

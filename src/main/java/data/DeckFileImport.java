@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static data.DeckPathCleaner.cleanName;
+
 
 public class DeckFileImport implements ImportDeckDsGateway{
     /**
@@ -34,7 +36,7 @@ public class DeckFileImport implements ImportDeckDsGateway{
             while (reader.hasNextLine()){
                 cardsRead.add(reader.nextLine());
             }
-            return new ImportDeckDsOutputData(filePath, cardsRead);
+            return new ImportDeckDsOutputData(cleanName(filePath), cardsRead);
         }
         catch(FileNotFoundException e){
             throw new ImportDeckFail(e.toString());

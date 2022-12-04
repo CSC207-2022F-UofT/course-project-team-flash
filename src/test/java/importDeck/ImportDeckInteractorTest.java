@@ -22,7 +22,7 @@ public class ImportDeckInteractorTest {
         Map<String, List<String>> files = new HashMap<>();
         List<String> fileContents = new ArrayList<>();
         fileContents.add("1;Did you pass?;No");
-        files.put("Test", fileContents);
+        files.put("home\\Test.deck", fileContents);
         ImportDeckDsGateway deckRepository = new DeckInMemoryImport(files);
         ImportDeckOutputBoundary presenter = new ImportDeckPresenter(null) {
             @Override
@@ -43,7 +43,7 @@ public class ImportDeckInteractorTest {
         };
         CardFactory cardFactory = new FlashcardFactory();
         ImportDeckInputBoundary interactor = new ImportDeckInteractor(deckRepository, presenter, cardFactory);
-        ImportDeckInputData inputData = new ImportDeckInputData("Test");
+        ImportDeckInputData inputData = new ImportDeckInputData("home\\Test.deck");
         interactor.importDeck(inputData);
     }
 
@@ -52,7 +52,7 @@ public class ImportDeckInteractorTest {
         Map<String, List<String>> files = new HashMap<>();
         List<String> fileContents = new ArrayList<>();
         fileContents.add("QANDA-Will this pass?-No");
-        files.put("BadTest", fileContents);
+        files.put("home/BadTest", fileContents);
         ImportDeckDsGateway deckRepository = new DeckInMemoryImport(files);
         ImportDeckOutputBoundary presenter = new ImportDeckPresenter(null) {
             @Override
@@ -70,7 +70,7 @@ public class ImportDeckInteractorTest {
         };
         CardFactory cardFactory = new FlashcardFactory();
         ImportDeckInputBoundary interactor = new ImportDeckInteractor(deckRepository, presenter, cardFactory);
-        ImportDeckInputData inputData = new ImportDeckInputData("BadTest");
+        ImportDeckInputData inputData = new ImportDeckInputData("home/BadTest");
         interactor.importDeck(inputData);
     }
 
@@ -91,7 +91,7 @@ public class ImportDeckInteractorTest {
         };
         CardFactory cardFactory = new FlashcardFactory();
         ImportDeckInputBoundary interactor = new ImportDeckInteractor(deckRepository, presenter, cardFactory);
-        ImportDeckInputData inputData = new ImportDeckInputData("Test");
+        ImportDeckInputData inputData = new ImportDeckInputData("home\\Test.deck");
         interactor.importDeck(inputData);
     }
 }
