@@ -32,14 +32,16 @@ public class EditCardInteractor implements EditCardInputBoundary {
      */
     @Override
     public void edit(EditCardInputData inputData) {
+        String type = "Question and Answer";
         Flashcard card = Flashcard.getTracker().get(inputData.getCardID());
         card.setQuestion(inputData.getQuestion());
         card.setAnswer(inputData.getAnswer());
         if (inputData.getOptions() != null) {
             ((MCFlashcard) card).setOptions(inputData.getOptions());
+            type = "Multiple Choice";
         }
         EditCardOutputData outputData = new EditCardOutputData(inputData.getCardID(),
-                inputData.getQuestion(), inputData.getAnswer(), "Changes Made.");
+                inputData.getQuestion(), inputData.getAnswer(), "Changes Made.", type);
         editCardOutputBoundary.prepareSuccessView(outputData);
     }
 }
