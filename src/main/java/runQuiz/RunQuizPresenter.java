@@ -60,8 +60,6 @@ public class RunQuizPresenter implements RunQuizOutputBoundary {
             viewBound.updateView(viewModel);
         }
 
-        System.out.println("Not sure how we got here");
-
     }
 
     /**

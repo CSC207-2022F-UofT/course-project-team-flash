@@ -214,7 +214,7 @@ public class View implements ViewBoundary {
 
             case QUIZ_MENU:
                 //Menu that displays the quizzes.
-
+                quizScreen.setVisible(true);
 
                 break;
 

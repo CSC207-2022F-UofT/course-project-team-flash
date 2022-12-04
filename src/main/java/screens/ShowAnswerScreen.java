@@ -42,9 +42,11 @@ public class ShowAnswerScreen extends JPanel {
         this.removeAll();
         JButton nextProblemButton = new JButton("Next Problem");
         JLabel cardAnswerLabel = new JLabel(cardAnswer);
+        JLabel userAnswerLabel = new JLabel(userAnswer);
         //setConstraints(
 
         this.add(cardAnswerLabel);
+        this.add(userAnswerLabel);
         this.add(nextProblemButton);
         //other gridbag stuff:
 
