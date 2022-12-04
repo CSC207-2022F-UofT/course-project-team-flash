@@ -55,6 +55,7 @@ public class RunQuizPresenter implements RunQuizOutputBoundary {
                     .setCardIdArray(outputData.getFlashcardIdList())
                     .setCurrCardIndex(outputData.getCurrCardIndex())
                     .setReturnString(outputData.getCurrCardQuestion())
+                    .setCardOptions(outputData.getCardOptions())
                     .build();
 
             viewBound.updateView(viewModel);
@@ -74,6 +75,7 @@ public class RunQuizPresenter implements RunQuizOutputBoundary {
                 .setCardIdArray(outputData.getFlashcardIdList())
                 .setCurrCardIndex(outputData.getCurrCardIndex())
                 .setReturnString(outputData.getFirstCardProblem())
+                .setCardOptions(outputData.getFirstCardOptions())
                 .build();
 
         viewBound.updateView(viewModel);
