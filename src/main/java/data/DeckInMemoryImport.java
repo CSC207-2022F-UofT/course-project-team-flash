@@ -8,6 +8,7 @@
 
 package data;
 
+import entities.Deck;
 import importDeck.ImportDeckDsGateway;
 import importDeck.ImportDeckDsInputData;
 import importDeck.ImportDeckDsOutputData;
@@ -39,6 +40,9 @@ public class DeckInMemoryImport implements ImportDeckDsGateway {
         String filePath = dsInputData.getFilePath();
         List<String> importedCards = file.get(filePath);
         String deckName = cleanName(filePath);
+        if (Deck.getTracker().get(deckName) != null){
+            throw new ImportDeckFail("Could not import! " + deckName + " already exists!");
+        }
         if (importedCards == null){
             throw new ImportDeckFail(deckName + " doesn't exist");
         }
