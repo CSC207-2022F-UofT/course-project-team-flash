@@ -70,18 +70,12 @@ public class View implements ViewBoundary {
     private String deckName;
     private String deckName2;
     private String cardId;
-
     private List<String> cardOptions;
     private List<String> cardTypes;
-
     private List<String> cardQuestions;
-
     private List<String> cardAnswers;
-
     private List<String> cardIDs;
-
     private String[] cardIdArray;
-
     private int currCardIndex;
 
 
@@ -188,13 +182,8 @@ public class View implements ViewBoundary {
         this.cardIDs = viewModel.getMultipleCardIDs();
         this.cardQuestions = viewModel.getMultipleCardQuestions();
         this.cardAnswers = viewModel.getMultipleCardAnswers();
-        // Conditional removed, we need to update if the same action is made
-        // ---If the viewState changes, update it and call the menuSwitch method to update the view.---
-        //if (this.viewState != viewModel.getViewState()) {
         this.viewState = viewModel.getViewState();
         this.menuSwitch();
-        //}
-
     }
 
     private void menuSwitch() {
@@ -203,8 +192,6 @@ public class View implements ViewBoundary {
             case ERROR:
                 createErrorMessage(returnString);
                 break;
-
-            //ADD WHATEVER VIEWSTATES YOUR USECASE NEEDS HERE, I HAVE ADDED SOME ALREADY HERE AS AN EXAMPLE:
 
             case MAIN_MENU:
                 application.setVisible(false);
@@ -219,13 +206,11 @@ public class View implements ViewBoundary {
             case DECK_SCREEN:
                 //Creates and updates the Deck screen when a change is made to the deck screen
 
-
                 break;
 
             case QUIZ_MENU:
                 //Menu that displays the quizzes.
                 quizScreen.setVisible(true);
-
                 break;
 
             case SHOW_ANSWER:
@@ -244,7 +229,6 @@ public class View implements ViewBoundary {
             case START_QUIZ:
                 //Menu that shows the view before a quiz starts with a button like "begin quiz".
 
-
                 break;
 
             case CARD_CREATED:
@@ -253,7 +237,6 @@ public class View implements ViewBoundary {
 
             case CARD_DELETED:
                 cardScreen.reconstructCards(true, new String[]{cardType, cardQuestion, cardAnswer, cardID});
-
                 break;
 
             case CARD_EDITED:
@@ -262,28 +245,21 @@ public class View implements ViewBoundary {
                 break;
 
             case DECK_CREATED:
+
+            case DECK_IMPORTED:
                 //Changes to the view when a deck is created
                 deckScreen.reconstructDecks(false, deckName);
                 quizScreen.reconstructDecks(false, deckName);
-
                 break;
 
             case DECK_DELETED:
                 deckScreen.reconstructDecks(true, deckName);
                 quizScreen.reconstructDecks(true, deckName);
-
                 break;
 
             case DECK_EDITED:
                 deckScreen.reconstructDecks(true, deckName2);
                 deckScreen.reconstructDecks(false, deckName);
-
-                break;
-
-            case DECK_IMPORTED:
-                deckScreen.reconstructDecks(false, deckName);
-                quizScreen.reconstructDecks(false, deckName);
-
                 break;
 
             case DECK_EXPORTED:
@@ -292,18 +268,15 @@ public class View implements ViewBoundary {
 
             case QUIZ_CREATED:
                 quizScreen.reconstructQuizzes(false, quizName);
-
                 break;
 
             case QUIZ_DELETED:
                 quizScreen.reconstructQuizzes(true, quizName);
-
                 break;
 
             case QUIZ_EDITED:
                 quizScreen.reconstructQuizzes(true, quizName2);
                 quizScreen.reconstructQuizzes(false, quizName);
-
                 break;
 
             case ENTER_DECK:
@@ -314,11 +287,6 @@ public class View implements ViewBoundary {
                 }
                 break;
         }
-
-
-        //BELOW HERE:
-        //Implement all the callback methods that will be triggered by button click events. These methods
-        //will be the ones that'll call the methods in the controllers, so they should be specific to each useCase.
     }
 
     private void createErrorMessage(String message) {
@@ -330,12 +298,7 @@ public class View implements ViewBoundary {
         errorDialog.add(prompt);
         errorDialog.add(createButton);
 
-        createButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                errorFrame.dispose();
-            }
-        });
+        createButton.addActionListener(e -> errorFrame.dispose());
 
         errorFrame.pack();
         errorFrame.setVisible(true);

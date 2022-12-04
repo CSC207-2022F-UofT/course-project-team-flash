@@ -26,11 +26,8 @@ public class ViewModel {
     private final String deckName;
     private final String deckName2;
     private final String cardId;
-
     private final List<String> cardIdList;
-
-    private String[] cardIdArray;
-
+    private final String[] cardIdArray;
     private final int currCardIndex;
 
 
@@ -56,7 +53,6 @@ public class ViewModel {
         this.cardIdArray = builder.cardIdArray;
         this.currCardIndex = builder.currCardIndex;
         this.cardOptions = builder.cardOptions;
-
     }
 
     //Getters:
@@ -80,12 +76,15 @@ public class ViewModel {
     public String getQuizName() {
         return quizName;
     }
+
     public String getQuizName2() {
         return quizName2;
     }
+
     public String getDeckName() {
         return deckName;
     }
+
     public String getDeckName2() {
         return deckName2;
     }
@@ -157,7 +156,6 @@ public class ViewModel {
         public ViewModelBuilder(ViewState viewState){
             this.ViewState = viewState;
         }
-
 
         //Setters (optional parameter(s)):
         public ViewModelBuilder setReturnString(String returnString) {
@@ -246,7 +244,5 @@ public class ViewModel {
         public ViewModel build(){
             return new ViewModel(this);
         }
-
     }
-
 }
