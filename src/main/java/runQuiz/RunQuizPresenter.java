@@ -87,6 +87,11 @@ public class RunQuizPresenter implements RunQuizOutputBoundary {
      * @param error the description of this error
      */
     public void quizFailView(String error) {
-        throw new QuizNotFound(error);
+
+        ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.ERROR)
+                .setReturnString(error)
+                .build();
+
+        viewBound.updateView(viewModel);
     }
 }

@@ -46,7 +46,14 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
 
         if (currQuiz == null) {
             outputBoundary.quizFailView("Quiz of name \"" + inputData.getQuizId() + "\" does not exist.");
+            return;
         }
+
+        else if (quizEmpty(currQuiz)){
+            outputBoundary.quizFailView("Quiz is empty. A quiz with no flashcards cannot be run.");
+            return;
+        }
+
         List<String> flashcardIdList = fetchQuizCardIds(currQuiz);
         if (inputData.getIsRandomized()) {
             Collections.shuffle(flashcardIdList);
@@ -146,4 +153,23 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
 
         return flashcardIdList;
     }
+
+    /**
+     * This is a private method that checks whether a quiz contains any flashcards or not.
+     * @param quiz the quiz to check
+     * @return true if the quiz has no flashcards, else false.
+     */
+    private boolean quizEmpty(Quiz quiz) {
+        //Iterate through each deck in the quiz
+        for(Deck deck : quiz.getDecks()) {
+            //If any deck has at least 1 card, then the quiz is not empty.
+            if(deck.getCardIds().size() > 0) {
+                return false;
+            }
+        }
+
+        return true;
+
+    }
+
 }
