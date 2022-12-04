@@ -86,7 +86,7 @@ public class ShowProblemOutputData {
      *
      * @return a boolean value indicating if there is no more problems in this quiz
      */
-    public boolean noMoreProblems(){
+    public boolean noMoreProblems() {
         if(this.getCurrCardIndex() >= this.flashcardIdList.length){
             return true;
         }

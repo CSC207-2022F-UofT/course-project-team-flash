@@ -105,6 +105,9 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
      * @return the flashcard object
      */
     private Flashcard fetchCard(ShowQuizCardInputData inputData) {
+        if(inputData.getCurrCardIndex() >= inputData.getFlashcardIdList().length){
+            return Flashcard.getTracker().get(inputData.getFlashcardIdList()[0]);
+        }
         return Flashcard.getTracker().get(inputData.getFlashcardIdList()[inputData.getCurrCardIndex()]);
     }
 
