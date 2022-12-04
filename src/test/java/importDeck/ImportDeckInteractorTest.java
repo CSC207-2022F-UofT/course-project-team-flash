@@ -22,13 +22,13 @@ public class ImportDeckInteractorTest {
         Map<String, List<String>> files = new HashMap<>();
         List<String> fileContents = new ArrayList<>();
         fileContents.add("1;Did you pass?;No");
-        files.put("home\\Test1.deck", fileContents);
+        files.put("home\\ImportTest1.deck", fileContents);
         ImportDeckDsGateway deckRepository = new DeckInMemoryImport(files);
         ImportDeckOutputBoundary presenter = new ImportDeckPresenter(null) {
             @Override
             public void prepareSuccessView(ImportDeckOutputData outputData){
                 Deck actual = Deck.getTracker().get(outputData.getImportedDeckName());
-                Assertions.assertEquals("Test1", actual.getName());
+                Assertions.assertEquals("ImportTest1", actual.getName());
                 List<Flashcard> actualCards = actual.getCards();
                 Flashcard actualCard = actualCards.get(0);
                 Assertions.assertTrue(actualCard instanceof QandAFlashcard);
@@ -43,7 +43,7 @@ public class ImportDeckInteractorTest {
         };
         CardFactory cardFactory = new FlashcardFactory();
         ImportDeckInputBoundary interactor = new ImportDeckInteractor(deckRepository, presenter, cardFactory);
-        ImportDeckInputData inputData = new ImportDeckInputData("home\\Test1.deck");
+        ImportDeckInputData inputData = new ImportDeckInputData("home\\ImportTest1.deck");
         interactor.importDeck(inputData);
     }
 
@@ -52,13 +52,13 @@ public class ImportDeckInteractorTest {
         Map<String, List<String>> files = new HashMap<>();
         List<String> fileContents = new ArrayList<>();
         fileContents.add("QANDA-Will this pass?-No");
-        files.put("home/Test2", fileContents);
+        files.put("home/ImportTest2", fileContents);
         ImportDeckDsGateway deckRepository = new DeckInMemoryImport(files);
         ImportDeckOutputBoundary presenter = new ImportDeckPresenter(null) {
             @Override
             public void prepareSuccessView(ImportDeckOutputData outputData){
                 Deck actual = Deck.getTracker().get(outputData.getImportedDeckName());
-                Assertions.assertEquals("Test2", actual.getName());
+                Assertions.assertEquals("ImportTest2", actual.getName());
                 List<Flashcard> actualCards = actual.getCards();
                 Assertions.assertTrue(actualCards.isEmpty());
             }
@@ -70,7 +70,7 @@ public class ImportDeckInteractorTest {
         };
         CardFactory cardFactory = new FlashcardFactory();
         ImportDeckInputBoundary interactor = new ImportDeckInteractor(deckRepository, presenter, cardFactory);
-        ImportDeckInputData inputData = new ImportDeckInputData("home/Test2");
+        ImportDeckInputData inputData = new ImportDeckInputData("home/ImportTest2");
         interactor.importDeck(inputData);
     }
 
@@ -86,12 +86,12 @@ public class ImportDeckInteractorTest {
 
             @Override
             public void prepareFailView(String exception){
-                Assertions.assertEquals("screens.ImportDeckFail: Test3 doesn't exist", exception);
+                Assertions.assertEquals("screens.ImportDeckFail: ImportTest3 doesn't exist", exception);
             }
         };
         CardFactory cardFactory = new FlashcardFactory();
         ImportDeckInputBoundary interactor = new ImportDeckInteractor(deckRepository, presenter, cardFactory);
-        ImportDeckInputData inputData = new ImportDeckInputData("home\\Test3.deck");
+        ImportDeckInputData inputData = new ImportDeckInputData("home\\ImportTest3.deck");
         interactor.importDeck(inputData);
     }
 }
