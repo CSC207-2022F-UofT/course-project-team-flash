@@ -11,7 +11,6 @@ package runQuiz;
 
 import entities.Deck;
 import entities.Flashcard;
-import entities.MCFlashcard;
 import entities.Quiz;
 
 import java.util.ArrayList;
@@ -53,16 +52,9 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
         }
 
         String[] flashcardIds = flashcardIdList.toArray(new String[0]);
-        Flashcard firstCard = Flashcard.getTracker().get(flashcardIds[0]);
-        String firstCardProblem = firstCard.getQuestion();
+        String firstCardProblem = Flashcard.getTracker().get(flashcardIds[0]).getQuestion();
 
-        List<String> firstCardOptions = null;
-
-        if(firstCard instanceof MCFlashcard){
-            firstCardOptions = ((MCFlashcard) firstCard).getOptions();
-        }
-
-        StartQuizOutputData outputData = new StartQuizOutputData(flashcardIds, firstCardProblem, firstCardOptions);
+        StartQuizOutputData outputData = new StartQuizOutputData(flashcardIds, firstCardProblem);
 
         outputBoundary.prepareSuccessView(outputData);
     }
@@ -77,17 +69,9 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
 
         Flashcard currCard = fetchCard(inputData);
 
-        List<String> options = null;
-
-        if(currCard instanceof MCFlashcard){
-            options = ((MCFlashcard) currCard).getOptions();
-        }
-
-
         ShowProblemOutputData outputData = new ShowProblemOutputData(inputData.getFlashcardIdList(),
                 inputData.getCurrCardIndex(),
-                currCard.getQuestion(),
-                options
+                currCard.getQuestion()
         );
 
         outputBoundary.prepareSuccessView(outputData);

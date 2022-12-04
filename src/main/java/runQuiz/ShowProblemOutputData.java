@@ -14,14 +14,11 @@ package runQuiz;
 
 import screens.ViewState;
 
-import java.util.List;
-
 public class ShowProblemOutputData {
-
     private final String[] flashcardIdList;
     private final int currCardIndex;
+
     private final String currCardQuestion;
-    private final List<String> cardOptions;
     private ViewState viewState;
 
     /**
@@ -32,12 +29,10 @@ public class ShowProblemOutputData {
      * @param currCardIndex the index of the current flashcard in flashcardIdList
      * @param currCardQuestion the question on the current flashcard
      */
-    public ShowProblemOutputData(String[] flashcardIdList, int currCardIndex,
-                                 String currCardQuestion, List<String> cardOptions){
+    public ShowProblemOutputData(String[] flashcardIdList, int currCardIndex, String currCardQuestion){
         this.flashcardIdList = flashcardIdList;
         this.currCardIndex = currCardIndex;
         this.currCardQuestion = currCardQuestion;
-        this.cardOptions = cardOptions;
         this.viewState = null;
     }
 
@@ -66,15 +61,6 @@ public class ShowProblemOutputData {
      */
     String getCurrCardQuestion(){
         return this.currCardQuestion;
-    }
-
-    /**
-     * Returns the cardOptions of the outputData object.
-     *
-     * @return a list of Strings if the card is a multiple choice, else null.
-     */
-    List<String> getCardOptions(){
-        return this.cardOptions;
     }
 
     /**

@@ -74,7 +74,6 @@ public class View implements ViewBoundary {
     private String deckName2;
     private String cardId;
 
-    private List<String> cardOptions;
     private List<String> cardTypes;
 
     private List<String> cardQuestions;
@@ -183,7 +182,6 @@ public class View implements ViewBoundary {
         this.cardType = viewModel.getCardType();
         this.cardQuestion = viewModel.getCardQuestion();
         this.cardAnswer = viewModel.getCardAnswer();
-        this.cardOptions = viewModel.getCardOptions();
         this.cardTypes = viewModel.getMultipleCardTypes();
         this.cardIDs = viewModel.getMultipleCardIDs();
         this.cardQuestions = viewModel.getMultipleCardQuestions();
@@ -224,20 +222,20 @@ public class View implements ViewBoundary {
 
             case QUIZ_MENU:
                 //Menu that displays the quizzes.
-                quizScreen.setVisible(true);
+
 
                 break;
 
             case SHOW_ANSWER:
                 //Menu that shows the answer to a flashcard along with a show next problem button.
-                showAnswerScreen.setQuiz(cardIdArray, currCardIndex, cardAnswer, userAnswer);
+                showAnswerScreen.setQuiz(cardIdArray, currCardIndex, cardAnswer);
                 showAnswerScreen.setVisible(true);
                 break;
 
             case SHOW_PROBLEM:
                 //Menu that shows the question of a flashcard along with a show answer button.
                 quizScreen.setVisible(false);
-                showProblemScreen.setQuiz(cardIdArray, currCardIndex, returnString, cardOptions);
+                showProblemScreen.setQuiz(cardIdArray, currCardIndex, returnString);
                 showProblemScreen.setVisible(true);
                 break;
 
