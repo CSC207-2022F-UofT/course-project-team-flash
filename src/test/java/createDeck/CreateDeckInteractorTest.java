@@ -39,7 +39,8 @@ public class CreateDeckInteractorTest {
             }
             @Override
             public void prepareFailView(CreateDeckOutputData outputData) {
-                Assertions.assertEquals("Deck name already exists!", outputData.getText());
+                Assertions.assertEquals("Deck name already exists. Please choose a different name.",
+                        outputData.getText());
             }
         };
         CreateDeckInputBoundary interactor = new CreateDeckInteractor(presenter);

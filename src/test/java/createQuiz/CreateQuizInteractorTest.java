@@ -77,7 +77,7 @@ public class CreateQuizInteractorTest {
 
             @Override
             public void prepareFailView(CreateQuizOutputData outputData) {
-                Assertions.assertEquals("This quiz does not contain any deck. Failed to create new quiz.",
+                Assertions.assertEquals("Quiz did not include a deck. Please select at least one deck.",
                         outputData.getMessage());
             }
 
@@ -123,7 +123,7 @@ public class CreateQuizInteractorTest {
 
             @Override
             public void prepareFailView(CreateQuizOutputData outputData) {
-                Assertions.assertEquals("This quiz name exists already. Failed to create new quiz.",
+                Assertions.assertEquals("Quiz name already exists. Please choose a different name.",
                         outputData.getMessage());
             }
 
