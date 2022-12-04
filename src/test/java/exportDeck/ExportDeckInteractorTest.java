@@ -14,13 +14,13 @@ import entities.Deck;
 public class ExportDeckInteractorTest {
     @Test
     void exportDeck(){
-        Deck d1 = new Deck("Test1");
+        Deck d1 = new Deck("ExportTest1");
         Deck.addTracker(d1.getName(), d1);
         ExportDeckDsGateway deckRepository = new DeckInMemoryExport();
         ExportDeckOutputBoundary presenter = new ExportDeckPresenter(null) {
             @Override
             public void prepareSuccessView(ExportDeckOutputData outputData){
-                Assertions.assertEquals("Test was exported to: home/decks/Test.deck", outputData.getMessage());
+                Assertions.assertEquals("ExportTest1 was exported to: home/decks/ExportTest1.deck", outputData.getMessage());
             }
 
             @Override
@@ -30,7 +30,7 @@ public class ExportDeckInteractorTest {
         };
         ExportDeckInputBoundary interactor = new ExportDeckInteractor(deckRepository, presenter);
 
-        ExportDeckInputData inputData = new ExportDeckInputData("home/decks/", "Test");
+        ExportDeckInputData inputData = new ExportDeckInputData("home/decks/", "ExportTest1");
         interactor.exportDeck(inputData);
     }
 
@@ -50,7 +50,7 @@ public class ExportDeckInteractorTest {
         };
         ExportDeckInputBoundary interactor = new ExportDeckInteractor(deckRepository, presenter);
 
-        ExportDeckInputData inputData = new ExportDeckInputData("home/decks/", "Test2");
+        ExportDeckInputData inputData = new ExportDeckInputData("home/decks/", "ExportTest2");
         interactor.exportDeck(inputData);
     }
 }

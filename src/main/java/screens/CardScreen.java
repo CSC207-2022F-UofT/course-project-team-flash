@@ -15,45 +15,46 @@ import java.util.Objects;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
-
 public class CardScreen extends JPanel {
     // Controllers
     private CreateCardController createCardController;
-
     private DeleteCardController deleteCardController;
-
     private EditCardController editCardController;
 
     // Deck Info
     private String deckName;
 
     // Card Info
-    private ArrayList<String[]> allCardsInfo;
+    private final ArrayList<String[]> allCardsInfo;
 
     // Card Buttons
-    private ArrayList<JButton> cardButtons;
+    private final ArrayList<JButton> cardButtons;
 
     // Interface Formatters
     private static final int TEXT_FIELD_LENGTH = 10;
+    private final GridBagConstraints gridBagConstraints;
 
-    private GridBagConstraints gridBagConstraints;
-
-    public CardScreen(CreateCardController createCardController, DeleteCardController deleteCardController, EditCardController editCardController) {
+    public CardScreen(CreateCardController createCardController, DeleteCardController deleteCardController,
+                      EditCardController editCardController) {
         super(new GridBagLayout());
         this.gridBagConstraints = new GridBagConstraints();
+
         this.createCardController = createCardController;
         this.deleteCardController = deleteCardController;
         this.editCardController = editCardController;
         this.allCardsInfo = new ArrayList<>();
         this.cardButtons = new ArrayList<>();
+
         drawComponents();
     }
 
-    public void setController(CreateCardController createCardController, DeleteCardController deleteCardController, EditCardController editCardController) {
+    public void setController(CreateCardController createCardController, DeleteCardController deleteCardController,
+                              EditCardController editCardController) {
         this.createCardController = createCardController;
         this.deleteCardController = deleteCardController;
         this.editCardController = editCardController;
     }
+
     public void reconstructCards(boolean delete, String[] cardInfo) {
         if (delete) {
             for (String[] oldInfo : allCardsInfo) {
@@ -79,30 +80,22 @@ public class CardScreen extends JPanel {
 
     private void drawComponents() {
         clear();
+        customize();
 
         JButton backButton = new JButton("Back");
         JButton cardCreationButton = new JButton("New Card");
-
-        setConstraints(GridBagConstraints.FIRST_LINE_START, GridBagConstraints.NONE, 1, 1, 0, 0, 0, 0);
-        this.add(backButton, gridBagConstraints);
-        gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
-        gridBagConstraints.gridx = 1;
-        this.add(cardCreationButton, gridBagConstraints);
-        createPanel();
+        customizeButtons(backButton, cardCreationButton);
+        addButtons(backButton, cardCreationButton);
 
         JPanel squashPanel = new JPanel(new GridBagLayout());
-        setConstraints(GridBagConstraints.FIRST_LINE_START, GridBagConstraints.BOTH, 2, 1, 0, allCardsInfo.size() + 1, 1, 1);
-        this.add(squashPanel, gridBagConstraints);
+        customizePanel(squashPanel);
+        addPanel(squashPanel);
 
-        gridBagConstraints.weighty = 0;
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        loopSetUp();
         for (String[] cardInfo : allCardsInfo) {
             displayCard(cardInfo);
         }
-
-        this.revalidate();
-        this.repaint();
+        updateScreen();
 
         backButton.addActionListener(new ActionListener() {
             @Override
@@ -141,15 +134,23 @@ public class CardScreen extends JPanel {
 
                     newCardDialog.add(optionTabs);
 
+                    JLabel dummyPrompt = new JLabel("Enter Additional Options:");
+                    JTextField dummy1TextField = new JTextField("", TEXT_FIELD_LENGTH);
+                    JTextField dummy2TextField = new JTextField("", TEXT_FIELD_LENGTH);
+                    JTextField dummy3TextField = new JTextField("", TEXT_FIELD_LENGTH);
+
                     JLabel questionPrompt = new JLabel("Enter a new question for the card:");
                     JTextField cardQuestionTextField = new JTextField("", TEXT_FIELD_LENGTH);
                     JLabel answerPrompt = new JLabel("Enter a new answer for the card:");
                     JTextField cardAnswerTextField = new JTextField("", TEXT_FIELD_LENGTH);
                     JButton editButton = new JButton("Edit Card");
-                    editCard.add(questionPrompt);
-                    editCard.add(cardQuestionTextField);
-                    editCard.add(answerPrompt);
-                    editCard.add(cardAnswerTextField);
+
+                    editCardAddMC(editCard, questionPrompt, cardQuestionTextField, answerPrompt, cardAnswerTextField);
+
+                    if (Objects.equals(((JLabel) button.getComponent(1)).getText(), "Multiple Choice")) {
+                        editCardAddMC(editCard, dummyPrompt, dummy1TextField, dummy2TextField, dummy3TextField);
+                    }
+
                     editCard.add(editButton);
 
                     JButton deleteButton = new JButton("Delete Card");
@@ -158,7 +159,12 @@ public class CardScreen extends JPanel {
                     editButton.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            editCardController.edit(button.getName(), cardQuestionTextField.getText(), cardAnswerTextField.getText());
+                            if (Objects.equals(((JLabel) button.getComponent(1)).getText(), "Multiple Choice")) {
+                                List<String> dummyAnswers = Arrays.asList(dummy1TextField.getText(), dummy2TextField.getText(), dummy3TextField.getText());
+                                editCardController.edit(button.getName(), cardQuestionTextField.getText(), cardAnswerTextField.getText(), dummyAnswers);
+                            } else {
+                                editCardController.edit(button.getName(), cardQuestionTextField.getText(), cardAnswerTextField.getText());
+                            }
                             cardSettingsFrame.dispose();
                         }
                     });
@@ -178,45 +184,6 @@ public class CardScreen extends JPanel {
             });
         }
     }
-    private void clear() {
-        this.removeAll();
-        cardButtons.clear();
-    }
-    private void setConstraints(int anchor, int fill, int gridWidth, int gridHeight, int gridX, int gridY, double weightX, double weightY) {
-        this.gridBagConstraints.anchor = anchor;
-        this.gridBagConstraints.fill = fill;
-        this.gridBagConstraints.gridwidth = gridWidth;
-        this.gridBagConstraints.gridheight = gridHeight;
-        this.gridBagConstraints.gridx = gridX;
-        this.gridBagConstraints.gridy = gridY;
-        this.gridBagConstraints.weightx = weightX;
-        this.gridBagConstraints.weighty = weightY;
-    }
-
-    private void createPanel() {
-        JPanel squashPanel = new JPanel(new GridBagLayout());
-        setConstraints(GridBagConstraints.FIRST_LINE_START, GridBagConstraints.BOTH, 2, 1, 0, allCardsInfo.size() + 2, 1, 1);
-        this.add(squashPanel, gridBagConstraints);
-    }
-
-    private void displayCard(String[] info) {
-        String type = info[0];
-        String question = info[1];
-        String answer = info[2];
-        String id = info[3];
-
-        JButton cardButton = new JButton(answer);
-        cardButton.setName(id);
-        JLabel questionLabel = new JLabel(question);
-        JLabel typeLabel = new JLabel(type);
-        cardButtons.add(cardButton);
-        cardButton.setLayout(new BorderLayout());
-        gridBagConstraints.fill = gridBagConstraints.HORIZONTAL;
-        this.add(cardButton, gridBagConstraints);
-        cardButton.add(questionLabel, BorderLayout.WEST);
-        cardButton.add(typeLabel, BorderLayout.EAST);
-        gridBagConstraints.gridy += 1;
-    }
 
     private void chooseCardCreation() {
         JFrame newCardFrame = new JFrame();
@@ -234,34 +201,26 @@ public class CardScreen extends JPanel {
 
         JLabel questionQnAPrompt = new JLabel("Enter a question:");
         JLabel answerQnAPrompt = new JLabel("Enter the answer:");
+
         JLabel questionMCPrompt = new JLabel("Enter a question:");
         JLabel answerMCPrompt = new JLabel("Enter the answer:");
-        JLabel dummyPrompt = new JLabel("Enter dummy answers:");
+        JLabel dummyPrompt = new JLabel("Enter Options:");
+
         JTextField questionQnATextField = new JTextField("", TEXT_FIELD_LENGTH);
         JTextField answerQnATextField = new JTextField("", TEXT_FIELD_LENGTH);
+
         JTextField questionMCTextField = new JTextField("", TEXT_FIELD_LENGTH);
         JTextField answerMCTextField = new JTextField("", TEXT_FIELD_LENGTH);
         JTextField dummy1TextField = new JTextField("", TEXT_FIELD_LENGTH);
         JTextField dummy2TextField = new JTextField("", TEXT_FIELD_LENGTH);
         JTextField dummy3TextField = new JTextField("", TEXT_FIELD_LENGTH);
+
         JButton createQnAButton = new JButton("Create Card");
         JButton createMCButton = new JButton("Create Card");
 
-        createQnACard.add(questionQnAPrompt);
-        createQnACard.add(questionQnATextField);
-        createQnACard.add(answerQnAPrompt);
-        createQnACard.add(answerQnATextField);
-        createQnACard.add(createQnAButton);
-
-        createMCCard.add(questionMCPrompt);
-        createMCCard.add(questionMCTextField);
-        createMCCard.add(answerMCPrompt);
-        createMCCard.add(answerMCTextField);
-        createMCCard.add(dummyPrompt);
-        createMCCard.add(dummy1TextField);
-        createMCCard.add(dummy2TextField);
-        createMCCard.add(dummy3TextField);
-        createMCCard.add(createMCButton);
+        addToQnA(createQnACard, questionQnAPrompt, questionQnATextField, answerQnAPrompt, answerQnATextField, createQnAButton);
+        addToMC(createMCCard, questionMCPrompt, questionMCTextField, answerMCPrompt, answerMCTextField, dummyPrompt,
+                dummy1TextField, dummy2TextField, dummy3TextField, createMCButton);
 
         createQnAButton.addActionListener(new ActionListener() {
             @Override
@@ -274,7 +233,7 @@ public class CardScreen extends JPanel {
         createMCButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                List<String> dummyAnswers = Arrays.asList(dummy1TextField.getText(), dummy2TextField.getText(), dummy3TextField.getText());;
+                List<String> dummyAnswers = Arrays.asList(dummy1TextField.getText(), dummy2TextField.getText(), dummy3TextField.getText());
                 createCardController.create(deckName, questionMCTextField.getText(), answerMCTextField.getText(), dummyAnswers);
                 newCardFrame.dispose();
             }
@@ -283,7 +242,122 @@ public class CardScreen extends JPanel {
         newCardDialog.pack();
         newCardDialog.setModal(true);
         newCardDialog.setVisible(true);
+    }
+    private void clear() {
+        this.removeAll();
+        cardButtons.clear();
+    }
+    private void customize() {
+        this.setBackground(new Color(32, 32, 32));
+    }
+    private void setConstraints(int anchor, int fill, int gridWidth, int gridHeight, int gridX, int gridY, double weightX, double weightY) {
+        this.gridBagConstraints.anchor = anchor;
+        this.gridBagConstraints.fill = fill;
+        this.gridBagConstraints.gridwidth = gridWidth;
+        this.gridBagConstraints.gridheight = gridHeight;
+        this.gridBagConstraints.gridx = gridX;
+        this.gridBagConstraints.gridy = gridY;
+        this.gridBagConstraints.weightx = weightX;
+        this.gridBagConstraints.weighty = weightY;
+    }
+    private void customizeButtons(JButton backButton, JButton cardCreationButton) {
+        backButton.setForeground(Color.white);
+        backButton.setBackground(new Color(88, 88, 88));
 
+        cardCreationButton.setForeground(Color.white);
+        cardCreationButton.setBackground(new Color(88, 88, 88));
+    }
 
+    private void addButtons(JButton backButton, JButton cardCreationButton) {
+        setConstraints(GridBagConstraints.FIRST_LINE_START, GridBagConstraints.NONE, 1, 1, 0, 0, 0, 0);
+        this.add(backButton, gridBagConstraints);
+
+        gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
+        gridBagConstraints.gridx = 1;
+        this.add(cardCreationButton, gridBagConstraints);
+    }
+    private void customizePanel(JPanel squashPanel) {
+        squashPanel.setBackground(new Color(32, 32, 32));
+    }
+    private void addPanel(JPanel squashPanel) {
+        setConstraints(GridBagConstraints.FIRST_LINE_START, GridBagConstraints.BOTH, 2, 1, 0, allCardsInfo.size() + 2, 1, 1);
+        this.add(squashPanel, gridBagConstraints);
+    }
+    private void loopSetUp() {
+        gridBagConstraints.weighty = 0;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+    }
+    private void displayCard(String[] info) {
+        String type = info[0];
+        String question = info[1];
+        String answer = info[2];
+        String id = info[3];
+
+        JButton cardButton = new JButton(answer);
+        JLabel questionLabel = new JLabel(question);
+        JLabel typeLabel = new JLabel(type);
+
+        initializeCardButtons(id, cardButton, questionLabel, typeLabel);
+    }
+    private void updateScreen() {
+        this.revalidate();
+        this.repaint();
+    }
+    private void editCardAddMC(JPanel editCard, JLabel questionPrompt, JTextField cardQuestionTextField,
+                               JLabel answerPrompt, JTextField cardAnswerTextField) {
+        editCard.add(questionPrompt);
+        editCard.add(cardQuestionTextField);
+        editCard.add(answerPrompt);
+        editCard.add(cardAnswerTextField);
+    }
+    private void editCardAddMC(JPanel editCard, JLabel dummyPrompt,
+                               JTextField dummy1TextField, JTextField dummy2TextField, JTextField dummy3TextField) {
+        editCard.add(dummyPrompt);
+        editCard.add(dummy1TextField);
+        editCard.add(dummy2TextField);
+        editCard.add(dummy3TextField);
+    }
+    private void addToQnA(JPanel createQnACard, JLabel questionQnAPrompt, JTextField questionQnATextField,
+                          JLabel answerQnAPrompt, JTextField answerQnATextField, JButton createQnAButton) {
+        createQnACard.add(questionQnAPrompt);
+        createQnACard.add(questionQnATextField);
+        createQnACard.add(answerQnAPrompt);
+        createQnACard.add(answerQnATextField);
+        createQnACard.add(createQnAButton);
+    }
+
+    private void addToMC(JPanel createMCCard, JLabel questionMCPrompt, JTextField questionMCTextField,
+                         JLabel answerMCPrompt, JTextField answerMCTextField, JLabel dummyPrompt,
+                         JTextField dummy1TextField, JTextField dummy2TextField, JTextField dummy3TextField,
+                         JButton createMCButton) {
+        createMCCard.add(questionMCPrompt);
+        createMCCard.add(questionMCTextField);
+        createMCCard.add(answerMCPrompt);
+        createMCCard.add(answerMCTextField);
+        createMCCard.add(dummyPrompt);
+        createMCCard.add(dummy1TextField);
+        createMCCard.add(dummy2TextField);
+        createMCCard.add(dummy3TextField);
+        createMCCard.add(createMCButton);
+    }
+
+    private void initializeCardButtons(String name, JButton cardButton,
+                                       JLabel questionLabel, JLabel typeLabel) {
+        cardButton.setName(name);
+        cardButton.setForeground(Color.white);
+        cardButton.setBackground(new Color(88, 88, 88));
+
+        questionLabel.setForeground(Color.white);
+
+        cardButtons.add(cardButton);
+        cardButton.setLayout(new BorderLayout());
+
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        this.add(cardButton, gridBagConstraints);
+
+        cardButton.add(questionLabel, BorderLayout.WEST);
+        cardButton.add(typeLabel, BorderLayout.EAST);
+        gridBagConstraints.gridy += 1;
     }
 }

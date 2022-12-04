@@ -18,7 +18,10 @@ public class EditCardOutputData {
     private String question;
 
     private String answer;
+
     private String message;
+
+    private String type;
 
     /**
      * Creates a new EditCardOutputData with a given Flashcard and String message
@@ -26,12 +29,14 @@ public class EditCardOutputData {
      * @param question String new question of the edited flashcard
      * @param answer String new answer the edited flashcard
      * @param message String indicating whether this flashcard was edited successfully
+     * @param type String indicating type of flashcard
      */
-    public EditCardOutputData(String id, String question, String answer, String message) {
+    public EditCardOutputData(String id, String question, String answer, String message, String type) {
         this.id = id;
         this.question = question;
         this.answer = answer;
         this.message = message;
+        this.type = type;
     }
 
     /**
@@ -64,5 +69,13 @@ public class EditCardOutputData {
      */
     public String getMessage() {
         return message;
+    }
+
+    /**
+     * Return the type of the given EditCardInputBoundary
+     * @return the type of the given EditCardInputBoundary
+     */
+    public String getType() {
+        return type;
     }
 }
