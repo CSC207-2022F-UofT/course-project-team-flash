@@ -1,5 +1,5 @@
-# Something Temp
-Something Temp is a flashcard program that can aid with learning new material.
+# WhipFlash
+WhipFlash is a flashcard program that can aid with learning new material.
 
 ## Features
 - Multiple types of flashcards
