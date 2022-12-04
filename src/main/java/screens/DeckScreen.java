@@ -9,8 +9,6 @@ import importDeck.ImportDeckController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -84,13 +82,13 @@ public class DeckScreen extends JPanel {
 
     // helper method for setting constraints on layout components
     private void setConstraints(int anchor, int fill, int gridWidth,
-                                int gridHeight, int gridX, int gridY,
+                                int gridY,
                                 double weightX, double weightY) {
         this.gridBagConstraints.anchor = anchor;
         this.gridBagConstraints.fill = fill;
         this.gridBagConstraints.gridwidth = gridWidth;
-        this.gridBagConstraints.gridheight = gridHeight;
-        this.gridBagConstraints.gridx = gridX;
+        this.gridBagConstraints.gridheight = 1;
+        this.gridBagConstraints.gridx = 0;
         this.gridBagConstraints.gridy = gridY;
         this.gridBagConstraints.weightx = weightX;
         this.gridBagConstraints.weighty = weightY;
@@ -120,106 +118,85 @@ public class DeckScreen extends JPanel {
         updateScreen();
 
         // All Buttons
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                for (Component c : getParent().getComponents()) {
-                    if (c instanceof MainMenuScreen) {
-                        c.setVisible(true);
-                        return;
-                    }
+        backButton.addActionListener(e -> {
+            setVisible(false);
+            for (Component c : getParent().getComponents()) {
+                if (c instanceof MainMenuScreen) {
+                    c.setVisible(true);
+                    return;
                 }
             }
         });
-        deckCreationButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { chooseDeckCreation(); }
-        });
+        deckCreationButton.addActionListener(e -> chooseDeckCreation());
 
         for (JButton button : deckButtons) {
-            button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    setVisible(false);
-                    for (Component c : getParent().getComponents()) {
-                        if (c instanceof CardScreen) {
-                            enterDeckController.enter(button.getText());
-                            ((CardScreen) c).setDeck(button.getText());
-                            c.setVisible(true);
-                            return;
-                        }
+            button.addActionListener(e -> {
+                setVisible(false);
+                for (Component c : getParent().getComponents()) {
+                    if (c instanceof CardScreen) {
+                        enterDeckController.enter(button.getText());
+                        ((CardScreen) c).setDeck(button.getText());
+                        c.setVisible(true);
+                        return;
                     }
                 }
             });
         }
 
         for (JButton button : deckSettingsButtons) {
-            button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    JFrame deckSettingsFrame = new JFrame();
-                    JDialog newDeckDialog = new JDialog(deckSettingsFrame);
+            button.addActionListener(e -> {
+                JFrame deckSettingsFrame = new JFrame();
+                JDialog newDeckDialog = new JDialog(deckSettingsFrame);
 
-                    JTabbedPane optionTabs = new JTabbedPane();
+                JTabbedPane optionTabs = new JTabbedPane();
 
-                    JPanel renameDeck = new JPanel();
-                    JPanel deleteDeck = new JPanel();
-                    JPanel exportDeck = new JPanel();
+                JPanel renameDeck = new JPanel();
+                JPanel deleteDeck = new JPanel();
+                JPanel exportDeck = new JPanel();
 
-                    optionTabs.add("Rename Deck", renameDeck);
-                    optionTabs.add("Delete Deck", deleteDeck);
-                    optionTabs.add("Export Deck", exportDeck);
+                optionTabs.add("Rename Deck", renameDeck);
+                optionTabs.add("Delete Deck", deleteDeck);
+                optionTabs.add("Export Deck", exportDeck);
 
-                    newDeckDialog.add(optionTabs);
+                newDeckDialog.add(optionTabs);
 
-                    JLabel prompt = new JLabel("Enter a new name for the deck:");
-                    JButton renameButton = new JButton("Rename Deck");
-                    JTextField editDeckTextField = new JTextField("", TEXT_FIELD_LENGTH);
+                JLabel prompt = new JLabel("Enter a new name for the deck:");
+                JButton renameButton = new JButton("Rename Deck");
+                JTextField editDeckTextField = new JTextField("", TEXT_FIELD_LENGTH);
 
-                    renameDeck.add(prompt);
-                    renameDeck.add(editDeckTextField);
-                    renameDeck.add(renameButton);
+                renameDeck.add(prompt);
+                renameDeck.add(editDeckTextField);
+                renameDeck.add(renameButton);
 
-                    JButton deleteButton = new JButton("Delete Deck " + button.getName());
-                    deleteDeck.add(deleteButton);
+                JButton deleteButton = new JButton("Delete Deck " + button.getName());
+                deleteDeck.add(deleteButton);
 
-                    JLabel exportPrompt = new JLabel("Enter the filepath:");
-                    JButton exportButton = new JButton("Export");
-                    JTextField exportDeckTextField = new JTextField("", TEXT_FIELD_LENGTH);
-                    exportDeck.add(exportPrompt);
-                    exportDeck.add(exportDeckTextField);
-                    exportDeck.add(exportButton);
+                JLabel exportPrompt = new JLabel("Enter the filepath:");
+                JButton exportButton = new JButton("Export");
+                JTextField exportDeckTextField = new JTextField("", TEXT_FIELD_LENGTH);
+                exportDeck.add(exportPrompt);
+                exportDeck.add(exportDeckTextField);
+                exportDeck.add(exportButton);
 
-                    renameButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            editDeckController.edit(button.getName(), editDeckTextField.getText());
-                            deckSettingsFrame.dispose();
-                        }
-                    });
+                renameButton.addActionListener(e1 -> {
+                    editDeckController.edit(button.getName(), editDeckTextField.getText());
+                    deckSettingsFrame.dispose();
+                });
 
-                    deleteButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            deleteDeckController.delete(button.getName());
-                            deckSettingsFrame.dispose();
-                        }
-                    });
+                deleteButton.addActionListener(e12 -> {
+                    deleteDeckController.delete(button.getName());
+                    deckSettingsFrame.dispose();
+                });
 
-                    exportButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            exportDeckController.exportDeck(exportDeckTextField.getText(), button.getName());
-                            deckSettingsFrame.dispose();
-                        }
-                    });
+                exportButton.addActionListener(e13 -> {
+                    exportDeckController.exportDeck(exportDeckTextField.getText(), button.getName());
+                    deckSettingsFrame.dispose();
+                });
 
-                    newDeckDialog.pack();
-                    newDeckDialog.setModal(true);
-                    newDeckDialog.setVisible(true);
+                newDeckDialog.pack();
+                newDeckDialog.setModal(true);
+                newDeckDialog.setVisible(true);
 
-                }
             });
         }
     }
@@ -245,12 +222,9 @@ public class DeckScreen extends JPanel {
         createNewDeck.add(createDeckTextField);
         createNewDeck.add(createButton);
 
-        createButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                createDeckController.create(createDeckTextField.getText());
-                newDeckFrame.dispose();
-            }
+        createButton.addActionListener(e -> {
+            createDeckController.create(createDeckTextField.getText());
+            newDeckFrame.dispose();
         });
 
         JLabel importPrompt = new JLabel("Enter the filepath:");
@@ -260,12 +234,9 @@ public class DeckScreen extends JPanel {
         importNewDeck.add(importDeckTextField);
         importNewDeck.add(importButton);
 
-        importButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                importDeckController.importDeck(importDeckTextField.getText());
-                newDeckFrame.dispose();
-            }
+        importButton.addActionListener(e -> {
+            importDeckController.importDeck(importDeckTextField.getText());
+            newDeckFrame.dispose();
         });
         newDeckDialog.pack();
         newDeckDialog.setModal(true);
@@ -290,7 +261,7 @@ public class DeckScreen extends JPanel {
         createDeckButton.setBackground(new Color(88, 88, 88));
     }
     private void addButtons(JButton backButton, JButton createDeckButton) {
-        setConstraints(GridBagConstraints.FIRST_LINE_START, GridBagConstraints.NONE, 1, 1, 0, 0, 0, 0);
+        setConstraints(GridBagConstraints.FIRST_LINE_START, GridBagConstraints.NONE, 1, 0, 0, 0);
         this.add(backButton, gridBagConstraints);
 
         gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
@@ -303,7 +274,7 @@ public class DeckScreen extends JPanel {
     }
 
     private void addSquashPanel(JPanel squashPanel) {
-        setConstraints(GridBagConstraints.CENTER, GridBagConstraints.BOTH, 2, 1, 0, deckNames.size() + 2, 1, 1);
+        setConstraints(GridBagConstraints.CENTER, GridBagConstraints.BOTH, 2, deckNames.size() + 2, 1, 1);
         this.add(squashPanel, gridBagConstraints);
     }
 

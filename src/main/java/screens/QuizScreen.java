@@ -23,19 +23,19 @@ public class QuizScreen extends JPanel {
     private RunQuizController runQuizController;
 
     // Decks
-    private ArrayList<String> deckNames;
+    private final ArrayList<String> deckNames;
 
     // Quizzes
-    private ArrayList<String> quizNames;
+    private final ArrayList<String> quizNames;
 
-    private ArrayList<JButton> quizButtons;
+    private final ArrayList<JButton> quizButtons;
 
-    private ArrayList<JButton> quizSettingsButtons;
+    private final ArrayList<JButton> quizSettingsButtons;
 
     // Interface Formatters
     private static final int TEXT_FIELD_LENGTH = 10;
 
-    private GridBagConstraints gridBagConstraints;
+    private final GridBagConstraints gridBagConstraints;
 
     public QuizScreen(CreateQuizController createQuizController, DeleteQuizController deleteQuizController, RunQuizController runQuizController) {
         super(new GridBagLayout());
@@ -47,6 +47,7 @@ public class QuizScreen extends JPanel {
         this.createQuizController = createQuizController;
         this.deleteQuizController = deleteQuizController;
         this.runQuizController = runQuizController;
+
         drawComponents();
     }
 
