@@ -11,9 +11,10 @@ public class RunQuizPresenter implements RunQuizOutputBoundary {
 
     /**
      * Creates a RunQuizPresenter object given a ViewBoundary object.
+     *
      * @param viewBound the interface between this presenter and the view.
      */
-    RunQuizPresenter(ViewBoundary viewBound){
+    public RunQuizPresenter(ViewBoundary viewBound) {
         this.viewBound = viewBound;
     }
 
@@ -25,7 +26,7 @@ public class RunQuizPresenter implements RunQuizOutputBoundary {
     @Override
     public void prepareSuccessView(ShowAnswerOutputData outputData) {
 
-        ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.SHOW_PROBLEM)
+        ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.SHOW_ANSWER)
                 .setCardIdArray(outputData.getFlashcardIdList())
                 .setCurrCardIndex(outputData.getCurrCardIndex())
                 .setUserAnswer(outputData.getUserAnswer())
@@ -43,25 +44,22 @@ public class RunQuizPresenter implements RunQuizOutputBoundary {
     @Override
     public void prepareSuccessView(ShowProblemOutputData outputData) {
 
-        if(outputData.noMoreProblems()){
+        if (outputData.noMoreProblems()) {
             ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.QUIZ_MENU)
                     .setReturnString("End of quiz!")
                     .build();
 
             viewBound.updateView(viewModel);
-        }
-
-        else {
-            ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.SHOW_ANSWER)
+        } else {
+            ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.SHOW_PROBLEM)
                     .setCardIdArray(outputData.getFlashcardIdList())
                     .setCurrCardIndex(outputData.getCurrCardIndex())
                     .setReturnString(outputData.getCurrCardQuestion())
+                    .setCardOptions(outputData.getCardOptions())
                     .build();
 
             viewBound.updateView(viewModel);
         }
-
-        System.out.println("Not sure how we got here");
 
     }
 
@@ -77,6 +75,7 @@ public class RunQuizPresenter implements RunQuizOutputBoundary {
                 .setCardIdArray(outputData.getFlashcardIdList())
                 .setCurrCardIndex(outputData.getCurrCardIndex())
                 .setReturnString(outputData.getFirstCardProblem())
+                .setCardOptions(outputData.getFirstCardOptions())
                 .build();
 
         viewBound.updateView(viewModel);
@@ -87,7 +86,7 @@ public class RunQuizPresenter implements RunQuizOutputBoundary {
      *
      * @param error the description of this error
      */
-    public void quizFailView(String error){
+    public void quizFailView(String error) {
         throw new QuizNotFound(error);
     }
 }
