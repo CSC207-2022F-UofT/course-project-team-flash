@@ -4,14 +4,13 @@
  * The output data class for edit card systems, packages data related to output together to be sent to viewmodel
  */
 
-/*
+package editCard;
+
+/**
  * This file contains implementation of the EditCardOutputData class.
  * It includes the instance attributes of EditCardOutputData,
  * and the getter methods for them
  */
-
-package editCard;
-
 public class EditCardOutputData {
 
     private final String id;

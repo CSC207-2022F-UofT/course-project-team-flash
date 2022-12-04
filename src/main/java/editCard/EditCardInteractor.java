@@ -3,18 +3,16 @@
  * Date: October 31/22
  * The use case interactor for editing cards given an input boundary
  */
-
-/*
- * This file contains implementation of the EditCardInteractor class.
- * It includes the instance attributes of EditCardInteractor,
- * and an edit method
- */
-
 package editCard;
 
 import entities.Flashcard;
 import entities.MCFlashcard;
 
+/**
+ * This file contains implementation of the EditCardInteractor class.
+ * It includes the instance attributes of EditCardInteractor,
+ * and an edit method
+ */
 public class EditCardInteractor implements EditCardInputBoundary {
 
     final EditCardOutputBoundary editCardOutputBoundary;

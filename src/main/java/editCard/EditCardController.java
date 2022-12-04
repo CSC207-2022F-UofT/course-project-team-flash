@@ -4,14 +4,13 @@
  * The edit card controller for edit card systems, receives the arguments required to perform an edit card action
  */
 
-/*
- * This file contains an implementation of the EditCardController class
- */
-
 package editCard;
 
 import java.util.List;
 
+/**
+ * This file contains an implementation of the EditCardController class
+ */
 public class EditCardController {
 
     private final EditCardInputBoundary inputBoundary;
