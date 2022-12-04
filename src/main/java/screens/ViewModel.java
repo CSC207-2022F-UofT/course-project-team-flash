@@ -52,6 +52,7 @@ public class ViewModel {
         this.deckName2 = builder.deckName2;
         this.cardId = builder.cardId;
         this.cardIdList = builder.cardIdList;
+        this.cardIdArray = builder.cardIdArray;
         this.currCardIndex = builder.currCardIndex;
 
     }
