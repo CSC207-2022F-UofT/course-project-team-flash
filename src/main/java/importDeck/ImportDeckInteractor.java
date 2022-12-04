@@ -91,7 +91,7 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
             ImportDeckDsOutputData dsOutputData = dsGateway.importFromFile(dsInputData);
             String deckName = dsOutputData.getImportedDeckName();
             if (Deck.getTracker().get(deckName) != null){
-                deckName = deckName + " - Copy";
+                deckName = deckName + "+";
             }
             Deck importedDeck = new Deck(deckName);
             Deck.addTracker(deckName, importedDeck);
