@@ -141,6 +141,11 @@ public class CardScreen extends JPanel {
 
                     newCardDialog.add(optionTabs);
 
+                    JLabel dummyPrompt = new JLabel("Enter new dummy answers:");
+                    JTextField dummy1TextField = new JTextField("", TEXT_FIELD_LENGTH);
+                    JTextField dummy2TextField = new JTextField("", TEXT_FIELD_LENGTH);
+                    JTextField dummy3TextField = new JTextField("", TEXT_FIELD_LENGTH);
+
                     JLabel questionPrompt = new JLabel("Enter a new question for the card:");
                     JTextField cardQuestionTextField = new JTextField("", TEXT_FIELD_LENGTH);
                     JLabel answerPrompt = new JLabel("Enter a new answer for the card:");
@@ -150,6 +155,14 @@ public class CardScreen extends JPanel {
                     editCard.add(cardQuestionTextField);
                     editCard.add(answerPrompt);
                     editCard.add(cardAnswerTextField);
+
+                    if (((JLabel) button.getComponent(1)).getText() == "Multiple Choice") {
+                        editCard.add(dummyPrompt);
+                        editCard.add(dummy1TextField);
+                        editCard.add(dummy2TextField);
+                        editCard.add(dummy3TextField);
+                    }
+
                     editCard.add(editButton);
 
                     JButton deleteButton = new JButton("Delete Card");
@@ -158,7 +171,12 @@ public class CardScreen extends JPanel {
                     editButton.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            editCardController.edit(button.getName(), cardQuestionTextField.getText(), cardAnswerTextField.getText());
+                            if (((JLabel) button.getComponent(1)).getText() == "Multiple Choice") {
+                                List<String> dummyAnswers = Arrays.asList(dummy1TextField.getText(), dummy2TextField.getText(), dummy3TextField.getText());
+                                editCardController.edit(button.getName(), cardQuestionTextField.getText(), cardAnswerTextField.getText(), dummyAnswers);
+                            } else {
+                                editCardController.edit(button.getName(), cardQuestionTextField.getText(), cardAnswerTextField.getText());
+                            }
                             cardSettingsFrame.dispose();
                         }
                     });
@@ -274,7 +292,7 @@ public class CardScreen extends JPanel {
         createMCButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                List<String> dummyAnswers = Arrays.asList(dummy1TextField.getText(), dummy2TextField.getText(), dummy3TextField.getText());;
+                List<String> dummyAnswers = Arrays.asList(dummy1TextField.getText(), dummy2TextField.getText(), dummy3TextField.getText());
                 createCardController.create(deckName, questionMCTextField.getText(), answerMCTextField.getText(), dummyAnswers);
                 newCardFrame.dispose();
             }
