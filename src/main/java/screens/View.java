@@ -14,7 +14,6 @@ import enterDeck.EnterDeckController;
 import exportDeck.ExportDeckController;
 import importDeck.ImportDeckController;
 import runQuiz.RunQuizController;
-import runQuiz.RunQuizInteractor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,17 +44,15 @@ public class View implements ViewBoundary {
 
 
     // Storing the JFrame and Jpanels in the view
-    private JFrame application;
-    private CardScreen cardScreen;
-    private DeckScreen deckScreen;
-    private QuizScreen quizScreen;
-    private ShowProblemScreen showProblemScreen;
-    private ShowAnswerScreen showAnswerScreen;
-    private MainMenuScreen mainMenuScreen;
+    private final JFrame application;
+    private final CardScreen cardScreen;
+    private final DeckScreen deckScreen;
+    private final QuizScreen quizScreen;
+    private final ShowProblemScreen showProblemScreen;
+    private final ShowAnswerScreen showAnswerScreen;
 
     //These should probably be enough right here, but add more if you need another type of information to
     //give to the view. Don't forget to update the ViewModel as well.
-
 
     //Required parameter(s):
     private ViewState viewState;
@@ -69,7 +66,7 @@ public class View implements ViewBoundary {
     private String cardAnswer;
     private String cardID;
     private String quizName;
-
+    private String quizName2;
     private String deckName;
     private String deckName2;
     private String cardId;
@@ -102,8 +99,9 @@ public class View implements ViewBoundary {
         cardScreen = new CardScreen(createCardController, deleteCardController, editCardController);
         deckScreen = new DeckScreen(createDeckController, deleteDeckController, editDeckController,
                                     enterDeckController, exportDeckController, importDeckController);
-        mainMenuScreen = new MainMenuScreen();
-        quizScreen = new QuizScreen(createQuizController, deleteQuizController, runQuizController);
+        MainMenuScreen mainMenuScreen = new MainMenuScreen();
+        quizScreen = new QuizScreen(createQuizController, deleteQuizController,
+                                    editQuizController, runQuizController);
         showProblemScreen = new ShowProblemScreen(runQuizController);
         showAnswerScreen = new ShowAnswerScreen(runQuizController);
 
@@ -158,11 +156,12 @@ public class View implements ViewBoundary {
         this.runQuizController = runQuizController;
 
         cardScreen.setController(createCardController, deleteCardController, editCardController);
-        deckScreen.setController(createDeckController, deleteDeckController, editDeckController, enterDeckController, exportDeckController, importDeckController);
-        quizScreen.setController(createQuizController, deleteQuizController, runQuizController);
+        deckScreen.setController(createDeckController, deleteDeckController, editDeckController,
+                                enterDeckController, exportDeckController, importDeckController);
+        quizScreen.setController(createQuizController, deleteQuizController, editQuizController ,runQuizController);
         deckScreen.setController(createDeckController, deleteDeckController, editDeckController, enterDeckController,
                                 exportDeckController, importDeckController);
-        quizScreen.setController(createQuizController, deleteQuizController, runQuizController);
+        quizScreen.setController(createQuizController, deleteQuizController, editQuizController ,runQuizController);
         showAnswerScreen.setController(runQuizController);
         showProblemScreen.setController(runQuizController);
     }
@@ -175,6 +174,7 @@ public class View implements ViewBoundary {
         this.cardAnswer = viewModel.getCardAnswer();
         this.cardID = viewModel.getCardId();
         this.quizName = viewModel.getQuizName();
+        this.quizName2 = viewModel.getQuizName2();
         this.deckName = viewModel.getDeckName();
         this.deckName2 = viewModel.getDeckName2();
         this.cardId = viewModel.getCardId();
@@ -299,6 +299,13 @@ public class View implements ViewBoundary {
                 quizScreen.reconstructQuizzes(true, quizName);
 
                 break;
+
+            case QUIZ_EDITED:
+                quizScreen.reconstructQuizzes(true, quizName2);
+                quizScreen.reconstructQuizzes(false, quizName);
+
+                break;
+
             case ENTER_DECK:
                 cardScreen.swapScreen();
                 cardScreen.reconstructCards();

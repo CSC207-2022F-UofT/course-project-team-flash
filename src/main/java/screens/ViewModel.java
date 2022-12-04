@@ -9,7 +9,6 @@ public class ViewModel {
     //Required Parameter(s):
     private final ViewState viewState;
 
-
     //Optional parameter(s):
     private final String returnString;
 
@@ -23,7 +22,7 @@ public class ViewModel {
     private final List<String> multipleCardIDs;
     private final String cardType;
     private final String quizName;
-
+    private final String quizName2;
     private final String deckName;
     private final String deckName2;
     private final String cardId;
@@ -49,6 +48,7 @@ public class ViewModel {
         this.multipleCardIDs = builder.multipleCardIDs;
         this.cardType = builder.cardType;
         this.quizName = builder.quizName;
+        this.quizName2 = builder.quizName2;
         this.deckName = builder.deckName;
         this.deckName2 = builder.deckName2;
         this.cardId = builder.cardId;
@@ -80,7 +80,9 @@ public class ViewModel {
     public String getQuizName() {
         return quizName;
     }
-
+    public String getQuizName2() {
+        return quizName2;
+    }
     public String getDeckName() {
         return deckName;
     }
@@ -142,6 +144,7 @@ public class ViewModel {
         private List<String> multipleCardIDs;
         private String cardType;
         private String quizName;
+        private String quizName2;
         private String deckName;
         private String deckName2;
         private String cardId;
@@ -202,6 +205,11 @@ public class ViewModel {
 
         public ViewModelBuilder setQuizName(String quizName) {
             this.quizName = quizName;
+            return this;
+        }
+
+        public ViewModelBuilder setQuizName2(String quizName2) {
+            this.quizName2 = quizName2;
             return this;
         }
 

@@ -39,7 +39,7 @@ public class EditQuizInteractor implements EditQuizInputBoundary{
             Quiz.removeTracker(inputData.getOldName());
             Quiz.addTracker(inputData.getNewName(), quiz);
 
-            EditQuizOutputData outputData = new EditQuizOutputData(inputData.getNewName());
+            EditQuizOutputData outputData = new EditQuizOutputData(inputData.getNewName(), inputData.getOldName());
             outputBoundary.prepareSuccessView(outputData);
         }
 
