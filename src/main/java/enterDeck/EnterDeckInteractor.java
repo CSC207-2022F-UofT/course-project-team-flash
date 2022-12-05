@@ -15,7 +15,6 @@ public class EnterDeckInteractor implements EnterDeckInputBoundary {
         this.outputBoundary = outputBoundary;
     }
 
-
     @Override
     public void enter(EnterDeckInputData inputData) {
         Deck deck = Deck.getTracker().get(inputData.getDeckName());
@@ -29,9 +28,9 @@ public class EnterDeckInteractor implements EnterDeckInputBoundary {
 
             String type;
             if (card instanceof MCFlashcard) {
-                type = "Multiple Choice";
+                type = "MCFlashcard";
             } else {
-                type = "Question and Answer";
+                type = "QandAFlashcard";
             }
 
             String question = card.getQuestion();
