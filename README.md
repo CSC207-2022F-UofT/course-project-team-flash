@@ -47,16 +47,9 @@ Choose whether you want the card questions to be randomized and then start the q
 
 ## Future Plans
 ### Technical Changes
- - View model is in violation of code smells such as bloaters, and switch statements. However, with limited time \
-   and without a clear understanding of how to start, the switch statement provided a simple and easy way for \ 
-   everyone to connect their use cases to the view.
- - Minor duplicate code chunks occur throughout the screens. All these code chunks can be extracted into a public \ 
-   helper function that all these classes can use.
- - Removing use of static variables to store information, such as all flashcards, decks, and quizzes. Using a static \
-   map allowed the team to access entities quickly and easily. However, during the testing process, an issue that arose \
-   was that entities created in previous tests were affecting the current tests. For example, a created flashcard would \
-   still be stored in the static map. The fix to this was to clear the map after each class of test case ran. In the future \
-   it would be helpful to store these entities using serialization to avoid such problems.
+ - View model is in violation of code smells such as bloaters, and switch statements. However, with limited time and without a clear understanding of how to start, the switch statement provided a simple and easy way for everyone to connect their use cases to the view.
+ - Minor duplicate code chunks occur throughout the screens. All these code chunks can be extracted into a public helper function that all these classes can use.
+ - Removing use of static variables to store information, such as all flashcards, decks, and quizzes. Using a static map allowed the team to access entities quickly and easily. However, during the testing process, an issue that arose was that entities created in previous tests were affecting the current tests. For example, a created flashcard would still be stored in the static map. The fix to this was to clear the map after each class of test case ran. In the future it would be helpful to store these entities using serialization to avoid such problems.
    
 ### Implementation Extensions
   - Dynamic question and answer fields to allow for flexibility of length.
