@@ -245,6 +245,8 @@ public class View implements ViewBoundary {
             case DECK_EDITED:
                 deckScreen.reconstructDecks(true, deckName2);
                 deckScreen.reconstructDecks(false, deckName);
+                quizScreen.reconstructDecks(true, deckName2);
+                quizScreen.reconstructDecks(false, deckName);
                 break;
 
             case DECK_EXPORTED:
