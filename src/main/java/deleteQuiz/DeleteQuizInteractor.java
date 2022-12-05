@@ -40,11 +40,10 @@ public class DeleteQuizInteractor implements DeleteQuizInputBoundary{
             DeleteQuizOutputData outputData = new DeleteQuizOutputData(null, "This quiz name does not exist.");
             outputBoundary.prepareFailView(outputData);
         }
-        else {
-            Quiz.removeTracker(quizName);
 
-            DeleteQuizOutputData outputData = new DeleteQuizOutputData(quizName, "Successfully removed quiz.");
-            outputBoundary.prepareSuccessView(outputData);
-        }
+        Quiz.removeTracker(quizName);
+
+        DeleteQuizOutputData outputData = new DeleteQuizOutputData(quizName, "Successfully removed quiz.");
+        outputBoundary.prepareSuccessView(outputData);
     }
 }
