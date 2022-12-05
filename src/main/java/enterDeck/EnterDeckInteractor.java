@@ -46,10 +46,10 @@ public class EnterDeckInteractor implements EnterDeckInputBoundary {
                 tempList.add(id);
 
                 cardInfo.add(tempList);
-            }
 
-            EnterDeckOutputData outputData = new EnterDeckOutputData(cardInfo);
-            outputBoundary.prepareSuccessView(outputData);
+                EnterDeckOutputData outputData = new EnterDeckOutputData(cardInfo);
+                outputBoundary.prepareSuccessView(outputData);
+            }
         }
     }
 }
