@@ -129,7 +129,7 @@ public class QuizScreen extends JPanel {
                 JPanel startQuiz = new JPanel();
                 startQuizDialog.add(startQuiz);
 
-                JLabel startPrompt = new JLabel("Start quiz " + button.getText() + "?");
+                JLabel startPrompt = new JLabel("Start Quiz " + button.getText() + "?");
                 JCheckBox randomCheckBox = new JCheckBox("Randomized order?", false);
                 JButton startQuizButton = new JButton("Start");
                 startQuiz.add(startPrompt);
