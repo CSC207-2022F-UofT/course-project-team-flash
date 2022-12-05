@@ -75,7 +75,6 @@ public class View implements ViewBoundary {
     private String[] cardIdArray;
     private int currCardIndex;
 
-
     public View() {
 
         // Build the Jframe
@@ -87,7 +86,7 @@ public class View implements ViewBoundary {
         JPanel screens = new JPanel(interfaceLayout);
         application.add(screens);
 
-        cardScreen = new CardScreen(createCardController, deleteCardController, editCardController);
+        cardScreen = new CardScreen(createCardController, deleteCardController, editCardController, moveCardController);
         deckScreen = new DeckScreen(createDeckController, deleteDeckController, editDeckController,
                                     enterDeckController, exportDeckController, importDeckController);
         MainMenuScreen mainMenuScreen = new MainMenuScreen();
@@ -199,11 +198,6 @@ public class View implements ViewBoundary {
                 }
                 break;
 
-            case DECK_SCREEN:
-                //Creates and updates the Deck screen when a change is made to the deck screen
-
-                break;
-
             case QUIZ_MENU:
                 //Menu that displays the quizzes.
                 quizScreen.setVisible(true);
@@ -220,11 +214,6 @@ public class View implements ViewBoundary {
                 quizScreen.setVisible(false);
                 showProblemScreen.setQuiz(cardIdArray, currCardIndex, returnString, cardOptions);
                 showProblemScreen.setVisible(true);
-                break;
-
-            case START_QUIZ:
-                //Menu that shows the view before a quiz starts with a button like "begin quiz".
-
                 break;
 
             case CARD_CREATED:
@@ -259,7 +248,7 @@ public class View implements ViewBoundary {
                 break;
 
             case DECK_EXPORTED:
-
+                createExportMessage();
                 break;
 
             case QUIZ_CREATED:
@@ -295,4 +284,12 @@ public class View implements ViewBoundary {
         JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.PLAIN_MESSAGE);
     }
 
+    private void createExportMessage() {
+        JLabel exportMessage = new JLabel("Export Underway! Please wait a few seconds for changes to load.");
+        exportMessage.setHorizontalAlignment(JLabel.CENTER);
+        exportMessage.setVerticalTextPosition(JLabel.BOTTOM);
+        exportMessage.setHorizontalTextPosition(JLabel.CENTER);
+
+        JOptionPane.showMessageDialog(null, exportMessage, "Export", JOptionPane.PLAIN_MESSAGE);
+    }
 }

@@ -3,6 +3,7 @@ package screens;
 import createCard.CreateCardController;
 import deleteCard.DeleteCardController;
 import editCard.EditCardController;
+import moveCard.MoveCardController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +17,7 @@ public class CardScreen extends JPanel {
     private CreateCardController createCardController;
     private DeleteCardController deleteCardController;
     private EditCardController editCardController;
+    private MoveCardController moveCardController;
 
     // Deck Info
     private String deckName;
@@ -31,13 +33,14 @@ public class CardScreen extends JPanel {
     private final GridBagConstraints gridBagConstraints;
 
     public CardScreen(CreateCardController createCardController, DeleteCardController deleteCardController,
-                      EditCardController editCardController) {
+                      EditCardController editCardController, MoveCardController moveCardController) {
         super(new GridBagLayout());
         this.gridBagConstraints = new GridBagConstraints();
 
         this.createCardController = createCardController;
         this.deleteCardController = deleteCardController;
         this.editCardController = editCardController;
+        this.moveCardController = moveCardController;
         this.allCardsInfo = new ArrayList<>();
         this.cardButtons = new ArrayList<>();
 
@@ -114,9 +117,11 @@ public class CardScreen extends JPanel {
 
                 JPanel editCard = new JPanel();
                 JPanel deleteCard = new JPanel();
+//                JPanel moveCard = new JPanel();
 
                 optionTabs.add("Edit Card", editCard);
                 optionTabs.add("Delete Card", deleteCard);
+//                optionTabs.add("Move Card", moveCard);
 
                 newCardDialog.add(optionTabs);
 
@@ -131,19 +136,17 @@ public class CardScreen extends JPanel {
                 JTextField cardAnswerTextField = new JTextField("", TEXT_FIELD_LENGTH);
                 JButton editButton = new JButton("Edit Card");
 
-                editCardAddMC(editCard, questionPrompt, cardQuestionTextField, answerPrompt, cardAnswerTextField);
-
-                if (Objects.equals(((JLabel) button.getComponent(1)).getText(), "Multiple Choice")) {
-                    editCardAddMC(editCard, dummyPrompt, dummy1TextField, dummy2TextField, dummy3TextField);
+                if (Objects.equals(((JLabel) button.getComponent(1)).getText(), "MCFlashcard")) {
+                    editCardAddMC(editCard, questionPrompt, cardQuestionTextField, answerPrompt, cardAnswerTextField,
+                            dummyPrompt, dummy1TextField, dummy2TextField, dummy3TextField);
+                } else {
+                    editCardAddQnA(editCard, questionPrompt, cardQuestionTextField, answerPrompt, cardAnswerTextField);
                 }
 
                 editCard.add(editButton);
 
-                JButton deleteButton = new JButton("Delete Card");
-                deleteCard.add(deleteButton);
-
                 editButton.addActionListener(e1 -> {
-                    if (Objects.equals(((JLabel) button.getComponent(1)).getText(), "Multiple Choice")) {
+                    if (Objects.equals(((JLabel) button.getComponent(1)).getText(), "MCFlashcard")) {
                         List<String> dummyAnswers = Arrays.asList(dummy1TextField.getText(), dummy2TextField.getText(), dummy3TextField.getText());
                         editCardController.edit(button.getName(), cardQuestionTextField.getText(), cardAnswerTextField.getText(), dummyAnswers);
                     } else {
@@ -151,6 +154,22 @@ public class CardScreen extends JPanel {
                     }
                     cardSettingsFrame.dispose();
                 });
+
+//                JLabel movePrompt = new JLabel("Enter the deck to move the card in:");
+//                JTextField moveTextField = new JTextField("", TEXT_FIELD_LENGTH);
+//                JButton moveButton = new JButton("Move Card");
+//                moveCardAdd(moveCard, movePrompt, moveTextField, moveButton);
+//
+//                moveButton.addActionListener(e13 -> {
+//                    System.out.println(deckName);
+//                    System.out.println(moveTextField.getText());
+//                    System.out.println(button.getName());
+//                    moveCardController.move(deckName, moveTextField.getText(), button.getName());
+//                    cardSettingsFrame.dispose();
+//                });
+
+                JButton deleteButton = new JButton("Delete Card");
+                deleteCard.add(deleteButton);
 
                 deleteButton.addActionListener(e12 -> {
                     deleteCardController.delete(button.getName(), deckName);
@@ -163,7 +182,6 @@ public class CardScreen extends JPanel {
             });
         }
     }
-
     private void chooseCardCreation() {
         JFrame newCardFrame = new JFrame();
         JDialog newCardDialog = new JDialog(newCardFrame);
@@ -277,15 +295,20 @@ public class CardScreen extends JPanel {
         this.revalidate();
         this.repaint();
     }
-    private void editCardAddMC(JPanel editCard, JLabel questionPrompt, JTextField cardQuestionTextField,
+    private void editCardAddQnA(JPanel editCard, JLabel questionPrompt, JTextField cardQuestionTextField,
                                JLabel answerPrompt, JTextField cardAnswerTextField) {
         editCard.add(questionPrompt);
         editCard.add(cardQuestionTextField);
         editCard.add(answerPrompt);
         editCard.add(cardAnswerTextField);
     }
-    private void editCardAddMC(JPanel editCard, JLabel dummyPrompt,
+    private void editCardAddMC(JPanel editCard, JLabel questionPrompt, JTextField questionTextField,
+                               JLabel answerPrompt, JTextField answerTextField, JLabel dummyPrompt,
                                JTextField dummy1TextField, JTextField dummy2TextField, JTextField dummy3TextField) {
+        editCard.add(questionPrompt);
+        editCard.add(questionTextField);
+        editCard.add(answerPrompt);
+        editCard.add(answerTextField);
         editCard.add(dummyPrompt);
         editCard.add(dummy1TextField);
         editCard.add(dummy2TextField);
@@ -314,6 +337,12 @@ public class CardScreen extends JPanel {
         createMCCard.add(dummy3TextField);
         createMCCard.add(createMCButton);
     }
+
+//    private void moveCardAdd(JPanel moveCard, JLabel movePrompt, JTextField moveTextField, JButton moveButton) {
+//        moveCard.add(movePrompt);
+//        moveCard.add(moveTextField);
+//        moveCard.add(moveButton);
+//    }
 
     private void initializeCardButtons(String name, JButton cardButton,
                                        JLabel questionLabel, JLabel typeLabel) {
