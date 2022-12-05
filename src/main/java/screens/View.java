@@ -213,7 +213,7 @@ public class View implements ViewBoundary {
             case SHOW_PROBLEM:
                 //Menu that shows the question of a flashcard along with a show answer button.
                 quizScreen.setVisible(false);
-                showProblemScreen.setQuiz(cardIdArray, currCardIndex, returnString, cardOptions);
+                showProblemScreen.setQuiz(cardIdArray, currCardIndex, returnString, cardAnswer, cardOptions);
                 showProblemScreen.setVisible(true);
                 break;
 

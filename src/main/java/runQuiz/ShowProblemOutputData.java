@@ -21,6 +21,7 @@ public class ShowProblemOutputData {
     private final String[] flashcardIdList;
     private final int currCardIndex;
     private final String currCardQuestion;
+    private final String currCardAnswer;
     private final List<String> cardOptions;
     private ViewState viewState;
 
@@ -31,12 +32,14 @@ public class ShowProblemOutputData {
      * @param flashcardIdList a list of flashcard IDs
      * @param currCardIndex the index of the current flashcard in flashcardIdList
      * @param currCardQuestion the question on the current flashcard
+     * @param currCardAnswer the answer on the current flashcard
      */
     public ShowProblemOutputData(String[] flashcardIdList, int currCardIndex,
-                                 String currCardQuestion, List<String> cardOptions){
+                                 String currCardQuestion, String currCardAnswer, List<String> cardOptions){
         this.flashcardIdList = flashcardIdList;
         this.currCardIndex = currCardIndex;
         this.currCardQuestion = currCardQuestion;
+        this.currCardAnswer = currCardAnswer;
         this.cardOptions = cardOptions;
         this.viewState = null;
     }
@@ -66,6 +69,15 @@ public class ShowProblemOutputData {
      */
     String getCurrCardQuestion(){
         return this.currCardQuestion;
+    }
+
+    /**
+     * Returns the currCardAnswer of this ShowProblemOutputData.
+     *
+     * @return the currCardAnswer of this ShowProblemOutputData
+     */
+    String getCurrCardAnswer(){
+        return this.currCardAnswer;
     }
 
     /**
