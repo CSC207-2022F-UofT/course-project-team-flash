@@ -21,35 +21,36 @@ public class EnterDeckInteractor implements EnterDeckInputBoundary {
         Deck deck = Deck.getTracker().get(inputData.getDeckName());
         if (deck == null) {
             outputBoundary.prepareFailView("Could not enter, as the deck does not exist!");
-            return;
         }
-        List<String> cardIDs = deck.getCardIds();
-        List<List<String>> cardInfo = new ArrayList<>();
-        Map<String, Flashcard> tracker = Flashcard.getTracker();
+        else {
+            List<String> cardIDs = deck.getCardIds();
+            List<List<String>> cardInfo = new ArrayList<>();
+            Map<String, Flashcard> tracker = Flashcard.getTracker();
 
-        for (String id : cardIDs) {
-            Flashcard card = tracker.get(id);
+            for (String id : cardIDs) {
+                Flashcard card = tracker.get(id);
 
-            String type;
-            if (card instanceof MCFlashcard) {
-                type = "Multiple Choice";
-            } else {
-                type = "Question and Answer";
+                String type;
+                if (card instanceof MCFlashcard) {
+                    type = "Multiple Choice";
+                } else {
+                    type = "Question and Answer";
+                }
+
+                String question = card.getQuestion();
+                String answer = card.getAnswer();
+
+                List<String> tempList = new ArrayList<>();
+                tempList.add(type);
+                tempList.add(question);
+                tempList.add(answer);
+                tempList.add(id);
+
+                cardInfo.add(tempList);
             }
 
-            String question = card.getQuestion();
-            String answer = card.getAnswer();
-
-            List<String> tempList = new ArrayList<>();
-            tempList.add(type);
-            tempList.add(question);
-            tempList.add(answer);
-            tempList.add(id);
-
-            cardInfo.add(tempList);
+            EnterDeckOutputData outputData = new EnterDeckOutputData(cardInfo);
+            outputBoundary.prepareSuccessView(outputData);
         }
-
-        EnterDeckOutputData outputData = new EnterDeckOutputData(cardInfo);
-        outputBoundary.prepareSuccessView(outputData);
     }
 }
