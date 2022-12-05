@@ -30,8 +30,8 @@ public class DeckFileImport implements ImportDeckDsGateway{
      */
     @Override
     public ImportDeckDsOutputData importFromFile(ImportDeckDsInputData dsInputData){
+        String filePath = dsInputData.getFilePath();
         try {
-            String filePath = dsInputData.getFilePath();
             File fileToRead = new File(filePath);
             Scanner reader = new Scanner(fileToRead);
             List<String> cardsRead = new ArrayList<>();
@@ -40,12 +40,12 @@ public class DeckFileImport implements ImportDeckDsGateway{
             }
             String deckName = cleanName(filePath);
             if (Deck.getTracker().get(deckName) != null){
-                throw new ImportDeckFail("Could not import! " + deckName + " already exists!");
+                throw new ImportDeckFail("Could not import deck! " + deckName + " already exists!");
             }
             return new ImportDeckDsOutputData(deckName, cardsRead);
         }
         catch(FileNotFoundException e){
-            throw new ImportDeckFail(e.toString());
+            throw new ImportDeckFail("Could not find " + filePath);
         }
     }
 }
