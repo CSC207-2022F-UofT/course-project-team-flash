@@ -86,7 +86,7 @@ public class ImportDeckInteractorTest {
 
             @Override
             public void prepareFailView(String exception){
-                Assertions.assertEquals("screens.ImportDeckFail: ImportTest3 doesn't exist", exception);
+                Assertions.assertEquals("ImportTest3 doesn't exist", exception);
             }
         };
         CardFactory cardFactory = new FlashcardFactory();
@@ -111,7 +111,7 @@ public class ImportDeckInteractorTest {
 
             @Override
             public void prepareFailView(String exception){
-                Assertions.assertEquals("screens.ImportDeckFail: Could not import! ImportTest4 already exists!", exception);
+                Assertions.assertEquals("Could not import! ImportTest4 already exists!", exception);
             }
         };
         CardFactory cardFactory = new FlashcardFactory();

@@ -17,7 +17,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ImportDeckInteractor implements ImportDeckInputBoundary{
-    private static final int INVALID_CARD_TYPE = -1;
     private static final int TYPE_POSITION = 0;
     private static final int QUESTION_POSITION = 1;
     private static final int ANSWER_POSITION = 2;
@@ -46,17 +45,18 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
     private Flashcard cardFormatter(String cardInfo){
         String[] cardInfoArray = cardInfo.split(";");
 
-        FlashcardType type = null;
+        FlashcardType type = FlashcardType.InvalidFlashcard;
         try {
             int tempType = Integer.parseInt(cardInfoArray[TYPE_POSITION]);
             if (tempType == 1) {
                 type = FlashcardType.QandAFlashcard;
-            } else {
+            }
+            else if (tempType == 2){
                 type = FlashcardType.MCFlashcard;
             }
         }
         catch (NumberFormatException e){
-            int tempType = INVALID_CARD_TYPE;
+            // flashcard type is set to invalid already
         }
 
         String question;
@@ -109,7 +109,7 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
             outputBoundary.prepareSuccessView(outputData);
         }
         catch (ImportDeckFail e) {
-            outputBoundary.prepareFailView(e.toString());
+            outputBoundary.prepareFailView(e.getMessage());
         }
     }
 }
