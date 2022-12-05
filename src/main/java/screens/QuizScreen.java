@@ -142,6 +142,7 @@ public class QuizScreen extends JPanel {
                 });
 
                 startQuizDialog.pack();
+                startQuizDialog.setLocationRelativeTo(null);
                 startQuizDialog.setModal(true);
                 startQuizDialog.setVisible(true);
             });
@@ -184,6 +185,7 @@ public class QuizScreen extends JPanel {
                 });
 
                 newQuizDialog.pack();
+                newQuizDialog.setLocationRelativeTo(null);
                 newQuizDialog.setModal(true);
                 newQuizDialog.setVisible(true);
 
@@ -242,6 +244,7 @@ public class QuizScreen extends JPanel {
         });
 
         newQuizDialog.pack();
+        newQuizDialog.setLocationRelativeTo(null);
         newQuizDialog.setModal(true);
         newQuizDialog.setVisible(true);
     }

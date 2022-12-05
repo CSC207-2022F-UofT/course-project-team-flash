@@ -177,6 +177,7 @@ public class CardScreen extends JPanel {
                 });
 
                 newCardDialog.pack();
+                newCardDialog.setLocationRelativeTo(null);
                 newCardDialog.setModal(true);
                 newCardDialog.setVisible(true);
             });

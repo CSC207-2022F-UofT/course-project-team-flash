@@ -192,6 +192,7 @@ public class DeckScreen extends JPanel {
                 });
 
                 newDeckDialog.pack();
+                newDeckDialog.setLocationRelativeTo(null);
                 newDeckDialog.setModal(true);
                 newDeckDialog.setVisible(true);
 
@@ -238,6 +239,7 @@ public class DeckScreen extends JPanel {
         });
 
         newDeckDialog.pack();
+        newDeckDialog.setLocationRelativeTo(null);
         newDeckDialog.setModal(true);
         newDeckDialog.setVisible(true);
 
