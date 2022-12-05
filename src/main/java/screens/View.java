@@ -112,6 +112,7 @@ public class View implements ViewBoundary {
         application.setSize(WIDTH, HEIGHT);
         application.setResizable(true);
         application.setVisible(true);
+        application.setLocationRelativeTo(null);
     }
 
     // General method for setting the controllers of the view
