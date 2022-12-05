@@ -19,8 +19,11 @@ public class EnterDeckInteractor implements EnterDeckInputBoundary {
     @Override
     public void enter(EnterDeckInputData inputData) {
         Deck deck = Deck.getTracker().get(inputData.getDeckName());
+        if (deck == null) {
+            outputBoundary.prepareFailView("Could not enter, as the deck does not exist!");
+            return;
+        }
         List<String> cardIDs = deck.getCardIds();
-
         List<List<String>> cardInfo = new ArrayList<>();
         Map<String, Flashcard> tracker = Flashcard.getTracker();
 
