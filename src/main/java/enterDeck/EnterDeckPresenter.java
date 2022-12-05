@@ -37,11 +37,4 @@ public class EnterDeckPresenter implements EnterDeckOutputBoundary {
 
         viewBound.updateView(viewModel);
     }
-    @Override
-    public void prepareFailView(String exception){
-        ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.ERROR)
-                .setReturnString(exception)
-                .build();
-        viewBound.updateView(viewModel);
-    }
 }
