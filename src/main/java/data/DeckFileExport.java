@@ -33,7 +33,7 @@ public class DeckFileExport implements ExportDeckDsGateway{
             writer.close();
         }
         catch (IOException e){
-            throw new ExportDeckFail(e.toString());
+            throw new ExportDeckFail(e.getMessage());
         }
     }
 }

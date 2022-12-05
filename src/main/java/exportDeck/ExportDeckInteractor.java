@@ -72,7 +72,7 @@ public class ExportDeckInteractor implements ExportDeckInputBoundary{
             try {
                 dsGateway.exportToFile(exportDeckDsInputData);
             } catch (ExportDeckFail e) {
-                outputBoundary.prepareFailView(e.toString());
+                outputBoundary.prepareFailView(e.getMessage());
             }
             ExportDeckOutputData outputData = new ExportDeckOutputData(deckToExportName + " was exported to: "
                     + filePath + deckToExportName + ".deck");
