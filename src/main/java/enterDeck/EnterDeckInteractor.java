@@ -15,7 +15,6 @@ public class EnterDeckInteractor implements EnterDeckInputBoundary {
         this.outputBoundary = outputBoundary;
     }
 
-
     @Override
     public void enter(EnterDeckInputData inputData) {
         Deck deck = Deck.getTracker().get(inputData.getDeckName());
@@ -24,6 +23,7 @@ public class EnterDeckInteractor implements EnterDeckInputBoundary {
         }
         else {
             List<String> cardIDs = deck.getCardIds();
+
             List<List<String>> cardInfo = new ArrayList<>();
             Map<String, Flashcard> tracker = Flashcard.getTracker();
 
@@ -32,21 +32,11 @@ public class EnterDeckInteractor implements EnterDeckInputBoundary {
 
                 String type;
                 if (card instanceof MCFlashcard) {
-                    type = "Multiple Choice";
-                } else {
-                    type = "Question and Answer";
+                    type = "MCFlashcard";
                 }
-
-                String question = card.getQuestion();
-                String answer = card.getAnswer();
-
-                List<String> tempList = new ArrayList<>();
-                tempList.add(type);
-                tempList.add(question);
-                tempList.add(answer);
-                tempList.add(id);
-
-                cardInfo.add(tempList);
+                else {
+                    type = "QandAFlashcard";
+                }
             }
 
             EnterDeckOutputData outputData = new EnterDeckOutputData(cardInfo);
