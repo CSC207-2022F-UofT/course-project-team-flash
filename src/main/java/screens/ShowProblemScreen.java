@@ -4,6 +4,8 @@ import runQuiz.RunQuizController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ShowProblemScreen extends JPanel {
@@ -41,7 +43,8 @@ public class ShowProblemScreen extends JPanel {
 
         JButton showAnswerButton = new JButton("Show answer");
         JTextField userAnswerField = new JTextField(TEXT_FIELD_LENGTH);
-        JLabel cardProblemLabel = new JLabel(this.cardProblem);
+        JLabel cardProblemLabel = new JLabel("Question: " + this.cardProblem);
+        JLabel option = new JLabel("Options:");
 
         customize(showAnswerButton, userAnswerField, cardProblemLabel);
 
@@ -51,19 +54,23 @@ public class ShowProblemScreen extends JPanel {
             JLabel option3 = new JLabel(this.cardOptions.get(2));
             JLabel answer = new JLabel(this.cardAnswer);
 
+            customizeMC(option, option1, option2, option3, answer);
+
             this.add(cardProblemLabel);
-            this.add(option1);
-            this.add(option2);
-            this.add(option3);
-            this.add(answer);
+            this.add(userAnswerField);
+
+            ArrayList<JLabel> array = new ArrayList<>();
+            addToArrayList(array, option1, option2, option3, answer);
+            Collections.shuffle(array);
+            addToPanel(array);
+
+            this.add(showAnswerButton);
+
+        } else {
+            this.add(cardProblemLabel);
             this.add(userAnswerField);
             this.add(showAnswerButton);
         }
-
-        this.add(cardProblemLabel);
-        this.add(userAnswerField);
-        this.add(showAnswerButton);
-
         this.revalidate();
         this.repaint();
 
@@ -74,6 +81,7 @@ public class ShowProblemScreen extends JPanel {
 
         });
     }
+
     private void clear() {
         this.removeAll();
     }
@@ -94,5 +102,24 @@ public class ShowProblemScreen extends JPanel {
         showAnswerButton.setForeground(Color.white);
         showAnswerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     }
-
+    private void customizeMC(JLabel option, JLabel option1, JLabel option2, JLabel option3, JLabel answer) {
+        JLabel[] labels = {option, option1, option2, option3, answer};
+        for (JLabel label : labels) {
+            label.setForeground(Color.white);
+            label.setBackground(new Color(32, 32, 32));
+            label.setAlignmentX(Component.CENTER_ALIGNMENT);
+        }
+    }
+    private void addToArrayList(ArrayList<JLabel> array, JLabel option1,
+                                JLabel option2, JLabel option3, JLabel answer) {
+        array.add(option1);
+        array.add(option2);
+        array.add(option3);
+        array.add(answer);
+    }
+    private void addToPanel(ArrayList<JLabel> array) {
+        for (JLabel label : array) {
+            this.add(label);
+        }
+    }
 }
