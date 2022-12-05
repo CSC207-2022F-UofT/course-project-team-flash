@@ -4,9 +4,6 @@ import runQuiz.RunQuizController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.beans.PropertyChangeListener;
 import java.util.List;
 
 public class ShowProblemScreen extends JPanel {
@@ -41,10 +38,13 @@ public class ShowProblemScreen extends JPanel {
     }
 
     private void drawComponents() {
-        this.removeAll();
+        clear();
+
         JButton showAnswerButton = new JButton("Show answer");
         JTextField userAnswerField = new JTextField(TEXT_FIELD_LENGTH);
         JLabel cardProblemDisplay = new JLabel(this.cardProblem);
+
+        customize(showAnswerButton, cardProblemDisplay);
 
         if(this.cardOptions != null) {
             JList cardOptionsDisplay = new JList(this.cardOptions.toArray());
@@ -60,24 +60,25 @@ public class ShowProblemScreen extends JPanel {
 
         //
 
-
         this.revalidate();
         this.repaint();
 
-        showAnswerButton.addActionListener(new ActionListener() {
+        showAnswerButton.addActionListener(e -> {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
+            setVisible(false);
+            runQuizController.showAnswer(cardIdArray, currCardIndex, userAnswerField.getText());
 
-                setVisible(false);
-
-                runQuizController.showAnswer(cardIdArray, currCardIndex, userAnswerField.getText());
-
-            }
         });
-
-
     }
+    private void clear() {
+        this.removeAll();
+    }
+    private void customize(JButton showAnswerButton, JLabel cardProblemDisplay) {
+        this.setBackground(new Color(32, 32, 32));
 
+        cardProblemDisplay.setForeground(Color.white);
+        showAnswerButton.setBackground(new Color(88, 88, 88));
+        showAnswerButton.setForeground(Color.white);
+    }
 
 }

@@ -4,9 +4,6 @@ import runQuiz.RunQuizController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.beans.PropertyChangeListener;
 
 public class ShowAnswerScreen extends JPanel {
 
@@ -40,10 +37,14 @@ public class ShowAnswerScreen extends JPanel {
     }
 
     private void drawComponents(){
-        this.removeAll();
+        clear();
+
         JButton nextProblemButton = new JButton("Next Problem");
-        JLabel cardAnswerLabel = new JLabel(cardAnswer);
-        JLabel userAnswerLabel = new JLabel(userAnswer);
+        JLabel cardAnswerLabel = new JLabel("Correct Answer: " + cardAnswer);
+        JLabel userAnswerLabel = new JLabel("Your Answer: " + userAnswer);
+
+        customize(nextProblemButton, cardAnswerLabel, userAnswerLabel);
+
         //setConstraints(
 
         this.add(cardAnswerLabel);
@@ -56,20 +57,24 @@ public class ShowAnswerScreen extends JPanel {
         this.revalidate();
         this.repaint();
 
-        nextProblemButton.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                runQuizController.showProblem(cardIdArray, currCardIndex);
-
-
-            }
+        nextProblemButton.addActionListener(e -> {
+            setVisible(false);
+            runQuizController.showProblem(cardIdArray, currCardIndex);
         });
-
-
-
     }
+    private void clear() {
+        this.removeAll();
+    }
+    private void customize(JButton nextProblemButton, JLabel cardAnswerLabel, JLabel userAnswerLabel) {
+        this.setBackground(new Color(32, 32, 32));
 
+        nextProblemButton.setForeground(Color.white);
+        nextProblemButton.setBackground(new Color(88, 88, 88));
 
+        cardAnswerLabel.setForeground(Color.white);
+        cardAnswerLabel.setBackground(new Color(32, 32, 32));
+
+        userAnswerLabel.setForeground(Color.white);
+        userAnswerLabel.setBackground(new Color(32, 32, 32));
+    }
 }
