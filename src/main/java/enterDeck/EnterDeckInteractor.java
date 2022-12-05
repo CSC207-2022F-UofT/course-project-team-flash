@@ -15,7 +15,6 @@ public class EnterDeckInteractor implements EnterDeckInputBoundary {
         this.outputBoundary = outputBoundary;
     }
 
-
     @Override
     public void enter(EnterDeckInputData inputData) {
         Deck deck = Deck.getTracker().get(inputData.getDeckName());
