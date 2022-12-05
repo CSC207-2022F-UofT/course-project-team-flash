@@ -12,6 +12,7 @@ public class ShowProblemScreen extends JPanel {
     private String[] cardIdArray;
     private int currCardIndex;
     private String cardProblem;
+    private String cardAnswer;
     private List<String> cardOptions;
     private static final int TEXT_FIELD_LENGTH = 10;
 
@@ -20,10 +21,12 @@ public class ShowProblemScreen extends JPanel {
         this.cardProblem = "";
     }
 
-    public void setQuiz(String[] cardIdArray, int currCardIndex, String question, List<String> cardOptions) {
+    public void setQuiz(String[] cardIdArray, int currCardIndex, String question,
+                        String answer, List<String> cardOptions) {
         this.cardIdArray = cardIdArray;
         this.currCardIndex = currCardIndex;
         this.cardProblem = question;
+        this.cardAnswer = answer;
         this.cardOptions = cardOptions;
         drawComponents();
     }
@@ -46,11 +49,13 @@ public class ShowProblemScreen extends JPanel {
             JLabel option1 = new JLabel(this.cardOptions.get(0));
             JLabel option2 = new JLabel(this.cardOptions.get(1));
             JLabel option3 = new JLabel(this.cardOptions.get(2));
+            JLabel answer = new JLabel(this.cardAnswer);
 
             this.add(cardProblemLabel);
             this.add(option1);
             this.add(option2);
             this.add(option3);
+            this.add(answer);
             this.add(userAnswerField);
             this.add(showAnswerButton);
         }

@@ -62,6 +62,7 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
         String[] flashcardIds = flashcardIdList.toArray(new String[0]);
         Flashcard firstCard = Flashcard.getTracker().get(flashcardIds[0]);
         String firstCardProblem = firstCard.getQuestion();
+        String firstCardAnswer = firstCard.getAnswer();
 
         List<String> firstCardOptions = null;
 
@@ -69,7 +70,8 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
             firstCardOptions = ((MCFlashcard) firstCard).getOptions();
         }
 
-        StartQuizOutputData outputData = new StartQuizOutputData(flashcardIds, firstCardProblem, firstCardOptions);
+        StartQuizOutputData outputData = new StartQuizOutputData(flashcardIds, firstCardProblem,
+                firstCardAnswer ,firstCardOptions);
 
         outputBoundary.prepareSuccessView(outputData);
     }
@@ -94,6 +96,7 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
         ShowProblemOutputData outputData = new ShowProblemOutputData(inputData.getFlashcardIdList(),
                 inputData.getCurrCardIndex(),
                 currCard.getQuestion(),
+                currCard.getAnswer(),
                 options
         );
 
