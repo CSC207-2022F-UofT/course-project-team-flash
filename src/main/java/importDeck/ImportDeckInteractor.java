@@ -45,7 +45,7 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
     private Flashcard cardFormatter(String cardInfo){
         String[] cardInfoArray = cardInfo.split(";");
 
-        FlashcardType type = null;
+        FlashcardType type = FlashcardType.InvalidFlashcard;
         try {
             int tempType = Integer.parseInt(cardInfoArray[TYPE_POSITION]);
             if (tempType == 1) {
@@ -56,7 +56,7 @@ public class ImportDeckInteractor implements ImportDeckInputBoundary{
             }
         }
         catch (NumberFormatException e){
-            type = FlashcardType.InvalidFlashcard;
+            // flashcard type is set to invalid already
         }
 
         String question;
