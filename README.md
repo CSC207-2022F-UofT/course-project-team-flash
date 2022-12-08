@@ -10,7 +10,7 @@ WhipFlash is a flashcard program that can aid with learning new material.
 ## Prerequisites
 
 Make sure you have Java 11 installed on your computer.\
-Use a Windows PC
+Use a Windows PC (Usage of Java Swing does not allow for MacOS users to see button text, due to the choice of colours.)
 
 ## How to Use
 
@@ -96,9 +96,6 @@ Note: For most classes, using the testing method provided by the professors, onl
 Note: Taking that into account, a maximum of ~ 70-80% of lines can be tested.
 
 To expand on testing process, we used the clean architecture example and instructions provided by the professors to create our tests. Specifically, we tested all pertaining to use cases, from the controller to the presenter. We created tests by initializing and linking up all use case components. The presenter's methods were overriden to have assert statements rather than sending information to the view. Additionally, an input data object was manually created the sent to the interactor directly. Due to this manner of testing, the controller and presenter will have low code coverage, outside of its constructors. The view, and its components, were not formally tested, but experimentally tested by using the program.
-
-## Final Notes
-Usage of Java Swing does not allow for MacOS users to see button text, due to the choice of colours.
 
 ## Credits
 Albert Yan\
