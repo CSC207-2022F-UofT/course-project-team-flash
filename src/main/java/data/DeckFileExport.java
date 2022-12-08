@@ -9,6 +9,8 @@ package data;
 import exportDeck.ExportDeckDsGateway;
 import exportDeck.ExportDeckDsInputData;
 import screens.ExportDeckFail;
+
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -26,7 +28,10 @@ public class DeckFileExport implements ExportDeckDsGateway{
     public void exportToFile(ExportDeckDsInputData dsInputData){
         try {
             String deckFileName = dsInputData.getFileLocation() + dsInputData.getDeckExportName() + ".deck";
-            FileWriter writer = new FileWriter(deckFileName, false);
+            File deckFile = new File(deckFileName);
+            boolean result = deckFile.getParentFile().mkdirs();
+            System.out.println(result);
+            FileWriter writer = new FileWriter(deckFile, false);
             for (String cardInfo : dsInputData.getDeckCards()) {
                 writer.write(cardInfo + System.getProperty("line.separator"));
             }
