@@ -1,11 +1,11 @@
 package screens;
 
-import createDeck.CreateDeckController;
-import deleteDeck.DeleteDeckController;
-import editDeck.EditDeckController;
-import enterDeck.EnterDeckController;
-import exportDeck.ExportDeckController;
-import importDeck.ImportDeckController;
+import create_deck.CreateDeckController;
+import delete_deck.DeleteDeckController;
+import edit_deck.EditDeckController;
+import enter_deck.EnterDeckController;
+import export_deck.ExportDeckController;
+import import_deck.ImportDeckController;
 
 import javax.swing.*;
 import java.awt.*;

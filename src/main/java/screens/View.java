@@ -1,19 +1,19 @@
 package screens;
 
-import createCard.CreateCardController;
-import createDeck.CreateDeckController;
-import createQuiz.CreateQuizController;
-import deleteCard.DeleteCardController;
-import deleteDeck.DeleteDeckController;
-import deleteQuiz.DeleteQuizController;
-import editCard.EditCardController;
-import editDeck.EditDeckController;
-import editQuiz.EditQuizController;
-import moveCard.MoveCardController;
-import enterDeck.EnterDeckController;
-import exportDeck.ExportDeckController;
-import importDeck.ImportDeckController;
-import runQuiz.RunQuizController;
+import create_card.CreateCardController;
+import create_deck.CreateDeckController;
+import create_quiz.CreateQuizController;
+import delete_card.DeleteCardController;
+import delete_deck.DeleteDeckController;
+import delete_quiz.DeleteQuizController;
+import edit_card.EditCardController;
+import edit_deck.EditDeckController;
+import edit_quiz.EditQuizController;
+import move_card.MoveCardController;
+import enter_deck.EnterDeckController;
+import export_deck.ExportDeckController;
+import import_deck.ImportDeckController;
+import run_quiz.RunQuizController;
 
 import javax.swing.*;
 import java.awt.*;

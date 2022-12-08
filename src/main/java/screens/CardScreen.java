@@ -1,9 +1,9 @@
 package screens;
 
-import createCard.CreateCardController;
-import deleteCard.DeleteCardController;
-import editCard.EditCardController;
-import moveCard.MoveCardController;
+import create_card.CreateCardController;
+import delete_card.DeleteCardController;
+import edit_card.EditCardController;
+import move_card.MoveCardController;
 
 import javax.swing.*;
 import java.awt.*;
