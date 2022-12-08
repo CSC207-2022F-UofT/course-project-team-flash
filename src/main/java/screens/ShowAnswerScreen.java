@@ -20,7 +20,6 @@ public class ShowAnswerScreen extends JPanel {
     public ShowAnswerScreen(RunQuizController runQuizController) {
         this.runQuizController = runQuizController;
     }
-
     public void setQuiz(String[] cardIdArray, int currCardIndex, String cardAnswer, String userAnswer) {
         this.cardIdArray = cardIdArray;
         this.currCardIndex = currCardIndex;

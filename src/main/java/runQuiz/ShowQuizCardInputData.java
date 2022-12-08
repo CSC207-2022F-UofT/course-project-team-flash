@@ -16,7 +16,7 @@ public class ShowQuizCardInputData {
 
     private final String[] flashcardIdList;
 
-    private int currCardIndex;
+    private final int currCardIndex;
 
     private final String userAnswer;
 
