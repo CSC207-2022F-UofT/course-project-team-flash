@@ -1,6 +1,6 @@
 package screens;
 
-import runQuiz.RunQuizController;
+import run_quiz.RunQuizController;
 
 import javax.swing.*;
 import java.awt.*;

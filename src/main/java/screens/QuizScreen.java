@@ -1,9 +1,9 @@
 package screens;
 
-import createQuiz.CreateQuizController;
-import deleteQuiz.DeleteQuizController;
-import editQuiz.EditQuizController;
-import runQuiz.RunQuizController;
+import create_quiz.CreateQuizController;
+import delete_quiz.DeleteQuizController;
+import edit_quiz.EditQuizController;
+import run_quiz.RunQuizController;
 
 import javax.swing.*;
 import java.awt.*;

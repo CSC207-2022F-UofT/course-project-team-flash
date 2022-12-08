@@ -6,8 +6,8 @@
 
 package data;
 
-import exportDeck.ExportDeckDsGateway;
-import exportDeck.ExportDeckDsInputData;
+import export_deck.ExportDeckDsGateway;
+import export_deck.ExportDeckDsInputData;
 
 import java.util.HashMap;
 import java.util.Map;

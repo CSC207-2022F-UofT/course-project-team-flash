@@ -7,9 +7,9 @@
 package data;
 
 import entities.Deck;
-import importDeck.ImportDeckDsGateway;
-import importDeck.ImportDeckDsInputData;
-import importDeck.ImportDeckDsOutputData;
+import import_deck.ImportDeckDsGateway;
+import import_deck.ImportDeckDsInputData;
+import import_deck.ImportDeckDsOutputData;
 import screens.ImportDeckFail;
 
 import java.util.List;
