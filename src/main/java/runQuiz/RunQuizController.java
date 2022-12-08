@@ -1,9 +1,18 @@
+/**
+ * Author: Jamie Chew
+ * Documentation Author: Jamie Chew
+ * Date: December 7th, 2022
+ *
+ * This file contains the RunQuizController class. This includes its constructor
+ * and 3 methods that call their respective use case interactors (startQuiz,
+ * showProblem, and showAnswer).
+ */
+
 package runQuiz;
 
 public class RunQuizController {
 
     RunQuizInputBoundary runQuizInputBound;
-
 
     /**
      * Create a new RunQuizController with the given input boundary.

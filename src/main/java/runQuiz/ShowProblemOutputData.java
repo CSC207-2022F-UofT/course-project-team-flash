@@ -12,8 +12,6 @@
 
 package runQuiz;
 
-import screens.ViewState;
-
 import java.util.List;
 
 public class ShowProblemOutputData {
@@ -23,7 +21,6 @@ public class ShowProblemOutputData {
     private final String currCardQuestion;
     private final String currCardAnswer;
     private final List<String> cardOptions;
-    private ViewState viewState;
 
     /**
      * Creates a new ShowProblemOutputData given a list of flashcard IDs, the index of the
@@ -41,7 +38,6 @@ public class ShowProblemOutputData {
         this.currCardQuestion = currCardQuestion;
         this.currCardAnswer = currCardAnswer;
         this.cardOptions = cardOptions;
-        this.viewState = null;
     }
 
     /**
@@ -90,33 +86,11 @@ public class ShowProblemOutputData {
     }
 
     /**
-     * Returns the viewState of this ShowProblemOutputData.
-     *
-     * @return the viewState of this ShowProblemOutputData
-     */
-    public ViewState getViewState(){
-        return this.viewState;
-    }
-
-    /**
-     * Set the viewState of this ShowProblemOutputData.
-     *
-     * @param state the viewStates object to be set as viewState of this ShowProblemOutputData
-     */
-    public void setViewState(ViewState state){
-        this.viewState = state;
-    }
-
-    /**
      * Return if there is no more problems in this quiz.
      *
      * @return a boolean value indicating if there is no more problems in this quiz
      */
     public boolean noMoreProblems() {
-        if(this.getCurrCardIndex() >= this.flashcardIdList.length){
-            return true;
-        }
-
-        return false;
+        return this.getCurrCardIndex() >= this.flashcardIdList.length;
     }
 }

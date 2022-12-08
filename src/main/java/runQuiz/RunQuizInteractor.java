@@ -42,34 +42,42 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
     @Override
     public void startQuiz(StartQuizInputData inputData) {
 
+        //Get the quiz object corresponding the ID given.
         Quiz currQuiz = entities.Quiz.getQuiz(inputData.getQuizId());
 
+        //Check if quiz doesn't exist.
         if (currQuiz == null) {
             outputBoundary.quizFailView("Quiz of name \"" + inputData.getQuizId() + "\" does not exist.");
             return;
         }
 
+        //Check if quiz is empty.
         else if (quizEmpty(currQuiz)){
             outputBoundary.quizFailView("Quiz is empty. A quiz with no flashcards cannot be run.");
             return;
         }
 
+        //Get a list of flashcard IDs corresponding to each flashcard within the quiz.
         List<String> flashcardIdList = fetchQuizCardIds(currQuiz);
         if (inputData.getIsRandomized()) {
             Collections.shuffle(flashcardIdList);
         }
 
+        //Convert list to array because quiz contents should not change while running.
+        //Also get the first card's problem and answer.
         String[] flashcardIds = flashcardIdList.toArray(new String[0]);
         Flashcard firstCard = Flashcard.getTracker().get(flashcardIds[0]);
         String firstCardProblem = firstCard.getQuestion();
         String firstCardAnswer = firstCard.getAnswer();
 
+        //Return the options of the first card if it is a multiple choice card.
         List<String> firstCardOptions = null;
 
         if(firstCard instanceof MCFlashcard){
             firstCardOptions = ((MCFlashcard) firstCard).getOptions();
         }
 
+        //Pass information to presenter through the outputBoundary.
         StartQuizOutputData outputData = new StartQuizOutputData(flashcardIds, firstCardProblem,
                 firstCardAnswer ,firstCardOptions);
 
@@ -84,15 +92,17 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
     @Override
     public void showProblem(ShowQuizCardInputData inputData) {
 
+        //Gets the flashcard object corresponding to the given ID.
         Flashcard currCard = fetchCard(inputData);
 
+        //If the card is a multiple choice card, get its options.
         List<String> options = null;
 
         if(currCard instanceof MCFlashcard){
             options = ((MCFlashcard) currCard).getOptions();
         }
 
-
+        //Pass data to the presenter through the output boundary.
         ShowProblemOutputData outputData = new ShowProblemOutputData(inputData.getFlashcardIdList(),
                 inputData.getCurrCardIndex(),
                 currCard.getQuestion(),
@@ -110,9 +120,10 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
      */
     @Override
     public void showAnswer(ShowQuizCardInputData inputData) {
-
+        //Get the flashcard object corresponding to the given id.
         Flashcard currCard = fetchCard(inputData);
 
+        //Pass the data to the presenter through the output boundary and increase the index by 1.
         ShowAnswerOutputData outputData = new ShowAnswerOutputData(inputData.getFlashcardIdList(),
                 inputData.getCurrCardIndex(),
                 inputData.getUserAnswer(),
@@ -146,8 +157,8 @@ public class RunQuizInteractor implements RunQuizInputBoundary {
      */
     private ArrayList<String> fetchQuizCardIds(Quiz quiz) {
 
-        ArrayList<String> flashcardIdList = new ArrayList<String>();
-
+        ArrayList<String> flashcardIdList = new ArrayList<>();
+        //Iterate through each flashcard in each deck of the quiz and get its ID.
         for (Deck deck : quiz.getDecks()) {
             for (Flashcard card : deck.getCards()) {
                 flashcardIdList.add(card.getUniqueID());

@@ -1,13 +1,19 @@
+/**
+ * Author: Jamie Chew
+ * Documentation Author: Jamie Chew
+ * Date: December 7th, 2022
+ *
+ * This file contains the RunQuizPresenter class. This includes a constructor
+ * that takes in a ViewBoundary, 3 prepareSuccessView methods (one each for: startQuiz,
+ * showProblem, and showAnswer), and 1 fail view.
+ */
 package runQuiz;
 
 import screens.*;
 
-import java.util.Arrays;
-
 public class RunQuizPresenter implements RunQuizOutputBoundary {
 
-    private ViewBoundary viewBound;
-
+    private final ViewBoundary viewBound;
 
     /**
      * Creates a RunQuizPresenter object given a ViewBoundary object.
@@ -84,7 +90,7 @@ public class RunQuizPresenter implements RunQuizOutputBoundary {
     }
 
     /**
-     * Prepare the fail view given outputData, if the quiz does not exist.
+     * Prepare the fail view with the error string given.
      *
      * @param error the description of this error
      */
