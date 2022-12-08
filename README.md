@@ -93,7 +93,7 @@ An issue that arose with the design of the view was that each presenter for each
 | run_quiz  | 60% | 57% |
 
 Note: For most classes, using the testing method provided by the professors, only input data to presenter is being tested (80% of classes).
-Note: Taking that into account, a maximum of under 80% of lines can be tested.
+Note: Taking that into account, a maximum of ~ 70-80% of lines can be tested.
 
 ## Final Notes
 Usage of Java Swing does not allow for MacOS users to see button text, due to the choice of colours.
