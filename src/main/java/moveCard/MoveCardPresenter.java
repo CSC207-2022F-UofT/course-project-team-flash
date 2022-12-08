@@ -34,6 +34,7 @@ public class MoveCardPresenter implements MoveCardOutputBoundary{
     public void prepareSuccessView(MoveCardOutputData moveCardOutputData) {
         ViewModel viewModel = new ViewModel.ViewModelBuilder(ViewState.CARD_MOVED)
                 .setReturnString(moveCardOutputData.getMessage())
+                .setCardId(moveCardOutputData.getId())
                 .build();
         viewBound.updateView(viewModel);
     }

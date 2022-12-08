@@ -48,10 +48,11 @@ public class CardScreen extends JPanel {
     }
 
     public void setController(CreateCardController createCardController, DeleteCardController deleteCardController,
-                              EditCardController editCardController) {
+                              EditCardController editCardController, MoveCardController moveCardController) {
         this.createCardController = createCardController;
         this.deleteCardController = deleteCardController;
         this.editCardController = editCardController;
+        this.moveCardController = moveCardController;
     }
 
     public void reconstructCards(boolean delete, String[] cardInfo) {
@@ -117,11 +118,11 @@ public class CardScreen extends JPanel {
 
                 JPanel editCard = new JPanel();
                 JPanel deleteCard = new JPanel();
-//                JPanel moveCard = new JPanel();
+                JPanel moveCard = new JPanel();
 
                 optionTabs.add("Edit Card", editCard);
                 optionTabs.add("Delete Card", deleteCard);
-//                optionTabs.add("Move Card", moveCard);
+                optionTabs.add("Move Card", moveCard);
 
                 newCardDialog.add(optionTabs);
 
@@ -155,18 +156,15 @@ public class CardScreen extends JPanel {
                     cardSettingsFrame.dispose();
                 });
 
-//                JLabel movePrompt = new JLabel("Enter the deck to move the card in:");
-//                JTextField moveTextField = new JTextField("", TEXT_FIELD_LENGTH);
-//                JButton moveButton = new JButton("Move Card");
-//                moveCardAdd(moveCard, movePrompt, moveTextField, moveButton);
-//
-//                moveButton.addActionListener(e13 -> {
-//                    System.out.println(deckName);
-//                    System.out.println(moveTextField.getText());
-//                    System.out.println(button.getName());
-//                    moveCardController.move(deckName, moveTextField.getText(), button.getName());
-//                    cardSettingsFrame.dispose();
-//                });
+                JLabel movePrompt = new JLabel("Enter the deck to move the card in:");
+                JTextField moveTextField = new JTextField("", TEXT_FIELD_LENGTH);
+                JButton moveButton = new JButton("Move Card");
+                moveCardAdd(moveCard, movePrompt, moveTextField, moveButton);
+
+                moveButton.addActionListener(e13 -> {
+                    moveCardController.move(deckName, moveTextField.getText(), button.getName());
+                    cardSettingsFrame.dispose();
+                });
 
                 JButton deleteButton = new JButton("Delete Card");
                 deleteCard.add(deleteButton);
@@ -340,11 +338,11 @@ public class CardScreen extends JPanel {
         createMCCard.add(createMCButton);
     }
 
-//    private void moveCardAdd(JPanel moveCard, JLabel movePrompt, JTextField moveTextField, JButton moveButton) {
-//        moveCard.add(movePrompt);
-//        moveCard.add(moveTextField);
-//        moveCard.add(moveButton);
-//    }
+    private void moveCardAdd(JPanel moveCard, JLabel movePrompt, JTextField moveTextField, JButton moveButton) {
+        moveCard.add(movePrompt);
+        moveCard.add(moveTextField);
+        moveCard.add(moveButton);
+    }
 
     private void initializeCardButtons(String name, JButton cardButton,
                                        JLabel questionLabel, JLabel typeLabel) {

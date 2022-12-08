@@ -12,20 +12,30 @@ package moveCard;
 public class MoveCardOutputData {
 
     private final String message;
+    private final String id;
 
     /**
      * Creates a new MoveCardOutputData with a given message
      * @param message indicates whether card was moved successfully or not
      */
-    public MoveCardOutputData(String message) {
+    public MoveCardOutputData(String message, String id) {
         this.message = message;
+        this.id = id;
     }
 
     /**
-     * Returns message of a given MoveCardOutputData
+     * Gets message of a given MoveCardOutputData
      * @return message of a given MoveCardOutputData
      */
     public String getMessage() {
         return this.message;
+    }
+
+    /**
+     * Gets id of the moved card
+     * @return id of the moved card
+     */
+    public String getId() {
+        return id;
     }
 }
