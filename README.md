@@ -92,8 +92,8 @@ An issue that arose with the design of the view was that each presenter for each
 | move_card  | 80% | 70% |
 | run_quiz  | 60% | 57% |
 
-Note: For most classes, using the testing method provided by the professors, only input data to presenter is being tested (80% of classes).
-Note: Taking that into account, a maximum of ~ 70-80% of lines can be tested.
+Note 1: For most classes, using the testing method provided by the professors, only input data to presenter is being tested (80% of classes).
+Note 2: Taking that into account, a maximum of ~ 65-80% of lines can be tested.
 
 To expand on testing process, we used the clean architecture example and instructions provided by the professors to create our tests. Specifically, we tested all pertaining to use cases, from the controller to the presenter. We created tests by initializing and linking up all use case components. The presenter's methods were overriden to have assert statements rather than sending information to the view. Additionally, an input data object was manually created the sent to the interactor directly. Due to this manner of testing, the controller and presenter will have low code coverage, outside of its constructors. The view, and its components, were not formally tested, but experimentally tested by using the program.
 
